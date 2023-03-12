@@ -1,0 +1,6 @@
+<p *ngIf="getSpecialEffect().requirement" ><b><i>Requirement: {{getSpecialEffect().requirement}}</i></b></p>
+<ul>
+    <li *ngFor="let trait of getSpecialEffect().traits" >
+        {{trait}}
+    </li>
+</ul>

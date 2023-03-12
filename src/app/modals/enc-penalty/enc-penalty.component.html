@@ -1,0 +1,13 @@
+<ul *ngIf="enc == 2">
+    <li>Skills using STR or DEX as part of their base (including combat skills) become one grade harder.</li>
+    <li>Base Mobement Rate drops by 2 metres and the character can no longer sprint</li>
+    <li>Carrying the load counts as Medium activity for Fatique purposes</li>
+</ul>
+<ul *ngIf="enc == 3">
+    <li>Skills using STR or DEX as part of their base (including combat skills) become two grades harder</li>
+    <li>Base Mobement Rate drops to half normal and the character can not move faster than a walk</li>
+    <li>Carrying the load counts as Strenuous activity for Fatique purposes</li>
+</ul>
+<p *ngIf="enc == 4" >
+    Unable to Move.
+</p>

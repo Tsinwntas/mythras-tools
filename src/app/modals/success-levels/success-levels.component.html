@@ -1,0 +1,50 @@
+<div>
+        <mat-form-field>
+          <mat-label>Skill Level</mat-label>
+          <input matInput placeholder="100" [(ngModel)]="skill">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Augmenting Skill</mat-label>
+          <input matInput placeholder="0" [(ngModel)]="augment">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Opposing Skill (if over 100)</mat-label>
+          <input matInput placeholder="0" [(ngModel)]="opponent">
+        </mat-form-field>
+</div>
+<div>
+    <table mat-table [dataSource]="getTable()">
+        
+        <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="normal">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"> {{getNormalValue(element.mod)}} </td>
+        </ng-container>
+        <ng-container matColumnDef="suc">
+            <th mat-header-cell *matHeaderCellDef>Success</th>
+            <td mat-cell *matCellDef="let element">{{getSuccess(element.mod)}}- </td>
+        </ng-container>
+        <ng-container matColumnDef="crit">
+            <th mat-header-cell *matHeaderCellDef>Critical</th>
+            <td mat-cell *matCellDef="let element"> {{getCrit(element.mod)}}- </td>
+        </ng-container>
+        <ng-container matColumnDef="fail">
+            <th mat-header-cell *matHeaderCellDef>Fail</th>
+            <td mat-cell *matCellDef="let element"> {{getFailure(element.mod)}}+ </td>
+        </ng-container>
+        <ng-container matColumnDef="fumble">
+            <th mat-header-cell *matHeaderCellDef>Fumble</th>
+            <td mat-cell *matCellDef="let element"> {{getFumble(element.mod)}}+ </td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="getColumnsDefinition(); sticky: true;"></tr>
+        <tr mat-row *matRowDef="let row; columns: getColumnsDefinition();"></tr>
+    </table>
+</div>

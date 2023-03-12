@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: beige; }
+.modal-opener{
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.mat-mdc-dialog-actions {
+    justify-content: end !important;
+}

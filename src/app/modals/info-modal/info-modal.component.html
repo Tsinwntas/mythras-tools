@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{getHeader()}}</h1>
+<div mat-dialog-content>
+    <ng-container #infoComponent></ng-container>
+</div>
+<div mat-dialog-actions>
+    <p class="info-sources">{{getSources()}}</p>
+    <button mat-button [mat-dialog-close] cdkFocusInitial>OK</button>
+</div>

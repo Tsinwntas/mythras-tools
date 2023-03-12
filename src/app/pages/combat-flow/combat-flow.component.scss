@@ -1,0 +1,23 @@
+.combat-flow-page-wrapper{
+    background-color: beige;
+    // width: 100vw;
+    height: 100vh;
+    padding: 10px 20px;
+}
+.user-type-selection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    button {
+        margin: 0px 10px;
+    }
+}
+
+.view-as{
+    flex: 0 0 100%;
+}
+
+mat-stepper{
+    background-color: unset;
+}
