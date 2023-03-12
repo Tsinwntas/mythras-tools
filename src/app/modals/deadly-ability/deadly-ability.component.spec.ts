@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MagicInCombatComponent } from './magic-in-combat.component';
+import { DeadlyAbilityComponent } from './deadly-ability.component';
 
-describe('MagicInCombatComponent', () => {
-  let component: MagicInCombatComponent;
-  let fixture: ComponentFixture<MagicInCombatComponent>;
+describe('DeadlyAbilityComponent', () => {
+  let component: DeadlyAbilityComponent;
+  let fixture: ComponentFixture<DeadlyAbilityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MagicInCombatComponent ]
+      declarations: [ DeadlyAbilityComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MagicInCombatComponent);
+    fixture = TestBed.createComponent(DeadlyAbilityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

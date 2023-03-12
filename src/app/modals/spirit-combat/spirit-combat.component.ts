@@ -1,3 +1,4 @@
+import { ModalInnerContent } from './../../model/modal-inner-content';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,6 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: './spirit-combat.component.html',
   styleUrls: ['./spirit-combat.component.scss']
 })
-export class SpiritCombatComponent {
-
+export class SpiritCombatComponent implements ModalInnerContent {
+  getHeader(): string {
+    return "Spirit Combat";
+  }
+  getSources(): string {
+    return "Mythras Core Rules 137-138";
+  }
 }

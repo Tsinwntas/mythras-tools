@@ -92,10 +92,7 @@ import { AimingComponent } from './modals/aiming/aiming.component';
 import { FiringIntoCrowdComponent } from './modals/firing-into-crowd/firing-into-crowd.component';
 import { FiringMovingComponent } from './modals/firing-moving/firing-moving.component';
 import { MagicSituationalComponent } from './modals/magic-situational/magic-situational.component';
-import { MagicInCombatComponent } from './modals/magic-in-combat/magic-in-combat.component';
 import { RunningOutOfManaComponent } from './modals/running-out-of-mana/running-out-of-mana.component';
-import { ShamanFightsComponent } from './modals/shaman-fights/shaman-fights.component';
-import { SorceryInCombatComponent } from './modals/sorcery-in-combat/sorcery-in-combat.component';
 import { SpiritCombatComponent } from './modals/spirit-combat/spirit-combat.component';
 import { OffensiveSpecialEffectsComponent } from './modals/offensive-special-effects/offensive-special-effects.component';
 import { DefensiveSpecialEffectsComponent } from './modals/defensive-special-effects/defensive-special-effects.component';
@@ -107,6 +104,8 @@ import { RangedModTableComponent } from './ranged-mod-table/ranged-mod-table.com
 import { DistancePenaltiesComponent } from './distance-penalties/distance-penalties.component';
 import { CloseCombatSituationalComponent } from './modals/close-combat-situational/close-combat-situational.component';
 import { HitLocationsComponent } from './modals/hit-locations/hit-locations.component';
+import { PossessionExorcismComponent } from './modals/possession-exorcism/possession-exorcism.component';
+import { DeadlyAbilityComponent } from './modals/deadly-ability/deadly-ability.component';
 
 
 
@@ -188,10 +187,7 @@ import { HitLocationsComponent } from './modals/hit-locations/hit-locations.comp
     FiringIntoCrowdComponent,
     FiringMovingComponent,
     MagicSituationalComponent,
-    MagicInCombatComponent,
     RunningOutOfManaComponent,
-    ShamanFightsComponent,
-    SorceryInCombatComponent,
     SpiritCombatComponent,
     OffensiveSpecialEffectsComponent,
     DefensiveSpecialEffectsComponent,
@@ -202,7 +198,9 @@ import { HitLocationsComponent } from './modals/hit-locations/hit-locations.comp
     RangedModTableComponent,
     DistancePenaltiesComponent,
     CloseCombatSituationalComponent,
-    HitLocationsComponent
+    HitLocationsComponent,
+    PossessionExorcismComponent,
+    DeadlyAbilityComponent
   ],
   imports: [
     BrowserModule,

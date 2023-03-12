@@ -1,3 +1,15 @@
+import { SpiritCombatComponent } from './../modals/spirit-combat/spirit-combat.component';
+import { RunningOutOfManaComponent } from './../modals/running-out-of-mana/running-out-of-mana.component';
+import { PossessionExorcismComponent } from './../modals/possession-exorcism/possession-exorcism.component';
+import { OffensiveSpecialEffectsComponent } from './../modals/offensive-special-effects/offensive-special-effects.component';
+import { MoveComponent } from './../modals/move/move.component';
+import { MagicSituationalComponent } from './../modals/magic-situational/magic-situational.component';
+import { InanimateObjectsComponent } from './../modals/inanimate-objects/inanimate-objects.component';
+import { FiringMovingComponent } from './../modals/firing-moving/firing-moving.component';
+import { DefensiveSpecialEffectsComponent } from './../modals/defensive-special-effects/defensive-special-effects.component';
+import { DeadlyAbilityComponent } from './../modals/deadly-ability/deadly-ability.component';
+import { CloseCombatSituationalComponent } from './../modals/close-combat-situational/close-combat-situational.component';
+import { AimingComponent } from './../modals/aiming/aiming.component';
 import { ArmorPenaltyComponent } from './../modals/armor-penalty/armor-penalty.component';
 import { SuccessLevelsComponent } from './../modals/success-levels/success-levels.component';
 import { HealingWoundsComponent } from './../modals/healing-wounds/healing-wounds.component';
@@ -52,6 +64,8 @@ import { ModalHandlerService } from './../services/modal-handler.service';
 import { Component, Input } from '@angular/core';
 import { FallingAndCombatComponent } from '../modals/falling-and-combat/falling-and-combat.component';
 import { MountedCombatComponent } from '../modals/mounted-combat/mounted-combat.component';
+import { FiringIntoCrowdComponent } from '../modals/firing-into-crowd/firing-into-crowd.component';
+import { HitLocationsComponent } from '../modals/hit-locations/hit-locations.component';
 
 @Component({
   selector: 'open-modal',
@@ -67,6 +81,7 @@ export class OpenModalComponent {
 
   openModal(){
     switch(this.modal){
+      case 'aiming': this.modals.open(AimingComponent);return;
       case 'armor-penalty': this.modals.open(ArmorPenaltyComponent);return;
       case 'assess-situation': this.modals.open(AssessSituationComponent);return;
       case 'augment': this.modals.open(AugmentModalComponent);return;
@@ -75,8 +90,11 @@ export class OpenModalComponent {
       case 'cast-magic': this.modals.open(CastMagicComponent);return;
       case 'change-range': this.modals.open(ChangeRangeComponent);return;
       case 'charging': this.modals.open(ChargingComponent);return;
+      case 'close-combat-situational': this.modals.open(CloseCombatSituationalComponent);return;
       case 'counterspell': this.modals.open(CounterspellComponent);return;
       case 'damage-reduction': this.modals.open(DamageReductionComponent);return;
+      case 'deadly-ability': this.modals.open(DeadlyAbilityComponent);return;
+      case 'defensive-specials': this.modals.open(DefensiveSpecialEffectsComponent);return;
       case 'delay': this.modals.open(DelayComponent);return;
       case 'different-weapons': this.modals.open(DropWeaponComponent);return;
       case 'difficulty-grades': this.modals.open(DifficultyGradesComponent);return;
@@ -87,33 +105,43 @@ export class OpenModalComponent {
       case 'falling-and-combat': this.modals.open(FallingAndCombatComponent);return;
       case 'familiar-unfamiliar': this.modals.open(FamiliarUnfamiliarComponent);return;
       case 'fatigue': this.modals.open(FatigueComponent);return;
+      case 'firing-into-crowd': this.modals.open(FiringIntoCrowdComponent);return;
+      case 'firing-moving': this.modals.open(FiringMovingComponent);return;
       case 'grapple': this.modals.open(GrappleComponent);return;
-      case 'healing-wounds': this.modals.open(HealingWoundsComponent);return;
       case 'group-luck': this.modals.open(GroupLuckComponent);return;
+      case 'healing-wounds': this.modals.open(HealingWoundsComponent);return;
       case 'heroic-last-action': this.modals.open(HeroicLastActionComponent);return;
+      case 'hit-locations': this.modals.open(HitLocationsComponent);return;
       case 'hold-magic': this.modals.open(HoldMagicComponent);return;
+      case 'inanimate-objects': this.modals.open(InanimateObjectsComponent);return;
       case 'interrupt': this.modals.open(InterruptComponent);return;
       case 'into-contact': this.modals.open(IntoContactComponent);return;
       case 'knockback': this.modals.open(KnockbackComponent);return;
       case 'leaping-attacks': this.modals.open(LeapingAttacksComponent);return;
       case 'luck-point': this.modals.open(LuckPointComponent);return;
+      case 'magic-situational': this.modals.open(MagicSituationalComponent);return;
       case 'mount': this.modals.open(MountComponent);return;
       case 'mounted-combat': this.modals.open(MountedCombatComponent);return;
+      case 'move': this.modals.open(MoveComponent);return;
       case 'natural-specials': this.modals.open(NaturalSpecialsComponent);return;
+      case 'offensive-specials': this.modals.open(OffensiveSpecialEffectsComponent);return;
       case 'outmaneuvre': this.modals.open(OutmanoeuvringComponent);return;
       case 'parry': this.modals.open(ParryComponent);return;
       case 'passive-blocking': this.modals.open(PassiveBlockingComponent);return;
+      case 'possession-exorcism': this.modals.open(PossessionExorcismComponent);return;
       case 'ranged-situational': this.modals.open(RangedSituationalComponent);return;
       case 'ready-weapon': this.modals.open(ReadyWeaponComponent);return;
       case 'reasonably-different': this.modals.open(ReasonablyDifferentWeaponsComponent);return;
       case 'regain-footing': this.modals.open(RegainFootingComponent);return;
       case 'reload': this.modals.open(ReloadComponent);return;
+      case 'running-out-of-mana': this.modals.open(RunningOutOfManaComponent);return;
       case 'shorter-reach': this.modals.open(ShorterReachComponent);return;
       case 'signal': this.modals.open(SignalComponent);return;
       case 'similar': this.modals.open(SimilarWeaponsComponent);return;
       case 'situational': this.modals.open(SituationalModifiersComponent);return;
       case 'speak': this.modals.open(SpeakComponent);return;
       case 'special-effects': this.modals.specialEffects(this.prop);return;
+      case 'spirit-combat': this.modals.open(SpiritCombatComponent);return;
       case 'struggle': this.modals.open(StruggleComponent);return;
       case 'substantially-different': this.modals.open(SubstantiallyDifferentWeaponComponent);return;
       case 'success-levels': this.modals.open(SuccessLevelsComponent);return;
