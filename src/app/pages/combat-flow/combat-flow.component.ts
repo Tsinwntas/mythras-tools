@@ -1,3 +1,4 @@
+import { RoundHolder } from './../../model/round-holder';
 import { AttackOptionsComponent } from './../attack-options/attack-options.component';
 import { EndOfCycleComponent } from './../end-of-cycle/end-of-cycle.component';
 import { CompareResultsComponent } from './../compare-results/compare-results.component';
@@ -15,7 +16,7 @@ import { FreeActionsComponent } from '../free-actions/free-actions.component';
 @Component({
   selector: 'app-combat-flow',
   templateUrl: './combat-flow.component.html',
-  styleUrls: ['./combat-flow.component.scss']
+  styleUrls: ['./combat-flow.component.scss'],
 })
 export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
@@ -34,7 +35,7 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
       component: StartOfCombatRoundComponent
     },
     {
-      stepLabel: "Fatigue Check: Endurance roll or lose Fatigue level",
+      stepLabel: "Fatigue Check at start of Round",
       component: FatigueCheckComponent
     },
     {
@@ -69,26 +70,62 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
       stepLabel: "End of Cycle in Combat Round",
       component: EndOfCycleComponent,
       next: [
-        {target:4, label:"Next in Initiative"},{target:2, label: "Next Round"}
+        {target:4, label:"Next in Initiative"},{target:2, label: "Next Round", click:()=>{this.round.round++}}
       ]
     }
   ];
+  player_states: CombatState[] = [
+    {
+      stepLabel: "Attacker spends an Action Point if they can",
+      component: AttackerActionComponent,
+      next: [
+        {target:1, label:"Attack"},{target:2, label: "Free Action"}
+        ,{target:3, label: "Defender Action"}
+      ]
+    },
+    {
+      stepLabel: "Attack",
+      component: AttackOptionsComponent
+    },
+    {
+      stepLabel: "Free Actions (Attacker and Defender)",
+      component: FreeActionsComponent
+    },
+    {
+      stepLabel: "Defender chooses whether to spend Action Point for Defense",
+      component: DefenderActionComponent
+    },
+    {
+      stepLabel: "Compare Results",
+      component: CompareResultsComponent,
+      next: [
+        {target:0, label: "Back to start"}
+      ]
+    }
+  ]
   combatState : number;
-
+  round : RoundHolder = {round : 1};
+  loading : boolean;
   constructor(private resolver: ComponentFactoryResolver){
     this.userType=UserTypes.UNKNOWN;
   } 
   
   ngDoCheck() {
     localStorage['user-type'] = this.userType;
-    localStorage['combat-state'] = this.combatState;
+    if(this.userType == UserTypes.GM)
+      localStorage['combat-state-gm'] = this.combatState;
+    if(this.userType == UserTypes.PLAYER)
+      localStorage['combat-state-player'] = this.combatState;
+    localStorage['round']=this.round.round;
+    
   }
 
   ngOnInit(): void {
-    if(localStorage['combat-state'])
-      this.combatState = localStorage['combat-state'];
     if(localStorage['user-type'])
       this.userType = localStorage['user-type'];
+    if(localStorage['round'] != undefined)
+      this.round.round = parseInt(localStorage['round']);
+    this.updateCombatState();
   }
   
   ngAfterViewInit() {
@@ -107,14 +144,31 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
         this.stepper!._getIndicatorType = () => 'number';
         if(this.switchedType){
           this.switchedType = false;
+          this.stepper!.selectedIndex = this.combatState;
           this.loadComponent();
         }
       },0)
     }
   }
 
+  getStates() : CombatState[] {
+      if(this.userType == UserTypes.GM)
+        return this.states;
+      return this.player_states;
+  }
+
   setUserType(type : UserTypes) {
+    this.loading=true;
     this.userType = type;
+    this.switchedType=true;
+    this.updateCombatState();
+  }
+
+  updateCombatState(){
+    if(this.userType == UserTypes.GM && localStorage['combat-state-gm'])
+      this.combatState = localStorage['combat-state-gm'];
+    if(this.userType == UserTypes.PLAYER && localStorage['combat-state-player'])
+      this.combatState = localStorage['combat-state-player'];
   }
  
   onStepChange(event: any): void {
@@ -131,7 +185,7 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
   loadComponent(): void {
     for (let i = 0; i < this.stateComponents.toArray().length; i++) {
       let target = this.stateComponents.toArray()[i];
-      let tabComponent = this.states[i].component;
+      let tabComponent = this.getStates()[i].component;
       if(!tabComponent)
         continue;
       let componentFactory =
@@ -140,6 +194,7 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
       target.clear();
       target.createComponent(componentFactory);
     }
+    setTimeout(()=>{this.loading=false;},1000);
   }
 
 

@@ -1,3 +1,4 @@
+import { SpiritCombatSpecialEffectsComponent } from './../modals/spirit-combat-special-effects/spirit-combat-special-effects.component';
 import { SpiritCombatComponent } from './../modals/spirit-combat/spirit-combat.component';
 import { RunningOutOfManaComponent } from './../modals/running-out-of-mana/running-out-of-mana.component';
 import { PossessionExorcismComponent } from './../modals/possession-exorcism/possession-exorcism.component';
@@ -113,7 +114,8 @@ export class OpenModalComponent {
       case 'heroic-last-action': this.modals.open(HeroicLastActionComponent);return;
       case 'hit-locations': this.modals.open(HitLocationsComponent);return;
       case 'hold-magic': this.modals.open(HoldMagicComponent);return;
-      case 'inanimate-objects': this.modals.open(InanimateObjectsComponent);return;
+      case 'inanimate-object': this.modals.open(InanimateObjectsComponent);return;
+      case 'initiative': this.modals.initiativeNotes(this.prop);return;
       case 'interrupt': this.modals.open(InterruptComponent);return;
       case 'into-contact': this.modals.open(IntoContactComponent);return;
       case 'knockback': this.modals.open(KnockbackComponent);return;
@@ -142,6 +144,7 @@ export class OpenModalComponent {
       case 'speak': this.modals.open(SpeakComponent);return;
       case 'special-effects': this.modals.specialEffects(this.prop);return;
       case 'spirit-combat': this.modals.open(SpiritCombatComponent);return;
+      case 'spirit-specials': this.modals.open(SpiritCombatSpecialEffectsComponent);return;
       case 'struggle': this.modals.open(StruggleComponent);return;
       case 'substantially-different': this.modals.open(SubstantiallyDifferentWeaponComponent);return;
       case 'success-levels': this.modals.open(SuccessLevelsComponent);return;

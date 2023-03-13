@@ -15,6 +15,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatListModule} from '@angular/material/list';
+
 
 import { FormsModule } from '@angular/forms';
 
@@ -216,7 +219,9 @@ import { DeadlyAbilityComponent } from './modals/deadly-ability/deadly-ability.c
     MatDialogModule,
     MatTableModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

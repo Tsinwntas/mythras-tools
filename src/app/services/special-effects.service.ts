@@ -20,10 +20,9 @@ export class SpecialEffectsService {
     return this.getEffects().find(e=>e.effect==effect);
   }
 
-  // getSpecialEffects(offensive: boolean, filter : SpecialEffect) : SpecialEffect[]{
-  //   return (offensive? getOffensiveSpecialEffects() : getDefensiveSpecialEffects())
-  //   .filter(e=>Object.keys(filter).filter(k=>filter[k] && ))
-  // }
+  getSpecialEffects(offensive: boolean, filter? : SpecialEffect) : SpecialEffect[]{
+    return (offensive? getOffensiveSpecialEffects() : getDefensiveSpecialEffects());
+  }
 }
 
 

@@ -1,3 +1,5 @@
+import { InitiativeNotesComponent } from './../modals/initiative-notes/initiative-notes.component';
+import { RoundHolder } from './../model/round-holder';
 import { SpecialEffectsComponent } from './../modals/special-effects/special-effects.component';
 import { EncPenaltyComponent } from './../modals/enc-penalty/enc-penalty.component';
 import { SituationalModifiersComponent } from './../modals/situational-modifiers/situational-modifiers.component';
@@ -17,9 +19,13 @@ export class ModalHandlerService {
   encModal(enc : number){
     this.open(EncPenaltyComponent, {enc: enc});
   }
+  
+  initiativeNotes(round: RoundHolder) {
+    this.open(InitiativeNotesComponent, {round: round});
+  }
 
   specialEffects(effect: string) {
-    this.open(SpecialEffectsComponent, {effect: effect})
+    this.open(SpecialEffectsComponent, {effect: effect});
   }
 
   open(component : any, props? : any) {

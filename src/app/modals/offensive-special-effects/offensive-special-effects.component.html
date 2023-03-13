@@ -1,1 +1,7 @@
-<p>offensive-special-effects works!</p>
+<div class="specials-wrapper">
+    <open-modal *ngFor="let effect of effects" modal="special-effects" [prop]="effect.effect">
+    <button mat-raised-button >
+        {{effect.effect}}
+    </button>
+    </open-modal>
+</div>

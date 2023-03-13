@@ -1,0 +1,13 @@
+.specials-wrapper{
+    display:grid;
+    grid-template-columns: auto auto auto;
+    button{
+        background-color: #d3d3d336;
+        width: 100%;
+    }
+}
+
+:host ::ng-deep .modal-opener{
+    text-decoration: unset !important;
+    color: unset !important;
+}

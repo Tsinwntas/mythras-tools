@@ -1,17 +1,17 @@
 <div>
         <mat-form-field>
           <mat-label>Skill Level</mat-label>
-          <input matInput placeholder="100" [(ngModel)]="skill">
+          <input matInput placeholder="100" type="number" [(ngModel)]="skill">
         </mat-form-field>
       
         <mat-form-field>
           <mat-label>Augmenting Skill</mat-label>
-          <input matInput placeholder="0" [(ngModel)]="augment">
+          <input matInput placeholder="0" type="number" [(ngModel)]="augment">
         </mat-form-field>
       
         <mat-form-field>
           <mat-label>Opposing Skill (if over 100)</mat-label>
-          <input matInput placeholder="0" [(ngModel)]="opponent">
+          <input matInput placeholder="0" type="number" [(ngModel)]="opponent">
         </mat-form-field>
 </div>
 <div>

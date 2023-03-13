@@ -21,3 +21,16 @@
 mat-stepper{
     background-color: unset;
 }
+
+mat-form-field{
+    width: 60px;
+    input { 
+        text-align: center;
+    }
+}
+
+.round-span{
+    display:flex;
+    flex-grow: 1;
+    justify-content: end;
+}

@@ -10,3 +10,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .mat-mdc-dialog-actions {
     justify-content: end !important;
 }
+.cdk-overlay-container{
+    height: 100vh !important;
+    width: 100vw !important;
+}

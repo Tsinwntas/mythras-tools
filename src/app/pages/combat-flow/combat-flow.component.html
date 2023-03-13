@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <open-modal *ngIf="userType==UserTypes.GM"  modal="initiative">
+    <open-modal *ngIf="userType==UserTypes.GM"  modal="initiative" [prop]="round">
         <button mat-button>
             Initiative Notes
         </button>
@@ -24,12 +24,12 @@
             Hit Locations
         </button>
     </open-modal>
-    <open-modal modal="attack-specials">
+    <open-modal modal="offensive-specials">
         <button mat-button>
             Offensive Special Effects
         </button>
     </open-modal>
-    <open-modal modal="defence-specials">
+    <open-modal modal="defensive-specials">
         <button mat-button>
             Defensive Special Effects
         </button>
@@ -43,15 +43,27 @@
 <div class="combat-flow-page-wrapper">
     <div class="user-type-selection" *ngIf="userType == UserTypes.UNKNOWN" >
         <h3 class="view-as">Select from which perspective to view the Combat Flow:</h3>
-        <button mat-raised-button color="primary" (click)="UserTypes.GM; switchedType = true;">GM</button>
-        <button mat-raised-button color="accent" (click)="UserTypes.PLAYER; switchedType = true;">Player</button>
+        <button mat-raised-button color="primary" (click)="setUserType(UserTypes.GM)">GM</button>
+        <button mat-raised-button color="accent" (click)="setUserType(UserTypes.PLAYER)">Player</button>
     </div>
-    <div class="combat-flow-wrapper" *ngIf="userType == UserTypes.GM" >
-        <mat-stepper [linear]="false" #stepper (selectionChange)="onStepChange($event)">
-            <mat-step *ngFor="let state of states" >
+    <div class="combat-flow-wrapper" *ngIf="userType != UserTypes.UNKNOWN" >
+        
+        <div *ngIf="loading" >
+            <mat-spinner></mat-spinner>
+        </div>
+        <mat-stepper [linear]="false" #stepper (selectionChange)="onStepChange($event)" [ngStyle]="{'display': loading ? 'none' : 'block' }" >
+            <mat-step *ngFor="let state of getStates()">
                 <mat-card>
-                    <mat-card-header><h3>{{state.stepLabel}}</h3></mat-card-header>	
-                    <mat-card-content>
+                    <mat-card-header>
+                        <h3>{{state.stepLabel}}</h3>
+                        <span *ngIf="userType == UserTypes.GM && combatState == 2" class="round-span">
+                        <mat-form-field>
+                            <mat-label>Round</mat-label>
+                            <input matInput placeholder="1" type="number" [(ngModel)]="round.round">
+                        </mat-form-field>
+                        </span>
+                    </mat-card-header>	
+                    <mat-card-content >
                         <div class="state-content-wrapper">
                             <ng-container #stateComponents></ng-container>
                         </div>
@@ -68,7 +80,7 @@
     </div>
     <div class="user-type-reselection" *ngIf="userType != UserTypes.UNKNOWN" >
         <div>View as:</div>
-        <button mat-raised-button color="primary" (click)="userType = UserTypes.GM; switchedType=true;" *ngIf="userType == UserTypes.PLAYER">GM</button>
-        <button mat-raised-button color="accent" (click)="userType = UserTypes.PLAYER; switchedType=true;" *ngIf="userType == UserTypes.GM">Player</button>
+        <button mat-raised-button color="primary" (click)="setUserType(UserTypes.GM)" *ngIf="userType == UserTypes.PLAYER">GM</button>
+        <button mat-raised-button color="accent" (click)="setUserType(UserTypes.PLAYER)" *ngIf="userType == UserTypes.GM">Player</button>
     </div>
 </div>
