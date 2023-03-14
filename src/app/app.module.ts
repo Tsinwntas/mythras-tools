@@ -109,6 +109,7 @@ import { CloseCombatSituationalComponent } from './modals/close-combat-situation
 import { HitLocationsComponent } from './modals/hit-locations/hit-locations.component';
 import { PossessionExorcismComponent } from './modals/possession-exorcism/possession-exorcism.component';
 import { DeadlyAbilityComponent } from './modals/deadly-ability/deadly-ability.component';
+import { CharacterComponent } from './modals/character/character.component';
 
 
 
@@ -203,7 +204,8 @@ import { DeadlyAbilityComponent } from './modals/deadly-ability/deadly-ability.c
     CloseCombatSituationalComponent,
     HitLocationsComponent,
     PossessionExorcismComponent,
-    DeadlyAbilityComponent
+    DeadlyAbilityComponent,
+    CharacterComponent
   ],
   imports: [
     BrowserModule,

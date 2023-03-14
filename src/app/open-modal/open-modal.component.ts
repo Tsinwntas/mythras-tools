@@ -1,3 +1,4 @@
+import { CharacterComponent } from './../modals/character/character.component';
 import { SpiritCombatSpecialEffectsComponent } from './../modals/spirit-combat-special-effects/spirit-combat-special-effects.component';
 import { SpiritCombatComponent } from './../modals/spirit-combat/spirit-combat.component';
 import { RunningOutOfManaComponent } from './../modals/running-out-of-mana/running-out-of-mana.component';
@@ -90,6 +91,7 @@ export class OpenModalComponent {
       case 'broadly-similar': this.modals.open(BroadlySimilarWeaponsComponent);return;
       case 'cast-magic': this.modals.open(CastMagicComponent);return;
       case 'change-range': this.modals.open(ChangeRangeComponent);return;
+      case 'character': this.modals.open(CharacterComponent);return;
       case 'charging': this.modals.open(ChargingComponent);return;
       case 'close-combat-situational': this.modals.open(CloseCombatSituationalComponent);return;
       case 'counterspell': this.modals.open(CounterspellComponent);return;
