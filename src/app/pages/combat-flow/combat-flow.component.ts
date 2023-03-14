@@ -175,9 +175,11 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
     this.combatState = event.selectedIndex;
   }
 
-  stepTo(index: any){
+  stepTo(index: any, click?: ()=>void){
     this.combatState = index;
     this.stepper!.selectedIndex = index;
+    if(click)
+      click();
   }
 
   @ViewChildren('stateComponents', {read: ViewContainerRef}) public stateComponents: QueryList<ViewContainerRef>;

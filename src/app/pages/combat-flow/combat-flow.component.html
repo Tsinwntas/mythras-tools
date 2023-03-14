@@ -71,7 +71,7 @@
                             <button mat-stroked-button matStepperNext >Next</button>
                         </div>
                         <div *ngIf="state.next != undefined" >
-                            <button mat-stroked-button *ngFor="let button of state.next" (click)="stepTo(button.target)">{{button.label? button.label : 'Next'}}</button>
+                            <button mat-stroked-button *ngFor="let button of state.next" (click)="stepTo(button.target, button.click)">{{button.label? button.label : 'Next'}}</button>
                         </div>
                     </mat-card-content>
                 </mat-card>
