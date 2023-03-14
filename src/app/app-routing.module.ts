@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', redirectTo: './combat', pathMatch: 'full'},
-  { path: './combat', component: CombatFlowComponent }
+  {path: '', redirectTo: '/combat', pathMatch: 'full'},
+  { path: 'combat', component: CombatFlowComponent }
 ];
 
 @NgModule({
