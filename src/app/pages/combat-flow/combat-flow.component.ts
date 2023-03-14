@@ -165,10 +165,10 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
   }
 
   updateCombatState(){
-    if(this.userType == UserTypes.GM && localStorage['combat-state-gm'])
-      this.combatState = localStorage['combat-state-gm'];
-    if(this.userType == UserTypes.PLAYER && localStorage['combat-state-player'])
-      this.combatState = localStorage['combat-state-player'];
+    if(this.userType == UserTypes.GM)
+      this.combatState = localStorage['combat-state-gm'] ? localStorage['combat-state-gm'] : 0;
+    if(this.userType == UserTypes.PLAYER)
+      this.combatState = localStorage['combat-state-player'] ? localStorage['combat-state-player'] : 0;
   }
  
   onStepChange(event: any): void {
