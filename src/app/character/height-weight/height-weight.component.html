@@ -1,0 +1,18 @@
+<p>You can set your build, height and weight as any value that you want and the GM allows. You can look at the provided table if you want to follow guidelines.</p>
+<div class="form-wrapper">
+    <mat-form-field>
+        <mat-label>Frame:</mat-label>
+        <input matInput [(ngModel)]="character.frame">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Height:</mat-label>
+        <input matInput [(ngModel)]="character.height">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Weight:</mat-label>
+        <input matInput [(ngModel)]="character.weight">
+    </mat-form-field>
+</div>
+<div class="size-table">
+    <size-table></size-table>
+</div>

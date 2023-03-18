@@ -1,0 +1,13 @@
+<p>Determine your idea for the character. Come up with your own concept - or you could get ideas by
+taking one or more entry from each of the following two tables.</p>
+<div class="concept-table">
+    <div class="concept-coockie" *ngFor="let c of concepts">
+        {{c}}
+    </div>
+</div>
+<div class="character-concept">
+    <mat-form-field>
+        <mat-label>Concept:</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" [(ngModel)]="character.concept"></textarea>
+    </mat-form-field>
+</div>

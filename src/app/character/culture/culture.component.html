@@ -1,0 +1,51 @@
+<p>Cultural Background:</p>
+<mat-form-field appearance="fill">
+    <mat-label>Cultura Background:</mat-label>
+    <mat-select [(value)]="character.culture">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let culture of ['Barbarian', 'Civilized', 'Nomadic', 'Primitive']" [value]="culture">{{culture}}</mat-option>
+    </mat-select>
+</mat-form-field>
+<p>{{getPointsLeft()}}/100 points to distribute among six skills plus an optional cultural combat style, as listed below.</p>
+<p><i>Minimum of 5 Points can be allocated to each skill and a maximum of 15. Combat Style is optional but if selected, then use the min-max points rule.</i></p>
+<div class="culture-combat-style">
+
+</div>
+<div class="cultural-header"><p>Cultural Skills:</p><button class="reset-button" mat-flat-button (click)="resetSkills()">CLEAR CULTURE BONUSES</button></div>
+<p *ngIf="character.culture=='Nomadic'">Only choose 2 of Athletics, Boating, Swim, Drive, Ride</p>
+<div class="skill-categories">
+    <div class="skill-category standard-skills">
+        <p><b>Standard Skills</b></p>
+        <div class="skill-wrapper"  *ngFor="let skill of getStandardCulturalSkills()">
+        <div class="attribute">
+            <span class="skill-name">{{skill.name}}</span>
+            <span class="skill-base">{{getSkill(skill)}}</span>
+        </div>
+        <mat-form-field>
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="skill.cultureBonus">
+        </mat-form-field>
+        </div>
+    </div>
+    <div class="skill-category professional-skills">
+        <p><b>Professional Skills</b></p>
+        <div class="skill-wrapper"  *ngFor="let skill of getProfessionalCulturalSkills()">
+        <div class="attribute" *ngIf="!canBeSpecialized(skill)">
+            <span class="skill-name">{{skill.name}}</span>
+            <span class="skill-base">{{getSkill(skill)}}</span>
+        </div>
+        <div class="attribute" *ngIf="canBeSpecialized(skill)">
+            <span class="skill-name"><open-modal modal="specialized" [prop]="getSpecializedProps(skill)">{{getSpecialized(skill).name}}</open-modal></span>
+            <span class="skill-base">{{getSkill(getSpecialized(skill))}}</span>
+        </div>
+        <mat-form-field *ngIf="!canBeSpecialized(skill)">
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="skill.cultureBonus">
+        </mat-form-field>
+        <mat-form-field *ngIf="canBeSpecialized(skill)">
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="getSpecialized(skill).cultureBonus">
+        </mat-form-field>
+        </div>
+    </div>
+</div>

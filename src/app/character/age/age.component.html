@@ -1,0 +1,25 @@
+<p>Decide on their age, or decide a category and roll:</p>
+
+<mat-form-field>
+    <mat-label>Age:</mat-label>
+    <input matInput type="number" [(ngModel)]="character.age">
+</mat-form-field>
+
+<div>
+    <p>or Roll:</p>
+    <div class="roll-buttons">
+        <div class="roll-button">Young : <button mat-flat-button (click)="roll(1,10)">1d6 + 10</button> years.</div>
+    </div>
+    <div class="roll-buttons">
+        <div class="roll-button">Young-Adult : <button mat-flat-button (click)="roll(2,15)">2d6 + 15</button> years.</div>
+    </div>
+    <div class="roll-buttons">
+        <div class="roll-button">Adult : <button mat-flat-button (click)="roll(3,25)">3d6 + 25</button> years.</div>
+    </div>
+    <div class="roll-buttons">
+        <div class="roll-button">Middle-Aged : <button mat-flat-button (click)="roll(4,40)">4d6 + 40</button> years.</div>
+    </div>
+    <div class="roll-buttons">
+        <div class="roll-button">Old : <button mat-flat-button (click)="roll(5,60)">5d6 + 60</button> years.</div>
+    </div>
+</div>

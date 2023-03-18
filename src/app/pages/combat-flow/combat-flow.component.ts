@@ -12,20 +12,18 @@ import { AfterViewChecked, AfterViewInit, Component, ComponentFactoryResolver, O
 import { MatStepper } from '@angular/material/stepper';
 import { CombatState } from 'src/app/model/combat-state';
 import { FreeActionsComponent } from '../free-actions/free-actions.component';
+import { StatePageComponent } from '../state-page/state-page.component';
 
 @Component({
   selector: 'app-combat-flow',
   templateUrl: './combat-flow.component.html',
   styleUrls: ['./combat-flow.component.scss'],
 })
-export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChecked {
-
-  @ViewChild('stepper') stepper: MatStepper | undefined;
+export class CombatFlowComponent extends StatePageComponent {
 
   userType : UserTypes;
-  switchedType : boolean;
   UserTypes = UserTypes;
-  states : CombatState[] = [
+  override states : CombatState[] = [
     {
       stepLabel: "Start of Combat",
       component: StartOfCombatComponent,
@@ -103,55 +101,31 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
       ]
     }
   ]
-  combatState : number;
   round : RoundHolder = {round : 1};
-  loading : boolean;
-  constructor(private resolver: ComponentFactoryResolver){
+  constructor(private resolverLocal: ComponentFactoryResolver){
+    super(resolverLocal);
     this.userType=UserTypes.UNKNOWN;
   } 
+
+  override ngOnInit(){
+    if(localStorage['user-type'])
+        this.userType = localStorage['user-type'];
+      if(localStorage['round'] != undefined)
+        this.round.round = parseInt(localStorage['round']);
+      this.updateCombatState();
+  }
   
-  ngDoCheck() {
+  override ngDoCheck() {
     localStorage['user-type'] = this.userType;
     if(this.userType == UserTypes.GM)
-      localStorage['combat-state-gm'] = this.combatState;
+      localStorage['combat-state-gm'] = this.pageState;
     if(this.userType == UserTypes.PLAYER)
-      localStorage['combat-state-player'] = this.combatState;
+      localStorage['combat-state-player'] = this.pageState;
     localStorage['round']=this.round.round;
     
   }
 
-  ngOnInit(): void {
-    if(localStorage['user-type'])
-      this.userType = localStorage['user-type'];
-    if(localStorage['round'] != undefined)
-      this.round.round = parseInt(localStorage['round']);
-    this.updateCombatState();
-  }
-  
-  ngAfterViewInit() {
-    if(this.stepper){
-      setTimeout(()=>{
-        if(this.combatState)
-          this.stepper!.selectedIndex = this.combatState;
-        this.loadComponent();
-      },0)
-    }
-  }
-
-  ngAfterViewChecked(): void {
-    if(this.stepper){
-      setTimeout(()=>{
-        this.stepper!._getIndicatorType = () => 'number';
-        if(this.switchedType){
-          this.switchedType = false;
-          this.stepper!.selectedIndex = this.combatState;
-          this.loadComponent();
-        }
-      },0)
-    }
-  }
-
-  getStates() : CombatState[] {
+  override getStates() : CombatState[] {
       if(this.userType == UserTypes.GM)
         return this.states;
       return this.player_states;
@@ -166,37 +140,9 @@ export class CombatFlowComponent implements OnInit, AfterViewInit, AfterViewChec
 
   updateCombatState(){
     if(this.userType == UserTypes.GM)
-      this.combatState = localStorage['combat-state-gm'] ? localStorage['combat-state-gm'] : 0;
+      this.pageState = localStorage['combat-state-gm'] ? localStorage['combat-state-gm'] : 0;
     if(this.userType == UserTypes.PLAYER)
-      this.combatState = localStorage['combat-state-player'] ? localStorage['combat-state-player'] : 0;
-  }
- 
-  onStepChange(event: any): void {
-    this.combatState = event.selectedIndex;
-  }
-
-  stepTo(index: any, click?: ()=>void){
-    this.combatState = index;
-    this.stepper!.selectedIndex = index;
-    if(click)
-      click();
-  }
-
-  @ViewChildren('stateComponents', {read: ViewContainerRef}) public stateComponents: QueryList<ViewContainerRef>;
-
-  loadComponent(): void {
-    for (let i = 0; i < this.stateComponents.toArray().length; i++) {
-      let target = this.stateComponents.toArray()[i];
-      let tabComponent = this.getStates()[i].component;
-      if(!tabComponent)
-        continue;
-      let componentFactory =
-      this.resolver.resolveComponentFactory((tabComponent!) as any);
-
-      target.clear();
-      target.createComponent(componentFactory);
-    }
-    setTimeout(()=>{this.loading=false;},1000);
+      this.pageState = localStorage['combat-state-player'] ? localStorage['combat-state-player'] : 0;
   }
 
 

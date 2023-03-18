@@ -14,3 +14,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
     height: 100vh !important;
     width: 100vw !important;
 }
+
+page-wrapper{
+    background-color: beige;
+    // width: 100vw;
+    height: 100vh;
+    padding: 10px 20px;
+}
+
+mat-stepper{
+    background-color: unset !important;
+}
+
+app-initiative-notes mat-form-field{
+    width: 60px;
+    input { 
+        text-align: center;
+    }
+}

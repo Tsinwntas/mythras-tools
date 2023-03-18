@@ -1,0 +1,43 @@
+.attributes{
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: baseline;
+}
+.prof-attributes{
+    height: 400px;
+}
+.char-attributes{
+    display: flex;
+    flex-wrap: wrap;
+
+    .attribute{
+        grid-template-columns: 150px 60px;
+    }
+}
+.attribute{
+    display: grid;
+    grid-template-columns: 100px 60px;
+    padding: 10px;
+    background-color: aliceblue;
+    border: 1px solid;
+    width: max-content;
+}
+.skill-base{
+    box-shadow: inset 1px 1px;
+    text-align: center;
+}
+
+.hp-attributes {
+    max-width: 600px;;
+}
+
+.single-wrap .attribute{
+    margin: auto;
+}
+
+.multiple-wrap{
+    display: flex;
+    justify-content: space-evenly;
+}

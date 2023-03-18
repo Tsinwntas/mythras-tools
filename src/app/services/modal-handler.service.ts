@@ -28,7 +28,7 @@ export class ModalHandlerService {
     this.open(SpecialEffectsComponent, {effect: effect});
   }
 
-  open(component : any, props? : any) {
+  open(component : any, props? : any, callback? : ()=>void) {
     let data = {component: component, props : props}; 
     const dialogRef = this.dialog.open(InfoModalComponent, 
       {
@@ -37,6 +37,9 @@ export class ModalHandlerService {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
+      if (callback) {
+        callback();
+      }
     });
   }
 }

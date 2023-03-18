@@ -68,6 +68,7 @@ import { FallingAndCombatComponent } from '../modals/falling-and-combat/falling-
 import { MountedCombatComponent } from '../modals/mounted-combat/mounted-combat.component';
 import { FiringIntoCrowdComponent } from '../modals/firing-into-crowd/firing-into-crowd.component';
 import { HitLocationsComponent } from '../modals/hit-locations/hit-locations.component';
+import { SpecializedComponent } from '../character/modals/specialized/specialized.component';
 
 @Component({
   selector: 'open-modal',
@@ -145,6 +146,7 @@ export class OpenModalComponent {
       case 'situational': this.modals.open(SituationalModifiersComponent);return;
       case 'speak': this.modals.open(SpeakComponent);return;
       case 'special-effects': this.modals.specialEffects(this.prop);return;
+      case 'specialized': this.modals.open(SpecializedComponent, this.prop);return;
       case 'spirit-combat': this.modals.open(SpiritCombatComponent);return;
       case 'spirit-specials': this.modals.open(SpiritCombatSpecialEffectsComponent);return;
       case 'struggle': this.modals.open(StruggleComponent);return;

@@ -1,0 +1,12 @@
+.concept-table{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+.concept-coockie{
+    text-align: center;
+    box-shadow: 1px 1px 5px 0px;
+}
+mat-form-field {
+    width: -webkit-fill-available;
+    margin: 20px 0px;
+}

@@ -1,0 +1,73 @@
+<p>Roll for and Assign Characteristics</p>
+<p>For Humans, there are 2 ways to calculate characteristics.</p>
+<ul>
+    <li>Roll 3d6 each for STR, CON, DEX, POW and CHA. Roll 2d6+6 each for INT and SIZ.</li>
+    <li>Distribute from a pool of 80 points to the skills as you or the GM see fit. Minimum allocation is 3 points per characteristic except for INT and SIZ which is 6. Maximum 18 for all. </li>
+</ul>
+<div class="characteristics">
+    <div class="characteristic">
+        <mat-form-field>
+            <mat-label>STR:</mat-label>
+            <input matInput type="number" [(ngModel)]="character.skills.str">
+        </mat-form-field>
+        <div class="characteristic-buttons">
+            <button mat-stroked-button (click)="roll3('str')">ROLL</button>
+        </div>
+    </div>
+    <div class="characteristic">
+        <mat-form-field>
+            <mat-label>DEX:</mat-label>
+            <input matInput type="number" [(ngModel)]="character.skills.dex">
+        </mat-form-field>
+        <div class="characteristic-buttons">
+            <button mat-stroked-button (click)="roll3('dex')">ROLL</button>
+        </div>
+    </div>
+    <div class="characteristic">
+        <mat-form-field>
+            <mat-label>CON:</mat-label>
+            <input matInput type="number" [(ngModel)]="character.skills.con">
+        </mat-form-field>
+        <div class="characteristic-buttons">
+            <button mat-stroked-button (click)="roll3('con')">ROLL</button>
+        </div>
+    </div>
+    <div class="characteristic">
+        <mat-form-field>
+            <mat-label>POW:</mat-label>
+            <input matInput type="number" [(ngModel)]="character.skills.pow">
+        </mat-form-field>
+        <div class="characteristic-buttons">
+            <button mat-stroked-button (click)="roll3('pow')">ROLL</button>
+        </div>
+    </div>
+    <div class="characteristic">
+        <mat-form-field>
+            <mat-label>CHA:</mat-label>
+            <input matInput type="number" [(ngModel)]="character.skills.cha">
+        </mat-form-field>
+        <div class="characteristic-buttons">
+            <button mat-stroked-button (click)="roll3('cha')">ROLL</button>
+        </div>
+    </div>
+    <div class="characteristic">
+        <mat-form-field>
+            <mat-label>INT:</mat-label>
+            <input matInput type="number" [(ngModel)]="character.skills.int">
+        </mat-form-field>
+        <div class="characteristic-buttons">
+            <button mat-stroked-button (click)="roll2('int')">ROLL</button>
+        </div>
+    </div>
+    <div class="characteristic">
+        <mat-form-field>
+            <mat-label>SIZ:</mat-label>
+            <input matInput type="number" [(ngModel)]="character.skills.siz">
+        </mat-form-field>
+        <div class="characteristic-buttons">
+            <button mat-stroked-button (click)="roll2('siz')">ROLL</button>
+        </div>
+    </div>
+</div>
+<p>Points: {{calculatePoints()}}</p>
+

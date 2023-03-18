@@ -17,6 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { FormsModule } from '@angular/forms';
@@ -110,6 +111,29 @@ import { HitLocationsComponent } from './modals/hit-locations/hit-locations.comp
 import { PossessionExorcismComponent } from './modals/possession-exorcism/possession-exorcism.component';
 import { DeadlyAbilityComponent } from './modals/deadly-ability/deadly-ability.component';
 import { CharacterComponent } from './modals/character/character.component';
+import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
+import { DetailsComponent } from './character/details/details.component';
+import { SkillsComponent } from './character/skills/skills.component';
+import { StatsComponent } from './character/stats/stats.component';
+import { SpecialsComponent } from './character/specials/specials.component';
+import { SpellsComponent } from './character/spells/spells.component';
+import { HeightWeightComponent } from './character/height-weight/height-weight.component';
+import { CombatStylesComponent } from './character/modals/combat-styles/combat-styles.component';
+import { StartingMoneyComponent } from './character/modals/starting-money/starting-money.component';
+import { SocialClassComponent } from './character/social-class/social-class.component';
+import { FamilyComponent } from './character/family/family.component';
+import { CareerComponent } from './character/career/career.component';
+import { RoundingOutComponent } from './character/rounding-out/rounding-out.component';
+import { StartingMagicComponent } from './character/starting-magic/starting-magic.component';
+import { RanksComponent } from './character/ranks/ranks.component';
+import { BackstoryComponent } from './character/backstory/backstory.component';
+import { SummaryComponent } from './character/summary/summary.component';
+import { ConceptComponent } from './character/concept/concept.component';
+import { StatePageComponent } from './pages/state-page/state-page.component';
+import { SizeTableComponent } from './character/size-table/size-table.component';
+import { AgeComponent } from './character/age/age.component';
+import { CultureComponent } from './character/culture/culture.component';
+import { SpecializedComponent } from './character/modals/specialized/specialized.component';
 
 
 
@@ -205,7 +229,30 @@ import { CharacterComponent } from './modals/character/character.component';
     HitLocationsComponent,
     PossessionExorcismComponent,
     DeadlyAbilityComponent,
-    CharacterComponent
+    CharacterComponent,
+    CharacterCreationComponent,
+    DetailsComponent,
+    SkillsComponent,
+    StatsComponent,
+    SpecialsComponent,
+    SpellsComponent,
+    HeightWeightComponent,
+    CombatStylesComponent,
+    StartingMoneyComponent,
+    SocialClassComponent,
+    FamilyComponent,
+    CareerComponent,
+    RoundingOutComponent,
+    StartingMagicComponent,
+    RanksComponent,
+    BackstoryComponent,
+    SummaryComponent,
+    ConceptComponent,
+    StatePageComponent,
+    SizeTableComponent,
+    AgeComponent,
+    CultureComponent,
+    SpecializedComponent
   ],
   imports: [
     BrowserModule,
@@ -223,7 +270,8 @@ import { CharacterComponent } from './modals/character/character.component';
     MatInputModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

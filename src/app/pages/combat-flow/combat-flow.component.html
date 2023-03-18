@@ -40,7 +40,7 @@
         </button>
     </open-modal>
 </mat-toolbar>
-<div class="combat-flow-page-wrapper">
+<div class="page-wrapper">
     <div class="user-type-selection" *ngIf="userType == UserTypes.UNKNOWN" >
         <h3 class="view-as">Select from which perspective to view the Combat Flow:</h3>
         <button mat-raised-button color="primary" (click)="setUserType(UserTypes.GM)">GM</button>
@@ -56,7 +56,7 @@
                 <mat-card>
                     <mat-card-header>
                         <h3>{{state.stepLabel}}</h3>
-                        <span *ngIf="userType == UserTypes.GM && combatState == 2" class="round-span">
+                        <span *ngIf="userType == UserTypes.GM && pageState == 2" class="round-span">
                         <mat-form-field>
                             <mat-label>Round</mat-label>
                             <input matInput placeholder="1" type="number" [(ngModel)]="round.round">

@@ -1,0 +1,67 @@
+<p>This are the basic Attributes that are calculated from the characteristics, if you don't like these results, change the characteristics.</p>
+<br />
+<p>Hit Point Locations</p>
+<div class="hp-attributes">
+    <div class="head-wrap single-wrap">
+        <div class="attribute">
+            <span class="skill-name">{{character.hp.head.name}}</span>
+            <span class="skill-base">{{getBaseSkill(character.hp.head)}}</span>
+        </div>
+    </div>
+    <div class="chest-wrap multiple-wrap">
+        <div class="attribute">
+            <span class="skill-name">{{character.hp.leftArm.name}}</span>
+            <span class="skill-base">{{getBaseSkill(character.hp.leftArm)}}</span>
+        </div>
+        <div class="attribute">
+            <span class="skill-name">{{character.hp.chest.name}}</span>
+            <span class="skill-base">{{getBaseSkill(character.hp.chest)}}</span>
+        </div>
+        <div class="attribute">
+            <span class="skill-name">{{character.hp.rightArm.name}}</span>
+            <span class="skill-base">{{getBaseSkill(character.hp.rightArm)}}</span>
+        </div>
+    </div>
+    <div class="abs-wrap single-wrap">
+        <div class="attribute">
+            <span class="skill-name">{{character.hp.abdoment.name}}</span>
+            <span class="skill-base">{{getBaseSkill(character.hp.abdoment)}}</span>
+        </div>
+    </div>
+    <div class="legs-wrap multiple-wrap">
+        <div class="attribute">
+            <span class="skill-name">{{character.hp.leftLeg.name}}</span>
+            <span class="skill-base">{{getBaseSkill(character.hp.leftLeg)}}</span>
+        </div>
+        <div class="attribute">
+            <span class="skill-name">{{character.hp.rightLeg.name}}</span>
+            <span class="skill-base">{{getBaseSkill(character.hp.rightLeg)}}</span>
+        </div>
+    </div>
+</div>
+<hr />
+<p>Calculated characteristics</p>
+<div class="char-attributes">
+    <div class="attribute" *ngFor="let skill of getCalculatedCharacteristics()">
+        <span class="skill-name">{{skill.name}}</span>
+        <span class="skill-base">{{getBaseCharacteristic(skill)}}</span>
+
+    </div>
+</div>
+<hr />
+<p>Standard Skills</p>
+<div class="attributes">
+    <div class="attribute" *ngFor="let skill of getStandardSkills()">
+        <span class="skill-name">{{skill.name}}</span>
+        <span class="skill-base">{{getBaseSkill(skill)}}</span>
+
+    </div>
+</div>
+<hr />
+<p>Proffesional Skills</p>
+<div class="attributes prof-attributes">
+    <div class="attribute" *ngFor="let skill of getProfessionalSkills()">
+        <span class="skill-name">{{skill.name}}</span>
+        <span class="skill-base">{{getBaseSkill(skill)}}</span>
+    </div>
+</div>
