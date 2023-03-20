@@ -134,6 +134,10 @@ import { SizeTableComponent } from './character/size-table/size-table.component'
 import { AgeComponent } from './character/age/age.component';
 import { CultureComponent } from './character/culture/culture.component';
 import { SpecializedComponent } from './character/modals/specialized/specialized.component';
+import { AllCombatStylesComponent } from './modals/all-combat-styles/all-combat-styles.component';
+import { StylesTableComponent } from './styles-table/styles-table.component';
+import { TraitsComponent } from './modals/traits/traits.component';
+import { StyleFiltersComponent } from './style-filters/style-filters.component';
 
 
 
@@ -252,7 +256,11 @@ import { SpecializedComponent } from './character/modals/specialized/specialized
     SizeTableComponent,
     AgeComponent,
     CultureComponent,
-    SpecializedComponent
+    SpecializedComponent,
+    AllCombatStylesComponent,
+    StylesTableComponent,
+    TraitsComponent,
+    StyleFiltersComponent
   ],
   imports: [
     BrowserModule,

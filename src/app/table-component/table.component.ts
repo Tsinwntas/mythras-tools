@@ -12,7 +12,10 @@ export class TableComponent {
   }
 
   getColumnsDefinition() : string []{
-    return Object.keys(this.getTable()[0]);
+    let table = this.getTable();
+    if(!table || !table.length)
+      return [];
+    return Object.keys(table[0]);
   }
 
   getColumnHeader(col : string) : string {

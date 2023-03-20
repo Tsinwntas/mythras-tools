@@ -1,1 +1,8 @@
-<p>combat-styles works!</p>
+<div *ngIf="character.skills && character.skills.combatstyles && character.skills.combatstyles.length">
+    <styles-table [styles]="getStyles()" [singleTrait]="true" (remove)="remove($event)" (setSelectedTrait)="setSelectedTrait($event)" #characterstyles></styles-table>
+</div>
+<div class="search-button">
+    <open-modal modal="all-styles" [prop]="getProps()">
+    <button mat-flat-button><mat-icon>search</mat-icon>&nbsp;Find Combat Style</button>
+    </open-modal>
+</div>

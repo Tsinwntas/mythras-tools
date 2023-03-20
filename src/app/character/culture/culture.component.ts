@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Character } from 'src/app/model/character';
+import { CombatStyle } from 'src/app/model/combat-style';
 import { Skill } from 'src/app/model/skill';
 import { getProfessionalCulturalSkills, getSkillTotal, getStandardCulturalSkills } from 'src/app/services/character-service.service';
 import { orZero } from 'src/app/services/common.service';
@@ -18,6 +19,7 @@ export class CultureComponent {
   craft : Skill;
   language: Skill;
   lore : Skill;
+  style : CombatStyle;
 
   canBeSpecialized(skill : Skill) : boolean{
     let specialized = ['Art', 'Craft', 'Language', 'Lore'];
@@ -62,7 +64,6 @@ export class CultureComponent {
   }
 
 
-
   checkSpecialized(skill : Skill) : Skill {
     if(!this.character.skills.specialized)
       this.character.skills.specialized = [];
@@ -101,6 +102,13 @@ export class CultureComponent {
     this.character.skills.skills.forEach(skill=>skill.cultureBonus=0);
     if(this.character.skills.specialized)
     this.character.skills.specialized.forEach(skill=>skill.cultureBonus=0);
+  }
+
+  getCombatStyleProps() : any {
+    return {
+      character:this.character,
+      selectStyle : (style : CombatStyle)=>{this.style=style}
+    }
   }
 }
 

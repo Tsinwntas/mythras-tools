@@ -21,8 +21,12 @@ export class SpecialEffectsService {
   }
 
   getSpecialEffects(offensive: boolean, filter? : SpecialEffect) : SpecialEffect[]{
-    return (offensive? getOffensiveSpecialEffects() : getDefensiveSpecialEffects());
+    return getSpecialEffects(offensive, filter);
   }
+}
+
+export function getSpecialEffects(offensive: boolean, filter? : SpecialEffect) : SpecialEffect[] {
+  return (offensive? getOffensiveSpecialEffects() : getDefensiveSpecialEffects());
 }
 
 

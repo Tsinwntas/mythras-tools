@@ -69,6 +69,9 @@ import { MountedCombatComponent } from '../modals/mounted-combat/mounted-combat.
 import { FiringIntoCrowdComponent } from '../modals/firing-into-crowd/firing-into-crowd.component';
 import { HitLocationsComponent } from '../modals/hit-locations/hit-locations.component';
 import { SpecializedComponent } from '../character/modals/specialized/specialized.component';
+import { AllCombatStylesComponent } from '../modals/all-combat-styles/all-combat-styles.component';
+import { TraitsComponent } from '../modals/traits/traits.component';
+import { CombatStylesComponent } from '../character/modals/combat-styles/combat-styles.component';
 
 @Component({
   selector: 'open-modal',
@@ -85,6 +88,7 @@ export class OpenModalComponent {
   openModal(){
     switch(this.modal){
       case 'aiming': this.modals.open(AimingComponent);return;
+      case 'all-styles': this.modals.open(AllCombatStylesComponent, this.prop);return;
       case 'armor-penalty': this.modals.open(ArmorPenaltyComponent);return;
       case 'assess-situation': this.modals.open(AssessSituationComponent);return;
       case 'augment': this.modals.open(AugmentModalComponent);return;
@@ -95,6 +99,7 @@ export class OpenModalComponent {
       case 'character': this.modals.open(CharacterComponent);return;
       case 'charging': this.modals.open(ChargingComponent);return;
       case 'close-combat-situational': this.modals.open(CloseCombatSituationalComponent);return;
+      case 'combat-styles': this.modals.open(CombatStylesComponent, this.prop);return;
       case 'counterspell': this.modals.open(CounterspellComponent);return;
       case 'damage-reduction': this.modals.open(DamageReductionComponent);return;
       case 'deadly-ability': this.modals.open(DeadlyAbilityComponent);return;
@@ -155,6 +160,7 @@ export class OpenModalComponent {
       case 'surprise': this.modals.open(SurpriseComponent);return;
       case 'take-cover': this.modals.open(TakeCoverComponent);return;
       case 'through-contact': this.modals.open(ThroughContactComponent);return;
+      case 'traits': this.modals.open(TraitsComponent, this.prop);return;
       case 'unarmed-combat': this.modals.open(UnarmedCombatComponent);return;
       case 'withdraw-from-combat': this.modals.open(WithdrawFromCombatComponent);return;
     }
