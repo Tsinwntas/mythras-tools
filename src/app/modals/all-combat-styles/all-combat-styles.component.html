@@ -1,0 +1,6 @@
+<div>
+    <style-filters [filters]="filters" (filter)="filter()"></style-filters>
+</div>
+<div class="styles-table">
+    <styles-table [styles]="getStyles()" #stylesTable (select)="styleSelected($event)"></styles-table>
+</div>

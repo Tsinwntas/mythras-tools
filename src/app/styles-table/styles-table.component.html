@@ -1,0 +1,40 @@
+<div>
+    <table mat-table [dataSource]="getTable()">
+        
+        <ng-container *ngFor="let col of getColumnsDefinition()"  [matColumnDef]="col">
+            <th mat-header-cell *matHeaderCellDef> {{getColumnHeader(col)}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                <span *ngIf="col=='select'"><button mat-icon-button (click)="select.emit(element.select)" color="danger"><mat-icon>pan_tool_alt</mat-icon></button> </span>
+                <span *ngIf="col=='remove'"><button mat-icon-button (click)="remove.emit(element.remove)"><mat-icon>remove</mat-icon></button> </span>
+                <span *ngIf="!['select','weapons','critOffensive','critDefensive','offensive','defensive','traits','remove'].includes(col)">{{element[col]}}</span> 
+                <span *ngIf="['critOffensive','critDefensive','offensive','defensive'].includes(col)">
+                    <span *ngFor="let special of getSpecials(element[col]); let index=index;">
+                        <open-modal modal="special-effects" [prop]="special">{{special}}</open-modal>{{index<(getSpecials(element[col]).length-1)?", ":""}}
+                    </span>
+                </span> 
+                <span *ngIf="'weapons'==col">
+                    <div *ngFor="let weapon of getWeapons(element[col])">
+                        {{weapon.type}} : {{weapon.weapons}}
+                    </div>
+                </span> 
+                <span *ngIf="'traits'==col && !singleTrait">
+                    <div *ngFor="let trait of element[col]; let index=index" ><open-modal modal="traits" [prop]="{trait:trait, source:element.source}">{{trait.name}}</open-modal>{{index<(element[col].length-1)?", ":""}}</div>
+                </span>
+                <span *ngIf="'traits'==col && singleTrait" style="display:flex">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Trait:</mat-label>
+                        <mat-select [value]="getSelectedTrait(element)" (selectionChange)="currentTrait=$event.value;setSelectedTrait.emit({trait: $event, index: element.remove})">
+                            <mat-option *ngFor="let trait of element[col]" [value]="trait">{{trait.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <open-modal modal="traits" [prop]="{trait:getSelectedTrait(element), source:element.source}">
+                        <button mat-icon-button><mat-icon>open_in_new</mat-icon></button>
+                    </open-modal>
+                </span>
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="getColumnsDefinition(); sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: getColumnsDefinition();"></tr>
+    </table>
+</div>

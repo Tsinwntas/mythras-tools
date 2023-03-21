@@ -1,0 +1,45 @@
+<div class="filters-wrap">
+    <mat-form-field>
+        <mat-label>Name:</mat-label>
+        <input matInput [(ngModel)]="filters.name" (input)="filter.emit()">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Cultural Background:</mat-label>
+      <mat-select [(value)]="filters.culture" (openedChange)="filter.emit()">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let culture of ['Barbarian', 'Civilized', 'Nomadic', 'Primitive']" [value]="culture">{{culture}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Source" multiple [(ngModel)]="filters.sources" (openedChange)="filter.emit()">
+            <input [(ngModel)]="sourceFilter"/>
+            <button class="clear-weapons" mat-flat-button (click)="clearSources()">Clear Selections</button>
+            <mat-option *ngFor="let source of getSources()" [value]="source" [ngStyle]="isHidden(sourceFilter, source)?{'display':'none'}:null">
+                {{source}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Weapons" multiple [(ngModel)]="filters.weapons" (openedChange)="filter.emit()">
+          <input [(ngModel)]="weaponFilter"/>
+          <button class="clear-weapons" mat-flat-button (click)="clearWeapons()">Clear Selections</button>
+          <mat-optgroup *ngFor="let group of getWeaponGroups()" [label]="group.name">
+            <mat-option *ngFor="let weapon of group.weapons" [value]="weapon" [ngStyle]="isHidden(weaponFilter, weapon)?{'display':'none'}:null">
+              {{weapon}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Specials Effects" multiple [(ngModel)]="filters.specials" (openedChange)="filter.emit()">
+          <input [(ngModel)]="specialFilter"/>
+          <button class="clear-weapons" mat-flat-button (click)="clearSpecials()">Clear Selections</button>
+          <mat-optgroup *ngFor="let group of getSpecialGroups()" [label]="group.name">
+            <mat-option *ngFor="let special of group.specials" [value]="special" [ngStyle]="isHidden(specialFilter, special)?{'display':'none'}:null">
+              {{special}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="filter.emit()">FILTER</button>
+</div>
