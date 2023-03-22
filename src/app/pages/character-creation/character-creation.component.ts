@@ -1,3 +1,4 @@
+import { BackgroundEventsComponent } from './../../character/background-events/background-events.component';
 import { Component, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { AgeComponent } from 'src/app/character/age/age.component';
 import { ConceptComponent } from 'src/app/character/concept/concept.component';
@@ -26,7 +27,8 @@ export class CharacterCreationComponent extends StatePageComponent{
     { stepLabel: "Base Attributes", component: StatsComponent},
     { stepLabel: "Height and Weight", component: HeightWeightComponent},
     { stepLabel: "Age", component: AgeComponent},
-    { stepLabel: "Culture", component: CultureComponent}
+    { stepLabel: "Culture", component: CultureComponent},
+    { stepLabel: "Background Events", component: BackgroundEventsComponent}
     
   ]
 

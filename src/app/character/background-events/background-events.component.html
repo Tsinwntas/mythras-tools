@@ -1,0 +1,20 @@
+<p>Background Events are notable things that have happened in the character's life before he began his career as an
+  adventurer. Some are formative; some are fortunate and some are unfortunate.</p>
+<p>Background events are optional. You can select from the <open-modal modal="background-events">table</open-modal>, roll, or even type up your own. A suggested
+  number is given from the character's age, but you can adjust accordingly.</p>
+
+<div class="background-event-table">
+    <div class="background-event" *ngFor="let event of getBackgroundEvents(); let index=index;">
+        <mat-form-field>
+            <mat-label>Event:</mat-label>
+            <textarea matInput [(ngModel)]="event.text"></textarea>
+        </mat-form-field>
+        <div class="background-event-buttons">
+            <button mat-stroked-button (click)="roll(event)" color="primary">ROLL</button>
+            <button mat-flat-button (click)="remove(index)" color="warn">Remove</button>
+        </div>
+    </div>
+    <div class="background-event-buttons">
+        <button mat-flat-button class="add-button" (click)="add()" color="primary"><mat-icon>add</mat-icon></button>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Character } from 'src/app/model/character';
 import { CombatStyle } from 'src/app/model/combat-style';
@@ -9,14 +9,15 @@ import { StylesTableComponent } from 'src/app/styles-table/styles-table.componen
 @Component({
   selector: 'app-combat-styles',
   templateUrl: './combat-styles.component.html',
-  styleUrls: ['./combat-styles.component.scss']
+  styleUrls: ['./combat-styles.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CombatStylesComponent implements ModalInnerContent {
 
   character : Character;
   selectStyle : (style:CombatStyle) => void;
 
-  constructor(private combatStyles : CombatStylesService, private dialogRef: MatDialogRef<CombatStylesComponent>) {
+  constructor(private combatStyles : CombatStylesService, private dialogRef: MatDialogRef<CombatStylesComponent>, private ref: ChangeDetectorRef) {
   }
 
   getHeader() : string {
@@ -37,7 +38,12 @@ export class CombatStylesComponent implements ModalInnerContent {
 
   remove(index : any) {
     this.character.skills.combatstyles.splice(index, 1);
-    this.tableComponent.resetTable();
+    this.ref.detectChanges();
+    setTimeout(()=>{
+      this.tableComponent.resetTable();
+      this.ref.detectChanges();
+    },0);
+
   }
 
   getProps() : any {
@@ -50,9 +56,12 @@ export class CombatStylesComponent implements ModalInnerContent {
         if(!newStyle.selectedTrait)
           newStyle.selectedTrait = newStyle.traits[0];
         this.character.skills.combatstyles.push(newStyle);
-
-        if(this.character.skills.combatstyles.length > 1)
-          this.tableComponent.resetTable();
+        this.ref.detectChanges();
+        setTimeout(()=>{
+          if(this.character.skills.combatstyles.length > 1)
+            this.tableComponent.resetTable();
+          this.ref.detectChanges();
+      },0);
       }
     }
   }

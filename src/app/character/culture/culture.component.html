@@ -10,7 +10,19 @@
 <p><i>Minimum of 5 Points can be allocated to each skill and a maximum of 15. Combat Style is optional but if selected, then use the min-max points rule.</i></p>
 <p><i>If a style has multiple traits, discuss with your GM and apply only one.</i></p>
 <div class="culture-combat-style">
-    <open-modal modal="combat-styles" [prop]="getCombatStyleProps()">Combat Styles</open-modal>
+    <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
+    <div class="selected-combat-style">
+        <div class="skill-wrapper">
+        <div class="attribute style-attribute">
+            <span class="skill-name"><open-modal modal="combat-styles" [prop]="getCombatStyleProps()">{{getCombatStyle().name}}</open-modal></span>
+            <span class="skill-base">{{getSkill(getCombatStyle())}}</span>
+        </div>
+        <mat-form-field>
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="getCombatStyle().cultureBonus">
+        </mat-form-field>
+        </div>
+    </div>
 </div>
 <div class="cultural-header"><p>Cultural Skills:</p><button class="reset-button" mat-flat-button (click)="resetSkills()">CLEAR CULTURE BONUSES</button></div>
 <p *ngIf="character.culture=='Nomadic'">Only choose 2 of Athletics, Boating, Swim, Drive, Ride</p>
@@ -29,7 +41,7 @@
         </div>
     </div>
     <div class="skill-category professional-skills">
-        <p><b>Professional Skills</b></p>
+        <p><b>Professional Skills</b><i><small> - Choose only 3, if a professional skill has no bonus, it will have 0 as a base level.</small></i></p>
         <div class="skill-wrapper"  *ngFor="let skill of getProfessionalCulturalSkills()">
         <div class="attribute" *ngIf="!canBeSpecialized(skill)">
             <span class="skill-name">{{skill.name}}</span>

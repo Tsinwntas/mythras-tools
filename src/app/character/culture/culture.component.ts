@@ -100,6 +100,7 @@ export class CultureComponent {
 
   resetSkills() {
     this.character.skills.skills.forEach(skill=>skill.cultureBonus=0);
+    this.character.skills.combatstyles.forEach(skill=>skill.cultureBonus=0);
     if(this.character.skills.specialized)
     this.character.skills.specialized.forEach(skill=>skill.cultureBonus=0);
   }
@@ -107,8 +108,22 @@ export class CultureComponent {
   getCombatStyleProps() : any {
     return {
       character:this.character,
-      selectStyle : (style : CombatStyle)=>{this.style=style}
+      selectStyle : (style : CombatStyle)=>{
+        this.style=this.character.skills.combatstyles.find(s=>s.name==style.name && s.source==style.source)!;
+      }
     }
+  }
+
+  getCombatStyle() : CombatStyle {
+    if(!this.style)
+      this.style = this.checkSpecializedStyle();  
+    return this.style;
+  }
+
+
+  checkSpecializedStyle() : CombatStyle {
+    let specialized  = this.character.skills.combatstyles.find(s => s.cultureBonus);
+      return specialized ? specialized : this.character.skills.combatstyles[0];      
   }
 }
 

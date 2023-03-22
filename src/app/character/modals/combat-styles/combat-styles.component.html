@@ -1,5 +1,5 @@
 <div *ngIf="character.skills && character.skills.combatstyles && character.skills.combatstyles.length">
-    <styles-table [styles]="getStyles()" [singleTrait]="true" (remove)="remove($event)" (setSelectedTrait)="setSelectedTrait($event)" #characterstyles></styles-table>
+    <styles-table [styles]="getStyles()" [singleTrait]="true" (remove)="remove($event)" (select)="select($event)" (setSelectedTrait)="setSelectedTrait($event)" #characterstyles></styles-table>
 </div>
 <div class="search-button">
     <open-modal modal="all-styles" [prop]="getProps()">

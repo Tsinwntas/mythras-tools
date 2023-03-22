@@ -138,6 +138,9 @@ import { AllCombatStylesComponent } from './modals/all-combat-styles/all-combat-
 import { StylesTableComponent } from './styles-table/styles-table.component';
 import { TraitsComponent } from './modals/traits/traits.component';
 import { StyleFiltersComponent } from './style-filters/style-filters.component';
+import { RollableTableComponent } from './rollable-table/rollable-table.component';
+import { BackgroundEventsComponent } from './character/background-events/background-events.component';
+import { BackgroundEventsModalComponent } from './character/modals/background-events-modal/background-events-modal.component';
 
 
 
@@ -260,7 +263,10 @@ import { StyleFiltersComponent } from './style-filters/style-filters.component';
     AllCombatStylesComponent,
     StylesTableComponent,
     TraitsComponent,
-    StyleFiltersComponent
+    StyleFiltersComponent,
+    RollableTableComponent,
+    BackgroundEventsComponent,
+    BackgroundEventsModalComponent
   ],
   imports: [
     BrowserModule,

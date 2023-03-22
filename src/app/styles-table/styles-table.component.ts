@@ -25,11 +25,13 @@ export class StylesTableComponent extends TableComponent {
   }
 
   resetTable() {
+    // setTimeout(() => {
     if(this.singleTrait){
       this.table = this.styles.map((style : CombatStyle, index : number) => Object.assign(style, {select:style, remove:index}));
     } else {
       this.table = this.styles.map(style => Object.assign({select:style},style));
     }
+    // }, 0);
   }
 
   override getColumnsDefinition(): string[] {

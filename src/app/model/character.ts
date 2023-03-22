@@ -1,3 +1,4 @@
+import { Rollable } from './rollable';
 import { CharacterCareer } from "./character-career";
 import { CharacterFamily } from "./character-family";
 import { CharacterHP } from "./character-hp";
@@ -22,7 +23,7 @@ export class Character {
     movementRate: number;
     age: number;
     culture : string;
-    backgroundEvent : string;
+    backgroundEvents : Rollable[];
     money: string;
     socialClass: SocialClass;
     family: CharacterFamily;

@@ -1,3 +1,4 @@
+import { BackgroundEventsModalComponent } from './../character/modals/background-events-modal/background-events-modal.component';
 import { CharacterComponent } from './../modals/character/character.component';
 import { SpiritCombatSpecialEffectsComponent } from './../modals/spirit-combat-special-effects/spirit-combat-special-effects.component';
 import { SpiritCombatComponent } from './../modals/spirit-combat/spirit-combat.component';
@@ -92,6 +93,7 @@ export class OpenModalComponent {
       case 'armor-penalty': this.modals.open(ArmorPenaltyComponent);return;
       case 'assess-situation': this.modals.open(AssessSituationComponent);return;
       case 'augment': this.modals.open(AugmentModalComponent);return;
+      case 'background-events': this.modals.open(BackgroundEventsModalComponent);return;
       case 'brace': this.modals.open(BraceComponent);return;
       case 'broadly-similar': this.modals.open(BroadlySimilarWeaponsComponent);return;
       case 'cast-magic': this.modals.open(CastMagicComponent);return;

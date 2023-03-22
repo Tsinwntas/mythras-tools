@@ -1,0 +1,15 @@
+.background-event-table{
+    background-color: gainsboro;
+}
+.background-event {
+    display:grid;
+}
+.background-event-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+
+    .add-button mat-icon{
+        margin-right: 0px;
+    }
+}

@@ -23,3 +23,7 @@
 .skill-categories {
     display: flex;
 }
+.style-attribute{
+    grid-template-columns: auto 60px;
+    grid-gap: 10px;
+}
