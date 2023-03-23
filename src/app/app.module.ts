@@ -119,7 +119,6 @@ import { SpecialsComponent } from './character/specials/specials.component';
 import { SpellsComponent } from './character/spells/spells.component';
 import { HeightWeightComponent } from './character/height-weight/height-weight.component';
 import { CombatStylesComponent } from './character/modals/combat-styles/combat-styles.component';
-import { StartingMoneyComponent } from './character/modals/starting-money/starting-money.component';
 import { SocialClassComponent } from './character/social-class/social-class.component';
 import { FamilyComponent } from './character/family/family.component';
 import { CareerComponent } from './character/career/career.component';
@@ -141,6 +140,8 @@ import { StyleFiltersComponent } from './style-filters/style-filters.component';
 import { RollableTableComponent } from './rollable-table/rollable-table.component';
 import { BackgroundEventsComponent } from './character/background-events/background-events.component';
 import { BackgroundEventsModalComponent } from './character/modals/background-events-modal/background-events-modal.component';
+import { PassionsTableComponent } from './character/passions-table/passions-table.component';
+import { PassionsComponent } from './character/passions/passions.component';
 
 
 
@@ -245,7 +246,6 @@ import { BackgroundEventsModalComponent } from './character/modals/background-ev
     SpellsComponent,
     HeightWeightComponent,
     CombatStylesComponent,
-    StartingMoneyComponent,
     SocialClassComponent,
     FamilyComponent,
     CareerComponent,
@@ -266,7 +266,9 @@ import { BackgroundEventsModalComponent } from './character/modals/background-ev
     StyleFiltersComponent,
     RollableTableComponent,
     BackgroundEventsComponent,
-    BackgroundEventsModalComponent
+    BackgroundEventsModalComponent,
+    PassionsTableComponent,
+    PassionsComponent
   ],
   imports: [
     BrowserModule,

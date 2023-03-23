@@ -1,3 +1,4 @@
+import { Character } from 'src/app/model/character';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./family.component.scss']
 })
 export class FamilyComponent {
+
+  character : Character;
+
+  rollFamily(){
+    
+  }
 
 }

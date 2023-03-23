@@ -1,0 +1,10 @@
+.starting-money{
+    display: grid;
+    grid-template-columns: 210px max-content;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.class-money{
+    grid-template-columns: 210px 95px max-content;
+}

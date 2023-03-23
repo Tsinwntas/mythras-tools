@@ -1,0 +1,13 @@
+.family {
+    display: flex;
+    align-items: stretch;
+}
+
+.family *{
+        flex-grow: 1;
+}
+
+button {
+    height: 100% !important;
+    width: 100% !important;
+}

@@ -26,6 +26,12 @@ mat-stepper{
     background-color: unset !important;
 }
 
+.mat-vertical-content-container{
+    top: 50px;
+    position: absolute !important;
+    z-index: 1;
+}
+
 app-initiative-notes mat-form-field{
     width: 60px;
     input { 

@@ -1,3 +1,4 @@
+import { CharacterPassions } from './character-passions';
 import { Rollable } from './rollable';
 import { CharacterCareer } from "./character-career";
 import { CharacterFamily } from "./character-family";
@@ -24,8 +25,12 @@ export class Character {
     age: number;
     culture : string;
     backgroundEvents : Rollable[];
-    money: string;
+
+    money: number;
     socialClass: SocialClass;
+    startingMoney: number;
+
+    passions : CharacterPassions[];
     family: CharacterFamily;
     career : CharacterCareer;
     magic : CharacterMagic;

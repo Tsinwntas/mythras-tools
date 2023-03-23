@@ -1,1 +1,25 @@
-<p>social-class works!</p>
+<p>Money (in silver pieces) from {{character.culture? character.culture : 'Culture'}}:</p>
+<div class="starting-money">
+  <mat-form-field>
+    <mat-label>Starting Money</mat-label>
+    <input matInput type="number" [(ngModel)]="character.startingMoney">
+  </mat-form-field>
+  <button mat-raised-button (click)="rollStartingMoney()">4d6 X
+    {{character.culture ? getCulture().multiplier : '0'}}</button>
+</div>
+<div class="starting-money class-money">
+    <mat-form-field>
+      <mat-label>After Class Modifier</mat-label>
+      <input matInput type="number" [value]="getMoneyAfterClass()" disabled="true">
+    </mat-form-field>
+  <mat-select [value]="findSocialClass()" (selectionChange)="this.character.socialClass=$event.value" placeholder="Choose a Social Class">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let socialClass of getSocialClassesForCultureNoPerc()" [value]="socialClass">
+      {{socialClass.class}}</mat-option>
+  </mat-select>
+  <button mat-raised-button (click)="rollSocialClass()">Roll Social Class</button>
+</div>
+<div>
+    <rollable-table [table]="getSocialClasssesTable()" [columnHeaders]="['1d100']"/>
+</div>
+<p><b>Source: Mythras Core Rules 24</b></p>

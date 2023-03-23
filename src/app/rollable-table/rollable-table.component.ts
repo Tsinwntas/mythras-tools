@@ -21,7 +21,7 @@ export class RollableTableComponent extends TableComponent {
 
   override getColumnHeader(col: string): string {
     if (!this.columnHeaders) {
-      return col;
+      return super.getColumnHeader(col);
     }
     switch (col) {
       case 'range':
@@ -29,6 +29,6 @@ export class RollableTableComponent extends TableComponent {
       case 'text':
         return this.columnHeaders[1];
     }
-    return col;
+    return super.getColumnHeader(col);
   }
 }

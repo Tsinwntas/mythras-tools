@@ -1,0 +1,12 @@
+.passion-fields{
+    display: flex;
+    .mod{
+        width:50%;
+    }
+    button{
+        height: 100%;
+    }
+}
+.passion-fields mat-form-field:first-child{
+    flex-grow: 1;
+}

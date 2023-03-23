@@ -1,3 +1,7 @@
+import { FamilyComponent } from './../../character/family/family.component';
+import { PassionsComponent } from './../../character/passions/passions.component';
+import { SocialClassComponent } from './../../character/social-class/social-class.component';
+import { SocialClass } from './../../model/social-class';
 import { BackgroundEventsComponent } from './../../character/background-events/background-events.component';
 import { Component, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { AgeComponent } from 'src/app/character/age/age.component';
@@ -28,7 +32,10 @@ export class CharacterCreationComponent extends StatePageComponent{
     { stepLabel: "Height and Weight", component: HeightWeightComponent},
     { stepLabel: "Age", component: AgeComponent},
     { stepLabel: "Culture", component: CultureComponent},
-    { stepLabel: "Background Events", component: BackgroundEventsComponent}
+    { stepLabel: "Background Events", component: BackgroundEventsComponent},
+    { stepLabel: "Passions", component: PassionsComponent},
+    { stepLabel: "Money & Social Class", component: SocialClassComponent},
+    { stepLabel: "Family & Connections", component: FamilyComponent}
     
   ]
 

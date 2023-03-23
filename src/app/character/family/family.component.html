@@ -1,1 +1,59 @@
-<p>family works!</p>
+<div class="family">
+    <mat-form-field>
+        <mat-label>Parents</mat-label>
+        <input type="text" matInput [(ngModel)]="character.family.parents">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Sibling</mat-label>
+        <input type="number" matInput [(ngModel)]="character.family.siblings">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Grandparents</mat-label>
+        <input type="number" matInput [(ngModel)]="character.family.grands">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Aunts & Uncles</mat-label>
+        <input type="number" matInput [(ngModel)]="character.family.aunts">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cousins</mat-label>
+        <input type="number" matInput [(ngModel)]="character.family.cousins">
+    </mat-form-field>
+</div>
+<div class="family reputation">
+    <mat-form-field>
+        <mat-label>Reputation</mat-label>
+        <input matInput [(ngModel)]="character.family.reputation">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Connections</mat-label>
+        <input matInput [(ngModel)]="character.family.connections">
+    </mat-form-field>
+</div>
+<div class="family allies">
+    <mat-form-field>
+        <mat-label>Allies</mat-label>
+        <input type="text" matInput [(ngModel)]="character.family.allies">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Contacts</mat-label>
+        <input type="text" matInput [(ngModel)]="character.family.contacts">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Rivals</mat-label>
+        <input type="text" matInput [(ngModel)]="character.family.rivals">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enemies</mat-label>
+        <input type="text" matInput [(ngModel)]="character.family.enemies">
+    </mat-form-field>
+    <div>
+        <button mat-stroked-button (click)="rollFamily()">ROLL FAMILY</button>
+    </div>
+</div>
+<div class="family">
+    <mat-form-field>
+        <mat-label>Information:</mat-label>
+        <textarea matInput [(ngModel)]="character.family.text" rows="10"></textarea>
+    </mat-form-field>
+</div>

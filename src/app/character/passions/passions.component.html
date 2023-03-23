@@ -1,0 +1,36 @@
+<p>Passions are completely optional but help flavor the character. Decide with your GM wether and what passions your
+  character will have.</p>
+<p>Use the table below as reference. It is suggested to have 3 passions, a Love, a Loyalty and a Hate.</p>
+<passions-table />
+<p><b>Source: Mythras Core Rules 23</b></p>
+
+
+<div class="background-event-table">
+  <div class="background-event" *ngFor="let passion of character.passions; let index=index;">
+    <div class="passion-fields">
+        <mat-form-field appearance="fill">
+            <mat-label>Object of Passion:</mat-label>
+            <mat-select [(value)]="passion.objectOfPassion">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let object of getPassionObjects()" [value]="object">{{object}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="mod">
+            <mat-label>Modifier:</mat-label>
+            <input matInput [value]="findModifier(passion)" [disabled]="true">
+        </mat-form-field>
+    </div>
+    <div class="passion-fields">
+        <mat-form-field>
+            <mat-label>Passion:</mat-label>
+            <textarea matInput [(ngModel)]="passion.passion"></textarea>
+        </mat-form-field>
+        <button mat-flat-button (click)="remove(index)" color="warn">Remove</button>
+    </div>
+  </div>
+  <div class="background-event-buttons">
+    <button mat-flat-button class="add-button" (click)="add()" color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
