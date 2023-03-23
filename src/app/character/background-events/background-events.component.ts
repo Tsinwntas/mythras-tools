@@ -2,7 +2,7 @@ import { Character } from 'src/app/model/character';
 import { Rollable } from './../../model/rollable';
 import { Component, Input } from '@angular/core';
 import { BackgroundEventsService } from 'src/app/services/background-events.service';
-import { roll } from 'src/app/services/common.service';
+import { roll, rollWithTextRange } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-background-events',
@@ -47,15 +47,7 @@ export class BackgroundEventsComponent {
     let newEvent : Rollable | undefined = undefined;
     let events = this.backgroundEventsService.getBackgroundEvents();
     do{
-      let dice = roll(100);
-      newEvent = events.find(e=>{
-        let range = e.range.split('-');
-        if(range.length == 1)
-          return dice == parseInt(range[0]);
-        if(range[1] == '00')
-          range[1]='100';
-        return dice >= parseInt(range[0]) && dice <= parseInt(range[1]);
-      })
+      newEvent = rollWithTextRange(events, 100);
     } while(!newEvent || newEvent.text == event.text);
     event.text = newEvent.text;
   }

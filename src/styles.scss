@@ -32,6 +32,10 @@ mat-stepper{
     z-index: 1;
 }
 
+.mat-step .mat-step-icon {
+    z-index: 2 !important;
+}
+
 app-initiative-notes mat-form-field{
     width: 60px;
     input { 
