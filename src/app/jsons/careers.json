@@ -1,0 +1,493 @@
+[
+  {
+    "career": "Agent",
+    "standard": [
+      "Conceal",
+      "Deceit",
+      "Evade",
+      "Insight",
+      "Perception",
+      "Stealth"
+    ],
+    "professional": [
+      "Culture (any)",
+      "Disguise Language (any)",
+      "Sleight",
+      "Streetwise",
+      "Survival",
+      "Track"
+    ]
+  },
+  {
+    "career": "Alchemist",
+    "standard": [
+      "Customs",
+      "Endurance",
+      "First Aid",
+      "Insight",
+      "Locale",
+      "Perception",
+      "Willpower"
+    ],
+    "professional": [
+      "Commerce",
+      "Craft (Alchemy)",
+      "Healing",
+      "Language (Any)",
+      "Literacy",
+      "Lore (acids)",
+      "Lore (narcotics)",
+      "Lore (poisons)"
+    ]
+  },
+  {
+    "career": "Beast",
+    "standard": [
+      "Handler Drive",
+      "Endurance",
+      "First Aid",
+      "Influence",
+      "Locale",
+      "Ride",
+      "Willpower"
+    ],
+    "professional": [
+      "Commerce",
+      "Craft (Animal Husbandry)",
+      "Healing (Specific Animal)",
+      "Lore (Specific Animal)",
+      "Survival",
+      "Teach (Specific Animal)",
+      "Track"
+    ]
+  },
+  {
+    "career": "Courtesan",
+    "standard": [
+      "Customs",
+      "Dance",
+      "Deceit",
+      "Influence",
+      "Insight",
+      "Perception",
+      "Sing"
+    ],
+    "professional": [
+      "Art (any)",
+      "Courtesy",
+      "Culture (any)",
+      "Gambling",
+      "Language (any)",
+      "Musicianship",
+      "Seduction"
+    ]
+  },
+  {
+    "career": "Courtier",
+    "standard": [
+      "Customs",
+      "Dance",
+      "Deceit",
+      "Influence",
+      "Insight",
+      "Locale",
+      "Perception"
+    ],
+    "professional": [
+      "Art (any)",
+      "Bureaucracy",
+      "Courtesy",
+      "Culture (any)",
+      "Language (any)",
+      "Lore (any)",
+      "Oratory"
+    ]
+  },
+  {
+    "career": "Crafter",
+    "standard": [
+      "Brawn",
+      "Drive",
+      "Influence",
+      "Insight",
+      "Locale",
+      "Perception",
+      "Willpower"
+    ],
+    "professional": [
+      "Art (any)",
+      "Commerce",
+      "Craft (Any Primary)",
+      "Craft (Any Secondary)",
+      "Engineering",
+      "Mechanisms",
+      "Streetwise"
+    ]
+  },
+  {
+    "career": "Entertainer",
+    "standard": [
+      "Athletics",
+      "Brawn",
+      "Dance",
+      "Deceit",
+      "Influence",
+      "Insight",
+      "Sing"
+    ],
+    "professional": [
+      "Acrobatics",
+      "Acting",
+      "Oratory",
+      "Musicianship",
+      "Seduction",
+      "Sleight",
+      "Streetwise"
+    ]
+  },
+  {
+    "career": "Farmer",
+    "standard": [
+      "Athletics",
+      "Brawn",
+      "Drive",
+      "Endurance",
+      "Locale",
+      "Perception",
+      "Ride"
+    ],
+    "professional": [
+      "Commerce",
+      "Craft (Any)",
+      "Lore (Agriculture)",
+      "Lore (Animal Husbandry)",
+      "Navigation",
+      "Track",
+      "Survival"
+    ]
+  },
+  {
+    "career": "Fisher",
+    "standard": [
+      "Athletics",
+      "Boating",
+      "Endurance",
+      "Locale",
+      "Perception",
+      "Stealth",
+      "Swim"
+    ],
+    "professional": [
+      "Commerce",
+      "Craft (Any)",
+      "Lore (Primary Catch)",
+      "Lore (Secondary Catch)",
+      "Navigation",
+      "Seamanship",
+      "Survival"
+    ]
+  },
+  {
+    "career": "Herder",
+    "standard": [
+      "Endurance",
+      "First Aid",
+      "Insight",
+      "Locale",
+      "Perception",
+      "Ride"
+    ],
+    "professional": [
+      "Commerce",
+      "Craft (Animal Husbandry)",
+      "Healing (Specific Species)",
+      "Navigation",
+      "Musicianship",
+      "Survival",
+      "Track"
+    ]
+  },
+  {
+    "career": "Hunter",
+    "standard": [
+      "Athletics",
+      "Endurance",
+      "Locale",
+      "Perception",
+      "Ride",
+      "Stealth"
+    ],
+    "professional": [
+      "Commerce",
+      "Craft (Hunting Related)",
+      "Lore (Regional Creatures)",
+      "Lore (Specific Species)",
+      "Mechanisms",
+      "Navigation",
+      "Survival",
+      "Track"
+    ]
+  },
+  {
+    "career": "Merchant",
+    "standard": [
+      "Boating",
+      "Drive",
+      "Deceit",
+      "Insight",
+      "Influence",
+      "Locale",
+      "Ride"
+    ],
+    "professional": [
+      "Commerce",
+      "Courtesy",
+      "Culture (any)",
+      "Language (any)",
+      "Navigation",
+      "Seamanship",
+      "Streetwise"
+    ]
+  },
+  {
+    "career": "Miner",
+    "standard": [
+      "Athletics",
+      "Brawn",
+      "Endurance",
+      "Locale",
+      "Perception",
+      "Sing",
+      "Willpower"
+    ],
+    "professional": [
+      "Commerce",
+      "Craft (Mining)",
+      "Engineering",
+      "Lore (Minerals)",
+      "Mechanisms",
+      "Navigation (Underground)",
+      "Survival"
+    ]
+  },
+  {
+    "career": "Mystic",
+    "standard": [
+      "Athletics",
+      "Endurance",
+      "Evade",
+      "Insight",
+      "Perception",
+      "Willpower"
+    ],
+    "professional": [
+      "Art (any)",
+      "Folk Magic",
+      "Literacy",
+      "Lore (any)",
+      "Meditation",
+      "Musicianship",
+      "Mysticism"
+    ]
+  },
+  {
+    "career": "Official",
+    "standard": [
+      "Customs",
+      "Deceit",
+      "Influence",
+      "Insight",
+      "Locale",
+      "Perception",
+      "Willpower"
+    ],
+    "professional": [
+      "Bureaucracy",
+      "Commerce",
+      "Courtesy",
+      "Language (any)",
+      "Literacy",
+      "Lore (any)",
+      "Oratory"
+    ]
+  },
+  {
+    "career": "Physician",
+    "standard": [
+      "Dance",
+      "First Aid",
+      "Influence",
+      "Insight",
+      "Locale",
+      "Sing",
+      "Willpower"
+    ],
+    "professional": [
+      "Commerce",
+      "Craft (Medical Speciality)",
+      "Healing",
+      "Language (any)",
+      "Literacy",
+      "Lore (Alchemical Speciality)",
+      "Streetwise"
+    ]
+  },
+  {
+    "career": "Priest",
+    "standard": [
+      "Customs",
+      "Dance",
+      "Deceit",
+      "Influence",
+      "Insight",
+      "Locale",
+      "Willpower"
+    ],
+    "professional": [
+      "Bureaucracy",
+      "Devotion (specific faith)",
+      "Exhort",
+      "Folk Magic",
+      "Literacy",
+      "Lore (any)",
+      "Oratory"
+    ]
+  },
+  {
+    "career": "Sailor",
+    "standard": [
+      "Athletics",
+      "Boating",
+      "Brawn",
+      "Endurance",
+      "Locale",
+      "Swim"
+    ],
+    "professional": [
+      "Craft (Relevant Specialty",
+      "e.g. Rope Making)",
+      "Culture (any)",
+      "Language (any)",
+      "Lore (any)",
+      "Navigate",
+      "Seamanship",
+      "Survival"
+    ]
+  },
+  {
+    "career": "Scholar",
+    "standard": [
+      "Customs",
+      "Influence",
+      "Insight",
+      "Locale",
+      "Native Tongue",
+      "Perception",
+      "Willpower"
+    ],
+    "professional": [
+      "Culture (any)",
+      "Language (any)",
+      "Literacy",
+      "Lore (Primary Speciality)",
+      "Lore (Secondary Speciality)",
+      "Oratory",
+      "Teach"
+    ]
+  },
+  {
+    "career": "Scout",
+    "standard": [
+      "Athletics",
+      "Endurance",
+      "First Aid",
+      "Perception",
+      "Stealth",
+      "Swim"
+    ],
+    "professional": [
+      "Culture (any)",
+      "Healing",
+      "Language (any)",
+      "Lore (any)",
+      "Navigation",
+      "Survival",
+      "Track"
+    ]
+  },
+  {
+    "career": "Shaman",
+    "standard": [
+      "Customs",
+      "Dance",
+      "Deceit",
+      "Influence",
+      "Insight",
+      "Locale",
+      "Willpower"
+    ],
+    "professional": [
+      "Binding (specific tradition)",
+      "Folk Magic",
+      "Healing",
+      "Lore (any)",
+      "Oratory",
+      "Sleight",
+      "Trance"
+    ]
+  },
+  {
+    "career": "Sorcerer",
+    "standard": [
+      "Customs",
+      "Deceit",
+      "Influence",
+      "Insight",
+      "Locale",
+      "Perception",
+      "Willpower"
+    ],
+    "professional": [
+      "Folk Magic",
+      "Invocation (specific school)",
+      "Language (any)",
+      "Literacy",
+      "Lore (any)",
+      "Shaping",
+      "Sleight"
+    ]
+  },
+  {
+    "career": "Thief",
+    "standard": [
+      "Athletics",
+      "Deceit",
+      "Evade",
+      "Insight",
+      "Perception",
+      "Stealth"
+    ],
+    "professional": [
+      "Acting",
+      "Commerce",
+      "Disguise",
+      "Lockpicking",
+      "Mechanisms",
+      "Sleight",
+      "Streetwise"
+    ]
+  },
+  {
+    "career": "Warrior",
+    "standard": ["Athletics", "Brawn", "Endurance", "Evade", "Unarmed"],
+    "professional": [
+      "Craft (any)",
+      "Engineering",
+      "Gambling",
+      "Lore (Military History)",
+      "Lore (Strategy and Tactics)",
+      "Oratory",
+      "Survival"
+    ]
+  }
+]
