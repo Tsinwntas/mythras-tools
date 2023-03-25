@@ -1,1 +1,63 @@
-<p>career works!</p>
+<div class="career-button">
+    <open-modal modal="careers" [prop]="{character:character}">
+        <button mat-raised-button>
+            {{character.career && character.career.length ? character.career : "Choose Career"}}
+        </button>
+    </open-modal>
+</div>
+<p>{{getPointsLeft()}}/100 points to distribute among any of the available skills plus an optional career combat style, as listed below.</p>
+<p><i>Unlike cultural points, there is no minimum for these skills but there is a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
+<p><i>If a style has multiple traits, discuss with your GM and apply only one.</i></p>
+<div class="culture-combat-style">
+    <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
+    <div class="selected-combat-style">
+        <div class="skill-wrapper">
+        <div class="attribute style-attribute">
+            <span class="skill-name"><open-modal modal="combat-styles" [prop]="getCombatStyleProps()">{{getCombatStyle().name}}</open-modal></span>
+            <span class="skill-base">{{getSkill(getCombatStyle())}}</span>
+        </div>
+        <mat-form-field>
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="getCombatStyle().careerBonus">
+        </mat-form-field>
+        </div>
+    </div>
+</div>
+<div class="cultural-header"><p>Career Skills:</p><button class="reset-button" mat-flat-button (click)="resetSkills()">CLEAR CAREER BONUSES</button></div>
+<div class="skill-categories">
+    <div class="skill-category standard-skills">
+        <p><b>Standard Skills</b></p>
+        <div class="skill-wrapper"  *ngFor="let skill of getStandardCareerSkills()">
+        <div class="attribute">
+            <span class="skill-name">{{skill}}</span>
+            <span class="skill-base">{{getSkill(findSkill(skill))}}</span>
+        </div>
+        <mat-form-field>
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="findSkill(skill).careerBonus">
+        </mat-form-field>
+        </div>
+    </div>
+    <div class="skill-category professional-skills">
+        <p><b>Professional Skills</b><i><small> - Choose only 3, if a professional skill has no cultural or career bonus, it will have 0 as a base level.</small></i></p>
+        <div class="skill-wrapper"  *ngFor="let skill of getProfessionalCareerSkills()">
+        <div class="attribute" *ngIf="!canBeSpecialized(skill)">
+            <span class="skill-name">{{skill}}</span>
+            <span class="skill-base">{{getSkill(findSkill(skill))}}</span>
+        </div>
+        <div class="attribute" *ngIf="canBeSpecialized(skill)">
+            <span class="skill-name" *ngIf="isAny(skill)"><open-modal modal="specialized" [prop]="getSpecializedProps(skill)">{{getSpecialized(skill).name}}</open-modal></span>
+            <span class="skill-name" *ngIf="!isAny(skill)">{{getSpecialized(skill).name}}</span>
+            <span class="skill-base">{{getSkill(getSpecialized(skill))}}</span>
+        </div>
+        <mat-form-field *ngIf="!canBeSpecialized(skill)">
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="findSkill(skill).careerBonus">
+        </mat-form-field>
+        <mat-form-field *ngIf="canBeSpecialized(skill)">
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="getSpecialized(skill).careerBonus">
+        </mat-form-field>
+        </div>
+    </div>
+</div>

@@ -40,6 +40,7 @@ export function initSkills (skills : CharacterSkills){
   skills.skills.push(new Skill("Willpower", false, "pow").setOperations({"multiply":2}));
 
   //PROFESSIONAL SKILLS
+  skills.skills.push(new Skill("Acting", true, "cha").setOperations({"multiply":2}));
   skills.skills.push(new Skill("Art", true, "pow", "cha"));
   skills.skills.push(new Skill("Binding", true, "pow", "cha"));
   skills.skills.push(new Skill("Bureaucracy", true, "int").setOperations({"multiply":2}));
@@ -110,6 +111,7 @@ export function getSkillTotal(character: Character, skill: Skill): number {
     return 0;
   return getSkillBase(character, skill)
   + orZero(skill.cultureBonus)
+  + orZero(skill.careerBonus)
   + orZero(skill.extraBonus);
 }
 

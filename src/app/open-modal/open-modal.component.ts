@@ -73,6 +73,7 @@ import { SpecializedComponent } from '../character/modals/specialized/specialize
 import { AllCombatStylesComponent } from '../modals/all-combat-styles/all-combat-styles.component';
 import { TraitsComponent } from '../modals/traits/traits.component';
 import { CombatStylesComponent } from '../character/modals/combat-styles/combat-styles.component';
+import { CareersModalComponent } from '../character/modals/careers-modal/careers-modal.component';
 
 @Component({
   selector: 'open-modal',
@@ -97,6 +98,7 @@ export class OpenModalComponent {
       case 'brace': this.modals.open(BraceComponent);return;
       case 'broadly-similar': this.modals.open(BroadlySimilarWeaponsComponent);return;
       case 'cast-magic': this.modals.open(CastMagicComponent);return;
+      case 'careers': this.modals.open(CareersModalComponent, this.prop);return;
       case 'change-range': this.modals.open(ChangeRangeComponent);return;
       case 'character': this.modals.open(CharacterComponent);return;
       case 'charging': this.modals.open(ChargingComponent);return;

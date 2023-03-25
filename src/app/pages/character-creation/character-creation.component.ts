@@ -1,7 +1,6 @@
 import { FamilyComponent } from './../../character/family/family.component';
 import { PassionsComponent } from './../../character/passions/passions.component';
 import { SocialClassComponent } from './../../character/social-class/social-class.component';
-import { SocialClass } from './../../model/social-class';
 import { BackgroundEventsComponent } from './../../character/background-events/background-events.component';
 import { Component, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { AgeComponent } from 'src/app/character/age/age.component';
@@ -14,6 +13,7 @@ import { StatsComponent } from 'src/app/character/stats/stats.component';
 import { Character } from 'src/app/model/character';
 import { CombatState } from 'src/app/model/combat-state';
 import { StatePageComponent } from '../state-page/state-page.component';
+import { CareerComponent } from 'src/app/character/career/career.component';
 
 @Component({
   selector: 'app-character-creation',
@@ -35,7 +35,8 @@ export class CharacterCreationComponent extends StatePageComponent{
     { stepLabel: "Background Events", component: BackgroundEventsComponent},
     { stepLabel: "Passions", component: PassionsComponent},
     { stepLabel: "Money & Social Class", component: SocialClassComponent},
-    { stepLabel: "Family & Connections", component: FamilyComponent}
+    { stepLabel: "Family & Connections", component: FamilyComponent},
+    { stepLabel: "Career", component: CareerComponent},
     
   ]
 
@@ -46,8 +47,7 @@ export class CharacterCreationComponent extends StatePageComponent{
   override ngOnInit(){
     this.pageState= localStorage['creation-state'] ? localStorage['creation-state'] : 0;
     this.character= localStorage['creation-character'] ? Object.assign(new Character() , JSON.parse(localStorage['creation-character'])) : new Character();
-    this.character.skills = Object.assign(new Character().skills , this.character.skills);
-      
+    this.character.skills = Object.assign(new Character().skills , this.character.skills);      
   }
   
   override ngDoCheck() {

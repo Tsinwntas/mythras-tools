@@ -142,6 +142,7 @@ import { BackgroundEventsComponent } from './character/background-events/backgro
 import { BackgroundEventsModalComponent } from './character/modals/background-events-modal/background-events-modal.component';
 import { PassionsTableComponent } from './character/passions-table/passions-table.component';
 import { PassionsComponent } from './character/passions/passions.component';
+import { CareersModalComponent } from './character/modals/careers-modal/careers-modal.component';
 
 
 
@@ -268,7 +269,8 @@ import { PassionsComponent } from './character/passions/passions.component';
     BackgroundEventsComponent,
     BackgroundEventsModalComponent,
     PassionsTableComponent,
-    PassionsComponent
+    PassionsComponent,
+    CareersModalComponent
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,7 @@ export class Character {
 
     passions : CharacterPassions[];
     family: CharacterFamily;
-    career : CharacterCareer;
+    career : string;
     magic : CharacterMagic;
     institution: string;
     rank : string;
@@ -43,7 +43,6 @@ export class Character {
         this.hp = new CharacterHP();
         this.magic = new CharacterMagic();
         this.family = new CharacterFamily();
-        this.career = new CharacterCareer();
         this.socialClass = new SocialClass();
     }
 

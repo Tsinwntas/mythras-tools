@@ -11,7 +11,8 @@
     ],
     "professional": [
       "Culture (any)",
-      "Disguise Language (any)",
+      "Disguise",
+      "Language (any)",
       "Sleight",
       "Streetwise",
       "Survival",
@@ -41,9 +42,9 @@
     ]
   },
   {
-    "career": "Beast",
+    "career": "Beast Handler",
     "standard": [
-      "Handler Drive",
+      "Drive",
       "Endurance",
       "First Aid",
       "Influence",
@@ -427,7 +428,7 @@
       "Willpower"
     ],
     "professional": [
-      "Binding (specific tradition)",
+      "Binding (any tradition)",
       "Folk Magic",
       "Healing",
       "Lore (any)",
@@ -449,7 +450,7 @@
     ],
     "professional": [
       "Folk Magic",
-      "Invocation (specific school)",
+      "Invocation (any school)",
       "Language (any)",
       "Literacy",
       "Lore (any)",

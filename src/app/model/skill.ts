@@ -3,6 +3,7 @@ export class Skill {
     professional : boolean;
     base : string[];
     cultureBonus : number;
+    careerBonus : number;
     extraBonus : number;
     add : number;
     divide : number;

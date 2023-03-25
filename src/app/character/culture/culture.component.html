@@ -6,8 +6,8 @@
       <mat-option *ngFor="let culture of ['Barbarian', 'Civilized', 'Nomadic', 'Primitive']" [value]="culture">{{culture}}</mat-option>
     </mat-select>
 </mat-form-field>
-<p>{{getPointsLeft()}}/100 points to distribute among six skills plus an optional cultural combat style, as listed below.</p>
-<p><i>Minimum of 5 Points can be allocated to each skill and a maximum of 15. Combat Style is optional but if selected, then use the min-max points rule.</i></p>
+<p>{{getPointsLeft()}}/100 points to distribute among any of the available skills plus an optional cultural combat style, as listed below.</p>
+<p><i>Minimum of 5 Points can be allocated to each skill (you can choose to add 0 points to a skill) and a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
 <p><i>If a style has multiple traits, discuss with your GM and apply only one.</i></p>
 <div class="culture-combat-style">
     <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="skill-category professional-skills">
-        <p><b>Professional Skills</b><i><small> - Choose only 3, if a professional skill has no bonus, it will have 0 as a base level.</small></i></p>
+        <p><b>Professional Skills</b><i><small> - Choose only 3, if a professional skill has no cultural or career bonus, it will have 0 as a base level.</small></i></p>
         <div class="skill-wrapper"  *ngFor="let skill of getProfessionalCulturalSkills()">
         <div class="attribute" *ngIf="!canBeSpecialized(skill)">
             <span class="skill-name">{{skill.name}}</span>
