@@ -14,6 +14,7 @@ import { Character } from 'src/app/model/character';
 import { CombatState } from 'src/app/model/combat-state';
 import { StatePageComponent } from '../state-page/state-page.component';
 import { CareerComponent } from 'src/app/character/career/career.component';
+import { BonusSkillComponent } from 'src/app/character/bonus-skill/bonus-skill.component';
 
 @Component({
   selector: 'app-character-creation',
@@ -37,6 +38,7 @@ export class CharacterCreationComponent extends StatePageComponent{
     { stepLabel: "Money & Social Class", component: SocialClassComponent},
     { stepLabel: "Family & Connections", component: FamilyComponent},
     { stepLabel: "Career", component: CareerComponent},
+    { stepLabel: "Hobby", component: BonusSkillComponent}
     
   ]
 

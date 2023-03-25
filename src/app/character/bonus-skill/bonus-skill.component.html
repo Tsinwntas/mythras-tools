@@ -1,0 +1,9 @@
+<p>At this stage you can choose a single professional skill or another different combat style to have as a hobby.</p>
+<p>On the next step you will be given a pool of points to be distributed to any already used skills plus the one selected here.</p>
+<div class="selection-buttons">
+    <open-modal modal="all-styles" [prop]="getCombatStyleProps()"><button mat-flat-button>Choose Combat Style</button></open-modal>
+    <open-modal modal="professional-skills" [prop]="getProfessionalProps()"><button mat-flat-button>Choose Professional Skill</button></open-modal>
+</div>
+<div class="hobby">
+    <p><b>Hobby: {{this.character.skills.hobby?.name}}</b></p>
+</div>

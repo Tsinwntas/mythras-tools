@@ -74,6 +74,7 @@ import { AllCombatStylesComponent } from '../modals/all-combat-styles/all-combat
 import { TraitsComponent } from '../modals/traits/traits.component';
 import { CombatStylesComponent } from '../character/modals/combat-styles/combat-styles.component';
 import { CareersModalComponent } from '../character/modals/careers-modal/careers-modal.component';
+import { ProfessionalSkillsComponent } from '../character/modals/professional-skills/professional-skills.component';
 
 @Component({
   selector: 'open-modal',
@@ -143,6 +144,7 @@ export class OpenModalComponent {
       case 'parry': this.modals.open(ParryComponent);return;
       case 'passive-blocking': this.modals.open(PassiveBlockingComponent);return;
       case 'possession-exorcism': this.modals.open(PossessionExorcismComponent);return;
+      case 'professional-skills': this.modals.open(ProfessionalSkillsComponent, this.prop);return;
       case 'ranged-situational': this.modals.open(RangedSituationalComponent);return;
       case 'ready-weapon': this.modals.open(ReadyWeaponComponent);return;
       case 'reasonably-different': this.modals.open(ReasonablyDifferentWeaponsComponent);return;

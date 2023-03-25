@@ -143,6 +143,8 @@ import { BackgroundEventsModalComponent } from './character/modals/background-ev
 import { PassionsTableComponent } from './character/passions-table/passions-table.component';
 import { PassionsComponent } from './character/passions/passions.component';
 import { CareersModalComponent } from './character/modals/careers-modal/careers-modal.component';
+import { BonusSkillComponent } from './character/bonus-skill/bonus-skill.component';
+import { ProfessionalSkillsComponent } from './character/modals/professional-skills/professional-skills.component';
 
 
 
@@ -270,7 +272,9 @@ import { CareersModalComponent } from './character/modals/careers-modal/careers-
     BackgroundEventsModalComponent,
     PassionsTableComponent,
     PassionsComponent,
-    CareersModalComponent
+    CareersModalComponent,
+    BonusSkillComponent,
+    ProfessionalSkillsComponent
   ],
   imports: [
     BrowserModule,

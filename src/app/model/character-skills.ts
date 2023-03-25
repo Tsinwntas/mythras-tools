@@ -19,6 +19,7 @@ export class CharacterSkills {
     skills : Skill[];
     specialized: Skill[];
     combatstyles : CombatStyle[]; 
+    hobby : Skill;
 
     constructor() {
         this.ap = new Skill("Action Points", false, "int","dex").setOperations({divide:12});
