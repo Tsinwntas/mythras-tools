@@ -19,6 +19,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 import { FormsModule } from '@angular/forms';
@@ -303,7 +304,8 @@ import { RankTableComponent } from './character/rank-table/rank-table.component'
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { StartingMagicComponent } from './../../character/starting-magic/starting-magic.component';
 import { CultComponent } from './../../character/cult/cult.component';
 import { AgeExperienceComponent } from './../../character/age-experience/age-experience.component';
 import { FamilyComponent } from './../../character/family/family.component';
@@ -43,6 +44,7 @@ export class CharacterCreationComponent extends StatePageComponent{
     { stepLabel: "Hobby", component: BonusSkillComponent},
     { stepLabel: "Experience through Age", component: AgeExperienceComponent},
     { stepLabel: "Cults & Brotherhoods", component: CultComponent},
+    { stepLabel: "Starting Magic", component: StartingMagicComponent},
     
   ]
 

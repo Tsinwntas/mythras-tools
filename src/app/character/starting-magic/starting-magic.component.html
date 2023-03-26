@@ -1,1 +1,44 @@
-<p>starting-magic works!</p>
+<mat-accordion multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Folk Magic
+      </mat-panel-title>
+      <mat-panel-description>
+        Folk Magic does not require a specific cult
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>This is the primary content of the panel.</p>
+  </mat-expansion-panel>
+  <mat-expansion-panel *ngIf="character.theistCult && character.theistCult.name">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Theism
+      </mat-panel-title>
+      <mat-panel-description>
+        {{character.theistCult.name}}-{{character.theistCult.level}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div>
+        <mat-form-field class="spirits">
+        <mat-label>Animism</mat-label>
+        <textarea matInput type="text" [(ngModel)]="character.magic.spirits"></textarea>
+        </mat-form-field>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel *ngIf="character.animistCult && character.animistCult.name">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Animism
+      </mat-panel-title>
+      <mat-panel-description>
+        {{character.animistCult.name}}-{{character.animistCult.level}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>Animism doesn't have simple spells to add so I give you this box to write whatever you want to write in it.</p>
+    <mat-form-field class="spirits">
+      <mat-label>Animism</mat-label>
+      <textarea matInput type="text" [(ngModel)]="character.magic.spirits"></textarea>
+    </mat-form-field>
+  </mat-expansion-panel>
+</mat-accordion>
