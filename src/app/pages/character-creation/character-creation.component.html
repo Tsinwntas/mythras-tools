@@ -12,6 +12,7 @@
                         <ng-container #stateComponents></ng-container>
                     </div>
                     <div *ngIf="state.next == undefined" class="next-button" >
+                        <button mat-stroked-button matStepperPrevious >Back</button>
                         <button mat-stroked-button matStepperNext >Next</button>
                     </div>
                     <div *ngIf="state.next != undefined" class="next-button">

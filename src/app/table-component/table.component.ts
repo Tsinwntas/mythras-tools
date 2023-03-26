@@ -26,4 +26,8 @@ export class TableComponent {
   getEmptyColumns() : string[] {
     return [];
   }
+
+  getHighlightedColumns() : string[] {
+    return [];
+  }
 }

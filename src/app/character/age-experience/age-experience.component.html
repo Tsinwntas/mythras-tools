@@ -1,0 +1,50 @@
+<p>According to your character's age, or with your GM approval you can add more experience to the following skill.</p>
+<p>You should follow the rules shown on this <open-modal modal="experience" [prop]="{table:ageTable}">table</open-modal>.&nbsp;&nbsp;&nbsp;Your age: {{this.character.age}}</p>
+<p><i>Tsinik Notes: The age naming is not the same as the book because I don't want to be considered middle aged at my current age. The naming doesn't really matter, the actual age does.</i></p>
+<div class="points-wrapper">
+    <p>Points used: {{getPointsLeft()}} / {{getMaxPoints()}}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Max Increase: {{getMaxIncrease()}}</p>
+    <button class="reset-button" mat-flat-button (click)="resetSkills()">CLEAR AGE BONUSES</button>
+</div> 
+<div class="culture-combat-style">
+    <div class="skill-category standard-skills">
+        <p><b>Combat Styles</b></p>
+        <div class="skill-wrapper"  *ngFor="let skill of getCombatStyles()">
+        <div class="attribute">
+            <span class="skill-name">{{skill.name}}</span>
+            <span class="skill-base">{{getSkill(skill)}}</span>
+        </div>
+        <mat-form-field>
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="skill.extraBonus">
+        </mat-form-field>
+        </div>
+    </div>
+</div>
+<div class="skill-categories">
+    <div class="skill-category standard-skills">
+        <p><b>Standard Skills</b></p>
+        <div class="skill-wrapper"  *ngFor="let skill of getStandardSkills()">
+        <div class="attribute">
+            <span class="skill-name">{{skill.name}}</span>
+            <span class="skill-base">{{getSkill(skill)}}</span>
+        </div>
+        <mat-form-field>
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="skill.extraBonus">
+        </mat-form-field>
+        </div>
+    </div>
+    <div class="skill-category professional-skills">
+        <p><b>Professional Skills</b><i><small> - If a professional skill has no bonus of any kind, it will have 0 as a base level.</small></i></p>
+        <div class="skill-wrapper"  *ngFor="let skill of getProfessionalSkills()">
+        <div class="attribute">
+            <span class="skill-name">{{skill.name}}</span>
+            <span class="skill-base">{{getSkill(skill)}}</span>
+        </div>
+        <mat-form-field>
+            <mat-label>Bonus:</mat-label>
+            <input matInput type="number" [(ngModel)]="skill.extraBonus">
+        </mat-form-field>
+        </div>
+    </div>
+</div>

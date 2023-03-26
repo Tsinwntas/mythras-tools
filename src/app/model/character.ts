@@ -35,7 +35,11 @@ export class Character {
     career : string;
     magic : CharacterMagic;
     institution: string;
-    rank : string;
+    theistCult : {name: string; level: string, standardSkills: string, professionalSkills: string, miracles: string};
+    animistCult : {name: string; level: string, standardSkills: string, professionalSkills: string, spirits: string};
+    sorceryOrder : {name: string; level: string, standardSkills: string, professionalSkills: string, spells: string};
+    mysticalOrder : {name: string; level: string, standardSkills: string, professionalSkills: string, paths: string};
+    brotherhood : {name: string; level: string, standardSkills: string, professionalSkills: string};
     backstory : string;
 
     constructor() {
@@ -44,6 +48,11 @@ export class Character {
         this.magic = new CharacterMagic();
         this.family = new CharacterFamily();
         this.socialClass = new SocialClass();
+        this.theistCult = {name: '', level: '', standardSkills: '', professionalSkills: '', miracles: ''};
+        this.mysticalOrder = {name: '', level: '', standardSkills: '', professionalSkills: '', paths: ''};
+        this.brotherhood = {name: '', level: '', standardSkills: '', professionalSkills: ''};
+        this.animistCult = {name: '', level: '', standardSkills: '', professionalSkills: '', spirits: ''};
+        this.sorceryOrder = {name: '', level: '', standardSkills: '', professionalSkills: '', spells: ''};
     }
 
 }

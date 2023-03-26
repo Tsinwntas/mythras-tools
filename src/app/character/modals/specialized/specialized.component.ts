@@ -42,6 +42,7 @@ export class SpecializedComponent extends TableComponent implements ModalInnerCo
         select : s,
         specialty : s.name.replace(/[^(]+[(]/g,"").replace(/[)].*/g,""),
         culture : s.cultureBonus,
+        career : s.careerBonus,
         extra : s.extraBonus
       };
       if(specializations.length > 1)
@@ -57,7 +58,6 @@ export class SpecializedComponent extends TableComponent implements ModalInnerCo
   }
 
   setName(skill: Skill, name: any) {
-    debugger;
     skill.name = this.skill.name.replace(/[(].*$/g,"")+" ("+name+")";
   }
 

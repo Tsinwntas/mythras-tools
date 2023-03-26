@@ -28,6 +28,8 @@ export class CharacterSkills {
         this.healing = new Skill("Healing Rate", false, "con").setOperations({divide:6});
         this.init = new Skill("Initiative", false, "int","dex").setOperations({divide:2});
         this.luck = new Skill("Luck", false, "pow").setOperations({divide:6});
+        this.combatstyles = [];
+        this.specialized = [];
         initSkills(this);
     }
 }

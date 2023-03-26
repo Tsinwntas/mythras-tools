@@ -2,8 +2,8 @@
     <table mat-table [dataSource]="getTable()">
         
         <ng-container *ngFor="let col of getColumnsDefinition()"  [matColumnDef]="col">
-            <th mat-header-cell *matHeaderCellDef> {{getColumnHeader(col)}} </th>
-            <td mat-cell *matCellDef="let element"> {{element[col]}} </td>
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="getHighlightedColumns().includes(col) ? {'background-color':'#c0c0c05e'} : null"> {{getColumnHeader(col)}} </th>
+            <td mat-cell *matCellDef="let element" [ngStyle]="getHighlightedColumns().includes(col) ? {'background-color':'#c0c0c05e'} : null"> {{element[col]}} </td>
         </ng-container>
         
         <tr mat-header-row *matHeaderRowDef="getColumnsDefinition(); sticky: true"></tr>

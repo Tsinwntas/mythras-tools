@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TableComponent } from 'src/app/table-component/table.component';
 
 @Component({
@@ -7,6 +7,9 @@ import { TableComponent } from 'src/app/table-component/table.component';
   styleUrls: ['./size-table.component.scss']
 })
 export class SizeTableComponent extends TableComponent {
+
+  @Input() size : number;
+
   override getTable(): any[] {
     return [
       getRow("Height (cm)", {add:150, mul:5}),
@@ -19,6 +22,10 @@ export class SizeTableComponent extends TableComponent {
   override getColumnsDefinition(): string[] {
     let cols = super.getColumnsDefinition();
     return [cols[cols.length-1]].concat(cols.slice(0, cols.length-2));
+  }
+
+  override getHighlightedColumns() : string[] {
+    return this.getColumnsDefinition().filter(col => this.size!=undefined && parseInt(col)==this.size);
   }
 }
 

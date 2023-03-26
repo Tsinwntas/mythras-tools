@@ -55,10 +55,10 @@
     "professional": [
       "Commerce",
       "Craft (Animal Husbandry)",
-      "Healing (Specific Animal)",
-      "Lore (Specific Animal)",
+      "Healing (any Animal)",
+      "Lore (any Animal)",
       "Survival",
-      "Teach (Specific Animal)",
+      "Teach (any Animal)",
       "Track"
     ]
   },
@@ -201,7 +201,7 @@
     "professional": [
       "Commerce",
       "Craft (Animal Husbandry)",
-      "Healing (Specific Species)",
+      "Healing (any Species)",
       "Navigation",
       "Musicianship",
       "Survival",
@@ -222,7 +222,7 @@
       "Commerce",
       "Craft (Hunting Related)",
       "Lore (Regional Creatures)",
-      "Lore (Specific Species)",
+      "Lore (any Species)",
       "Mechanisms",
       "Navigation",
       "Survival",
@@ -346,7 +346,7 @@
     ],
     "professional": [
       "Bureaucracy",
-      "Devotion (specific faith)",
+      "Devotion (any faith)",
       "Exhort",
       "Folk Magic",
       "Literacy",
@@ -365,12 +365,11 @@
       "Swim"
     ],
     "professional": [
-      "Craft (Relevant Specialty",
-      "e.g. Rope Making)",
+      "Craft (any relevant)",
       "Culture (any)",
       "Language (any)",
       "Lore (any)",
-      "Navigate",
+      "Navigation",
       "Seamanship",
       "Survival"
     ]

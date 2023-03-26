@@ -1,3 +1,5 @@
+import { CultComponent } from './../../character/cult/cult.component';
+import { AgeExperienceComponent } from './../../character/age-experience/age-experience.component';
 import { FamilyComponent } from './../../character/family/family.component';
 import { PassionsComponent } from './../../character/passions/passions.component';
 import { SocialClassComponent } from './../../character/social-class/social-class.component';
@@ -38,7 +40,9 @@ export class CharacterCreationComponent extends StatePageComponent{
     { stepLabel: "Money & Social Class", component: SocialClassComponent},
     { stepLabel: "Family & Connections", component: FamilyComponent},
     { stepLabel: "Career", component: CareerComponent},
-    { stepLabel: "Hobby", component: BonusSkillComponent}
+    { stepLabel: "Hobby", component: BonusSkillComponent},
+    { stepLabel: "Experience through Age", component: AgeExperienceComponent},
+    { stepLabel: "Cults & Brotherhoods", component: CultComponent},
     
   ]
 

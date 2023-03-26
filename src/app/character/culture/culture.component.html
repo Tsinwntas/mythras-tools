@@ -11,7 +11,7 @@
 <p><i>If a style has multiple traits, discuss with your GM and apply only one.</i></p>
 <div class="culture-combat-style">
     <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
-    <div class="selected-combat-style">
+    <div class="selected-combat-style" *ngIf="character.skills.combatstyles.length">
         <div class="skill-wrapper">
         <div class="attribute style-attribute">
             <span class="skill-name"><open-modal modal="combat-styles" [prop]="getCombatStyleProps()">{{getCombatStyle().name}}</open-modal></span>

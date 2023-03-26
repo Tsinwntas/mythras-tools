@@ -1,3 +1,4 @@
+import { AgeExperienceModalComponent } from './character/modals/age-experience/age-experience.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -145,6 +146,10 @@ import { PassionsComponent } from './character/passions/passions.component';
 import { CareersModalComponent } from './character/modals/careers-modal/careers-modal.component';
 import { BonusSkillComponent } from './character/bonus-skill/bonus-skill.component';
 import { ProfessionalSkillsComponent } from './character/modals/professional-skills/professional-skills.component';
+import { AgeExperienceComponent } from './character/age-experience/age-experience.component';
+import { MagicComponent } from './character/magic/magic.component';
+import { CultComponent } from './character/cult/cult.component';
+import { RankTableComponent } from './character/rank-table/rank-table.component';
 
 
 
@@ -274,7 +279,12 @@ import { ProfessionalSkillsComponent } from './character/modals/professional-ski
     PassionsComponent,
     CareersModalComponent,
     BonusSkillComponent,
-    ProfessionalSkillsComponent
+    ProfessionalSkillsComponent,
+    AgeExperienceComponent,
+    AgeExperienceModalComponent,
+    MagicComponent,
+    CultComponent,
+    RankTableComponent
   ],
   imports: [
     BrowserModule,

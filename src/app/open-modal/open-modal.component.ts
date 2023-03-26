@@ -75,6 +75,7 @@ import { TraitsComponent } from '../modals/traits/traits.component';
 import { CombatStylesComponent } from '../character/modals/combat-styles/combat-styles.component';
 import { CareersModalComponent } from '../character/modals/careers-modal/careers-modal.component';
 import { ProfessionalSkillsComponent } from '../character/modals/professional-skills/professional-skills.component';
+import { AgeExperienceModalComponent } from '../character/modals/age-experience/age-experience.component';
 
 @Component({
   selector: 'open-modal',
@@ -116,6 +117,7 @@ export class OpenModalComponent {
       case 'drop-weapon': this.modals.open(DropWeaponComponent);return;
       case 'enc-penalty': this.modals.encModal(this.prop);return;
       case 'evade': this.modals.open(EvadeComponent);return;
+      case 'experience': this.modals.open(AgeExperienceModalComponent, this.prop);return;
       case 'falling-and-combat': this.modals.open(FallingAndCombatComponent);return;
       case 'familiar-unfamiliar': this.modals.open(FamiliarUnfamiliarComponent);return;
       case 'fatigue': this.modals.open(FatigueComponent);return;

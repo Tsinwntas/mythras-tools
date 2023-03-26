@@ -1,0 +1,199 @@
+<p>
+  If you are going to choose cults, then study the cult rules and suggestions (208-210).
+  The examples show restrictions and gifts and other rules that are very interesting, and I am not plannig to paste the
+  whole book here.
+</p>
+<p>
+  As for ranks, you should follow the following rules, but as always, if your GM decides differently, the rules don't
+  matter.
+</p>
+<rank-table />
+<p>
+  Requirements:
+</p>
+<ul>
+  <li>
+    <b>Common</b>: <p>Common members must have at least a basic understanding of the beliefs of the organisation, and
+      make a small donation (of time or money) each time they visit the cult's shrine or temple or to pay brotherhood
+      dues.</p>
+  </li>
+  <li>
+    <b>Dedicated</b>: <p>Dedicated members will have their knowledge and abilities tested to determine their sincerity
+      and eligibility. To be adopted by the cult or brotherhood the character must know at least five of the cult's
+      skills at 50% or more.</p>
+  </li>
+  <li>
+    <b>Proven</b>: <p>Proven members must have been a dedicated member of the cult or brotherhood for a minimum of three
+      years, and must know at least four cult skills at 70% or better. A valuable gift or service must be rendered to
+      the cult, to demonstrate devotion and loyalty.</p>
+  </li>
+  <li>
+    <b>Overseers</b>: <p>Overseers must have been proven members of the cult or broth- erhood for a minimum of five
+      years, and must know at least three cult skills at 90% or better.</p>
+  </li>
+  <li>
+    <b>Leaders</b>: <p>Leaders must have been overseers for a minimum of least ten years, and must have at least two
+      cult skills at 110% or better. They must also have performed an invaluable service for the cult or brotherhood,
+      worthy of recognition as a future guide or custodian; or they must remove the previous leader by whatever means
+      necessary to seize his power.</p>
+  </li>
+</ul>
+<!-- THEIST -->
+<hr />
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Theist Cult:</mat-label>
+    <mat-select [value]="getTheistCult()" (selectionChange)="setTheistCult($event.value)">
+      <mat-option [value]="">None</mat-option>
+      <mat-option *ngFor="let cult of theistCults" [value]="cult">{{cult.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" *ngIf="character.theistCult.name">
+    <mat-label>Rank:</mat-label>
+    <mat-select [(value)]="character.theistCult.level">
+      <mat-option *ngFor="let rank of getTheistCultRanks()" [value]="rank">{{rank}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <mat-form-field *ngIf="character.theistCult.name">
+        <mat-label>Standard Skills:</mat-label>
+        <textarea matInput [value]="character.theistCult.standardSkills"></textarea>
+    </mat-form-field>
+    <mat-form-field *ngIf="character.theistCult.name">
+        <mat-label>Professional Skills:</mat-label>
+        <textarea matInput [value]="character.theistCult.professionalSkills"></textarea>
+    </mat-form-field>
+  </div>
+  <mat-form-field *ngIf="character.theistCult.name" class="full">
+    <mat-label>Miracles:</mat-label>
+    <textarea matInput [value]="character.theistCult.miracles"></textarea>
+  </mat-form-field>
+</div>
+
+<!-- ANIMIST -->
+
+<hr />
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Animist Cult:</mat-label>
+    <mat-select [value]="getAnimistCult()" (selectionChange)="setAnimistCult($event.value)">
+      <mat-option [value]="">None</mat-option>
+      <mat-option *ngFor="let cult of animistCults" [value]="cult">{{cult.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" *ngIf="character.animistCult.name">
+    <mat-label>Rank:</mat-label>
+    <mat-select [(value)]="character.animistCult.level">
+      <mat-option *ngFor="let rank of getAnimistCultRanks()" [value]="rank">{{rank}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <mat-form-field *ngIf="character.animistCult.name">
+        <mat-label>Standard Skills:</mat-label>
+        <textarea matInput [value]="character.animistCult.standardSkills"></textarea>
+    </mat-form-field>
+    <mat-form-field *ngIf="character.animistCult.name">
+        <mat-label>Professional Skills:</mat-label>
+        <textarea matInput [value]="character.animistCult.professionalSkills"></textarea>
+    </mat-form-field>
+  </div>
+  <mat-form-field *ngIf="character.animistCult.name" class="full">
+    <mat-label>Miracles:</mat-label>
+    <textarea matInput [value]="character.animistCult.spirits"></textarea>
+  </mat-form-field>
+</div>
+
+<!-- SORCERY -->
+
+<hr />
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Sorcery Order:</mat-label>
+    <mat-select [value]="getSorceryOrder()" (selectionChange)="setSorceryOrder($event.value)">
+      <mat-option [value]="">None</mat-option>
+      <mat-option *ngFor="let cult of sorceryOrders" [value]="cult">{{cult.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" *ngIf="character.sorceryOrder.name">
+    <mat-label>Rank:</mat-label>
+    <mat-select [(value)]="character.sorceryOrder.level">
+      <mat-option *ngFor="let rank of getSorceryOrderRanks()" [value]="rank">{{rank}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <mat-form-field *ngIf="character.sorceryOrder.name">
+        <mat-label>Standard Skills:</mat-label>
+        <textarea matInput [value]="character.sorceryOrder.standardSkills"></textarea>
+    </mat-form-field>
+    <mat-form-field *ngIf="character.sorceryOrder.name">
+        <mat-label>Professional Skills:</mat-label>
+        <textarea matInput [value]="character.sorceryOrder.professionalSkills"></textarea>
+    </mat-form-field>
+  </div>
+  <mat-form-field *ngIf="character.sorceryOrder.name" class="full">
+    <mat-label>Miracles:</mat-label>
+    <textarea matInput [value]="character.sorceryOrder.spells"></textarea>
+  </mat-form-field>
+</div>
+
+<!-- MYSTICAL -->
+
+<hr />
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Mystical Order:</mat-label>
+    <mat-select [value]="getMysticalOrder()" (selectionChange)="setMysticalOrder($event.value)">
+      <mat-option [value]="">None</mat-option>
+      <mat-option *ngFor="let cult of mysticalOrders" [value]="cult">{{cult.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" *ngIf="character.mysticalOrder.name">
+    <mat-label>Rank:</mat-label>
+    <mat-select [(value)]="character.mysticalOrder.level">
+      <mat-option *ngFor="let rank of getMysticalOrderRanks()" [value]="rank">{{rank}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <mat-form-field *ngIf="character.mysticalOrder.name">
+        <mat-label>Standard Skills:</mat-label>
+        <textarea matInput [value]="character.mysticalOrder.standardSkills"></textarea>
+    </mat-form-field>
+    <mat-form-field *ngIf="character.mysticalOrder.name">
+        <mat-label>Professional Skills:</mat-label>
+        <textarea matInput [value]="character.mysticalOrder.professionalSkills"></textarea>
+    </mat-form-field>
+  </div>
+  <mat-form-field *ngIf="character.mysticalOrder.name" class="full">
+    <mat-label>Miracles:</mat-label>
+    <textarea matInput [value]="character.mysticalOrder.paths"></textarea>
+  </mat-form-field>
+</div>
+
+<!-- BROTHERHOOD -->
+
+<hr />
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Brotherhood:</mat-label>
+    <mat-select [value]="getBrotherhood()" (selectionChange)="setBrotherhood($event.value)">
+      <mat-option [value]="">None</mat-option>
+      <mat-option *ngFor="let cult of brotherhoods" [value]="cult">{{cult.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" *ngIf="character.brotherhood.name">
+    <mat-label>Rank:</mat-label>
+    <mat-select [(value)]="character.brotherhood.level">
+      <mat-option *ngFor="let rank of getBrotherhoodRanks()" [value]="rank">{{rank}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <mat-form-field *ngIf="character.brotherhood.name">
+        <mat-label>Standard Skills:</mat-label>
+        <textarea matInput [value]="character.brotherhood.standardSkills"></textarea>
+    </mat-form-field>
+    <mat-form-field *ngIf="character.brotherhood.name">
+        <mat-label>Professional Skills:</mat-label>
+        <textarea matInput [value]="character.brotherhood.professionalSkills"></textarea>
+    </mat-form-field>
+  </div>
+</div>

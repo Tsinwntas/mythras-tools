@@ -5,5 +5,5 @@
     <open-modal modal="professional-skills" [prop]="getProfessionalProps()"><button mat-flat-button>Choose Professional Skill</button></open-modal>
 </div>
 <div class="hobby">
-    <p><b>Hobby: {{this.character.skills.hobby?.name}}</b></p>
+    <p><b>Hobby: {{this.character.skills.hobby? this.character.skills.hobby.name : ''}}</b></p>
 </div>
