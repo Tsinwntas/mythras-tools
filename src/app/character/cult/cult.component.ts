@@ -1,6 +1,7 @@
 import { TheismCults, AnimistCults, Brotherhoods, SorceryOrders, MysticalOrders } from './../../services/cults.service';
 import { Character } from 'src/app/model/character';
 import { Component } from '@angular/core';
+import { MysticPath } from 'src/app/model/mystic-path';
 
 @Component({
   selector: 'app-cult',
@@ -152,8 +153,15 @@ export class CultComponent {
         professionalSkills: '',
         paths: '',
       };
-    else 
+    else {
       this.character.mysticalOrder = cult;
+      this.character.magic.path = new MysticPath();
+      this.character.magic.path.path = this.getPath();
+    }
+  }
+
+  getPath() {
+    return this.character.mysticalOrder.paths.replace(/:.*/g,'').trim();
   }
 
   ////////////////////////////////////////////////////////////////

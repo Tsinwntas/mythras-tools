@@ -118,7 +118,7 @@ import { DetailsComponent } from './character/details/details.component';
 import { SkillsComponent } from './character/skills/skills.component';
 import { StatsComponent } from './character/stats/stats.component';
 import { SpecialsComponent } from './character/specials/specials.component';
-import { SpellsComponent } from './character/spells/spells.component';
+import { SpellsComponent } from './character/modals/spells/spells.component';
 import { HeightWeightComponent } from './character/height-weight/height-weight.component';
 import { CombatStylesComponent } from './character/modals/combat-styles/combat-styles.component';
 import { SocialClassComponent } from './character/social-class/social-class.component';
@@ -151,6 +151,7 @@ import { AgeExperienceComponent } from './character/age-experience/age-experienc
 import { MagicComponent } from './character/magic/magic.component';
 import { CultComponent } from './character/cult/cult.component';
 import { RankTableComponent } from './character/rank-table/rank-table.component';
+import { FolkMagicComponent } from './character/modals/folk-magic/folk-magic.component';
 
 
 
@@ -285,7 +286,8 @@ import { RankTableComponent } from './character/rank-table/rank-table.component'
     AgeExperienceModalComponent,
     MagicComponent,
     CultComponent,
-    RankTableComponent
+    RankTableComponent,
+    FolkMagicComponent
   ],
   imports: [
     BrowserModule,

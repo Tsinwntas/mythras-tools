@@ -1,44 +1,217 @@
+<p>
+  At character generation, a magician character knows one relevant spell or
+  ability for each 20% (or part thereof) he has in his magical skill.
+  <b>(Mythras Core Rules 118)</b>
+</p>
 <mat-accordion multi>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        Folk Magic
-      </mat-panel-title>
+      <mat-panel-title> Folk Magic </mat-panel-title>
       <mat-panel-description>
         Folk Magic does not require a specific cult
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
+    <div *ngFor="let spell of character.magic.folk; let index = index">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title
+              >{{ spell.name
+              }}<button
+                mat-icon-button
+                class="remove-spell"
+                color="warn"
+                (click)="character.magic.folk.splice(index, 1)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button></mat-card-title
+            >
+            <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          {{ spell.description }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <open-modal modal="folkMagic" [prop]="{ character: character }">
+      <button mat-raised-button>ADD</button>
+    </open-modal>
   </mat-expansion-panel>
-  <mat-expansion-panel *ngIf="character.theistCult && character.theistCult.name">
+  <mat-expansion-panel
+    *ngIf="character.theistCult && character.theistCult.name"
+  >
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        Theism
-      </mat-panel-title>
+      <mat-panel-title> Theism </mat-panel-title>
       <mat-panel-description>
-        {{character.theistCult.name}}-{{character.theistCult.level}}
+        {{ character.theistCult.name }}-{{ character.theistCult.level }}
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div>
-        <mat-form-field class="spirits">
+      <mat-form-field class="spirits">
         <mat-label>Animism</mat-label>
-        <textarea matInput type="text" [(ngModel)]="character.magic.spirits"></textarea>
-        </mat-form-field>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="character.magic.spirits"
+        ></textarea>
+      </mat-form-field>
     </div>
   </mat-expansion-panel>
-  <mat-expansion-panel *ngIf="character.animistCult && character.animistCult.name">
+  <mat-expansion-panel
+    *ngIf="character.mysticalOrder && character.mysticalOrder.name"
+  >
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        Animism
-      </mat-panel-title>
+      <mat-panel-title> Mystisism </mat-panel-title>
       <mat-panel-description>
-        {{character.animistCult.name}}-{{character.animistCult.level}}
+        {{ character.mysticalOrder.name }}-{{ character.mysticalOrder.level }}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>Animism doesn't have simple spells to add so I give you this box to write whatever you want to write in it.</p>
+    <p><b>{{character.magic.path.path}}</b></p>
+    <p class="spell-type"><b>Augmentations:</b></p>
+    <div *ngFor="let spell of character.magic.path.augmentations; let index = index">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>
+              <mat-form-field>
+                <mat-label>Augmentation:</mat-label>
+                <mat-select
+                  [value]="spell"
+                  (selectionChange)="
+                    character.magic.path.augmentations[index] = $event.value
+                  "
+                >
+                  <mat-option
+                    *ngFor="let augmentation of getAugmentations()"
+                    [value]="augmentation"
+                    >{{ augmentation }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+              <button
+                mat-icon-button
+                class="remove-spell"
+                color="warn"
+                (click)="character.magic.path.augmentations.splice(index, 1)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button></mat-card-title
+            >
+            <!-- <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle> -->
+          </mat-card-title-group>
+        </mat-card-header>
+        <!-- <mat-card-content>
+          {{ spell.description }}
+        </mat-card-content> -->
+      </mat-card>
+    </div>
+
+    <p class="spell-type"><b>Invocations:</b></p>
+    <div *ngFor="let spell of character.magic.path.invocations; let index = index">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>
+              <mat-form-field>
+                <mat-label>Invocation:</mat-label>
+                <mat-select
+                  [value]="spell"
+                  (selectionChange)="
+                    character.magic.path.invocations[index] = findInvocation($event.value)
+                  "
+                >
+                  <mat-option
+                    *ngFor="let invocation of getInvocations()"
+                    [value]="invocation"
+                    >{{ invocation }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+              <button
+                mat-icon-button
+                class="remove-spell"
+                color="warn"
+                (click)="character.magic.path.invocations.splice(index, 1)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button></mat-card-title
+            >
+            <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          {{ spell.description }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <p class="spell-type"><b>Enhancements:</b></p>
+    <div *ngFor="let spell of character.magic.path.enhancements; let index = index">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>
+              <mat-form-field>
+                <mat-label>Enhancement:</mat-label>
+                <mat-select
+                  [value]="spell"
+                  (selectionChange)="
+                    character.magic.path.enhancements[index] = findEnhancement($event.value)
+                  "
+                >
+                  <mat-option
+                    *ngFor="let enhancement of getEnhancements()"
+                    [value]="enhancement"
+                    >{{ enhancement }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+              <button
+                mat-icon-button
+                class="remove-spell"
+                color="warn"
+                (click)="character.magic.path.enhancements.splice(index, 1)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button></mat-card-title
+            >
+            <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          {{ spell.description }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <div class="add-buttons">
+      <button mat-raised-button (click)="character.magic.path.augmentations.push(getAugmentations()[0])">AUGMENTATION</button>
+      <button mat-raised-button (click)="character.magic.path.invocations.push(findInvocation(getAugmentations()[0]))">INVOCATION</button>
+      <button mat-raised-button *ngIf="hasEnhancements()" (click)="character.magic.path.enhancements.push(findEnhancement(getAugmentations()[0]))">ENHANCEMENT</button>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel
+    *ngIf="character.animistCult && character.animistCult.name"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Animism </mat-panel-title>
+      <mat-panel-description>
+        {{ character.animistCult.name }}-{{ character.animistCult.level }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>
+      Animism doesn't have simple spells to add so I give you this box to write
+      whatever you want to write in it.
+    </p>
     <mat-form-field class="spirits">
       <mat-label>Animism</mat-label>
-      <textarea matInput type="text" [(ngModel)]="character.magic.spirits"></textarea>
+      <textarea
+        matInput
+        type="text"
+        [(ngModel)]="character.magic.spirits"
+      ></textarea>
     </mat-form-field>
   </mat-expansion-panel>
 </mat-accordion>

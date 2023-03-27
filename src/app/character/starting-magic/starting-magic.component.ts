@@ -1,5 +1,7 @@
 import { Character } from 'src/app/model/character';
 import { Component, OnInit } from '@angular/core';
+import { MysticPath } from 'src/app/model/mystic-path';
+import { Spell } from 'src/app/model/spell';
 
 @Component({
   selector: 'app-starting-magic',
@@ -21,9 +23,39 @@ export class StartingMagicComponent implements OnInit {
     {
       this.character.magic.sorcery = [];
     }
-    if(!this.character.magic.paths)
+    if(!this.character.magic.path)
     {
-      this.character.magic.paths = [];
+      this.character.magic.path = new MysticPath();
     }
+    if(this.character.mysticalOrder?.name)
+      this.character.magic.path.path = this.getPath();
+  }
+
+  getPath() {
+    return this.character.mysticalOrder.paths.replace(/:.*/g,'').trim();
+  }
+
+  getAugmentations() : string[] {
+    return this.character.mysticalOrder.paths.match(/Augment[ ][^,]*/g)!.map(a=>a.replace(/Augment[ ]/g,'').trim());
+  }
+
+  getInvocations() : string[] {
+    return this.character.mysticalOrder.paths.match(/Invoke[ ][^,]*/g)!.map(a=>a.replace(/Invoke[ ]/g,'').trim());
+  }
+
+  findInvocation(invocation:string) : Spell {
+    return new Spell();
+  }
+
+  hasEnhancements() : boolean {
+    return this.character.mysticalOrder.paths.includes('Enhance');
+  }
+
+  getEnhancements() : string[] {
+    return this.character.mysticalOrder.paths.match(/Enhance[ ][^,]*/g)!.map(a=>a.replace(/Enhance[ ]/g,'').trim());
+  }
+
+  findEnhancement(enhancement:string) : Spell {
+    return new Spell();
   }
 }

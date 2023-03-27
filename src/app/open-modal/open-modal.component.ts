@@ -76,6 +76,7 @@ import { CombatStylesComponent } from '../character/modals/combat-styles/combat-
 import { CareersModalComponent } from '../character/modals/careers-modal/careers-modal.component';
 import { ProfessionalSkillsComponent } from '../character/modals/professional-skills/professional-skills.component';
 import { AgeExperienceModalComponent } from '../character/modals/age-experience/age-experience.component';
+import { FolkMagicComponent } from '../character/modals/folk-magic/folk-magic.component';
 
 @Component({
   selector: 'open-modal',
@@ -123,6 +124,7 @@ export class OpenModalComponent {
       case 'fatigue': this.modals.open(FatigueComponent);return;
       case 'firing-into-crowd': this.modals.open(FiringIntoCrowdComponent);return;
       case 'firing-moving': this.modals.open(FiringMovingComponent);return;
+      case 'folkMagic': this.modals.open(FolkMagicComponent, this.prop);return;
       case 'grapple': this.modals.open(GrappleComponent);return;
       case 'group-luck': this.modals.open(GroupLuckComponent);return;
       case 'healing-wounds': this.modals.open(HealingWoundsComponent);return;

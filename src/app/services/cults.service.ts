@@ -140,7 +140,7 @@ export const AnimistCults = [
   {
     name: 'Healing Spirit',
     level: 'Follower',
-    standardSkills: 'Endurance, Eirst Aid',
+    standardSkills: 'Endurance, First Aid',
     professionalSkills: 'Binding, Lore (Healing Spirit), Healing, Trance',
     spirits: 'Healing Spirit, Guardian Spirits',
   },
@@ -258,7 +258,7 @@ export const MysticalOrders = [
     standardSkills: 'First Aid, Locale',
     professionalSkills: 'Healing, Meditation, Mysticism',
     paths:
-      'Path of Healing: Augment Endurance, Augment Eirst Aid, Augment Healing, Invoke Disease,',
+      'Path of Healing: Augment Endurance, Augment First Aid, Augment Healing, Invoke Disease Immunity, Invoke Poison Immunity, Enhance Healing Rate, Enhance Fatigue',
   },
   {
     name: 'School of Impenetrable Silence',
