@@ -1,5 +1,5 @@
 export class Spell {
     name: string;
-    tags: string;
+    tags?: string;
     description: string;
 }

@@ -116,7 +116,7 @@
               <mat-form-field>
                 <mat-label>Invocation:</mat-label>
                 <mat-select
-                  [value]="spell"
+                  [value]="spell.name"
                   (selectionChange)="
                     character.magic.path.invocations[index] = findInvocation($event.value)
                   "
@@ -137,7 +137,7 @@
                 <mat-icon>delete</mat-icon>
               </button></mat-card-title
             >
-            <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle>
+            <!-- <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle> -->
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
@@ -155,7 +155,7 @@
               <mat-form-field>
                 <mat-label>Enhancement:</mat-label>
                 <mat-select
-                  [value]="spell"
+                  [value]="spell.name"
                   (selectionChange)="
                     character.magic.path.enhancements[index] = findEnhancement($event.value)
                   "
@@ -176,7 +176,7 @@
                 <mat-icon>delete</mat-icon>
               </button></mat-card-title
             >
-            <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle>
+            <!-- <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle> -->
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
@@ -188,8 +188,8 @@
 
     <div class="add-buttons">
       <button mat-raised-button (click)="character.magic.path.augmentations.push(getAugmentations()[0])">AUGMENTATION</button>
-      <button mat-raised-button (click)="character.magic.path.invocations.push(findInvocation(getAugmentations()[0]))">INVOCATION</button>
-      <button mat-raised-button *ngIf="hasEnhancements()" (click)="character.magic.path.enhancements.push(findEnhancement(getAugmentations()[0]))">ENHANCEMENT</button>
+      <button mat-raised-button (click)="character.magic.path.invocations.push(findInvocation(getInvocations()[0]))">INVOCATION</button>
+      <button mat-raised-button *ngIf="hasEnhancements()" (click)="character.magic.path.enhancements.push(findEnhancement(getEnhancements()[0]))">ENHANCEMENT</button>
     </div>
   </mat-expansion-panel>
   <mat-expansion-panel

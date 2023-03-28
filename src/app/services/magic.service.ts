@@ -24,23 +24,23 @@ export const folkMagic = [
     name: 'Avert',
     tags: 'Instant, Ranged',
     description:
-      'Avert is used to dismiss another Eolk Magic spell within range. Avert can be cast reactively to neutralise offensive spells, by using the Counter Magic Reactive Action.',
+      'Avert is used to dismiss another Folk Magic spell within range. Avert can be cast reactively to neutralise offensive spells, by using the Counter Magic Reactive Action.',
   },
   {
     name: 'Babble',
-    tags: 'Resist (Willpoeer), Touch',
+    tags: 'Resist (Willpower), Touch',
     description:
       'Babble mangles anything spoken by its target. It does not affect what the target is thinking, only what is verbally issued. Thus Babble can seriously disrupt orders being issued by a commanding officer to his troops, but it cannot influence what the commander is thinking or his intentions. Depending on the necessity for verbal components, Babble may be able to adversely influence spell casting.',
   },
   {
     name: 'Beastcall (X)',
-    tags: 'Instant, Ranged, Resist (Willpoeer)',
+    tags: 'Instant, Ranged, Resist (Willpower)',
     description:
       'Beastcall is used to attract a single, specific animal, the type being specified in the spell, within range. The animal summoned cannot be sapient, and it may also resist the spell using its Willpower. If it fails to resist, it is naturally drawn, in a passive fashion, to the caster, whereupon the spell dissipates, and the creature acts as it normally would, finding itself in proximity to the caster. Physical obstacles or adverse actions (such as a wall, river or line of spears, or a harsh yank on a set of reins or leash) also cause the spell to fail.',
   },
   {
     name: 'Befuddle',
-    tags: 'Ranged, Resist (Willpoeer)',
+    tags: 'Ranged, Resist (Willpower)',
     description:
       'Befuddle causes confusion within the mind of a corporeal target. The subject of the spell has difficulty thinking straight, forgetting where it is, what it is doing, and why – often lapsing into disassoci- ated lines of thought. Befuddled targets can still act in self defence, but cannot initiate any constructive activity until the spell ends. Any sort of attack or threatening action instantly breaks the spell, whether or not it was directed specifically at the befuddled target.',
   },
@@ -76,7 +76,7 @@ export const folkMagic = [
   },
   {
     name: 'Calm',
-    tags: 'Ranged, Resist (Willpoeer)',
+    tags: 'Ranged, Resist (Willpower)',
     description:
       "Calm attempts to dampen down the passions or the target, perhaps ensuring that a lovesick paramour doesn't press his suit, a frightened rival doesn't scream for help or that weapons are not drawn in anger. A calmed person is not otherwise mentally affected, thus any sort of assault or threatening action still permits the target to defend themselves, and even attack, albeit they will do so in a calm and level headed manner.",
   },
@@ -124,7 +124,7 @@ export const folkMagic = [
   },
   {
     name: 'Demoralise',
-    tags: 'Ranged, Resist (Willpoeer)',
+    tags: 'Ranged, Resist (Willpower)',
     description:
       'Demoralise temporarily fills the target with a sense of despon- dency towards a particular person, species, situation or object. When confronted with the subject of this despondency, any proactive skill attempts made by the afflicted character related to the source are one grade harder. However a direct assault from the subject instantly breaks the spell.\nThus a character could be given a demoralising dread of heights, ensuring that any Athletic skill used for climbing or Acrobatics skill for balancing would be one difficulty grade harder.',
   },
@@ -160,9 +160,9 @@ export const folkMagic = [
   },
   {
     name: 'Fanaticism',
-    tags: 'Ranged, Resist (Willpoeer)',
+    tags: 'Ranged, Resist (Willpower)',
     description:
-      'Fanaticism is the reverse of Demoralise. It grants the target a wildly excessive or irrational devotion, dedication, or enthusiasm for a particular person, species, situation or object. Its effect is to grant the recipient a temporary Passion equal to the Eolk Magic skill of the caster. Eanaticism can be used to counter Demoralise, and vice versa.',
+      'Fanaticism is the reverse of Demoralise. It grants the target a wildly excessive or irrational devotion, dedication, or enthusiasm for a particular person, species, situation or object. Its effect is to grant the recipient a temporary Passion equal to the Folk Magic skill of the caster. Eanaticism can be used to counter Demoralise, and vice versa.',
   },
   {
     name: 'Find (X)',
@@ -174,7 +174,7 @@ export const folkMagic = [
     name: 'Firearrow',
     tags: 'Touch',
     description:
-      "Firearrow causes all missiles thrown or fired by the recipient to burst into flame when released. Ostensibly created to act as a signal flare, it has since evolved into a combat magic. Missiles under its effect add an additional ld3 damage, but are extinguished if they impale flesh. Those that strike flammable material have a chance equal to the caster's Eolk Magic skill of setting alight whatever they lodge in, such as wooden shields, thatched roofs, and so on. Wooden ammunition is consumed as part of the spell.",
+      "Firearrow causes all missiles thrown or fired by the recipient to burst into flame when released. Ostensibly created to act as a signal flare, it has since evolved into a combat magic. Missiles under its effect add an additional ld3 damage, but are extinguished if they impale flesh. Those that strike flammable material have a chance equal to the caster's Folk Magic skill of setting alight whatever they lodge in, such as wooden shields, thatched roofs, and so on. Wooden ammunition is consumed as part of the spell.",
   },
   {
     name: 'Fireblade',
@@ -186,11 +186,11 @@ export const folkMagic = [
     name: 'Frostbite',
     tags: 'Ranged, Resist (Endurance)',
     description:
-      "Frostbite works directly on living, organic tissue, inflicting numb- ness and pain in one of the recipient's extremities, for example fin- gers, toes, buttocks, nose & ears, and so on. The caster must either touch a specific extremity or roll randomly if cast at range. If the spell is not resisted the area affected suffers sensory numbness fol- lowed by lingering pain for the duration, making skill tests utilis- ing that location one difficulty grade harder. Erostbite does not deal direct damage but makes the affected area of limited use for a while. Eor instance, a victim suffering frostbite to the buttocks cannot sit without extreme discomfort.",
+      "Frostbite works directly on living, organic tissue, inflicting numb- ness and pain in one of the recipient's extremities, for example fin- gers, toes, buttocks, nose & ears, and so on. The caster must either touch a specific extremity or roll randomly if cast at range. If the spell is not resisted the area affected suffers sensory numbness fol- lowed by lingering pain for the duration, making skill tests utilis- ing that location one difficulty grade harder. Erostbite does not deal direct damage but makes the affected area of limited use for a while. For instance, a victim suffering frostbite to the buttocks cannot sit without extreme discomfort.",
   },
   {
     name: 'Glamour',
-    tags: 'Concentration, Ranged, Resist (Willpoeer)',
+    tags: 'Concentration, Ranged, Resist (Willpower)',
     description:
       'Glamour makes the target alluring so that people are naturally attracted to them. The particular nature of the glamour must be chosen when cast, and can be anything from increased natural beauty, a softer more sultry voice or even a seductively perfumed body scent. Whilst the spell grants no mechanical benefits, it does ensure that the recipient will gain a chance to gather themselves an audience, engage the attention of someone they wish to make con- tact with, or provide a distraction enabling accomplices an opportu- nity to perform nefarious deeds.',
   },
@@ -268,7 +268,7 @@ export const folkMagic = [
   },
   {
     name: 'Mindspeech',
-    tags: 'Concentration, Ranged, Resist (Willpoeer)',
+    tags: 'Concentration, Ranged, Resist (Willpower)',
     description:
       'Mindspeech allows telepathy between the caster and a target, enabling verbal intercourse without needing to speak aloud. The caster and target must share the same language, or else the spell will merely transmit unintelligible gobbledegook. Attempting to cast Mindspeech on somebody beyond range automatically fails.',
   },
@@ -286,13 +286,13 @@ export const folkMagic = [
   },
   {
     name: 'Perfume',
-    tags: 'Concentration, Ranged, Resist (Willpoeer)',
+    tags: 'Concentration, Ranged, Resist (Willpower)',
     description:
       'Perfume either negates a noxious odour or imbibes an odourless substance with a pleasing fragrance. The spell does not affect the properties of the source of a stench (so a rotting carcass is still rotten) - it merely makes its presence tolerable.',
   },
   {
     name: 'Pet',
-    tags: 'Concentration, Resist (Willpoeer), Touch',
+    tags: 'Concentration, Resist (Willpower), Touch',
     description:
       "Pet allows the caster to take mental control of a small creature, sending it off to scout, fetch or perform some other complex task. It can be cast on any creature neither of whose SIZ and INT charac- teristics may exceed half the caster's CHA. If the targeted creature is the already the loyal pet of the caster it does not need to resist the spell.",
   },
@@ -334,7 +334,7 @@ export const folkMagic = [
   },
   {
     name: 'Repugnance',
-    tags: 'Concentration, Ranged, Resist (Willpoeer)',
+    tags: 'Concentration, Ranged, Resist (Willpower)',
     description:
       'Repugnance twists the appearance of the target so that they cause distaste in all those that see, hear or smell them. The partic- ular effect must be chosen when cast, and can be anything from a great wart on the end of a nose, a high pitched nasal voice or even pungent body odour. Whatever is chosen, it will cause people to turn away from the victim or make excuses so as to leave their presence as quickly as possible.',
   },
@@ -370,9 +370,9 @@ export const folkMagic = [
   },
   {
     name: 'Spiritshield',
-    tags: 'Concentration, Resist (Willpoeer), Touch',
+    tags: 'Concentration, Resist (Willpower), Touch',
     description:
-      "This spell creates a shield around the recipient which deters spir- its from entering. Any spirit wishing to attack or possess the recipient must overcome the spell by winning an opposed test of their Will- power against the caster's Eolk Magic skill.",
+      "This spell creates a shield around the recipient which deters spir- its from entering. Any spirit wishing to attack or possess the recipient must overcome the spell by winning an opposed test of their Will- power against the caster's Folk Magic skill.",
   },
   {
     name: 'Tidy',
@@ -388,7 +388,7 @@ export const folkMagic = [
   },
   {
     name: 'Translate',
-    tags: 'Concentration, Resist (Willpoeer), Touch',
+    tags: 'Concentration, Resist (Willpower), Touch',
     description:
       'Translate permits the caster to understand any language spoken to him, by setting up a psychic link with the target. The translation provided is often imperfect, as complex terms or concepts cannot be comprehended, but it does allow simple communication. The spell works between sapient creatures with a definite, constructed lan- guage, and still relies on being able to see, hear or otherwise perceive the target as in normal conversation. If cast upon a creature of ani- mal awareness, communication is restricted to the simple reception of emotional state.',
   },
@@ -400,7 +400,7 @@ export const folkMagic = [
   },
   {
     name: 'Ventriloquism',
-    tags: 'Concentration, Ranged, Resist (Willpoeer)',
+    tags: 'Concentration, Ranged, Resist (Willpower)',
     description:
       'Ventriloquism allows the caster to project their voice anywhere within range. The caster needs only to think the projected words, not actually to speak them physically, which can disconcert those unaware of what is going on. If cast upon a living creature, the caster can take control of their vocal cords, and speak through them instead.',
   },
@@ -408,11 +408,11 @@ export const folkMagic = [
     name: 'Vigour',
     tags: 'Touch',
     description:
-      "Vigour makes the recipient feel alive and energetic, being used to offset the effects of strenuous physical labour. Eor the spell's dura- tion, all Eatigue effects gained from laborious activity are ignored (but return on the spell's dismissal). It negates the effects of a Tire spell.",
+      "Vigour makes the recipient feel alive and energetic, being used to offset the effects of strenuous physical labour. For the spell's dura- tion, all Eatigue effects gained from laborious activity are ignored (but return on the spell's dismissal). It negates the effects of a Tire spell.",
   },
   {
     name: 'Voice',
-    tags: 'Concentration, Ranged, Resist (Willpoeer)',
+    tags: 'Concentration, Ranged, Resist (Willpower)',
     description:
       "Voice amplifies the recipient's intonation and delivery so that it becomes compelling when issuing verbal commands. All who can hear the speaker are forced to listen. Their vocalisation also car- ries across and through even the loudest background noise (howling gales, the roar of a waterfall, the clash of arms on a battlefield) up to a range of ten times the recipient's CHA in metres.",
   },
@@ -424,8 +424,147 @@ export const folkMagic = [
   },
   {
     name: 'Witchsight',
-    tags: 'Ranged, Resist (Willpoeer)',
+    tags: 'Ranged, Resist (Willpower)',
     description:
       'Witchsight allows the caster to see active magic, enchanted items, and invisible entities (although such things are simply shadowy representations) that lie within range and line of sight. It can also penetrate illusions or discern the true guise of shapeshifted crea- tures. Beings which wish to remain hidden or disguised must win an opposed test of their Willpower versus the casting roll.',
+  },
+];
+
+export const invocationMagic = [
+  {
+    name: 'Adhesion',
+    description:
+      "The mystic can move freely on vertical surfaces, and even move upside down on a ceiling with no special equipment. Such Move- ment is always at half the mystic's normal Movement Rate.",
+  },
+  {
+    name: 'Arrowcut',
+    description:
+      'The mystic is able to parry and deflect projectiles (arrows, darts, spears, and so forth) using his bare hands; or weapons not normally permitted to perform such feats, such as swords or whips.',
+  },
+  {
+    name: 'Astral Projection',
+    description:
+      'The mystic can project a visible, albeit ethereal image of himself to a distance in kilometres equal to his Meditation skill. The Astral Protection acts a conduit for the mystic to communicate with and observe a distant location, but he cannot physically interact with it.',
+  },
+  {
+    name: 'Aura (X)',
+    description:
+      "The mystic projects a particular kind of aura (Eear, Intimidation, Serenity, Mastery, and so on) that can be used to present a particu- lar aspect to those who behold him. Overcoming the mystic's aura requires an opposed roll of Willpower versus the mystic's Mysticism roll for invoking the trait. The aura affects all things within a radius of the mystic's POW in metres.",
+  },
+  {
+    name: 'Awareness',
+    description:
+      'The mystic is aware of a particular kind of emanation (threat, love, danger, magic, and so on) within a radius equal to his POW in metres. He cannot gauge specifics; only that the emanation exists and is close by.',
+  },
+  {
+    name: 'Dark Sight',
+    description:
+      "Allows the mystic to 'see' normally in any level of limited light, even its complete absence.",
+  },
+  {
+    name: 'Denial (X)',
+    description:
+      'The mystic can deny the effects of one specific environmental condition. Denial (Rain), for example, would keep the mystic dry in even the most intense monsoon; Denial (Air) allows the mystic to forgo breathing for an extended period; Denial (Ealling) would allow the mystic to briefly levitate above the ground; Denial (Sun- light) would prevent the burning, dehydrating effects of the most intense sun.',
+  },
+  {
+    name: 'Earth Sense',
+    description:
+      'The mystic has a perfect sense of direction, depth and orienta- tion beneath ground, and suffers no penalties to Perception rolls for underground environments.',
+  },
+  {
+    name: 'Echolocation',
+    description:
+      'The mystic senses his environment through reflections of sonic waves. This means that he can perceive others that may be either motionless or hidden. In such circumstances, using a Stealth roll to attempt to remain unperceived by the mystic is one grade more difficult.',
+  },
+  {
+    name: 'Featherlight',
+    description:
+      "The mystic's physical weight becomes negligible, allowing him to balance on impossibly thin or slender surfaces, including those that should not be able to support the his mass (twigs, saplings, and so on).",
+  },
+  {
+    name: 'Formidable NatUral Weapons',
+    description:
+      'The hands and feet of the mystic are treated as size Large for the purposes of attacking and parrying in combat.',
+  },
+  {
+    name: 'Heart Slow',
+    description:
+      "The mystic is able to finely control his heart and metabolic rates, reducing them almost to a standstill. Using this trait a mystic must remain completely inactive for its duration but, to all intents and purposes, has no pulse, no heart rhythm, and organic functions have ceased. He becomes immune to other Life Sense attempts and appears to be dead. Once the trait finishes the mystic's faculties are fully restored.",
+  },
+  {
+    name: 'Immunity (X)',
+    description:
+      'The mystic is completely immune to one specific type of damage caused by a particular source. This source can be magical, physical, or energy based, but should be quite narrow in scope. Examples include, but are not limited to: cold, fire, electricity, iron, poison, disease, cutting, crushing, falling, impaling, and so on.',
+  },
+  {
+    name: 'Indomitable',
+    description:
+      'The Mystic is utterly immune to attempts at mind control or domination, including spells and spirit possession.',
+  },
+  {
+    name: 'Life Sense',
+    description:
+      "In tune with the rhythms of nature, the mystic can determine the vitality of any living thing by touch alone. If the mystic touches another he learns of the target's current injuries, Eatigue level, and whether it is currently afflicted by any poison or disease. The mystic is also aware of any form of life within a number of metres equal to his Willpower skill, which may make Stealth difficult to accomplish.",
+  },
+  {
+    name: 'Magic Sense',
+    description:
+      "Similar to Life Sense but instead permits the mystic to detect magical emanations over distance. If the mystic touches another he learns of the target's current magic points, carried enchantments, and active spells.",
+  },
+  {
+    name: 'Night Sight',
+    description:
+      'Allows the mystic to treat partial darkness as illuminated, and darkness as partial darkness.',
+  },
+  {
+    name: 'Pain Control',
+    description:
+      'The mystic is inured to pain and able to work through its effects. Endurance rolls when experiencing any kind of injury are consid- ered to be automatic successes.',
+  },
+  {
+    name: 'Spirit Sense',
+    description:
+      "Similar to Life and Magic Sense, but the mystic's senses are attenuated specifically to the activity of spirits and the spirit plane. The mystic can sense what spirits are active within a radius equal to his Willpower in metres and, if he succeeds in an Insight roll, can gauge the general intensity of the spirit entities. Spirit Sense confers no other powers or protection when dealing with spirits.",
+  },
+  {
+    name: 'Squeeze',
+    description:
+      'The mystic is able to manipulate his body, allowing him to squeeze into recesses and through gaps that would otherwise be impossible. The smallest opening, hollow or volume the mystic may utilise is one third of his SIZ.',
+  },
+];
+
+export const enhancementMagic = [
+  {
+    name: 'Action Points',
+    description:
+      'Each level of intensity increases available Action Points by l. The additional Action Points can only be used for defensive actions in combat. Thus, a mystic who spends 6 Magic Points to enhance his Action Points from 3 to 5 may only use these additional Action Points to Parry or Evade. He cannot use the additional points to make additional attacks or cast additional magic.',
+  },
+  {
+    name: 'Damage Modifier',
+    description:
+      'Each point of Intensity increases the Damage Modifier by one step. Thus, at Intensity 3 (for a cost of 9 Magic Points, if available) a mystic\'s Damage Modifier of +ldh would increase to +ld8.',
+  },
+  {
+    name: 'Fatigue',
+    description:
+      'Each point of Intensity negates a level of Eatigue. This attri- bute can be enhanced pre-emptively in anticipation of becoming fatigued. Thus a \'fresh\' mystic who spends 6 Magic Points could grant himself two buffer levels of Eatigue which could be lost before he started feeling the effects of his strenuous activity. At the conclusion of the task any negated levels of fatigue return, potentially causing the mystic to collapse into unconsciousness.',
+  },
+  {
+    name: 'Healing Rate',
+    description:
+      'Enhanced Healing Rate works slightly differently to the standard Attribute Enhancement rules. The amount of Hit Points healed is not increased, but the speed at which Healing Rate works is. Each level of intensity improves the speed of recovery by one step as follows: Combat Rounds <- Minutes <- Hours <- Days <- Weeks <- Months. Usually Minor Wounds heal at a rate of 1 Day, Serious Wounds at a rate of 1 Week, and Major Wounds at a rate of 1 Month. Each level of Intensity changes the speed of healing. Thus, at Intensity 2, hit points are recovered at the following speeds: Minor Wounds 1 Minute, Serious Wounds 1 hour, and Major Wounds 1 day. Enhanced Healing Rate rapidly speeds-up recovery but it will not reattach severed limbs or restore the use of maimed ones. A mystic may remain in a healing trance for as long as it takes to fully recover. However he may perform no other tasks during this time.',
+  },
+  {
+    name: 'Hit Points',
+    description:
+      "Each level of Intensity boosts Hit Points in every location by l. So an Intensity 4 Hit Point enhancement would raise all Hit Locations by 4 points. These additional Hit Points absorb damage first, before the natural Hit Points are affected. However these temporary Hit Points do not change the Serious and Major Wound boundaries, which remain tied to the mystic's natural Hit Points. Enhancing Hit Points after a Serious or Major Wound is suffered does not permit damaged locations to return to functionality.",
+  },
+  {
+    name: 'Movement Rate',
+    description: 'Each level of Intensity increases Movement by 2 metres.',
+  },
+  {
+    name: 'Initiative',
+    description: 'Each level of Intensity adds 2 to the Initiative roll.',
   },
 ];

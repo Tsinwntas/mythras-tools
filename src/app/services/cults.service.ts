@@ -22,7 +22,7 @@ export const TheismCults = [
     standardSkills: 'Brawn, Endurance',
     professionalSkills: 'Craft (Any), Devotion, Exhort',
     miracles:
-      'Backlash, Dismiss Magic, Eortify, Harmonise, Leeching, Mindlink, Backlash, Dismiss Magic, Eortify, Harmonise, Leeching, Mindlink',
+      'Backlash, Dismiss Magic, Fortify, Harmonise, Leeching, Mindlink, Backlash, Dismiss Magic, Fortify, Harmonise, Leeching, Mindlink',
   },
   {
     name: 'Death God',
@@ -46,7 +46,7 @@ export const TheismCults = [
     standardSkills: 'Endurance, Locale',
     professionalSkills: 'Craft (Earming or Husbandry), Devotion, Exhort',
     miracles:
-      'Beast Eorm, Bless Crops, Clear Skies, Cloud Call, Dismiss Magic, Entangle, Enthrall, Eecundity, Growth, Heal Wound, Pacify, Ripen',
+      'Beast Form, Bless Crops, Clear Skies, Cloud Call, Dismiss Magic, Entangle, Enthrall, Eecundity, Growth, Heal Wound, Pacify, Ripen',
   },
   {
     name: 'Healing God',
@@ -62,7 +62,7 @@ export const TheismCults = [
     standardSkills: 'Athletics, Stealth',
     professionalSkills: 'Devotion, Exhort, Track',
     miracles:
-      'Beast Eorm, Chameleon, Cloud Call, Dismiss Magic, Entangle, Harmonise, Illusion, Lay to Rest, Pacify, Shield, Sureshot, True (Weapon)',
+      'Beast Form, Chameleon, Cloud Call, Dismiss Magic, Entangle, Harmonise, Illusion, Lay to Rest, Pacify, Shield, Sureshot, True (Weapon)',
   },
   {
     name: 'Knowledge God',
@@ -79,7 +79,7 @@ export const TheismCults = [
     professionalSkills:
       'Devotion, Exhort, and either Craft (Eishing) or Seamanship',
     miracles:
-      'Beast Eorm, Breathe Water, Call Winds, Dismiss Elemental, Elemental Summoning (Undine), Perseverance, Propitiate, Sacred Band, Steadfast, Thunderclap',
+      'Beast Form, Breathe Water, Call Winds, Dismiss Elemental, Elemental Summoning (Undine), Perseverance, Propitiate, Sacred Band, Steadfast, Thunderclap',
   },
   {
     name: 'Sun God/Eire God',
@@ -103,7 +103,7 @@ export const TheismCults = [
     standardSkills: 'Conceal, Deceit',
     professionalSkills: 'Devotion, Disguise, Exhort',
     miracles:
-      'Absorption, Backlash, Beast Eorm, Chameleon, Corruption, Dismiss Magic, Enthrall, Fear, Harmonise, Illusion, Madness, Mirage, Soul Sight',
+      'Absorption, Backlash, Beast Form, Chameleon, Corruption, Dismiss Magic, Enthrall, Fear, Harmonise, Illusion, Madness, Mirage, Soul Sight',
   },
   {
     name: 'War God',
@@ -266,7 +266,7 @@ export const MysticalOrders = [
     standardSkills: 'Perception, Stealth',
     professionalSkills: 'Sleight, Meditation, Mysticism',
     paths:
-      'Path of Shadows: Augment Perception, Augment Stealth, Augment Unarmed, Augment Ranged Combat Style, Invoke Adhesion, Invoke Dark Sight, Enhance Movement',
+      'Path of Shadows: Augment Perception, Augment Stealth, Augment Unarmed, Augment Ranged Combat Style, Invoke Adhesion, Invoke Dark Sight, Enhance Movement Rate',
   },
   {
     name: 'Fellowship of the Snake',
@@ -274,7 +274,7 @@ export const MysticalOrders = [
     standardSkills: 'Deceit, Influence',
     professionalSkills: 'Oratory, Meditation, Mysticism',
     paths:
-      'Path of Deceit: Augment Conceal, Augment Deceit, Augment Influence, Augment Sleight, Augment Willpower, Invoke Night Sight, Enhance Movement',
+      'Path of Deceit: Augment Conceal, Augment Deceit, Augment Influence, Augment Sleight, Augment Willpower, Invoke Night Sight, Enhance Movement Rate',
   },
   {
     name: 'School of the Leaping Tiger',
@@ -282,7 +282,7 @@ export const MysticalOrders = [
     standardSkills: 'Athletics, Unarmed',
     professionalSkills: 'Survival, Meditation, Mysticism',
     paths:
-      'Way of the Tiger: Augment Athletics, Augment Brawn, Augment Endurance, Augment Unarmed, Invoke Eormidable Natural Weapons, Enhance Action Points, Enhance Damage Modifier',
+      'Way of the Tiger: Augment Athletics, Augment Brawn, Augment Endurance, Augment Unarmed, Invoke Formidable Natural Weapons, Enhance Action Points, Enhance Damage Modifier',
   },
   {
     name: 'Order of Asceticism',
@@ -290,7 +290,7 @@ export const MysticalOrders = [
     standardSkills: 'Endurance, Willpower',
     professionalSkills: 'Survival, Meditation, Mysticism',
     paths:
-      'Way of Abjuration: Augment Endurance, Augment Survival, Invoke Denial (Eood), Invoke Denial (Water), Invoke Denial (Sleep), Enhance Eatigue, Enhance Hit Points',
+      'Way of Abjuration: Augment Endurance, Augment Survival, Invoke Denial (Food), Invoke Denial (Water), Invoke Denial (Sleep), Enhance Eatigue, Enhance Hit Points',
   },
   {
     name: 'School of Enlightened Being',
@@ -344,7 +344,7 @@ export const SorceryOrders = [
       'Abjure (Substance), Banish, Damage Resistance, Mystic (Sense), Protective Ward, Spirit Resistance, Spell Resistance',
   },
   {
-    name: 'Dark Eorces Order',
+    name: 'Dark Forces Order',
     level: 'Novice',
     standardSkills: 'Insight, Stealth',
     professionalSkills: 'Disguise, Invocation, Shaping',

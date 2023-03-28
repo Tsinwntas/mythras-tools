@@ -1,3 +1,4 @@
+import { invocationMagic, enhancementMagic } from './../../services/magic.service';
 import { Character } from 'src/app/model/character';
 import { Component, OnInit } from '@angular/core';
 import { MysticPath } from 'src/app/model/mystic-path';
@@ -44,7 +45,7 @@ export class StartingMagicComponent implements OnInit {
   }
 
   findInvocation(invocation:string) : Spell {
-    return new Spell();
+    return invocationMagic.find(i=>i.name.trim().replace(/[(].*[)]/,"(X)") == invocation)!;
   }
 
   hasEnhancements() : boolean {
@@ -56,6 +57,6 @@ export class StartingMagicComponent implements OnInit {
   }
 
   findEnhancement(enhancement:string) : Spell {
-    return new Spell();
+    return enhancementMagic.find(e=>e.name.trim().replace(/[(].*[)]/,"(X)") == enhancement)!;
   }
 }

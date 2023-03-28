@@ -44,7 +44,7 @@ export class SpellsComponent implements ModalInnerContent {
     }
     return this.getSpells().filter((spell) => 
       spell.name.toLowerCase().includes(this.search)
-      || spell.tags.toLowerCase().includes(this.search)
+      || (spell.tags && spell.tags.toLowerCase().includes(this.search))
       || spell.description.toLowerCase().includes(this.search))
   }
 
