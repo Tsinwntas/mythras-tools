@@ -1,4 +1,4 @@
-import { invocationMagic, enhancementMagic } from './../../services/magic.service';
+import { invocationMagic, enhancementMagic, sorceryMagic } from './../../services/magic.service';
 import { Character } from 'src/app/model/character';
 import { Component, OnInit } from '@angular/core';
 import { MysticPath } from 'src/app/model/mystic-path';
@@ -59,4 +59,16 @@ export class StartingMagicComponent implements OnInit {
   findEnhancement(enhancement:string) : Spell {
     return enhancementMagic.find(e=>e.name.trim().replace(/[(].*[)]/,"(X)") == enhancement)!;
   }
+
+  getSorceries() : string[] {
+    return this.character.sorceryOrder.spells.split(/[ ]*,[ ]*/g);
+  }
+
+  findSorcery(sorcery:string) : Spell {
+    let s = sorceryMagic.find(s=>s.name.trim().replace(/[(].*[)]/,"") == sorcery.replace(/[(].*[)]/,""))!;
+    s.name = sorcery;
+    return s;
+  }
+
+
 }

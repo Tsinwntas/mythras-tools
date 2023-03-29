@@ -309,7 +309,7 @@ export const SorceryOrders = [
     standardSkills: 'Combat Style, Unarmed',
     professionalSkills: 'Lore (Strategy and Tactics), Invocation, Shaping',
     spells:
-      'Attract Missile, Bypass Armour, Damage Enhancement, Damage Resistance, Haste, Protective Ward, Transfer Wound',
+      'Attract (Missile), Bypass Armour, Damage Enhancement, Damage Resistance, Haste, Protective Ward, Transfer Wound',
   },
   {
     name: 'Necromantic Order',

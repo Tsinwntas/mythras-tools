@@ -35,7 +35,7 @@
       </mat-card>
     </div>
     <open-modal modal="folkMagic" [prop]="{ character: character }">
-      <button mat-raised-button>ADD</button>
+      <button mat-raised-button>ADD SPELL</button>
     </open-modal>
   </mat-expansion-panel>
   <mat-expansion-panel
@@ -192,6 +192,60 @@
       <button mat-raised-button *ngIf="hasEnhancements()" (click)="character.magic.path.enhancements.push(findEnhancement(getEnhancements()[0]))">ENHANCEMENT</button>
     </div>
   </mat-expansion-panel>
+  
+  
+  <mat-expansion-panel
+  *ngIf="character.sorceryOrder && character.sorceryOrder.name"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title> Sorcery </mat-panel-title>
+    <mat-panel-description>
+      {{ character.sorceryOrder.name }}-{{ character.sorceryOrder.level }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div *ngFor="let spell of character.magic.sorcery; let index = index">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>
+            <mat-form-field>
+              <mat-label>Sorcery:</mat-label>
+              <mat-select
+                [value]="spell.name"
+                (selectionChange)="
+                  character.magic.sorcery[index] = findSorcery($event.value)
+                "
+              >
+                <mat-option
+                  *ngFor="let enhancement of getSorceries()"
+                  [value]="enhancement"
+                  >{{ enhancement }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <button
+              mat-icon-button
+              class="remove-spell"
+              color="warn"
+              (click)="character.magic.sorcery.splice(index, 1)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button></mat-card-title
+          >
+          <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{ spell.description }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+  <div class="add-buttons">
+    <button mat-raised-button (click)="character.magic.sorcery.push(findSorcery(getSorceries()[0]))">ADD SPELL</button>
+  </div>
+</mat-expansion-panel>
   <mat-expansion-panel
     *ngIf="character.animistCult && character.animistCult.name"
   >
