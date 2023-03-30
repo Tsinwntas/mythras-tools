@@ -236,7 +236,7 @@
         </mat-card-title-group>
       </mat-card-header>
       <mat-card-content>
-        {{ spell.description }}
+        <span [innerHTML]="getSpellDescription(spell.description)"></span>
       </mat-card-content>
     </mat-card>
   </div>

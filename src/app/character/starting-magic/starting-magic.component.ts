@@ -65,9 +65,13 @@ export class StartingMagicComponent implements OnInit {
   }
 
   findSorcery(sorcery:string) : Spell {
-    let s = sorceryMagic.find(s=>s.name.trim().replace(/[(].*[)]/,"") == sorcery.replace(/[(].*[)]/,""))!;
+    let s = sorceryMagic.find(s=>s.name.replace(/[(].*[)]/,"").trim() == sorcery.replace(/[(].*[)]/,"").trim())!;
     s.name = sorcery;
     return s;
+  }
+
+  getSpellDescription(description : string) : string {
+    return description.replace(/[\n]/g,'<br/>').replace(/[\t]/g,"&#9;")
   }
 
 
