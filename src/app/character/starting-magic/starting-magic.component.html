@@ -47,17 +47,50 @@
         {{ character.theistCult.name }}-{{ character.theistCult.level }}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <div>
-      <mat-form-field class="spirits">
-        <mat-label>Animism</mat-label>
-        <textarea
-          matInput
-          type="text"
-          [(ngModel)]="character.magic.spirits"
-        ></textarea>
-      </mat-form-field>
+    <div *ngFor="let spell of character.magic.miracles; let index = index">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>
+              <mat-form-field>
+                <mat-label>Miracle:</mat-label>
+                <mat-select
+                  [value]="spell.name"
+                  (selectionChange)="
+                    character.magic.miracles[index] = findMiracle($event.value)
+                  "
+                >
+                  <mat-option
+                    *ngFor="let miracle of getMiracles()"
+                    [value]="miracle"
+                    >{{ miracle }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+              <button
+                mat-icon-button
+                class="remove-spell"
+                color="warn"
+                (click)="character.magic.miracles.splice(index, 1)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button></mat-card-title
+            >
+            <mat-card-subtitle>{{ spell.tags }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <span [innerHTML]="getSpellDescription(spell.description)"></span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+  
+    <div class="add-buttons">
+      <button mat-raised-button (click)="character.magic.miracles.push(findMiracle(getMiracles()[0]))">ADD MIRACLE</button>
     </div>
   </mat-expansion-panel>
+
   <mat-expansion-panel
     *ngIf="character.mysticalOrder && character.mysticalOrder.name"
   >
@@ -217,9 +250,9 @@
                 "
               >
                 <mat-option
-                  *ngFor="let enhancement of getSorceries()"
-                  [value]="enhancement"
-                  >{{ enhancement }}</mat-option
+                  *ngFor="let sorcery of getSorceries()"
+                  [value]="sorcery"
+                  >{{ sorcery }}</mat-option
                 >
               </mat-select>
             </mat-form-field>

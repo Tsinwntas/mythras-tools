@@ -30,7 +30,7 @@ export const TheismCults = [
     standardSkills: 'Influence, Willpower, Combat Style',
     professionalSkills: 'Devotion, Exhort',
     miracles:
-      'Aegis, Backlash, Bind Ghost, Corruption, Dismiss Magic, Fear, Heart, Seizure, Lay to Rest, Raise Undead, Sever Spirit, Soul Sight, Spirit Block, True (Weapon)',
+      'Aegis, Backlash, Bind Ghost, Corruption, Dismiss Magic, Fear, Heart Seizure, Lay to Rest, Raise Undead, Sever Spirit, Soul Sight, Spirit Block, True (Weapon)',
   },
   {
     name: 'Earth God',
@@ -38,7 +38,7 @@ export const TheismCults = [
     standardSkills: 'Brawn, Locale',
     professionalSkills:
       'Devotion, Exhort, and either Engineering or Lore (Mining or Smithing)',
-    miracles: 'Absorption, Backlash, Dismiss Elemental, Earthquake, Elemental',
+    miracles: 'Absorption, Backlash, Dismiss Elemental, Earthquake, Elemental Summoning (Gnome), Fortify, Lay to Rest, Propitiate, Rain of Stones, Sacred Band, Shield, Steadfast',
   },
   {
     name: 'Fertility Goddess',
