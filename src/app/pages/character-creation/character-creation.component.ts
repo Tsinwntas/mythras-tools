@@ -1,3 +1,6 @@
+import { CharacterPreviewComponent } from './../../character/character-preview/character-preview.component';
+import { BackgroundDetailsComponent } from './../../character/background-details/background-details.component';
+import { EquipmentComponent } from './../../character/equipment/equipment.component';
 import { StartingMagicComponent } from './../../character/starting-magic/starting-magic.component';
 import { CultComponent } from './../../character/cult/cult.component';
 import { AgeExperienceComponent } from './../../character/age-experience/age-experience.component';
@@ -45,6 +48,9 @@ export class CharacterCreationComponent extends StatePageComponent{
     { stepLabel: "Experience through Age", component: AgeExperienceComponent},
     { stepLabel: "Cults & Brotherhoods", component: CultComponent},
     { stepLabel: "Starting Magic", component: StartingMagicComponent},
+    { stepLabel: "Starting Equipment", component: EquipmentComponent},
+    { stepLabel: "Background Story", component: BackgroundDetailsComponent},
+    { stepLabel: "Preview", component: CharacterPreviewComponent},
     
   ]
 

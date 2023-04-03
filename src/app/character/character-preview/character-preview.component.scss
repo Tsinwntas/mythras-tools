@@ -1,0 +1,8 @@
+.page{
+    width: 826px;
+}
+.line {
+    width: -webkit-fill-available;
+    display: grid;
+    grid-template-columns: 75% 25%;
+}

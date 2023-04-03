@@ -45,3 +45,7 @@ export function rollWithArrayRange(table: any[], sides: number) : any {
     return dice >= parseInt(e.range[0]) && dice <= parseInt(e.range[1]);
   })
 }
+
+export function resetObject(obj: any) {
+  Object.keys(obj).forEach(k=>(obj as any)[k] = undefined);
+}

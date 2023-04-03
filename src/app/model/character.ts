@@ -1,3 +1,4 @@
+import { CharacterEquipment } from './character-equipment';
 import { CharacterPassions } from './character-passions';
 import { Rollable } from './rollable';
 import { CharacterCareer } from "./character-career";
@@ -15,6 +16,7 @@ export class Character {
 
 
     concept : string;
+    background : string;
     skills : CharacterSkills;
     height: number;
     weight: number;
@@ -41,6 +43,7 @@ export class Character {
     mysticalOrder : {name: string; level: string, standardSkills: string, professionalSkills: string, paths: string};
     brotherhood : {name: string; level: string, standardSkills: string, professionalSkills: string};
     backstory : string;
+    equipment : CharacterEquipment;
 
     constructor() {
         this.skills = new CharacterSkills();
@@ -48,6 +51,7 @@ export class Character {
         this.magic = new CharacterMagic();
         this.family = new CharacterFamily();
         this.socialClass = new SocialClass();
+        this.equipment = new CharacterEquipment();
         this.theistCult = {name: '', level: '', standardSkills: '', professionalSkills: '', miracles: ''};
         this.mysticalOrder = {name: '', level: '', standardSkills: '', professionalSkills: '', paths: ''};
         this.brotherhood = {name: '', level: '', standardSkills: '', professionalSkills: ''};

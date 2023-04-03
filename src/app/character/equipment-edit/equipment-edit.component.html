@@ -1,0 +1,42 @@
+<mat-form-field>
+  <mat-label>Base Material:</mat-label>
+  <mat-select
+    [value]="equipment.baseMaterial"
+    (selectionChange)="changedBaseMaterial($event.value)"
+  >
+    <mat-option [value]="undefined">None</mat-option>
+    <mat-option value="Flexible">Flexible</mat-option>
+    <mat-option value="Rigid">Rigid</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Material:</mat-label>
+  <mat-select
+    [value]="equipment.material"
+    (selectionChange)="changedMaterial($event.value)"
+  >
+    <mat-option *ngFor="let material of getMaterials()" [value]="material">{{material}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Construction:</mat-label>
+  <mat-select
+    [value]="equipment.construction"
+    (selectionChange)="changedConstruction($event.value)"
+  >
+    <mat-option *ngFor="let construction of getConstructions()" [value]="construction">{{construction}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>AP:</mat-label>
+  <input type="number" matInput [(ngModel)]="equipment.ap"/>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>ENC:</mat-label>
+  <input type="number" matInput [(ngModel)]="equipment.enc"/>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Cost:</mat-label>
+  <input type="number" matInput [(ngModel)]="equipment.cost"/>
+</mat-form-field>
+

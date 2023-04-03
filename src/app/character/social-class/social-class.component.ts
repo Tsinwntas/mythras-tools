@@ -1,3 +1,4 @@
+import { getMoneyAfterClass } from 'src/app/services/character-service.service';
 import { roll, rollMany } from 'src/app/services/common.service';
 import { Character } from 'src/app/model/character';
 import { Component, OnInit } from '@angular/core';
@@ -48,14 +49,7 @@ export class SocialClassComponent implements OnInit {
   }
 
   getMoneyAfterClass(): number {
-    if (
-      !this.character.socialClass ||
-      !this.character.socialClass.moneyMultiplier
-    )
-      return 1 * this.character.startingMoney;
-    return (
-      this.character.socialClass.moneyMultiplier * this.character.startingMoney
-    );
+    return getMoneyAfterClass(this.character);
   }
 
   getSocialClassesForCulture() {

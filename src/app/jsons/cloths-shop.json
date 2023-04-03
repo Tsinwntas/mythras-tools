@@ -1,0 +1,48 @@
+[
+  { "name": "Boots", "cheap": "25", "reasonable": "50", "superior": "100" },
+  { "name": "Cap or Hat", "cheap": "3", "reasonable": "6", "superior": "18" },
+  {
+    "name": "Gloves, Socks or Underwear",
+    "cheap": "5",
+    "reasonable": "10",
+    "superior": "20"
+  },
+  {
+    "name": "General Coat or Cloak",
+    "cheap": "20",
+    "reasonable": "45",
+    "superior": "90"
+  },
+  {
+    "name": "Vest or Tabard",
+    "cheap": "10",
+    "reasonable": "20",
+    "superior": "50"
+  },
+  {
+    "name": "Tunic or Dress",
+    "cheap": "15",
+    "reasonable": "30",
+    "superior": "75"
+  },
+  { "name": "Sandals", "cheap": "4", "reasonable": "8", "superior": "20" },
+  { "name": "Shoes", "cheap": "20", "reasonable": "45", "superior": "90" },
+  {
+    "name": "Trousers, Skirt or Kilt",
+    "cheap": "12",
+    "reasonable": "25",
+    "superior": "60"
+  },
+  {
+    "name": "Shirt, Smock or Shift",
+    "cheap": "8",
+    "reasonable": "16",
+    "superior": "35"
+  },
+  {
+    "name": "Winter Coat or Cloak",
+    "cheap": "30",
+    "reasonable": "75",
+    "superior": "150"
+  }
+]

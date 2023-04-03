@@ -1,0 +1,108 @@
+[
+  { "item": "Abacus", "enc": "1", "cost": "8" },
+  { "item": "Astrolabe (Ancient onwards)", "enc": "1", "cost": "200" },
+  { "item": "Backpack/Satchel (holds up to 20 ENC)", "enc": "1", "cost": "5" },
+  { "item": "Bedroll", "enc": "1", "cost": "1" },
+  { "item": "Bit & Bridle", "enc": "1", "cost": "15" },
+  { "item": "Block & tackle", "enc": "1", "cost": "15" },
+  { "item": "Bottle, glass/earthenware", "enc": "0", "cost": "2" },
+  { "item": "Candle, 6 hour", "enc": "1", "cost": "1" },
+  { "item": "Chain, 2m", "enc": "2", "cost": "40" },
+  { "item": "Chest, Large (holds up to l00 ENC)", "enc": "5", "cost": "80" },
+  { "item": "Chest, Small (holds up to 50 ENC)", "enc": "3", "cost": "40" },
+  { "item": "Cooking Pot (for travel)", "enc": "2", "cost": "3" },
+  {
+    "item": "Craft tools (basic tools to match a handicraft)",
+    "enc": "2",
+    "cost": "75"
+  },
+  { "item": "Crop (riding)", "enc": "0", "cost": "15" },
+  { "item": "Crowbar", "enc": "1", "cost": "25" },
+  { "item": "Doorjamb", "enc": "2", "cost": "5" },
+  { "item": "Driver's whip", "enc": "0", "cost": "25" },
+  { "item": "Falconer's Kit", "enc": "1", "cost": "30" },
+  { "item": "Feed/mount rations (per day)", "enc": "1", "cost": "0.5" },
+  {
+    "item": "Fine wine goblet (glass – double for silver)",
+    "enc": "0",
+    "cost": "8"
+  },
+  {
+    "item": "First aid kit (useful for l0 applications of First Aid skill)",
+    "enc": "0",
+    "cost": "25"
+  },
+  { "item": "Fish hooks (20)", "enc": "0", "cost": "1" },
+  { "item": "Fishing kit", "enc": "1", "cost": "15" },
+  { "item": "Fishing Net", "enc": "4", "cost": "10" },
+  { "item": "Flint & tinder", "enc": "0", "cost": "1" },
+  { "item": "Game Snares, and Traps", "enc": "1", "cost": "1" },
+  { "item": "Goad", "enc": "1", "cost": "25" },
+  { "item": "Grappling hook", "enc": "0", "cost": "5" },
+  { "item": "Hammer/Saw/Mallet/Chisel", "enc": "1", "cost": "1" },
+  {
+    "item": "Healer's kit (useful for 10 applications of Healing skill)",
+    "enc": "1",
+    "cost": "150"
+  },
+  { "item": "Hourglass (Ancient onwards)", "enc": "1", "cost": "20 " },
+  { "item": "Knife (tool, not weapon)", "enc": "0", "cost": "5" },
+  { "item": "Ladder, rope 3m", "enc": "4", "cost": "2" },
+  { "item": "Lantern, basic", "enc": "1", "cost": "10" },
+  { "item": "Lock picks", "enc": "0", "cost": "75" },
+  { "item": "Lodestone", "enc": "0", "cost": "5" },
+  { "item": "Milling Stone", "enc": "2", "cost": "8" },
+  { "item": "Mirror (hand glass)", "enc": "1", "cost": "12" },
+  {
+    "item": "Mug/Beaker/Dish/Plate (wood – double price for metal)",
+    "enc": "0",
+    "cost": "0.5"
+  },
+  { "item": "Musical instrument", "enc": "2", "cost": "70" },
+  { "item": "Nails or tacks (50)", "enc": "0", "cost": "0.2" },
+  { "item": "Oil flask", "enc": "1", "cost": "1" },
+  {
+    "item": "Papyrus or paper sheet (double the cost for vellum)",
+    "enc": "0",
+    "cost": "0.5"
+  },
+  { "item": "Oil flask", "enc": "1", "cost": "1" },
+  {
+    "item": "Papyrus or paper sheet (double the cost for vellum)",
+    "enc": "0",
+    "cost": "0.5"
+  },
+  { "item": "Pickaxe", "enc": "1", "cost": "35" },
+  { "item": "Pole, 3m", "enc": "1", "cost": "1" },
+  { "item": "Quills , and ink for writing", "enc": "1", "cost": "30" },
+  { "item": "Quiver", "enc": "0", "cost": "2" },
+  { "item": "Razor, folding", "enc": "0", "cost": "3" },
+  { "item": "Rope (hemp), l0m", "enc": "2", "cost": "10" },
+  { "item": "Sack, large (holds up to 60 ENC)", "enc": "1", "cost": "0.5" },
+  { "item": "Sack, small (holds up to 30 ENC)", "enc": "0", "cost": "0.2" },
+  { "item": "Saddle, riding", "enc": "3", "cost": "60" },
+  { "item": "Saddle, war", "enc": "4", "cost": "90" },
+  { "item": "Saddlebag (holds up to 2x20 ENC)", "enc": "2", "cost": "20" },
+  { "item": "Saw, hand", "enc": "1", "cost": "1" },
+  { "item": "Scythe/Sickle", "enc": "2", "cost": "30" },
+  {
+    "item": "Sextant (Renaissance cultures, and later)",
+    "enc": "1",
+    "cost": "25"
+  },
+  {
+    "item": "Ship's Compass (Medieval cultures, and later)",
+    "enc": "1",
+    "cost": "70"
+  },
+  { "item": "Shoes, horse", "enc": "1", "cost": "10" },
+  { "item": "Spade/Hoe/Pitchfork", "enc": "1", "cost": "25" },
+  { "item": "Torch, l hour", "enc": "0", "cost": "0.4" },
+  { "item": "Torch, 6 hour", "enc": "1", "cost": "0.8" },
+  {
+    "item": "Waterskin or Canteen (holds h litres of liquid)",
+    "enc": "1",
+    "cost": "0.5"
+  },
+  { "item": "Wax, block", "enc": "1", "cost": "0.2" }
+]

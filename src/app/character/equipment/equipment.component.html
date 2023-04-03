@@ -1,0 +1,72 @@
+<p>Money {{getMoneyLeft()}}/{{getStartingMoney()}}</p>
+<p>ENC: {{getTotalEnc()}}</p>
+<mat-accordion multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Armour </mat-panel-title>
+      <mat-panel-description>
+        Worm Armour only applies half of its ENC
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>
+    {{getStartingArmour()}}
+    </p>
+    <div class="location-ap">
+        <p>Head</p>
+        <equipment [equipment]="character.equipment.head"/>
+    </div>
+    <div class="location-ap">
+        <p>Chest</p>
+        <equipment [equipment]="character.equipment.chest"/>
+    </div>
+    <div class="location-ap">
+        <p>Abdoment</p>
+        <equipment [equipment]="character.equipment.abdoment"/>
+    </div>
+    <div class="location-ap">
+        <p>Left Arm</p>
+        <equipment [equipment]="character.equipment.leftArm"/>
+    </div>
+    <div class="location-ap">
+        <p>Right Arm</p>
+        <equipment [equipment]="character.equipment.rightArm"/>
+    </div>
+    <div class="location-ap">
+        <p>Left Leg</p>
+        <equipment [equipment]="character.equipment.leftLeg"/>
+    </div>
+    <div class="location-ap">
+        <p>Right Leg</p>
+        <equipment [equipment]="character.equipment.rightArm"/>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Weapons </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{ getStartingWeapons() }}</p>
+    <p *ngFor="let style of getAllCombatStyles()">{{style.name}} ( {{getWeaponsOfStyle(style)}} )</p>
+    <div *ngFor="let weapon of character.equipment.weapons; let index = index">
+      <mat-list-item>
+        <weapon [weapon] = "weapon" (deleteWeapon)="this.character.equipment.weapons.splice(index,1)"/>
+      </mat-list-item>
+      <hr/>
+    </div>
+    <div class="add-buttons">
+      <button mat-raised-button (click)="addNewWeapon()">ADD WEAPON</button>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Items </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{ getStartingItems() }}</p>
+    <div *ngFor="let item of character.equipment.items; let index = index">
+      <item-edit [item] = "item" (deleteItem)="this.character.equipment.items.splice(index,1)"/>
+      <hr/>
+    </div>
+    <div class="add-buttons">
+      <button mat-raised-button (click)="addNewItem()">ADD ITEM</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

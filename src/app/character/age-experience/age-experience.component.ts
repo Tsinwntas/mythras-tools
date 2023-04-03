@@ -1,5 +1,5 @@
 import { CombatStyle } from 'src/app/model/combat-style';
-import { getSkillTotal } from 'src/app/services/character-service.service';
+import { getCombatStyles, getSkillTotal, isHobbyCombatStyle } from 'src/app/services/character-service.service';
 import { Skill } from 'src/app/model/skill';
 import { orZero } from 'src/app/services/common.service';
 import { Character } from 'src/app/model/character';
@@ -124,13 +124,7 @@ export class AgeExperienceComponent {
   }
 
   getCombatStyles(): CombatStyle[] {
-    return this.character.skills.combatstyles
-      .filter((style) => style.cultureBonus || style.careerBonus)
-      .concat(
-        this.character.skills.hobby && this.isHobbyCombatStyle()
-          ? [this.character.skills.hobby as CombatStyle]
-          : []
-      );
+    return getCombatStyles(this.character);
   }
 
   getStandardSkills(): Skill[] {
@@ -151,14 +145,10 @@ export class AgeExperienceComponent {
         )
       )
       .concat(
-        this.character.skills.hobby && !this.isHobbyCombatStyle()
+        this.character.skills.hobby && !isHobbyCombatStyle(this.character)
           ? [this.character.skills.hobby]
           : []
       )
       .sort((skill1, skill2) => skill1.name.localeCompare(skill2.name));
-  }
-
-  isHobbyCombatStyle(): boolean {
-    return (this.character.skills.hobby as any)['traits'];
   }
 }

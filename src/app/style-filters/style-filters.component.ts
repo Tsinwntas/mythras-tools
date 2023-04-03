@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StyleFilters } from '../model/style-filters';
 import { getSources } from '../services/combat-styles.service';
 import { getSpecialEffects } from '../services/special-effects.service';

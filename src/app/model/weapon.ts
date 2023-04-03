@@ -1,11 +1,8 @@
-export class Weapon {
-    name : string;
+import { Item } from './item';
+export class Weapon extends Item {
     extra : string;
     size : string;
     reach : string;
-    ap : string;
-    hp : string;
-    enc : string;
     ranged : string;
     range : string;
     loadTime : string;
@@ -21,14 +18,15 @@ export class Weapon {
     used: string [];
 
     constructor(name: string, weapon : any){
+        super();
         this.used = [];
         this.name = name;
         this.extra = this.use(weapon,'extra');
         this.size = this.use(weapon,'size');
         this.reach = this.use(weapon,'reach');
-        this.ap = this.use(weapon,'ap');
-        this.hp = this.use(weapon,'hp');
-        this.enc = this.use(weapon,'enc');
+        this.ap = parseInt(this.use(weapon,'ap'));
+        this.hp = parseInt(this.use(weapon,'hp'));
+        this.enc = parseInt(this.use(weapon,'enc'));
         this.ranged = this.use(weapon,'ranged');
         this.range = this.use(weapon,'range');
         this.loadTime = this.use(weapon,'loadTime');
@@ -58,7 +56,7 @@ export class Weapon {
             case 'thrown' : key='Thrown';break;
             case 'ranged' : key='Ranged';break;
             case 'range' : key='Range';break;
-            case 'load time' : key='Load time';break;
+            case 'loadTime' : key='Load time';break;
             case 'extra' : key='Extra';break;
             case 'narrow' : key='Narrow';break;
             case 'double ended' : key='Double Ended';break;

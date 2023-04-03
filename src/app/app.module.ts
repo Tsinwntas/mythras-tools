@@ -152,6 +152,14 @@ import { MagicComponent } from './character/magic/magic.component';
 import { CultComponent } from './character/cult/cult.component';
 import { RankTableComponent } from './character/rank-table/rank-table.component';
 import { FolkMagicComponent } from './character/modals/folk-magic/folk-magic.component';
+import { EquipmentComponent } from './character/equipment/equipment.component';
+import { EquipmentEditComponent } from './character/equipment-edit/equipment-edit.component';
+import { WeaponEditComponent } from './character/weapon-edit/weapon-edit.component';
+import { ItemEditComponent } from './character/item-edit/item-edit.component';
+import { AgeBandComponent } from './character/age-band/age-band.component';
+import { AgeEffectsComponent } from './character/age-effects/age-effects.component';
+import { BackgroundDetailsComponent } from './character/background-details/background-details.component';
+import { CharacterPreviewComponent } from './character/character-preview/character-preview.component';
 
 
 
@@ -287,7 +295,15 @@ import { FolkMagicComponent } from './character/modals/folk-magic/folk-magic.com
     MagicComponent,
     CultComponent,
     RankTableComponent,
-    FolkMagicComponent
+    FolkMagicComponent,
+    EquipmentComponent,
+    EquipmentEditComponent,
+    WeaponEditComponent,
+    ItemEditComponent,
+    AgeBandComponent,
+    AgeEffectsComponent,
+    BackgroundDetailsComponent,
+    CharacterPreviewComponent
   ],
   imports: [
     BrowserModule,

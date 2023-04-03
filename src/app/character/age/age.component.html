@@ -24,3 +24,37 @@
         <div class="roll-button">Old : <button mat-flat-button (click)="roll(5,60)">5d6 + 60</button> years.</div>
     </div>
 </div>
+<hr/>
+<p>As a character passes into a new Ageing Band he must make both an Endurance roll and a Willpower roll at the grades noted.</p>
+<p>If a roll is failed then he experiences Ageing Effects as shown in the Ageing Effects table.</p>
+<p>Each characteristic affected by ageing reduces by ld3 points.</p>
+<age-band/>
+<age-effects/>
+<hr />
+<p>Make the appropriate adjustments.</p>
+<div class="skills">
+    <mat-form-field>
+        <mat-label>STR</mat-label>
+        <input matInput type="number" [(ngModel)]="character.skills.str"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>CON</mat-label>
+        <input matInput type="number" [(ngModel)]="character.skills.con"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>DEX</mat-label>
+        <input matInput type="number" [(ngModel)]="character.skills.dex"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>INT</mat-label>
+        <input matInput type="number" [(ngModel)]="character.skills.int"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>POW</mat-label>
+        <input matInput type="number" [(ngModel)]="character.skills.pow"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>CHA</mat-label>
+        <input matInput type="number" [(ngModel)]="character.skills.cha"/>
+    </mat-form-field>
+</div>

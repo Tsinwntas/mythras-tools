@@ -1,0 +1,102 @@
+<div class="weapon-wrapper">
+  <mat-form-field>
+    <mat-select
+      placeholder="Weapons"
+      [value]="findWeapon()"
+      (selectionChange)="changedWeapon($event.value)"
+    >
+      <input [(ngModel)]="weaponFilter" />
+      <mat-optgroup
+        *ngFor="let group of getWeaponGroups()"
+        [label]="group.name"
+      >
+        <mat-option
+          *ngFor="let weapon of group.weapons"
+          [value]="weapon"
+          [ngStyle]="
+            isHidden(weaponFilter, weapon) ? { display: 'none' } : null
+          "
+        >
+          {{ weapon }}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="weapon.name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Info</mat-label>
+    <input matInput [(ngModel)]="weapon.extra" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>SIZ</mat-label>
+    <input matInput [(ngModel)]="weapon.size" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>AP</mat-label>
+    <input matInput type="number" [(ngModel)]="weapon.ap" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>HP</mat-label>
+    <input matInput type="number" [(ngModel)]="weapon.hp" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>ENC</mat-label>
+    <input matInput type="number" [(ngModel)]="weapon.enc" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Reach</mat-label>
+    <input matInput [(ngModel)]="weapon.reach" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ranged</mat-label>
+    <input matInput [(ngModel)]="weapon.ranged" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Loading Time</mat-label>
+    <input matInput [(ngModel)]="weapon.loadTime" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Narrow</mat-label>
+    <input matInput [(ngModel)]="weapon.narrow" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Shield</mat-label>
+    <input matInput [(ngModel)]="weapon.shield" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>1H</mat-label>
+    <input matInput [(ngModel)]="weapon.oneHanded" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>2H</mat-label>
+    <input matInput [(ngModel)]="weapon.twoHanded" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Unarmed</mat-label>
+    <input matInput [(ngModel)]="weapon.unarmed" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Offensive Skills</mat-label>
+    <input matInput [(ngModel)]="weapon.offensiveSkills" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Defensive Skills</mat-label>
+    <input matInput [(ngModel)]="weapon.defensiveSkills" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Traits</mat-label>
+    <input matInput [value]="getTraits()" [disabled]="true" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Cost</mat-label>
+    <input matInput type="number" [(ngModel)]="weapon.cost" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Quantity</mat-label>
+    <input matInput type="number" [(ngModel)]="weapon.quantity" />
+  </mat-form-field>
+  
+</div>

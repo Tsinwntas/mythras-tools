@@ -1,0 +1,37 @@
+<div class="weapon-wrapper">
+    <mat-form-field>
+      <mat-select
+        placeholder="Item"
+        [value]="findItem()"
+        (selectionChange)="changedItem($event.value)"
+      >
+        <input [(ngModel)]="itemFilter" />
+        <mat-optgroup
+          *ngFor="let group of getItemGroups()"
+          [label]="group.name"
+        >
+          <mat-option
+            *ngFor="let item of group.items"
+            [value]="item"
+            [ngStyle]="
+              isHidden(itemFilter, item) ? { display: 'none' } : null
+            "
+          >
+            {{ item }}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="item.name" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>ENC:</mat-label>
+        <input type="number" matInput [(ngModel)]="item.enc"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cost:</mat-label>
+        <input type="number" matInput [(ngModel)]="item.cost"/>
+    </mat-form-field>
+</div>
