@@ -22,13 +22,13 @@ export class SkillsComponent {
   
   calculatePoints() : number {
     return 80 - [
-      this.character.skills.str,
-      this.character.skills.dex,
-      this.character.skills.con,
-      this.character.skills.pow,
-      this.character.skills.cha,
-      this.character.skills.int,
-      this.character.skills.siz
+      parseInt(this.character.skills.str as any),
+      parseInt(this.character.skills.dex as any),
+      parseInt(this.character.skills.con as any),
+      parseInt(this.character.skills.pow as any),
+      parseInt(this.character.skills.cha as any),
+      parseInt(this.character.skills.int as any),
+      parseInt(this.character.skills.siz as any)
     ].filter(s=>s).reduce((a,b) => a+b, 0);
   }
 

@@ -160,6 +160,8 @@ import { AgeBandComponent } from './character/age-band/age-band.component';
 import { AgeEffectsComponent } from './character/age-effects/age-effects.component';
 import { BackgroundDetailsComponent } from './character/background-details/background-details.component';
 import { CharacterPreviewComponent } from './character/character-preview/character-preview.component';
+import { CharacterPdfComponent } from './character/character-pdf/character-pdf.component';
+import { AutoresizeDirective } from './directives/autoresize.directive';
 
 
 
@@ -303,7 +305,9 @@ import { CharacterPreviewComponent } from './character/character-preview/charact
     AgeBandComponent,
     AgeEffectsComponent,
     BackgroundDetailsComponent,
-    CharacterPreviewComponent
+    CharacterPreviewComponent,
+    CharacterPdfComponent,
+    AutoresizeDirective
   ],
   imports: [
     BrowserModule,

@@ -45,6 +45,16 @@ export class Character {
     backstory : string;
     equipment : CharacterEquipment;
 
+    nativeTongue : string;
+    backgroundOverall : string;
+    contactsOverall : string;
+    moneyOverall : string;
+
+    incomeDay : number;
+    incomeWeek : number;
+    incomeSeason : number;
+    incomeYear : number;
+
     constructor() {
         this.skills = new CharacterSkills();
         this.hp = new CharacterHP();

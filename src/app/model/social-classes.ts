@@ -36,7 +36,7 @@ export const BarbarianSocialClasses: {
       titles: 'Churl, Commoner, Feine, Freedman, Karl, Labourer',
       moneyMultiplier: 1,
       resources:
-        'Rented accommodation or farmaland; possesses own tools or livestock, simple weapons',
+        'Rented accommodation or farmland; possesses own tools or livestock, simple weapons',
     },
   },
   {
@@ -97,7 +97,7 @@ export const CivilizedSocialClasses: {
       titles: 'Citizen, Peasant, Proletariat, Tenant, Vassal',
       moneyMultiplier: 1,
       resources:
-        'Rented accommodation or farmaland; possesses own tools or livestock, simple weapons',
+        'Rented accommodation or farmland; possesses own tools or livestock, simple weapons',
     },
   },
   {

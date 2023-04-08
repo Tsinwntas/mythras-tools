@@ -150,7 +150,7 @@ export function getSkillBase(character: Character, skill: Skill): number {
   let total = 0;
 
   for (let i = 0; i < skill.base.length; i++) {
-    total += (character.skills as any)[skill.base[i]];
+    total += parseInt((character.skills as any)[skill.base[i]]);
   }
 
   if (skill.multiply) total *= skill.multiply;
@@ -164,7 +164,7 @@ export function getSkillBase(character: Character, skill: Skill): number {
 
 export function getDamageModifier(character: Character): string {
   let dice = getSkillBase(character, character.skills.damage);
-  if (dice == 0) return '0';
+  if (dice == 5) return '0';
   dice = (dice - 5) * 2;
   if (dice < 0) return '-1d' + Math.abs(dice);
   return '+1d' + dice;
