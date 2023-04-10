@@ -326,6 +326,16 @@ function getPropWithQuantity(item: any, prop: string): number {
   return orZero(item[prop]) * (item.quantity ? item.quantity : 1);
 }
 
+export function getAllCombatStyles(character : Character) : CombatStyle[] {
+  return character.skills.combatstyles
+    .concat(
+      character.skills.hobby && isHobbyCombatStyle(character)
+        ? [character.skills.hobby as CombatStyle]
+        : []
+    );
+
+}
+
 export function getCombatStyles(character: Character): CombatStyle[] {
   return character.skills.combatstyles
     .filter((style) => style.cultureBonus || style.careerBonus)

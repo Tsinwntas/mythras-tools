@@ -1,5 +1,5 @@
 import { Character } from 'src/app/model/character';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-character-preview',
@@ -8,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class CharacterPreviewComponent {
   character : Character;
+  load: boolean;
+  loading: boolean;
+
+  constructor(private detector: ChangeDetectorRef){}
+
+  refresh(){
+    this.load= false;
+    this.loading = true;
+    this.detector.detectChanges();
+    setTimeout(()=>{this.load = true;this.loading=false;}, 1000);
+  }
 }

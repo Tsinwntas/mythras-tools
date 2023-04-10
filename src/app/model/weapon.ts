@@ -13,6 +13,7 @@ export class Weapon extends Item {
     unarmed : string;
     offensiveSkills : string;
     defensiveSkills : string;
+    damage : string;
     traits : {name: string, description: string}[];
 
     used: string [];

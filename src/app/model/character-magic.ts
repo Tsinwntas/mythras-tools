@@ -7,4 +7,6 @@ export class CharacterMagic {
     spirits : string;
     path : MysticPath;
 
+    abilities : string;
+
 }

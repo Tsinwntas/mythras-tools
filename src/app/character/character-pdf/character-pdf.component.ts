@@ -1,3 +1,5 @@
+import { Weapon } from './../../model/weapon';
+import { CombatStyle } from './../../model/combat-style';
 import { orZero } from 'src/app/services/common.service';
 import {
   getSkillBase,
@@ -5,6 +7,7 @@ import {
   getDamageModifier,
   getMoneyAfterClass,
   getTotalFromItems,
+  getAllCombatStyles,
 } from 'src/app/services/character-service.service';
 import { Skill } from 'src/app/model/skill';
 import { Character } from 'src/app/model/character';
@@ -26,6 +29,14 @@ export class CharacterPdfComponent {
     return getSkillTotal(this.character, skill);
   }
 
+  setSkill(skill: Skill, value: any) {
+    if (!skill) return;
+    skill.extraBonus =
+      parseInt(value.target.value) -
+      parseInt(this.getSkill(skill).toString()) +
+      orZero(skill.extraBonus);
+  }
+
   getFixedSkill(skill: string): number | string {
     let actualSkill = this.getActualSkill(skill);
     if (!actualSkill) return '';
@@ -43,6 +54,7 @@ export class CharacterPdfComponent {
 
   getActualSkill(skill: string): Skill | undefined {
     return this.character.skills.skills
+      .concat(this.character.skills.combatstyles)
       .concat(this.character.skills.specialized)
       .concat([this.character.skills.hobby])
       .find((s) => s && s.name == skill);
@@ -265,4 +277,139 @@ ${social?social.resources:''}`.trim();
   getSwim() :number {
     return parseInt(this.character.movementRate as any) + Math.floor(this.getSwimSkill()/20);
   }
+
+  getCombatStyles() : CombatStyle[] {
+    return getAllCombatStyles(this.character);
+  }
+
+  getActiveStyles() : CombatStyle[] {
+    return this.getCombatStyles().filter((s) => s.force || !(!s.careerBonus && !s.cultureBonus && !s.extraBonus));
+  }
+
+  setStyle(value: any, index: number) {
+    let actualStyle = this.getActiveStyles()[index];
+    if (!value.target.value && actualStyle && actualStyle.force) {
+      actualStyle.force = false;
+    }
+
+    let foundStyle = this.getCombatStyles().find(style =>style.name === value.target.value)
+    if (
+      foundStyle &&
+      !foundStyle.careerBonus &&
+      !foundStyle.cultureBonus &&
+      !foundStyle.extraBonus
+    ) {
+      foundStyle.force = true;
+    }
+  }
+
+  getStyleName(index : number) : string {
+    let styles = this.getActiveStyles();
+    if(styles.length <= index)
+      return "";
+    return styles[index].name;
+  }
+
+  getStyleWeapons(index : number) : string {
+    let styles = this.getActiveStyles();
+    if(styles.length <= index)
+      return "";
+    let weapons = styles[index].weapons;
+    return Object.keys(weapons).map(key =>(weapons as any)[key].trim()).join(", ").replace(/[.]/g,"");
+  }
+
+  getStyleTrait(index: number) : string {
+    let styles = this.getActiveStyles();
+    if(styles.length <= index)
+      return "";
+    let trait = styles[index].selectedTrait;
+    return trait? trait.name : "";
+  }
+
+
+
+  getWeapon(index : number, ranged: boolean): Weapon {
+    return this.character.equipment.weapons.filter(w=>ranged ? w.ranged : !w.ranged)[index];
+  }
+
+  getWeaponProp(index : number, ranged: boolean, prop: string) : any {
+    let weapon = this.getWeapon(index, ranged);
+    if(!weapon) return "";
+    return (weapon as any)[prop] ? (weapon as any)[prop] : "";
+
+  }
+  
+  setWeaponProp(index: number, ranged: boolean, prop: string, event : any) {
+    let weapon = this.getWeapon(index, ranged);
+    if(!weapon) return;
+    (weapon as any)[prop] = event.target.value;
+  }
+
+  getWeaponTraits(index : number, ranged: boolean) : string {
+    let traits = this.getWeaponProp(index, ranged, 'traits');
+    if(traits == "")
+      traits = [];
+    return traits.map((t:any)=>t.name).filter((t:any)=>t && t != 'name').join(', ');
+  }
+
+  getWeaponEffects(index : number, ranged: boolean) : string {
+    return [this.getWeaponProp(index, ranged, 'offensiveSkills'), this.getWeaponProp(index, ranged, 'defensiveSkills')]
+    .filter(e=>e).join(', ');
+  }
+
+  getWeaponDamage(index: number, ranged: boolean) : string {
+    let weapon = this.getWeapon(index, ranged);
+    if(!weapon) return "";
+    if(weapon.damage)
+      return weapon.damage;
+    return [weapon.oneHanded, weapon.twoHanded, weapon.shield, weapon.unarmed, weapon.ranged].filter(d=>d).join(" / ");
+  }
+
+  getEquipmentInfo() : string {
+    if(!this.character.equipment.equipmentAndArmor)
+      return this.generateEquipmentInfo();
+    return this.character.equipment.equipmentAndArmor;
+  }
+
+  generateEquipmentInfo(): string {
+    let eq = this.character.equipment;
+    return [
+      [eq.head.name, eq.chest.name, eq.abdoment.name, eq.leftArm.name, eq.rightArm.name, eq.leftLeg.name, eq.rightLeg.name].join(', '), 
+      eq.weapons.map(w=>(w.quantity? w.quantity : "1")+"X "+w.name).join(', '),
+      eq.items.map(i=>(i.quantity? i.quantity : "1")+"X "+i.name).join(', ')
+    ].join('\n');
+  }
+
+  setEquipmentInfo(event: any) {
+    this.character.equipment.equipmentAndArmor = event.target.value;
+  }
+
+  getCultInformation() : string {
+    if(!this.character.cultOverall)
+      return this.generateCultInformation();
+    return this.character.cultOverall;
+  }
+
+  generateCultInformation(): string {
+    return "";
+  }
+
+  setCultInformation(event: any) {
+    this.character.cultOverall = event.target.value;
+  }
+
+  getAbilities() : string {
+    if(!this.character.magic.abilities)
+      return this.generateAbilities();
+    return this.character.magic.abilities;
+  }
+
+  generateAbilities(): string {
+    return "";
+  }
+
+  setAbilities(event: any) {
+    this.character.magic.abilities = event.target.value;
+  }
+
 }

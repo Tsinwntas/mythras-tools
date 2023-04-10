@@ -49,6 +49,11 @@ export class Character {
     backgroundOverall : string;
     contactsOverall : string;
     moneyOverall : string;
+    cultOverall :string;
+
+    devotionPool : number;
+    devotionPoolCurrent : number;
+    religion : string;
 
     incomeDay : number;
     incomeWeek : number;

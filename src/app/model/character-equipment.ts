@@ -11,4 +11,22 @@ export class CharacterEquipment {
     rightLeg: Equipment;
     weapons: CharacterWeapon[];
     items : Item[];
+
+    equipmentEnc : number;
+    armourEnc : number;
+    totalEnc : number;
+    armorPenalty : number;
+    equipmentAndArmor : string;
+
+    constructor() {
+        this.head = new Equipment();
+        this.chest = new Equipment();
+        this.abdoment = new Equipment();
+        this.leftArm = new Equipment();
+        this.rightArm = new Equipment();
+        this.leftLeg = new Equipment();
+        this.rightLeg = new Equipment();
+        this.weapons = [];
+        this.items = [];
+    }
 }

@@ -813,7 +813,6 @@
             <option *ngFor="let skill of getProffSkills()" [value]="skill.name" [selected]="getProfSkillName(0)==skill.name">
             {{skill.name}}</option>
         </select>
-        />
         <input
           id="form77_1"
           type="text"
@@ -1375,7 +1374,6 @@
             <option *ngFor="let skill of getProffSkills('Language')" [value]="skill.name" [selected]="getProfSkillName(2,'Language')==skill.name">
             {{skill.name}}</option>
         </select>
-        />
         <input
           id="form128_1"
           type="number"
@@ -2119,101 +2117,136 @@
         />
         <input
           id="form15_2"
-          type="text"
+          type="number"
           tabindex="163"
           data-objref="235 0 R"
           data-field-name="APHead"
+          autoResize
+          [(ngModel)]="character.equipment.head.ap"
         />
         <input
           id="form16_2"
-          type="text"
+          type="number"
           tabindex="164"
           data-objref="295 0 R"
           data-field-name="HPHead"
+          autoResize
+          [fixedvalue]="getSkill(character.hp.head)"
+          (input)="setSkill(character.hp.head, $event)"
         />
         <input
           id="form17_2"
-          type="text"
+          type="number"
           tabindex="165"
           data-objref="296 0 R"
           data-field-name="APLarm"
+          autoResize
+          [(ngModel)]="character.equipment.leftArm.ap"
         />
         <input
           id="form18_2"
-          type="text"
+          type="number"
           tabindex="166"
           data-objref="297 0 R"
           data-field-name="HPLarm"
+          autoResize
+          [fixedvalue]="getSkill(character.hp.leftArm)"
+          (input)="setSkill(character.hp.leftArm, $event)"
         />
         <input
           id="form19_2"
-          type="text"
+          type="number"
           tabindex="167"
           data-objref="298 0 R"
           data-field-name="APRarm"
+          autoResize
+          [(ngModel)]="character.equipment.rightArm.ap"
         />
         <input
           id="form20_2"
-          type="text"
+          type="number"
           tabindex="168"
           data-objref="299 0 R"
           data-field-name="HPRarm"
+          autoResize
+          [fixedvalue]="getSkill(character.hp.rightArm)"
+          (input)="setSkill(character.hp.rightArm, $event)"
         />
         <input
           id="form21_2"
-          type="text"
+          type="number"
           tabindex="169"
           data-objref="338 0 R"
           data-field-name="APChest"
+          autoResize
+          [(ngModel)]="character.equipment.chest.ap"
         />
         <input
           id="form22_2"
-          type="text"
+          type="number"
           tabindex="170"
           data-objref="339 0 R"
           data-field-name="HPChest"
+          autoResize
+          [fixedvalue]="getSkill(character.hp.chest)"
+          (input)="setSkill(character.hp.chest, $event)"
         />
         <input
           id="form23_2"
-          type="text"
+          type="number"
           tabindex="171"
           data-objref="340 0 R"
           data-field-name="APAbdomen"
+          autoResize
+          [(ngModel)]="character.equipment.abdoment.ap"
         />
         <input
           id="form24_2"
-          type="text"
+          type="number"
           tabindex="172"
           data-objref="341 0 R"
           data-field-name="HPAbdomen"
+          autoResize
+          [fixedvalue]="getSkill(character.hp.abdoment)"
+          (input)="setSkill(character.hp.abdoment, $event)"
         />
         <input
           id="form25_2"
-          type="text"
+          type="number"
           tabindex="173"
           data-objref="342 0 R"
           data-field-name="APLleg"
+          autoResize
+          [(ngModel)]="character.equipment.leftLeg.ap"
         />
         <input
           id="form26_2"
-          type="text"
+          type="number"
           tabindex="174"
           data-objref="343 0 R"
           data-field-name="HPLleg"
+          autoResize
+          [fixedvalue]="getSkill(character.hp.leftLeg)"
+          (input)="setSkill(character.hp.leftLeg, $event)"
         />
         <input
           id="form27_2"
-          type="text"
+          type="number"
           tabindex="175"
           data-objref="277 0 R"
           data-field-name="APRleg"
+          autoResize
+          [(ngModel)]="character.equipment.rightLeg.ap"
         />
         <input
           id="form28_2"
-          type="text"
+          type="number"
           tabindex="176"
           data-objref="278 0 R"
           data-field-name="HPRleg"
+          autoResize
+          [fixedvalue]="getSkill(character.hp.rightLeg)"
+          (input)="setSkill(character.hp.rightLeg, $event)"
         />
         <textarea
           id="form29_2"
@@ -2247,6 +2280,9 @@
           tabindex="181"
           data-objref="283 0 R"
           data-field-name="Brawn"
+          autoResize
+          [fixedvalue]="getFixedSkill('Brawn')"
+          (input)="setFixedSkill('Brawn', $event)"
         />
         <input
           id="form34_2"
@@ -2254,6 +2290,9 @@
           tabindex="182"
           data-objref="301 0 R"
           data-field-name="Endurance"
+          autoResize
+          [fixedvalue]="getFixedSkill('Endurance')"
+          (input)="setFixedSkill('Endurance', $event)"
         />
         <input
           id="form35_2"
@@ -2261,6 +2300,9 @@
           tabindex="183"
           data-objref="302 0 R"
           data-field-name="Evade"
+          autoResize
+          [fixedvalue]="getFixedSkill('Evade')"
+          (input)="setFixedSkill('Evade', $event)"
         />
         <input
           id="form36_2"
@@ -2268,6 +2310,9 @@
           tabindex="184"
           data-objref="284 0 R"
           data-field-name="Willpower"
+          autoResize
+          [fixedvalue]="getFixedSkill('Willpower')"
+          (input)="setFixedSkill('Willpower', $event)"
         />
         <textarea
           id="form37_2"
@@ -2275,19 +2320,28 @@
           data-objref="293 0 R"
           data-field-name="MagicalAbilities"
         ></textarea>
-        <input
+        <select
           id="form38_2"
           type="text"
           tabindex="186"
           data-objref="294 0 R"
           data-field-name="CombatStyle1"
-        />
+          autoResize
+          (change)="setStyle($event, 0)"
+        >
+            <option value=""></option>
+            <option *ngFor="let style of getCombatStyles()" [value]="style.name" [selected]="getStyleName(0)==style.name">
+            {{style.name}}</option>
+        </select>
         <input
           id="form39_2"
           type="text"
           tabindex="187"
           data-objref="285 0 R"
           data-field-name="CombatWeapons1"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getStyleWeapons(0)"
         />
         <input
           id="form40_2"
@@ -2295,6 +2349,9 @@
           tabindex="188"
           data-objref="286 0 R"
           data-field-name="CombatTraits1"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getStyleTrait(0)"
         />
         <input
           id="form41_2"
@@ -2302,20 +2359,32 @@
           tabindex="189"
           data-objref="287 0 R"
           data-field-name="CombatPercent1"
+          autoResize
+          [fixedvalue]="getFixedSkill(getStyleName(0))"
+          (input)="setFixedSkill(getStyleName(0), $event)"
         />
-        <input
+        <select
           id="form42_2"
           type="text"
           tabindex="190"
           data-objref="288 0 R"
           data-field-name="CombatStyle2"
-        />
+          autoResize
+          (change)="setStyle($event, 1)"
+        >
+            <option value=""></option>
+            <option *ngFor="let style of getCombatStyles()" [value]="style.name" [selected]="getStyleName(1)==style.name">
+            {{style.name}}</option>
+        </select>
         <input
           id="form43_2"
           type="text"
           tabindex="191"
           data-objref="289 0 R"
           data-field-name="CombatWeapons2"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getStyleWeapons(1)"
         />
         <input
           id="form44_2"
@@ -2323,6 +2392,9 @@
           tabindex="192"
           data-objref="236 0 R"
           data-field-name="CombatTraits2"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getStyleTrait(1)"
         />
         <input
           id="form45_2"
@@ -2330,20 +2402,32 @@
           tabindex="193"
           data-objref="237 0 R"
           data-field-name="CombatPercent2"
+          autoResize
+          [fixedvalue]="getFixedSkill(getStyleName(1))"
+          (input)="setFixedSkill(getStyleName(1), $event)"
         />
-        <input
+        <select
           id="form46_2"
           type="text"
           tabindex="194"
           data-objref="238 0 R"
           data-field-name="CombatStyle3"
-        />
+          autoResize
+          (change)="setStyle($event, 2)"
+        >
+            <option value=""></option>
+            <option *ngFor="let style of getCombatStyles()" [value]="style.name" [selected]="getStyleName(2)==style.name">
+            {{style.name}}</option>
+        </select>
         <input
           id="form47_2"
           type="text"
           tabindex="195"
           data-objref="239 0 R"
           data-field-name="CombatWeapons3"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getStyleWeapons(2)"
         />
         <input
           id="form48_2"
@@ -2351,6 +2435,9 @@
           tabindex="196"
           data-objref="240 0 R"
           data-field-name="CombatTraits3"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getStyleTrait(2)"
         />
         <input
           id="form49_2"
@@ -2358,20 +2445,31 @@
           tabindex="197"
           data-objref="241 0 R"
           data-field-name="CombatPercent3"
+          autoResize
+          [fixedvalue]="getFixedSkill(getStyleName(2))"
+          (input)="setFixedSkill(getStyleName(2), $event)"
         />
-        <input
+        <select
           id="form50_2"
           type="text"
           tabindex="198"
           data-objref="242 0 R"
-          data-field-name="CombatStyle4"
-        />
+          data-field-name="CombatStyle4"autoResize
+          (change)="setStyle($event, 3)"
+        >
+            <option value=""></option>
+            <option *ngFor="let style of getCombatStyles()" [value]="style.name" [selected]="getStyleName(3)==style.name">
+            {{style.name}}</option>
+        </select>
         <input
           id="form51_2"
           type="text"
           tabindex="199"
           data-objref="243 0 R"
           data-field-name="CombatWeapons4"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getStyleWeapons(3)"
         />
         <input
           id="form52_2"
@@ -2379,6 +2477,9 @@
           tabindex="200"
           data-objref="244 0 R"
           data-field-name="CombatTraits4"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getStyleTrait(3)"
         />
         <input
           id="form53_2"
@@ -2386,6 +2487,9 @@
           tabindex="201"
           data-objref="245 0 R"
           data-field-name="CombatPercent4"
+          autoResize
+          [fixedvalue]="getFixedSkill(getStyleName(3))"
+          (input)="setFixedSkill(getStyleName(3), $event)"
         />
         <input
           id="form54_2"
@@ -2394,6 +2498,9 @@
           data-objref="290 0 R"
           title="Melee weapons &amp; shields [1]"
           data-field-name="Melee weapons  shields 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,false,'name')"
+          (input)="setWeaponProp(0,false,'name', $event)"
         />
         <input
           id="form55_2"
@@ -2402,6 +2509,9 @@
           data-objref="291 0 R"
           title="Damage [1]"
           data-field-name="Damage 1"
+          autoResize
+          [fixedvalue]="getWeaponDamage(0,false)"
+          (input)="setWeaponProp(0, false, 'damage', $event)"
         />
         <input
           id="form56_2"
@@ -2410,6 +2520,9 @@
           data-objref="292 0 R"
           title="Size [1]"
           data-field-name="Size 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,false,'size')"
+          (input)="setWeaponProp(0,false,'size', $event)"
         />
         <input
           id="form57_2"
@@ -2418,6 +2531,9 @@
           data-objref="256 0 R"
           title="Reach [1]"
           data-field-name="Reach 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,false,'reach')"
+          (input)="setWeaponProp(0,false,'reach', $event)"
         />
         <input
           id="form58_2"
@@ -2426,6 +2542,9 @@
           data-objref="257 0 R"
           title="Traits [1]"
           data-field-name="Traits 1"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponTraits(0,false)"
         />
         <input
           id="form59_2"
@@ -2434,22 +2553,31 @@
           data-objref="258 0 R"
           title="Combat Effects [1]"
           data-field-name="Combat Effects 1"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(0,false)"
         />
         <input
           id="form60_2"
-          type="text"
+          type="number"
           tabindex="208"
           data-objref="259 0 R"
           title="AP [1]"
           data-field-name="AP 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,false,'ap')"
+          (input)="setWeaponProp(0,false,'ap', $event)"
         />
         <input
           id="form61_2"
-          type="text"
+          type="number"
           tabindex="209"
           data-objref="260 0 R"
           title="HP (Max./current"
           data-field-name="HPMax1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,false,'hp')"
+          (input)="setWeaponProp(0,false,'hp', $event)"
         />
         <input
           id="form62_2"
@@ -2466,6 +2594,9 @@
           data-objref="262 0 R"
           title="Melee weapons &amp; shields [2]"
           data-field-name="Melee weapons  shields 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,false,'name')"
+          (input)="setWeaponProp(1,false,'name', $event)"
         />
         <input
           id="form64_2"
@@ -2474,6 +2605,9 @@
           data-objref="263 0 R"
           title="Damage [2]"
           data-field-name="Damage 2"
+          autoResize
+          [fixedvalue]="getWeaponDamage(1,false)"
+          (input)="setWeaponProp(1,false,'damage', $event)"
         />
         <input
           id="form65_2"
@@ -2482,6 +2616,9 @@
           data-objref="264 0 R"
           title="Size [2]"
           data-field-name="Size 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,false,'size')"
+          (input)="setWeaponProp(1,false,'size', $event)"
         />
         <input
           id="form66_2"
@@ -2490,6 +2627,9 @@
           data-objref="344 0 R"
           title="Reach [2]"
           data-field-name="Reach 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,false,'reach')"
+          (input)="setWeaponProp(1,false,'reach', $event)"
         />
         <input
           id="form67_2"
@@ -2498,6 +2638,9 @@
           data-objref="345 0 R"
           title="Traits [2]"
           data-field-name="Traits 2"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponTraits(1,false)"
         />
         <input
           id="form68_2"
@@ -2506,22 +2649,31 @@
           data-objref="346 0 R"
           title="Combat Effects [2]"
           data-field-name="Combat Effects 2"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(1,false)"
         />
         <input
           id="form69_2"
-          type="text"
+          type="number"
           tabindex="217"
           data-objref="347 0 R"
           title="AP [2]"
           data-field-name="AP 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,false,'ap')"
+          (input)="setWeaponProp(1,false,'ap', $event)"
         />
         <input
           id="form70_2"
-          type="text"
+          type="number"
           tabindex="218"
           data-objref="348 0 R"
           title="undefined"
           data-field-name="HPMax2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,false,'hp')"
+          (input)="setWeaponProp(1,false,'hp', $event)"
         />
         <input
           id="form71_2"
@@ -2538,6 +2690,9 @@
           data-objref="350 0 R"
           title="Melee weapons &amp; shields [3]"
           data-field-name="Melee weapons  shields 3"
+          autoResize
+          [fixedvalue]="getWeaponProp(2,false,'name')"
+          (input)="setWeaponProp(2,false,'name', $event)"
         />
         <input
           id="form73_2"
@@ -2546,6 +2701,9 @@
           data-objref="351 0 R"
           title="Damage [3]"
           data-field-name="Damage 3"
+          autoResize
+          [fixedvalue]="getWeaponDamage(2,false)"
+          (input)="setWeaponProp(2,false,'damage', $event)"
         />
         <input
           id="form74_2"
@@ -2554,6 +2712,9 @@
           data-objref="352 0 R"
           title="Size [3]"
           data-field-name="Size 3"
+          autoResize
+          [fixedvalue]="getWeaponProp(2,false,'size')"
+          (input)="setWeaponProp(2,false,'size', $event)"
         />
         <input
           id="form75_2"
@@ -2562,6 +2723,9 @@
           data-objref="353 0 R"
           title="Reach [3]"
           data-field-name="Reach 3"
+          autoResize
+          [fixedvalue]="getWeaponProp(2,false,'reach')"
+          (input)="setWeaponProp(2,false,'reach', $event)"
         />
         <input
           id="form76_2"
@@ -2570,6 +2734,9 @@
           data-objref="354 0 R"
           title="Traits [3]"
           data-field-name="Traits 3"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponTraits(2,false)"
         />
         <input
           id="form77_2"
@@ -2578,22 +2745,31 @@
           data-objref="355 0 R"
           title="Combat Effects [3]"
           data-field-name="Combat Effects 3"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(2,false)"
         />
         <input
           id="form78_2"
-          type="text"
+          type="number"
           tabindex="226"
           data-objref="356 0 R"
           title="AP [3]"
           data-field-name="AP 3"
+          autoResize
+          [fixedvalue]="getWeaponProp(2,false,'ap')"
+          (input)="setWeaponProp(2,false,'ap', $event)"
         />
         <input
           id="form79_2"
-          type="text"
+          type="number"
           tabindex="227"
           data-objref="357 0 R"
           title="undefined"
           data-field-name="HPMax3"
+          autoResize
+          [fixedvalue]="getWeaponProp(2,false,'hp')"
+          (input)="setWeaponProp(2,false,'hp', $event)"
         />
         <input
           id="form80_2"
@@ -2610,6 +2786,9 @@
           data-objref="359 0 R"
           title="Melee weapons &amp; shields [4]"
           data-field-name="Melee weapons  shields 4"
+          autoResize
+          [fixedvalue]="getWeaponProp(3,false,'name')"
+          (input)="setWeaponProp(3,false,'name', $event)"
         />
         <input
           id="form82_2"
@@ -2618,6 +2797,9 @@
           data-objref="360 0 R"
           title="Damage [4]"
           data-field-name="Damage 4"
+          autoResize
+          [fixedvalue]="getWeaponDamage(3,false)"
+          (input)="setWeaponProp(3,false,'damage', $event)"
         />
         <input
           id="form83_2"
@@ -2626,6 +2808,9 @@
           data-objref="361 0 R"
           title="Size [4]"
           data-field-name="Size 4"
+          autoResize
+          [fixedvalue]="getWeaponProp(3,false,'size')"
+          (input)="setWeaponProp(3,false,'size', $event)"
         />
         <input
           id="form84_2"
@@ -2634,6 +2819,9 @@
           data-objref="362 0 R"
           title="Reach [4]"
           data-field-name="Reach 4"
+          autoResize
+          [fixedvalue]="getWeaponProp(3,false,'reach')"
+          (input)="setWeaponProp(3,false,'reach', $event)"
         />
         <input
           id="form85_2"
@@ -2642,6 +2830,9 @@
           data-objref="363 0 R"
           title="Traits [4]"
           data-field-name="Traits 4"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponTraits(3,false)"
         />
         <input
           id="form86_2"
@@ -2650,22 +2841,31 @@
           data-objref="364 0 R"
           title="Combat Effects [4]"
           data-field-name="Combat Effects 4"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(3,false)"
         />
         <input
           id="form87_2"
-          type="text"
+          type="number"
           tabindex="235"
           data-objref="365 0 R"
           title="AP [4]"
           data-field-name="AP 4"
+          autoResize
+          [fixedvalue]="getWeaponProp(3,false,'ap')"
+          (input)="setWeaponProp(3,false,'ap', $event)"
         />
         <input
           id="form88_2"
-          type="text"
+          type="number"
           tabindex="236"
           data-objref="366 0 R"
           title="undefined"
           data-field-name="HPMax4"
+          autoResize
+          [fixedvalue]="getWeaponProp(3,false,'hp')"
+          (input)="setWeaponProp(3,false,'hp', $event)"
         />
         <input
           id="form89_2"
@@ -2682,6 +2882,9 @@
           data-objref="368 0 R"
           title="Melee weapons &amp; shields [5]"
           data-field-name="Melee weapons  shields 5"
+          autoResize
+          [fixedvalue]="getWeaponProp(4,false,'name')"
+          (input)="setWeaponProp(4,false,'name', $event)"
         />
         <input
           id="form91_2"
@@ -2690,6 +2893,9 @@
           data-objref="369 0 R"
           title="Damage [5]"
           data-field-name="Damage 5"
+          autoResize
+          [fixedvalue]="getWeaponDamage(4,false)"
+          (input)="setWeaponProp(4,false,'damage', $event)"
         />
         <input
           id="form92_2"
@@ -2698,6 +2904,9 @@
           data-objref="370 0 R"
           title="Size [5]"
           data-field-name="Size 5"
+          autoResize
+          [fixedvalue]="getWeaponProp(4,false,'size')"
+          (input)="setWeaponProp(4,false,'size', $event)"
         />
         <input
           id="form93_2"
@@ -2706,6 +2915,9 @@
           data-objref="371 0 R"
           title="Reach [5]"
           data-field-name="Reach 5"
+          autoResize
+          [fixedvalue]="getWeaponProp(4,false,'reach')"
+          (input)="setWeaponProp(4,false,'reach', $event)"
         />
         <input
           id="form94_2"
@@ -2714,6 +2926,9 @@
           data-objref="372 0 R"
           title="Traits [5]"
           data-field-name="Traits 5"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponTraits(4,false)"
         />
         <input
           id="form95_2"
@@ -2722,22 +2937,31 @@
           data-objref="373 0 R"
           title="Combat Effects [5]"
           data-field-name="Combat Effects 5"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(4,false)"
         />
         <input
           id="form96_2"
-          type="text"
+          type="number"
           tabindex="244"
           data-objref="374 0 R"
           title="AP [5]"
           data-field-name="AP 5"
+          autoResize
+          [fixedvalue]="getWeaponProp(4,false,'ap')"
+          (input)="setWeaponProp(4,false,'ap', $event)"
         />
         <input
           id="form97_2"
-          type="text"
+          type="number"
           tabindex="245"
           data-objref="375 0 R"
           title="undefined"
           data-field-name="HPMax5"
+          autoResize
+          [fixedvalue]="getWeaponProp(4,false,'hp')"
+          (input)="setWeaponProp(4,false,'hp', $event)"
         />
         <input
           id="form98_2"
@@ -2754,6 +2978,9 @@
           data-objref="377 0 R"
           title="Melee weapons &amp; shields [6]"
           data-field-name="Melee weapons  shields 6"
+          autoResize
+          [fixedvalue]="getWeaponProp(5,false,'name')"
+          (input)="setWeaponProp(5,false,'name', $event)"
         />
         <input
           id="form100_2"
@@ -2762,6 +2989,9 @@
           data-objref="324 0 R"
           title="Damage [6]"
           data-field-name="Damage 6"
+          autoResize
+          [fixedvalue]="getWeaponDamage(5,false)"
+          (input)="setWeaponProp(5,false,'damage', $event)"
         />
         <input
           id="form101_2"
@@ -2770,6 +3000,9 @@
           data-objref="325 0 R"
           title="Size [6]"
           data-field-name="Size 6"
+          autoResize
+          [fixedvalue]="getWeaponProp(5,false,'size')"
+          (input)="setWeaponProp(5,false,'size', $event)"
         />
         <input
           id="form102_2"
@@ -2778,6 +3011,9 @@
           data-objref="326 0 R"
           title="Reach [6]"
           data-field-name="Reach 6"
+          autoResize
+          [fixedvalue]="getWeaponProp(5,false,'reach')"
+          (input)="setWeaponProp(5,false,'reach', $event)"
         />
         <input
           id="form103_2"
@@ -2786,6 +3022,9 @@
           data-objref="327 0 R"
           title="Traits [6]"
           data-field-name="Traits 6"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponTraits(5,false)"
         />
         <input
           id="form104_2"
@@ -2794,22 +3033,31 @@
           data-objref="311 0 R"
           title="Combat Effects [6]"
           data-field-name="Combat Effects 6"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(5,false)"
         />
         <input
           id="form105_2"
-          type="text"
+          type="number"
           tabindex="253"
           data-objref="312 0 R"
           title="AP [6]"
           data-field-name="AP 6"
+          autoResize
+          [fixedvalue]="getWeaponProp(5,false,'ap')"
+          (input)="setWeaponProp(5,false,'ap', $event)"
         />
         <input
           id="form106_2"
-          type="text"
+          type="number"
           tabindex="254"
           data-objref="313 0 R"
           title="undefined"
           data-field-name="HPMax6"
+          autoResize
+          [fixedvalue]="getWeaponProp(5,false,'hp')"
+          (input)="setWeaponProp(5,false,'hp', $event)"
         />
         <input
           id="form107_2"
@@ -2826,6 +3074,9 @@
           data-objref="315 0 R"
           title="Melee weapons &amp; shields [7]"
           data-field-name="Melee weapons  shields 7"
+          autoResize
+          [fixedvalue]="getWeaponProp(6,false,'name')"
+          (input)="setWeaponProp(6,false,'name', $event)"
         />
         <input
           id="form109_2"
@@ -2834,6 +3085,9 @@
           data-objref="316 0 R"
           title="Damage [7]"
           data-field-name="Damage 7"
+          autoResize
+          [fixedvalue]="getWeaponDamage(6,false)"
+          (input)="setWeaponProp(6,false,'damage', $event)"
         />
         <input
           id="form110_2"
@@ -2842,6 +3096,9 @@
           data-objref="317 0 R"
           title="Size [7]"
           data-field-name="Size 7"
+          autoResize
+          [fixedvalue]="getWeaponProp(6,false,'size')"
+          (input)="setWeaponProp(6,false,'size', $event)"
         />
         <input
           id="form111_2"
@@ -2850,6 +3107,9 @@
           data-objref="318 0 R"
           title="Reach [7]"
           data-field-name="Reach 7"
+          autoResize
+          [fixedvalue]="getWeaponProp(6,false,'reach')"
+          (input)="setWeaponProp(6,false,'reach', $event)"
         />
         <input
           id="form112_2"
@@ -2858,6 +3118,9 @@
           data-objref="319 0 R"
           title="Traits [7]"
           data-field-name="Traits 7"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponTraits(6,false)"
         />
         <input
           id="form113_2"
@@ -2866,26 +3129,35 @@
           data-objref="320 0 R"
           title="Combat Effects [7]"
           data-field-name="Combat Effects 7"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(6,false)"
         />
         <input
           id="form114_2"
-          type="text"
+          type="number"
           tabindex="262"
           data-objref="321 0 R"
           title="AP [7]"
           data-field-name="AP 7"
+          autoResize
+          [fixedvalue]="getWeaponProp(6,false,'ap')"
+          (input)="setWeaponProp(6,false,'ap', $event)"
         />
         <input
           id="form115_2"
-          type="text"
+          type="number"
           tabindex="263"
           data-objref="322 0 R"
           title="undefined"
           data-field-name="HPMax7"
+          autoResize
+          [fixedvalue]="getWeaponProp(6,false,'hp')"
+          (input)="setWeaponProp(6,false,'hp', $event)"
         />
         <input
           id="form116_2"
-          type="text"
+          type="number"
           tabindex="264"
           data-objref="323 0 R"
           title="[7]"
@@ -2898,6 +3170,9 @@
           data-objref="303 0 R"
           title="Ranged weapons [1]"
           data-field-name="Ranged weapons 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,true,'name')"
+          (input)="setWeaponProp(0,true,'name', $event)"
         />
         <input
           id="form118_2"
@@ -2906,6 +3181,9 @@
           data-objref="304 0 R"
           title="Damage [1]"
           data-field-name="Damage 1_2"
+          autoResize
+          [fixedvalue]="getWeaponDamage(0,true)"
+          (input)="setWeaponProp(0,true,'damage', $event)"
         />
         <input
           id="form119_2"
@@ -2914,6 +3192,9 @@
           data-objref="305 0 R"
           title="DM [1]"
           data-field-name="DM 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,true,'dm')"
+          (input)="setWeaponProp(0,true,'dm', $event)"
         />
         <input
           id="form120_2"
@@ -2922,6 +3203,9 @@
           data-objref="306 0 R"
           title="Force [1]"
           data-field-name="Force 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,true,'force')"
+          (input)="setWeaponProp(0,true,'force', $event)"
         />
         <input
           id="form121_2"
@@ -2930,22 +3214,31 @@
           data-objref="307 0 R"
           title="Load [1]"
           data-field-name="Load 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,true,'loadTime')"
+          (input)="setWeaponProp(0,true,'loadTime', $event)"
         />
         <input
           id="form122_2"
-          type="text"
+          type="number"
           tabindex="270"
           data-objref="308 0 R"
           title="HP (Max./current"
           data-field-name="HP Maxcurrent_2"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,true,'hp')"
+          (input)="setWeaponProp(0,true,'hp', $event)"
         />
         <input
           id="form123_2"
-          type="text"
+          type="number"
           tabindex="271"
           data-objref="309 0 R"
           title="AP [1]"
           data-field-name="AP 1_2"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,true,'ap')"
+          (input)="setWeaponProp(0,true,'ap', $event)"
         />
         <input
           id="form124_2"
@@ -2954,6 +3247,9 @@
           data-objref="310 0 R"
           title="Size [1]"
           data-field-name="Size 1_2"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,true,'size')"
+          (input)="setWeaponProp(0,true,'size', $event)"
         />
         <input
           id="form125_2"
@@ -2962,6 +3258,9 @@
           data-objref="328 0 R"
           title="Combat Effects [1]"
           data-field-name="RangedCombatEffects1"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(0,true)"
         />
         <input
           id="form126_2"
@@ -2970,6 +3269,9 @@
           data-objref="329 0 R"
           title="Range [1]"
           data-field-name="Range 1"
+          autoResize
+          [fixedvalue]="getWeaponProp(0,true,'range')"
+          (input)="setWeaponProp(0,true,'range', $event)"
         />
         <input
           id="form127_2"
@@ -2986,6 +3288,9 @@
           data-objref="331 0 R"
           title="Ranged weapons [2]"
           data-field-name="Ranged weapons 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,true,'name')"
+          (input)="setWeaponProp(1,true,'name', $event)"
         />
         <input
           id="form129_2"
@@ -2994,6 +3299,9 @@
           data-objref="332 0 R"
           title="Damage [2]"
           data-field-name="Damage 2_2"
+          autoResize
+          [fixedvalue]="getWeaponDamage(1,true)"
+          (input)="setWeaponProp(1,true,'damage', $event)"
         />
         <input
           id="form130_2"
@@ -3002,6 +3310,9 @@
           data-objref="333 0 R"
           title="DM [2]"
           data-field-name="DM 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,true,'dm')"
+          (input)="setWeaponProp(1,true,'dm', $event)"
         />
         <input
           id="form131_2"
@@ -3010,6 +3321,9 @@
           data-objref="334 0 R"
           title="Force [2]"
           data-field-name="Force 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,true,'force')"
+          (input)="setWeaponProp(1,true,'force', $event)"
         />
         <input
           id="form132_2"
@@ -3018,6 +3332,9 @@
           data-objref="265 0 R"
           title="Load [2]"
           data-field-name="Load 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,true,'loadTime')"
+          (input)="setWeaponProp(1,true,'loadTime', $event)"
         />
         <input
           id="form133_2"
@@ -3026,6 +3343,9 @@
           data-objref="266 0 R"
           title="Range [2]"
           data-field-name="Range 2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,true,'range')"
+          (input)="setWeaponProp(1,true,'range', $event)"
         />
         <input
           id="form134_2"
@@ -3034,6 +3354,9 @@
           data-objref="267 0 R"
           title="Combat Effects [2]"
           data-field-name="RangedCombatEffects2"
+          disabled="true"
+          autoResize
+          [fixedvalue]="getWeaponEffects(1,true)"
         />
         <input
           id="form135_2"
@@ -3042,22 +3365,31 @@
           data-objref="268 0 R"
           title="Size [2]"
           data-field-name="Size 2_2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,true,'size')"
+          (input)="setWeaponProp(1,true,'size', $event)"
         />
         <input
           id="form136_2"
-          type="text"
+          type="number"
           tabindex="284"
           data-objref="269 0 R"
           title="AP [2]"
           data-field-name="AP 2_2"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,true,'ap')"
+          (input)="setWeaponProp(1,true,'ap', $event)"
         />
         <input
           id="form137_2"
-          type="text"
+          type="number"
           tabindex="285"
           data-objref="270 0 R"
           title="undefined"
           data-field-name="undefined_40"
+          autoResize
+          [fixedvalue]="getWeaponProp(1,true,'hp')"
+          (input)="setWeaponProp(1,true,'hp', $event)"
         />
         <input
           id="form138_2"
