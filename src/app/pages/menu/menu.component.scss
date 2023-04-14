@@ -1,0 +1,26 @@
+.page-wrapper{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 30px;
+}
+.header {
+    padding: 20px;
+    .title{
+        font-family: math;
+        font-size: 30px;
+    }
+    .author{
+        font-style: italic;
+        font-family: auto;
+    }
+}
+
+.options{
+    text-align: center;
+}
+
+.option {
+    margin: 15px;
+}
+

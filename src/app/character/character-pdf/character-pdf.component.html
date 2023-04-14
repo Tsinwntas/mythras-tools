@@ -1990,34 +1990,49 @@
           tabindex="149"
           data-objref="254 0 R"
           data-field-name="EquipmentandArmour"
+          autoResize
+          [fixedvalue]="getEquipmentInfo()"
+          (input)="setEquipmentInfo($event)"
         ></textarea>
         <input
           id="form2_2"
-          type="text"
+          type="number"
           tabindex="150"
           data-objref="253 0 R"
           data-field-name="EquipENC"
+          autoResize
+          [fixedvalue]="getEquipmentEnc()"
+          (input)="setEquipmentEnc($event)"
         />
         <input
           id="form3_2"
-          type="text"
+          type="number"
           tabindex="151"
           data-objref="232 0 R"
           data-field-name="ArmourENC"
+          autoResize
+          [fixedvalue]="getArmourEnc()"
+          (input)="setArmourEnc($event)"
         />
         <input
           id="form4_2"
-          type="text"
+          type="number"
           tabindex="152"
           data-objref="250 0 R"
           data-field-name="TotalENC"
+          autoResize
+          [fixedvalue]="getTotalEnc()"
+          (input)="setTotalEnc($event)"
         />
         <input
           id="form5_2"
-          type="text"
+          type="number"
           tabindex="153"
           data-objref="255 0 R"
           data-field-name="ArmourPenalty"
+          autoResize
+          [fixedvalue]="getArmorPenalty()"
+          (input)="setArmorPenalty($event)"
         />
         <input
           id="form6_2"
@@ -2253,19 +2268,27 @@
           tabindex="177"
           data-objref="279 0 R"
           data-field-name="CultInfo"
+          autoResize
+          [fixedvalue]="getCultInformation()"
+          (input)="setCultInformation($event)"
         ></textarea>
-        <textarea
+        <input
           id="form30_2"
           tabindex="178"
           data-objref="280 0 R"
           data-field-name="Cult"
-        ></textarea>
+          autoResize
+          [fixedvalue]="getReligion()"
+          (input)="setReligion($event)"
+        />
         <input
           id="form31_2"
           type="text"
           tabindex="179"
           data-objref="281 0 R"
           data-field-name="DevotionalPoolMax"
+          autoResize
+          [(ngModel)]="character.devotionPool"
         />
         <input
           id="form32_2"
@@ -2273,6 +2296,8 @@
           tabindex="180"
           data-objref="282 0 R"
           data-field-name="DevotionalPoolCurrent"
+          autoResize
+          [(ngModel)]="character.devotionPoolCurrent"
         />
         <input
           id="form33_2"
@@ -2319,6 +2344,9 @@
           tabindex="185"
           data-objref="293 0 R"
           data-field-name="MagicalAbilities"
+          autoResize
+          [fixedvalue]="getAbilities()"
+          (input)="setAbilities($event)"
         ></textarea>
         <select
           id="form38_2"

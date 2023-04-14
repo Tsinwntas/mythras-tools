@@ -1,14 +1,15 @@
 import { CharacterEquipment } from './character-equipment';
 import { CharacterPassions } from './character-passions';
 import { Rollable } from './rollable';
-import { CharacterCareer } from "./character-career";
 import { CharacterFamily } from "./character-family";
 import { CharacterHP } from "./character-hp";
 import { CharacterMagic } from "./character-magic";
 import { CharacterSkills } from "./character-skills";
 import { SocialClass } from "./social-class";
+import { v4 as uuidv4 } from 'uuid';
 
 export class Character {
+    id : string;
     player: string;
     name: string;
     gender: string;
@@ -61,6 +62,7 @@ export class Character {
     incomeYear : number;
 
     constructor() {
+        this.id = uuidv4();
         this.skills = new CharacterSkills();
         this.hp = new CharacterHP();
         this.magic = new CharacterMagic();

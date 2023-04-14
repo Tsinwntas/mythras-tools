@@ -300,11 +300,20 @@ export function getMoneyAfterClass(character: Character) {
 export function getTotalFromItems(
   character: Character,
   prop: string,
-  halfWorn?: boolean
+  halfWorn?: boolean,
+  onlyArmor?: boolean
 ): number {
   return Object.keys(character.equipment)
     .map((k) => {
+      if(['equipmentEnc',
+        'armourEnc',
+        'totalEnc',
+        'armorPenalty',
+        'equipmentAndArmor'].includes(k))
+          return 0;
       if (['weapons', 'items'].includes(k)) {
+        if(onlyArmor == true)
+          return 0;
         if(!(character.equipment as any)[k].length)
           return 0;
         return (character.equipment as any)[k].reduce(
@@ -312,6 +321,8 @@ export function getTotalFromItems(
             getPropWithQuantity(a, prop) + getPropWithQuantity(b, prop)
         );
       }
+      if(onlyArmor == false)
+        return 0;
       return (
         (orZero((character.equipment as any)[k][prop]) / (halfWorn ? 2 : 1)) *
         ((character.equipment as any)[k].quantity
@@ -320,6 +331,18 @@ export function getTotalFromItems(
       );
     })
     .reduce((a, b) => a + b);
+}
+
+export function getOnlyArmor(
+  character: Character,
+  prop: string) : number {
+    return getTotalFromItems(character, prop, true, true);
+}
+
+export function getButArmor(
+  character: Character,
+  prop: string) : number {
+    return getTotalFromItems(character, prop, true, false);
 }
 
 function getPropWithQuantity(item: any, prop: string): number {

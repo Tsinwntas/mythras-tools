@@ -77,6 +77,7 @@ import { CareersModalComponent } from '../character/modals/careers-modal/careers
 import { ProfessionalSkillsComponent } from '../character/modals/professional-skills/professional-skills.component';
 import { AgeExperienceModalComponent } from '../character/modals/age-experience/age-experience.component';
 import { FolkMagicComponent } from '../character/modals/folk-magic/folk-magic.component';
+import { LoadCharacterComponent } from '../modals/load-character/load-character.component';
 
 @Component({
   selector: 'open-modal',
@@ -137,6 +138,7 @@ export class OpenModalComponent {
       case 'into-contact': this.modals.open(IntoContactComponent);return;
       case 'knockback': this.modals.open(KnockbackComponent);return;
       case 'leaping-attacks': this.modals.open(LeapingAttacksComponent);return;
+      case 'load': this.modals.open(LoadCharacterComponent, this.prop);return;
       case 'luck-point': this.modals.open(LuckPointComponent);return;
       case 'magic-situational': this.modals.open(MagicSituationalComponent);return;
       case 'mount': this.modals.open(MountComponent);return;

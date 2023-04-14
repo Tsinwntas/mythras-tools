@@ -1,11 +1,21 @@
 <div class="page">
-    <p><i>I don't pre-load the pdf because it makes the page slower. Load it once you are done with the other steps to view, edit and print.</i></p>
-    <div class = "line">
-       <button *ngIf="load&&!loading" mat-flat-button (click)="refresh()"><mat-icon>refresh</mat-icon> Refresh PDF</button>
-   </div>
-   <div class = "line">
-      <button *ngIf="!load&&!loading" mat-flat-button (click)="load=true"><mat-icon>refresh</mat-icon> Load PDF</button>
-  </div>
+    <p class="line" *ngIf="!hideDisclaimer"><i>I don't pre-load the pdf because it makes the page slower. Load it once you are done with the other steps to
+            view, edit and print.</i></p>
+    <p class="line" *ngIf="!hideDisclaimer"><i><b>Remember, if you clear your cache, all data will be lost. Make sure to download your characters to not lose
+                them.</b></i></p>
+    <div class="line" *ngIf="load&&!loading">
+        <button mat-flat-button (click)="refresh()"><mat-icon>refresh</mat-icon> Refresh PDF</button>
+        <a mat-flat-button [href]="generateDownloadJsonUri()"
+            [download]="character.name+'.json'"><mat-icon>download</mat-icon> Download Character</a>
+        <button mat-flat-button (click)="print()"><mat-icon>print</mat-icon> Print PDF</button>
+        <button class="back-button" *ngIf="hideDisclaimer" mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
+    </div>
+    <div class="line" *ngIf="!load&&!loading">
+        <button mat-flat-button (click)="load=true" ><mat-icon>refresh</mat-icon> Load PDF</button>
+        <button class="back-button" *ngIf="hideDisclaimer" mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
+    </div>
+    <div id="character-pdf">
+        <character-pdf *ngIf="load" [character]="character" />
+    </div>
 
-    <character-pdf *ngIf="load" [character]="character"/>
 </div>

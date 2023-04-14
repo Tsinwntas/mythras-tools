@@ -1,0 +1,14 @@
+<mat-card *ngFor="let c of characters; let index=index;">
+    <mat-card-content>
+        <div class="card-content">
+            <button mat-icon-button (click)="load(c.id)"><mat-icon>touch_app</mat-icon></button>
+            <mat-form-field>
+                <mat-label>
+                    Character
+                </mat-label>
+                <input matInput [ngModel]="c.name" (ngModelChange)="edit(index, $event)"/>
+            </mat-form-field>
+            <button mat-icon-button (click)="remove(index)" class="remove"><mat-icon>remove</mat-icon></button>
+        </div>
+    </mat-card-content>
+</mat-card>

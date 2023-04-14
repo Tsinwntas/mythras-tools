@@ -28,6 +28,14 @@
   </mat-select>
 </mat-form-field>
 <mat-form-field>
+  <mat-label>Type:</mat-label>
+  <mat-select
+  [(ngModel)]="equipment.type"
+  >
+    <mat-option *ngFor="let type of getTypes()" [value]="type">{{type}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
   <mat-label>AP:</mat-label>
   <input type="number" matInput [(ngModel)]="equipment.ap"/>
 </mat-form-field>

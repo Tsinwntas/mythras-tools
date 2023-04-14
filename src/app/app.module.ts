@@ -162,6 +162,10 @@ import { BackgroundDetailsComponent } from './character/background-details/backg
 import { CharacterPreviewComponent } from './character/character-preview/character-preview.component';
 import { CharacterPdfComponent } from './character/character-pdf/character-pdf.component';
 import { AutoresizeDirective } from './directives/autoresize.directive';
+import { NgxPrintModule } from 'ngx-print';
+import { MenuComponent } from './pages/menu/menu.component';
+import { LoadCharacterComponent } from './modals/load-character/load-character.component';
+import { ViewCharacterComponent } from './pages/view-character/view-character.component';
 
 
 
@@ -307,7 +311,10 @@ import { AutoresizeDirective } from './directives/autoresize.directive';
     BackgroundDetailsComponent,
     CharacterPreviewComponent,
     CharacterPdfComponent,
-    AutoresizeDirective
+    AutoresizeDirective,
+    MenuComponent,
+    LoadCharacterComponent,
+    ViewCharacterComponent
   ],
   imports: [
     BrowserModule,
@@ -327,7 +334,8 @@ import { AutoresizeDirective } from './directives/autoresize.directive';
     MatProgressSpinnerModule,
     MatListModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxPrintModule
   ],
   providers: [],
   bootstrap: [AppComponent]

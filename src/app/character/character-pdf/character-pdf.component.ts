@@ -8,11 +8,14 @@ import {
   getMoneyAfterClass,
   getTotalFromItems,
   getAllCombatStyles,
+  getButArmor,
+  getOnlyArmor,
 } from 'src/app/services/character-service.service';
 import { Skill } from 'src/app/model/skill';
 import { Character } from 'src/app/model/character';
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CharacterPassions } from 'src/app/model/character-passions';
+import { Spell } from 'src/app/model/spell';
 
 @Component({
   selector: 'character-pdf',
@@ -374,14 +377,75 @@ ${social?social.resources:''}`.trim();
   generateEquipmentInfo(): string {
     let eq = this.character.equipment;
     return [
-      [eq.head.name, eq.chest.name, eq.abdoment.name, eq.leftArm.name, eq.rightArm.name, eq.leftLeg.name, eq.rightLeg.name].join(', '), 
-      eq.weapons.map(w=>(w.quantity? w.quantity : "1")+"X "+w.name).join(', '),
-      eq.items.map(i=>(i.quantity? i.quantity : "1")+"X "+i.name).join(', ')
+      [Object.assign({loc:"Head"},eq.head), 
+      Object.assign({loc:"Chest"},eq.chest), 
+      Object.assign({loc:"Abdoment"},eq.abdoment), 
+      Object.assign({loc:"Left Arm"},eq.leftArm), 
+      Object.assign({loc:"Right Arm"},eq.rightArm), 
+      Object.assign({loc:"Left Leg"},eq.leftLeg), 
+      Object.assign({loc:"Right Leg"},eq.rightLeg)]
+      .filter(e=>e && e.type).map(e=>`${e.loc}-${e.material}-${e.type}`).join(', '), 
+      eq.weapons.map(w=>(w.quantity? w.quantity : "1")+"x "+w.name).join(', '),
+      eq.items.map(i=>(i.quantity? i.quantity : "1")+"x "+i.name).join(', ')
     ].join('\n');
   }
 
   setEquipmentInfo(event: any) {
     this.character.equipment.equipmentAndArmor = event.target.value;
+  }
+
+  getEquipmentEnc() : number {
+    if(this.character.equipment.equipmentEnc == undefined)
+      return getButArmor(this.character, 'enc');
+    return this.character.equipment.equipmentEnc;
+  }
+
+  setEquipmentEnc(event : any) {
+    let value = event.target.value;
+    if(value == undefined || value=='' || isNaN(value))
+      value = undefined;
+    this.character.equipment.equipmentEnc = value;
+  }
+
+  getArmourEnc() : number {
+    if(this.character.equipment.armourEnc == undefined)
+      return getOnlyArmor(this.character, 'enc');
+    return this.character.equipment.armourEnc;
+  }
+
+  setArmourEnc(event : any) {
+    let value = event.target.value;
+    if(value == undefined || value=='' || isNaN(value))
+      value = undefined;
+    this.character.equipment.armourEnc = value;
+  }
+
+  getTotalEnc() : number {
+    if(this.character.equipment.totalEnc == undefined)
+      return getTotalFromItems(this.character, 'enc');
+    return this.character.equipment.totalEnc;
+  }
+
+  setTotalEnc(event : any) {
+    let value = event.target.value;
+    if(value == undefined || value=='' || isNaN(value))
+      value = undefined;
+    this.character.equipment.totalEnc = value;
+  }
+
+  getArmorPenalty() : number {
+    if(this.character.equipment.armorPenalty == undefined)
+      return this.character.equipment.armourEnc == undefined?
+        getOnlyArmor(this.character, 'enc')/5 :
+        this.character.equipment.armourEnc / 5;
+    return this.character.equipment.armorPenalty;
+  }
+
+  setArmorPenalty(event : any) {
+    let value = event.target.value;
+    if(value == undefined || value=='' || isNaN(value))
+      value = undefined;
+    this.character.equipment.armorPenalty = value;
   }
 
   getCultInformation() : string {
@@ -391,11 +455,31 @@ ${social?social.resources:''}`.trim();
   }
 
   generateCultInformation(): string {
-    return "";
+    return [
+      Object.assign({cult:'Brotherhood'},this.character.brotherhood),
+      Object.assign({cult:'Animist Cult'},this.character.animistCult),
+      Object.assign({cult:'Theism Cult'},this.character.theistCult),
+      Object.assign({cult:'Sorcery Order'},this.character.sorceryOrder),
+      Object.assign({cult:'Mystical Order'},this.character.mysticalOrder),
+    ].filter(c=>c.name).map(c=>[c.cult, c.name, c.level].join('\n')).join('\n');
   }
 
   setCultInformation(event: any) {
     this.character.cultOverall = event.target.value;
+  }
+
+  getReligion() : string {
+    if(!this.character.religion)
+      return this.generateReligion();
+    return this.character.religion;
+  }
+
+  generateReligion(): string {
+    return this.character.theistCult.name? this.character.theistCult.name : "";
+  }
+
+  setReligion(event: any) {
+    this.character.religion = event.target.value;
   }
 
   getAbilities() : string {
@@ -405,7 +489,25 @@ ${social?social.resources:''}`.trim();
   }
 
   generateAbilities(): string {
-    return "";
+    let magic = [
+      this.getMapOrNull(this.character.magic.folk,"Folk Spells"),
+      this.getMapOrNull(this.character.magic.sorcery,"Sorcery"),
+      this.getMapOrNull(this.character.magic.miracles,"Miracles"),
+      this.character.magic.spirits?("Spirits\n"+this.character.magic.spirits) : undefined
+    ].concat(this.character.magic.path? [
+      this.getStringMapOrNull(this.character.magic.path.augmentations,"Augmentations"),
+      this.getMapOrNull(this.character.magic.path.invocations,"Invocations"),
+      this.getMapOrNull(this.character.magic.path.enhancements,"Enhancements")
+    ]: []).filter(s=>s && s.length > 0).join("\n");
+    return magic;
+  }
+
+  getMapOrNull(list : Spell[], title : string) : string | undefined {
+    return list && list.length ? (title+":\n"+list.map(s=>s.name).join(', ')) : undefined;
+  }
+
+  getStringMapOrNull(list : string[], title : string) : string | undefined {
+    return list && list.length ? (title+":\n"+list.join(', ')) : undefined;
   }
 
   setAbilities(event: any) {

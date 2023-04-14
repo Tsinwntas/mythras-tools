@@ -1,5 +1,9 @@
 <div class="page-wrapper">
-    <h2>Character Creation Wizard</h2>
+    <div class="header">
+        <h2>Character Creation Wizard</h2>
+        <div></div>
+        <button mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
+    </div>
 
     <mat-stepper [linear]="false" #stepper (selectionChange)="onStepChange($event)" orientation="vertical" >
         <mat-step *ngFor="let state of states">

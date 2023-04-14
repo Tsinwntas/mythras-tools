@@ -1,0 +1,22 @@
+<div class="page-wrapper">
+    <div class="header"><span class="title">MYTHRAS TOOLS</span> - <span class="author">by Tsinik</span></div>
+    <div class="disclaimer"><b>This page saves in the browser's local storage, so if you clean your cache, everything saved will be lost.</b></div>
+    <div class="options">
+        <div class="option">
+            <button mat-raised-button color="primary" (click)="newChararcter()">NEW CHARACTER CREATION</button>
+        </div>
+        <div class="option" *ngIf="isAlreadyCreatingCharacter()">
+            <button mat-raised-button color="primary" routerLink="/character-creation">CONTINUE CHARACTER CREATION</button>
+        </div>        
+        <div class="option">
+            <open-modal modal="load" [prop]="{action:'creation'}"><button mat-raised-button color="primary">LOAD CHARACTER CREATION</button></open-modal>
+        </div>
+        <div class="option">
+            <open-modal modal="load" [prop]="{action:'pdf'}"><button mat-raised-button color="accent" >LOAD CHARACTER PDF</button></open-modal>
+        </div>
+        <div class="option">
+            <button mat-raised-button color="warn" routerLink="/combat">COMBAT FLOW</button>
+        </div>
+    </div>
+    <div class="credits"></div>
+</div>

@@ -26,6 +26,12 @@ export class EquipmentEditComponent {
     return Object.keys(materials);
   }
 
+  getTypes() : string[] {
+    if(!this.equipment.construction)
+      return [];
+    return constructions[this.equipment.construction].types;
+  }
+
   changedConstruction(construction : string) : void {
     this.equipment.construction = construction;
     this.equipment.type = constructions[construction].types[0];

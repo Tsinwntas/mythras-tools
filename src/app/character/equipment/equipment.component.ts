@@ -62,7 +62,7 @@ export class EquipmentComponent implements OnInit {
   }
 
   getStartingProp(prop: string) {
-    if (!this.character.socialClass) {
+    if (!this.character.socialClass || !this.character.socialClass.class) {
       return 'You should decide on a social class first.';
     }
     return this.findFromMap()![prop] + '.';

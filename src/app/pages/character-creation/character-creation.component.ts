@@ -67,6 +67,8 @@ export class CharacterCreationComponent extends StatePageComponent{
   override ngDoCheck() {
     localStorage['creation-state'] = this.pageState;
     localStorage['creation-character']=JSON.stringify(this.character);
+    if(this.character.id)
+      localStorage['character-'+this.character.id]=JSON.stringify(this.character);
   }
 
   override setProps(component: ComponentRef<any>): void {
