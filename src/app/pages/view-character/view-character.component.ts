@@ -17,4 +17,12 @@ export class ViewCharacterComponent extends CharacterPreviewComponent implements
     this.character = Object.assign(new Character(), JSON.parse(localStorage['view-character']));
   }
 
+  ngDoCheck() {
+    localStorage['view-character'] = JSON.stringify(this.character);
+    if (this.character.id)
+      localStorage['character-' + this.character.id] = JSON.stringify(
+        this.character
+      );
+  }
+
 }

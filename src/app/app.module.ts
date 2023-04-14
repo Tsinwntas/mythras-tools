@@ -117,7 +117,6 @@ import { CharacterCreationComponent } from './pages/character-creation/character
 import { DetailsComponent } from './character/details/details.component';
 import { SkillsComponent } from './character/skills/skills.component';
 import { StatsComponent } from './character/stats/stats.component';
-import { SpecialsComponent } from './character/specials/specials.component';
 import { SpellsComponent } from './character/modals/spells/spells.component';
 import { HeightWeightComponent } from './character/height-weight/height-weight.component';
 import { CombatStylesComponent } from './character/modals/combat-styles/combat-styles.component';
@@ -266,7 +265,6 @@ import { ViewCharacterComponent } from './pages/view-character/view-character.co
     DetailsComponent,
     SkillsComponent,
     StatsComponent,
-    SpecialsComponent,
     SpellsComponent,
     HeightWeightComponent,
     CombatStylesComponent,

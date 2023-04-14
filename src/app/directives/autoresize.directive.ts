@@ -25,7 +25,7 @@ export class AutoresizeDirective implements AfterViewInit {
     this.adjustFontSize(this.el.nativeElement);
   }
 
-  @Input() maxInputFont: number = 25;
+  @Input() maxInputFont: number = 18;
   @Input() hasArrow: boolean;
 
   @HostListener('input', ['$event.target'])

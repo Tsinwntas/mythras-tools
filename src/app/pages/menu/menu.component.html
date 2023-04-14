@@ -1,22 +1,60 @@
 <div class="page-wrapper">
-    <div class="header"><span class="title">MYTHRAS TOOLS</span> - <span class="author">by Tsinik</span></div>
-    <div class="disclaimer"><b>This page saves in the browser's local storage, so if you clean your cache, everything saved will be lost.</b></div>
-    <div class="options">
-        <div class="option">
-            <button mat-raised-button color="primary" (click)="newChararcter()">NEW CHARACTER CREATION</button>
-        </div>
-        <div class="option" *ngIf="isAlreadyCreatingCharacter()">
-            <button mat-raised-button color="primary" routerLink="/character-creation">CONTINUE CHARACTER CREATION</button>
-        </div>        
-        <div class="option">
-            <open-modal modal="load" [prop]="{action:'creation'}"><button mat-raised-button color="primary">LOAD CHARACTER CREATION</button></open-modal>
-        </div>
-        <div class="option">
-            <open-modal modal="load" [prop]="{action:'pdf'}"><button mat-raised-button color="accent" >LOAD CHARACTER PDF</button></open-modal>
-        </div>
-        <div class="option">
-            <button mat-raised-button color="warn" routerLink="/combat">COMBAT FLOW</button>
-        </div>
+  <div class="header">
+    <span class="title">MYTHRAS TOOLS</span> -
+    <span class="author">by Tsinik</span>
+  </div>
+  <div class="disclaimer">
+    <b
+      >This page saves in the browser's local storage, so if you clean your
+      cache, everything saved will be lost.</b
+    >
+  </div>
+  <div class="options">
+    <div class="option">
+      <button mat-raised-button color="primary" (click)="newChararcter()">
+        NEW CHARACTER CREATION
+      </button>
     </div>
-    <div class="credits"></div>
+    <div class="option" *ngIf="isAlreadyCreatingCharacter()">
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="/character-creation"
+      >
+        CONTINUE CHARACTER CREATION
+      </button>
+    </div>
+    <div class="option">
+      <open-modal modal="load" [prop]="{ action: 'creation' }"
+        ><button mat-raised-button color="primary">
+          LOAD CHARACTER CREATION
+        </button></open-modal
+      >
+    </div>
+    <div class="option">
+      <open-modal modal="load" [prop]="{ action: 'pdf' }"
+        ><button mat-raised-button color="accent">
+          LOAD CHARACTER PDF
+        </button></open-modal
+      >
+    </div>
+    <div class="option">
+      <button mat-raised-button color="warn" routerLink="/combat">
+        COMBAT FLOW
+      </button>
+    </div>
+  </div>
+  <div class="credits">
+    Fan Policy Acknowledgement:
+    <br />
+    I own <b>NONE</b> of the info presented in these tools. Design Mechanism Inc owns all official information, this tools are simply to help players and GMs and not to claim any ownership of anything. 
+    Make sure to support Design Mechanism and Mythras by buying official rule books and other products from their page. You can find everything mythras related at <a href="https://thedesignmechanism.com/" target="_blank">https://thedesignmechanism.com/</a>.
+    <br />
+    “Mythras” is a Registered Trademark of The Design Mechanism Inc, and is used
+    with permission.
+    <br />
+    These tools use 'Notes From Pavis Mythras fan material' based on
+    <a href="http://toolsfrompavis.com/" target="_blank">http://toolsfrompavis.com/</a> and is used with permission of the author. You
+    can find more Mythras fan material at <a href="http://notesfrompavis.blog" target="_blank">https://notesfrompavis.blog</a>
+  </div>
 </div>

@@ -1,18 +1,25 @@
 <div class="page">
-    <p class="line" *ngIf="!hideDisclaimer"><i>I don't pre-load the pdf because it makes the page slower. Load it once you are done with the other steps to
+    <p class="line" *ngIf="!hideDisclaimer"><i>I don't pre-load the pdf because it makes the page slower. Load it once
+            you are done with the other steps to
             view, edit and print.</i></p>
-    <p class="line" *ngIf="!hideDisclaimer"><i><b>Remember, if you clear your cache, all data will be lost. Make sure to download your characters to not lose
+    <p class="line" *ngIf="!hideDisclaimer"><i><b>Remember, if you clear your cache, all data will be lost. Make sure to
+                download your characters to not lose
                 them.</b></i></p>
+    <p class="line"><i><b>If you changed any of the pregenerated text areas and want them back to the default generation, simply delete all the text and it will rewrite itself.</b></i></p>
     <div class="line" *ngIf="load&&!loading">
         <button mat-flat-button (click)="refresh()"><mat-icon>refresh</mat-icon> Refresh PDF</button>
         <a mat-flat-button [href]="generateDownloadJsonUri()"
             [download]="character.name+'.json'"><mat-icon>download</mat-icon> Download Character</a>
         <button mat-flat-button (click)="print()"><mat-icon>print</mat-icon> Print PDF</button>
-        <button class="back-button" *ngIf="hideDisclaimer" mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
+        <button class="back-button" *ngIf="hideDisclaimer && isCreationCharacter()" mat-raised-button color="primary"
+            (click)="backToCreation()">Back to Creation</button>
+        <button class="back-button" *ngIf="hideDisclaimer" mat-raised-button color="accent" routerLink="/menu">Back to
+            Main Menu</button>
     </div>
     <div class="line" *ngIf="!load&&!loading">
-        <button mat-flat-button (click)="load=true" ><mat-icon>refresh</mat-icon> Load PDF</button>
-        <button class="back-button" *ngIf="hideDisclaimer" mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
+        <button mat-flat-button (click)="load=true"><mat-icon>refresh</mat-icon> Load PDF</button>
+        <button class="back-button" *ngIf="hideDisclaimer" mat-raised-button color="accent" routerLink="/menu">Back to
+            Main Menu</button>
     </div>
     <div id="character-pdf">
         <character-pdf *ngIf="load" [character]="character" />

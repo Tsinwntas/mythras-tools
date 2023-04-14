@@ -1,6 +1,7 @@
 import { Character } from 'src/app/model/character';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-preview',
@@ -16,7 +17,8 @@ export class CharacterPreviewComponent {
 
   constructor(
     private detector: ChangeDetectorRef,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router : Router
   ) {}
 
   refresh() {
@@ -35,6 +37,20 @@ export class CharacterPreviewComponent {
     (window as any).print();
     (document as any).title = title;
 
+  }
+
+  isCreationCharacter(){
+    try{
+      let creation = localStorage['creation-character'];
+      return creation && this.character.id == JSON.parse(creation).id;
+    } catch(e){
+      return false;
+    }
+  }
+
+  backToCreation() {
+    localStorage['creation-character'] = localStorage['view-character'];
+    this.router.navigate(['/character-creation']);
   }
 
   generateDownloadJsonUri() {

@@ -61,6 +61,8 @@ export class Character {
     incomeSeason : number;
     incomeYear : number;
 
+    extraInformation : string;
+
     constructor() {
         this.id = uuidv4();
         this.skills = new CharacterSkills();

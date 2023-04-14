@@ -6400,3 +6400,50 @@ select {
   font-family: SavaPro-Medium_q;
   src: url("/assets/fonts/SavaPro-Medium_q.woff") format("woff");
 }
+
+#page3{
+  width: 935px;
+  height: 1210px;
+  margin-top: 20px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+// #traits_info{
+//   width: 880px;
+//   height: 1145px;
+//   margin-top: auto;
+//   margin-bottom: auto;
+//   margin-left: -15px;
+//   border-radius: 15px;
+//   border: 1px solid;
+//   resize: none;
+// }
+
+#traits_info{
+  
+  z-index: 2;
+  resize: none;
+  padding: 10px;
+  position: absolute;
+  width: 880px;
+  height: 1145px;
+  color: rgb(0, 0, 0);
+  text-align: left;
+  background: transparent;
+  font: normal 18px Arial, Helvetica, sans-serif;
+  border-radius: 15px;
+  border: 1px solid;
+  margin-left: 20px;
+  margin-top: 35px;
+}
+
+#appendix {
+  left: 430px;
+  top: 22px;
+  letter-spacing: -0.12px;
+  background-color: white;
+  z-index: 5;
+  padding: 0px 5px;
+}

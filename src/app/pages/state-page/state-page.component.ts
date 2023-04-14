@@ -62,8 +62,10 @@ export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChec
   }
 
   stepTo(index: any, click?: ()=>void){
-    this.pageState = index;
-    this.stepper!.selectedIndex = index;
+    if(index > 0){
+      this.pageState = index;
+      this.stepper!.selectedIndex = index;
+    }
     if(click)
       click();
   }
