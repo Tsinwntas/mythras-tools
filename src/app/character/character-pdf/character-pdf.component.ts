@@ -148,7 +148,7 @@ export class CharacterPdfComponent {
     return this.character.skills.skills
       .concat(this.character.skills.hobby)
       .concat(this.character.skills.specialized)
-      .filter((s) => s.name.includes('Devotion'))
+      .filter((s) => s && s.name.includes('Devotion'))
       .sort(
         (a, b) =>
           getSkillTotal(this.character, b) - getSkillTotal(this.character, a)
@@ -156,6 +156,8 @@ export class CharacterPdfComponent {
   }
 
   getPassion(index: number): string {
+    if(!this.character.passions)
+      this.character.passions = [];
     let passion = this.character.passions[index];
     if (passion) return passion.passion;
     return '';
@@ -205,7 +207,7 @@ export class CharacterPdfComponent {
         this.character.family.aunts
       }, Cousins: ${this.character.family.cousins}.\n
 Reputation: ${this.character.family.reputation}\n
-Connections: ${this.character.family.connections.trim()}\n
+Connections: ${this.character.family.connections ? this.character.family.connections.trim():""}\n
 
 ${this.character.family.text}\n\n`;
       if (this.character.background)

@@ -3,6 +3,7 @@ import { ModalInnerContent } from './../../model/modal-inner-content';
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/model/character';
 import { MatDialogRef } from '@angular/material/dialog';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-load-character',
@@ -53,11 +54,47 @@ export class LoadCharacterComponent implements ModalInnerContent, OnInit {
     this.dialogRef.close("Loaded " + id);
   }
 
+  loadNew(){
+    let character = new Character();
+    localStorage['view-character'] = JSON.stringify(character);
+    this.router.navigate(['/view']);
+    this.dialogRef.close("Loaded " + character.id);
+  }
+
   remove(index: number) {
     if (confirm('Are you sure you want to delete "' + this.characters[index].name+'"?')) {
       let toRemove = this.characters.splice(index, 1)[0];
       if (toRemove && toRemove.id)
         localStorage.removeItem('character-' + toRemove.id);
+    }
+  }
+
+  upload(event : any){
+    let reader = new FileReader();
+    try{
+    reader.readAsText(event.target.files[0]);
+    } catch(e){
+      //ignore
+      return;
+    }
+    reader.onload = async () => {
+      const dataString = reader.result;
+      if (!dataString){
+        console.log("No Data in file");
+        return;
+      }
+      try{
+      let character = JSON.parse(dataString.toString());
+      if(!character.id)
+        character.id = uuidv4();
+      if(!localStorage['character-' + character.id] || confirm("This character already exists. Are you sure you want to overwrite?")){
+        localStorage['character-' + character.id] = JSON.stringify(character);
+        this.ngOnInit();
+      }
+
+      }catch(e){
+        console.error("Failed to upload character.")
+      }
     }
   }
 }

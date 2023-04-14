@@ -12,3 +12,8 @@
         </div>
     </mat-card-content>
 </mat-card>
+<div class="add">
+    <button type="button" mat-stroked-button (click)="addCharacter.click()">Upload Character From Device</button>
+    <!-- <button type="button" *ngIf="action=='pdf'" mat-stroked-button (click)="loadNew()">Create Empty PDF</button> -->
+    <input type="file" class="file-upload" (change)="upload($event)" requiredFileType="text/json" #addCharacter/>
+</div>
