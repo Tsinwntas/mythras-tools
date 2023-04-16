@@ -346,6 +346,8 @@ export function getButArmor(
 }
 
 function getPropWithQuantity(item: any, prop: string): number {
+  if(typeof item == 'number')
+    return item;
   return orZero(item[prop]) * (item.quantity ? item.quantity : 1);
 }
 

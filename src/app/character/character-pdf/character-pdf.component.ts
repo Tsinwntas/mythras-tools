@@ -229,6 +229,7 @@ ${this.character.family.text}\n\n`;
     let family = this.character.family;
     this.character.contactsOverall = `Contacts: ${family.contacts}
 Allies: ${family.allies}
+Rivals: ${family.rivals}
 Enemies: ${family.enemies}`.trim();
   }
 

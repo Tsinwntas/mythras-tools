@@ -1,5 +1,8 @@
 <h1 mat-dialog-title>{{getHeader()}}</h1>
-<div mat-dialog-content>
+<div *ngIf="!loaded" class="text-center">
+    <mat-spinner></mat-spinner>
+</div>
+<div mat-dialog-content >
     <ng-container #infoComponent></ng-container>
 </div>
 <div mat-dialog-actions>

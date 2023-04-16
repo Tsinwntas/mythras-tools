@@ -2,3 +2,12 @@
     margin-right: 20px;
     margin-bottom: 0px;
 }
+mat-spinner{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    background: #0000005e;
+    z-index: 101;
+}

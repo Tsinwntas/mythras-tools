@@ -13,6 +13,7 @@ export class InfoModalComponent implements AfterViewInit{
   component : ModalInnerContent;
   @ViewChildren('infoComponent', {read: ViewContainerRef}) public infoComponent: QueryList<ViewContainerRef>;
 
+  loaded : boolean;
   loadingObservable : Observable<any>;
 
   constructor(
@@ -73,6 +74,7 @@ export class InfoModalComponent implements AfterViewInit{
 
       this.infoComponent.get(0)!.clear();
       this.infoComponent.get(0)!.createComponent(componentFactory);
+      this.loaded = true;
   }
 
 }
