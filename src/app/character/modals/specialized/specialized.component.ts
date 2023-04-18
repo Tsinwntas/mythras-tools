@@ -67,7 +67,7 @@ export class SpecializedComponent extends TableComponent implements ModalInnerCo
   }
 
   add(){
-    this.character.skills.specialized!.push(new Skill(this.skill.name+" (EDIT)", true).setBase(this.skill.base));
+    this.character.skills.specialized!.push(new Skill(this.skill.name+" (EDIT)", true).setBase(this.skill.base).setOperations({add:this.skill.add, multiply: this.skill.multiply, divide: this.skill.divide}));
     this.initTable();
   }
 

@@ -49,10 +49,12 @@ export class CareerComponent {
     let specializedArray = this.character.skills.specialized.filter((s) =>
       s.name.startsWith(skill.replace(/[ ]*[(][Aa]ny.*[)]/g, ''))
     );
-    if (specializedArray.length == 0)
+    if (specializedArray.length == 0){
+      let s = this.findSkill(skill)
       this.character.skills.specialized.push(
-        (specialized = new Skill(skill, true).setBase(this.findSkill(skill).base))
+        (specialized = new Skill(skill, true).setBase(s.base).setOperations({add:s.add, multiply: s.multiply, divide:s.divide}))
       );
+    }
     else {
       specialized = specializedArray.find((s) => s.careerBonus);
       if (!specialized) specialized = specializedArray[0];

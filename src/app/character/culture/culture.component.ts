@@ -71,7 +71,7 @@ export class CultureComponent {
     let specialized  = undefined;
     let specializedArray = this.character.skills.specialized.filter(s => s.name.startsWith(skill.name));
     if(specializedArray.length == 0)
-      this.character.skills.specialized.push(specialized = new Skill(skill.name+" (EDIT)", true).setBase(skill.base));
+      this.character.skills.specialized.push(specialized = new Skill(skill.name+" (EDIT)", true).setBase(skill.base).setOperations({add:skill.add, multiply: skill.multiply, divide: skill.divide}));
     else{
       specialized = specializedArray.find(s=>s.cultureBonus);
       if(!specialized)
