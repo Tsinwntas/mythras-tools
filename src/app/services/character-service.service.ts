@@ -318,7 +318,7 @@ export function getTotalFromItems(
           return 0;
         return (character.equipment as any)[k].reduce(
           (a: any, b: any) =>
-            getPropWithQuantity(a, prop) + getPropWithQuantity(b, prop)
+            getPropWithQuantity(a, prop) + getPropWithQuantity(b, prop), 0
         );
       }
       if(onlyArmor == false)

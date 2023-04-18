@@ -96,7 +96,7 @@ export const folkMagic = [
     name: 'Cool',
     tags: 'Concentration, Touch',
     description:
-      "Cool protects the recipient from the effects of muggy atmospheres and heat prostration, guarding them from any Eatigue caused by the natural environment. The spell does not stop the effects of heat related magic, but will make any resistance roll one difficulty grade easier. Someone under the effects of this spell wearing full hoplite armour could march through a tropical rain forest during the height of summer without harm. Cool affects a target of SIZ up to the caster's POW xh.",
+      "Cool protects the recipient from the effects of muggy atmospheres and heat prostration, guarding them from any Fatigue caused by the natural environment. The spell does not stop the effects of heat related magic, but will make any resistance roll one difficulty grade easier. Someone under the effects of this spell wearing full hoplite armour could march through a tropical rain forest during the height of summer without harm. Cool affects a target of SIZ up to the caster's POW xh.",
   },
   {
     name: 'Coordination',
@@ -384,7 +384,7 @@ export const folkMagic = [
     name: 'Tire',
     tags: 'Ranged, Resist (Endurance)',
     description:
-      'Tire inflicts one level of Eatigue on the subject unless resisted.',
+      'Tire inflicts one level of Fatigue on the subject unless resisted.',
   },
   {
     name: 'Translate',
@@ -408,7 +408,7 @@ export const folkMagic = [
     name: 'Vigour',
     tags: 'Touch',
     description:
-      "Vigour makes the recipient feel alive and energetic, being used to offset the effects of strenuous physical labour. For the spell's duration, all Eatigue effects gained from laborious activity are ignored (but return on the spell's dismissal). It negates the effects of a Tire spell.",
+      "Vigour makes the recipient feel alive and energetic, being used to offset the effects of strenuous physical labour. For the spell's duration, all Fatigue effects gained from laborious activity are ignored (but return on the spell's dismissal). It negates the effects of a Tire spell.",
   },
   {
     name: 'Voice',
@@ -420,7 +420,7 @@ export const folkMagic = [
     name: 'Warmth',
     tags: 'Concentration, Touch',
     description:
-      "Warmth protects the recipient from the effects of freezing atmospheres and exposure, and from Eatigue caused by the natural environment. The spell does not stop the effects of cold-related magic cast at them, but will make any resistance roll one difficulty grade easier. Thus a person under the effects of this spell could walk about on a glacier during midwinter in their underclothes without harm. Warmth affects an object of SIZ up to the caster's POW xh.",
+      "Warmth protects the recipient from the effects of freezing atmospheres and exposure, and from Fatigue caused by the natural environment. The spell does not stop the effects of cold-related magic cast at them, but will make any resistance roll one difficulty grade easier. Thus a person under the effects of this spell could walk about on a glacier during midwinter in their underclothes without harm. Warmth affects an object of SIZ up to the caster's POW xh.",
   },
   {
     name: 'Witchsight',
@@ -504,7 +504,7 @@ export const invocationMagic = [
   {
     name: 'Life Sense',
     description:
-      "In tune with the rhythms of nature, the mystic can determine the vitality of any living thing by touch alone. If the mystic touches another he learns of the target's current injuries, Eatigue level, and whether it is currently afflicted by any poison or disease. The mystic is also aware of any form of life within a number of metres equal to his Willpower skill, which may make Stealth difficult to accomplish.",
+      "In tune with the rhythms of nature, the mystic can determine the vitality of any living thing by touch alone. If the mystic touches another he learns of the target's current injuries, Fatigue level, and whether it is currently afflicted by any poison or disease. The mystic is also aware of any form of life within a number of metres equal to his Willpower skill, which may make Stealth difficult to accomplish.",
   },
   {
     name: 'Magic Sense',
@@ -547,7 +547,7 @@ export const enhancementMagic = [
   {
     name: 'Fatigue',
     description:
-      "Each point of Intensity negates a level of Eatigue. This attribute can be enhanced pre-emptively in anticipation of becoming fatigued. Thus a 'fresh' mystic who spends 6 Magic Points could grant himself two buffer levels of Eatigue which could be lost before he started feeling the effects of his strenuous activity. At the conclusion of the task any negated levels of fatigue return, potentially causing the mystic to collapse into unconsciousness.",
+      "Each point of Intensity negates a level of Fatigue. This attribute can be enhanced pre-emptively in anticipation of becoming fatigued. Thus a 'fresh' mystic who spends 6 Magic Points could grant himself two buffer levels of Fatigue which could be lost before he started feeling the effects of his strenuous activity. At the conclusion of the task any negated levels of fatigue return, potentially causing the mystic to collapse into unconsciousness.",
   },
   {
     name: 'Healing Rate',
@@ -901,7 +901,7 @@ export const theismMagic = [
     name: 'Berserk',
     tags: 'Duration (Minutes), Rank Initiate, Resist (Willpoeer)',
     description:
-      'The recipient of Berserk is overcome with bloodlust, causing him to disregard his own safety in exchange for being imbued with tremendous stamina and toughness. For the duration of the miracle the Damage Modifier of the recipient is increased by two steps, the Size of his weapon counts as one step larger for the purpose of penetrating parries, and he is immune to all the detrimental effects of Serious Wounds and Eatigue. A Major wound will still incapacitate him. In return the subject may not Parry, Evade or cast any magic while under the influence of Berserk. However the berserker auto-\nmatically succeeds in resisting any Special Effect used against him.\nUnwilling recipients receive a chance to resist. Normally, the recipient remains in the Berserk state for the entire duration of the spell, but Games Masters may allow a Berserk character to shake off the effects with an unopposed Willpower test. At the end of the spell, the recipient immediately suffers twice the deferred Eatigue levels they would have lost during the entire combat.',
+      'The recipient of Berserk is overcome with bloodlust, causing him to disregard his own safety in exchange for being imbued with tremendous stamina and toughness. For the duration of the miracle the Damage Modifier of the recipient is increased by two steps, the Size of his weapon counts as one step larger for the purpose of penetrating parries, and he is immune to all the detrimental effects of Serious Wounds and Fatigue. A Major wound will still incapacitate him. In return the subject may not Parry, Evade or cast any magic while under the influence of Berserk. However the berserker auto-\nmatically succeeds in resisting any Special Effect used against him.\nUnwilling recipients receive a chance to resist. Normally, the recipient remains in the Berserk state for the entire duration of the spell, but Games Masters may allow a Berserk character to shake off the effects with an unopposed Willpower test. At the end of the spell, the recipient immediately suffers twice the deferred Fatigue levels they would have lost during the entire combat.',
   },
   {
     name: 'Bind Ghost',
@@ -1139,7 +1139,7 @@ export const theismMagic = [
     name: 'Perseverance',
     tags: 'Duration (Hours), Rank Initiate',
     description:
-      'Through this miracle the recipient can channel the strength of his god, becoming inured to the effects of hard labour. Whilst the miracle remains active, the target of this spell will not receive another level of Eatigue, no matter the hardship faced. Perseverance does not grant any additional capability to lift, march or work; it just ensures the recipient will keep on going. This miracle has no effect upon Eatigue lost from asphyxiation or blood loss.',
+      'Through this miracle the recipient can channel the strength of his god, becoming inured to the effects of hard labour. Whilst the miracle remains active, the target of this spell will not receive another level of Fatigue, no matter the hardship faced. Perseverance does not grant any additional capability to lift, march or work; it just ensures the recipient will keep on going. This miracle has no effect upon Fatigue lost from asphyxiation or blood loss.',
   },
   {
     name: 'Propitiate',
