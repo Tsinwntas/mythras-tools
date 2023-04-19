@@ -464,7 +464,7 @@ ${social ? social.resources : ''}`.trim() + '\n';
 
   getTotalEnc(): number {
     if (this.character.equipment.totalEnc == undefined)
-      return getTotalFromItems(this.character, 'enc');
+      return getTotalFromItems(this.character, 'enc', true);
     return this.character.equipment.totalEnc;
   }
 
