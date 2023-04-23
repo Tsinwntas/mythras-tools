@@ -17,7 +17,8 @@
       "Streetwise",
       "Survival",
       "Track"
-    ]
+    ],
+    "combat":"Concealable Weapons Style"
   },
   {
     "career": "Alchemist",
@@ -206,7 +207,8 @@
       "Musicianship",
       "Survival",
       "Track"
-    ]
+    ],
+    "combat":"Specific Herding or Cultural Style"
   },
   {
     "career": "Hunter",
@@ -227,7 +229,8 @@
       "Navigation",
       "Survival",
       "Track"
-    ]
+    ],
+    "combat":"Specific Hunting or Cultural Style"
   },
   {
     "career": "Merchant",
@@ -289,7 +292,8 @@
       "Meditation",
       "Musicianship",
       "Mysticism"
-    ]
+    ],
+    "combat":"Cultural Style"
   },
   {
     "career": "Official",
@@ -372,7 +376,8 @@
       "Navigation",
       "Seamanship",
       "Survival"
-    ]
+    ],
+    "combat":"Specific Shipboard or Cultural Style"
   },
   {
     "career": "Scholar",
@@ -413,7 +418,8 @@
       "Navigation",
       "Survival",
       "Track"
-    ]
+    ],
+    "combat":"Specific Hunting or Cultural Style"
   },
   {
     "career": "Shaman",
@@ -475,7 +481,8 @@
       "Mechanisms",
       "Sleight",
       "Streetwise"
-    ]
+    ],
+    "combat":"Concealable Weapons Style"
   },
   {
     "career": "Warrior",
@@ -488,6 +495,7 @@
       "Lore (Strategy and Tactics)",
       "Oratory",
       "Survival"
-    ]
+    ],
+    "combat":"Cultural Style & Speciality Style"
   }
 ]

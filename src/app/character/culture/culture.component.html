@@ -7,9 +7,10 @@
     </mat-select>
 </mat-form-field>
 <p>{{getPointsLeft()}}/100 points to distribute among any of the available skills plus an optional cultural combat style, as listed below.</p>
-<p><i>Minimum of 5 Points can be allocated to each skill (you can choose to add 0 points to a skill) and a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
+<p><i>Minimum of 5 Points can be allocated to each skill (you need to allocate points to all standar skills unless stated otherwise) and a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
 <p><i>If a style has multiple traits, discuss with your GM and apply only one.</i></p>
 <div class="culture-combat-style">
+    <p><b>Cultural Combat Style: </b></p>
     <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
     <div class="selected-combat-style" *ngIf="character.skills.combatstyles.length">
         <div class="skill-wrapper">
@@ -24,11 +25,11 @@
         </div>
     </div>
 </div>
-<div class="cultural-header"><p>Cultural Skills:</p><button class="reset-button" mat-flat-button (click)="resetSkills()">CLEAR CULTURE BONUSES</button></div>
+<div class="cultural-header"><p><b>Cultural Skills:</b></p><button class="reset-button" mat-flat-button (click)="resetSkills()">CLEAR CULTURE BONUSES</button></div>
 <p *ngIf="character.culture=='Nomadic'">Only choose 2 of Athletics, Boating, Swim, Drive, Ride</p>
 <div class="skill-categories">
     <div class="skill-category standard-skills">
-        <p><b>Standard Skills</b></p>
+        <p><b>Standard Skills</b><i><small> - <span class="clickable" (click)="setAllStandardsToFive()">Set all standards to 5 points.</span></small></i></p>
         <div class="skill-wrapper"  *ngFor="let skill of getStandardCulturalSkills()">
         <div class="attribute">
             <span class="skill-name">{{skill.name}}</span>

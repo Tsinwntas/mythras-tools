@@ -104,15 +104,31 @@ export class CareerComponent {
       );
   }
 
-  getCombatStyleProps(): any {
+  getCombatStyleProps(second? : boolean): any {
+    if(second && (!this.character.skills.combatstyles || !this.character.skills.combatstyles.length))
+      second=false;
     return {
       character: this.character,
       selectStyle: (style: CombatStyle) => {
-        this.specializations['style'] = this.character.skills.combatstyles.find(
-          (s) => s.name == style.name && s.source == style.source
-        )!;
+        if(!style){
+          this.specializations['style'] = undefined;
+          this.specializations['style2'] = undefined;
+        } else {
+          this.specializations['style'+(second?"2":"")] = this.character.skills.combatstyles.find(
+            (s) => s.name == style.name && s.source == style.source
+          )!;
+        }
       },
     };
+  }
+
+  getCombatStyleByCareer() : String {
+    if(!this.character.career)
+      return 'No Career Selected';
+    let career : any = Careers.find((c:any)=>c.career==this.character.career)
+    if(career && career.combat)
+      return career.combat;
+    return 'None but add points to one if your GM allows';
   }
 
   getCombatStyle(): CombatStyle {
@@ -121,11 +137,27 @@ export class CareerComponent {
     return this.specializations['style'];
   }
 
-  checkSpecializedStyle(): CombatStyle {
+  getCombatStyle2(): CombatStyle {
+    if (!this.specializations['style2'])
+      this.specializations['style2'] = this.checkSpecializedStyle(true);
+    return this.specializations['style2'];
+  }
+
+  checkSpecializedStyle(second? : boolean): CombatStyle | undefined{
+    if(second && !this.getCombatStyle())
+      return undefined;
     let specialized = this.character.skills.combatstyles.find(
-      (s) => s.careerBonus
+      (s) => (!second || !this.styleIsMainCombatStyle(s)) && s.careerBonus
     );
-    return specialized ? specialized : this.character.skills.combatstyles[0];
+    return specialized ? specialized : this.character.skills.combatstyles.filter(s=>!second || !this.styleIsMainCombatStyle(s))[0];
+  }
+
+  styleIsMainCombatStyle(style : CombatStyle) : boolean {
+    if(this.getCombatStyle().name != style.name)
+      return false;
+    if(!this.getCombatStyle().selectedTrait && !style.selectedTrait)
+      return true;
+    return this.getCombatStyle().selectedTrait?.name == style.selectedTrait.name;
   }
 
   getStandardCareerSkills(): string[] {

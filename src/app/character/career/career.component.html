@@ -9,21 +9,41 @@
 <p><i>Unlike cultural points, there is no minimum for these skills but there is a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
 <p><i>If a style has multiple traits, discuss with your GM and apply only one.</i></p>
 <div class="culture-combat-style">
-    <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
-    <div class="selected-combat-style" *ngIf="character.skills.combatstyles?.length">
-        <div class="skill-wrapper">
-        <div class="attribute style-attribute">
-            <span class="skill-name"><open-modal modal="combat-styles" [prop]="getCombatStyleProps()">{{getCombatStyle().name}}</open-modal></span>
-            <span class="skill-base">{{getSkill(getCombatStyle())}}</span>
+    <p><b>Career Combat Style: </b>({{getCombatStyleByCareer()}})</p>
+    <div class="combat-styles">
+        <div class="combat-style">
+            <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
+            <div class="selected-combat-style" *ngIf="character.skills.combatstyles?.length">
+                <div class="skill-wrapper">
+                <div class="attribute style-attribute">
+                    <span class="skill-name"><open-modal modal="combat-styles" [prop]="getCombatStyleProps()">{{getCombatStyle().name}}</open-modal></span>
+                    <span class="skill-base">{{getSkill(getCombatStyle())}}</span>
+                </div>
+                <mat-form-field>
+                    <mat-label>Bonus:</mat-label>
+                    <input matInput type="number" [(ngModel)]="getCombatStyle().careerBonus">
+                </mat-form-field>
+                </div>
+            </div>
         </div>
-        <mat-form-field>
-            <mat-label>Bonus:</mat-label>
-            <input matInput type="number" [(ngModel)]="getCombatStyle().careerBonus">
-        </mat-form-field>
+        <div class="combat-style" *ngIf="character.career && character.career=='Warrior'">
+            <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles || character.skills.combatstyles.length<2" [prop]="getCombatStyleProps(true)">Choose a Combat Style</open-modal>
+            <div class="selected-combat-style" *ngIf="!(!character.skills.combatstyles || character.skills.combatstyles.length<2)">
+                <div class="skill-wrapper">
+                <div class="attribute style-attribute">
+                    <span class="skill-name"><open-modal modal="combat-styles" [prop]="getCombatStyleProps(true)">{{getCombatStyle2().name}}</open-modal></span>
+                    <span class="skill-base">{{getSkill(getCombatStyle2())}}</span>
+                </div>
+                <mat-form-field>
+                    <mat-label>Bonus:</mat-label>
+                    <input matInput type="number" [(ngModel)]="getCombatStyle2().careerBonus">
+                </mat-form-field>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="cultural-header"><p>Career Skills:</p><button class="reset-button" mat-flat-button (click)="resetSkills()">CLEAR CAREER BONUSES</button></div>
+<div class="cultural-header"><p><b>Career Skills:</b></p><button class="reset-button" mat-flat-button (click)="resetSkills()">CLEAR CAREER BONUSES</button></div>
 <div class="skill-categories">
     <div class="skill-category standard-skills">
         <p><b>Standard Skills</b></p>

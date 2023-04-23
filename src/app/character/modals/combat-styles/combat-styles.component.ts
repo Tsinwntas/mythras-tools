@@ -38,6 +38,7 @@ export class CombatStylesComponent implements ModalInnerContent {
 
   remove(index : any) {
     this.character.skills.combatstyles.splice(index, 1);
+    this.selectStyle((undefined as any));
     this.ref.detectChanges();
     setTimeout(()=>{
       this.tableComponent.resetTable();

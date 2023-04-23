@@ -86,6 +86,10 @@ export class CultureComponent {
     + orZero(this.character.skills.specialized?.map(skill=>orZero(skill.cultureBonus)).reduce((a,b)=>a+b,0)));
   }
 
+  setAllStandardsToFive(){
+    getStandardCulturalSkills(this.character).forEach(s=>s.cultureBonus=5);
+  }
+
   getStandardCulturalSkills(): Skill[] {
     return getStandardCulturalSkills(this.character);
   }
