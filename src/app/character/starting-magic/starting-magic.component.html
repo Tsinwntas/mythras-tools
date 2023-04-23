@@ -3,8 +3,9 @@
   ability for each 20% (or part thereof) he has in his magical skill.
   <b>(Mythras Core Rules 118)</b>
 </p>
-<mat-accordion multi>
-  <mat-expansion-panel>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<mat-accordion multi *ngIf="!loading">
+  <mat-expansion-panel [expanded]="expandedFolk">
     <mat-expansion-panel-header>
       <mat-panel-title> Folk Magic </mat-panel-title>
       <mat-panel-description>
@@ -34,7 +35,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <open-modal modal="folkMagic" [prop]="{ character: character }">
+    <open-modal modal="folkMagic" (click)="openingFolk()" [prop]="{ character: character, callBack:getFolkCallback() }">
       <button mat-raised-button>ADD SPELL</button>
     </open-modal>
   </mat-expansion-panel>

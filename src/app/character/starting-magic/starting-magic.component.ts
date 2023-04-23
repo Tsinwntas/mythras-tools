@@ -11,6 +11,8 @@ import { Spell } from 'src/app/model/spell';
 })
 export class StartingMagicComponent implements OnInit {
   character: Character;
+  expandedFolk:true;
+  loading : boolean;
   ngOnInit(): void {
     if(!this.character.magic.folk)
     {
@@ -30,6 +32,15 @@ export class StartingMagicComponent implements OnInit {
     }
     if(this.character.mysticalOrder?.name)
       this.character.magic.path.path = this.getPath();
+  }
+
+  openingFolk(){
+    this.expandedFolk=true;
+    this.loading=true;
+  }
+
+  getFolkCallback() : ()=>void{
+    return ()=>{this.loading = false;}
   }
 
   getPath() {

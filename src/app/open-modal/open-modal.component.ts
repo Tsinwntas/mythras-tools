@@ -125,7 +125,7 @@ export class OpenModalComponent {
       case 'fatigue': this.modals.open(FatigueComponent);return;
       case 'firing-into-crowd': this.modals.open(FiringIntoCrowdComponent);return;
       case 'firing-moving': this.modals.open(FiringMovingComponent);return;
-      case 'folkMagic': this.modals.open(FolkMagicComponent, this.prop);return;
+      case 'folkMagic': this.modals.open(FolkMagicComponent, this.prop, this.prop.callBack);return;
       case 'grapple': this.modals.open(GrappleComponent);return;
       case 'group-luck': this.modals.open(GroupLuckComponent);return;
       case 'healing-wounds': this.modals.open(HealingWoundsComponent);return;
