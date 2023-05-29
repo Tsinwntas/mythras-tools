@@ -56,7 +56,13 @@ export class StartingMagicComponent implements OnInit {
   }
 
   findInvocation(invocation:string) : Spell {
-    return invocationMagic.find(i=>i.name.trim().replace(/[(].*[)]/,"(X)") == invocation)!;
+    let spellname = invocation;
+    if(spellname.includes("Immunity"))
+      spellname = "Immunity (X)";
+    spellname = spellname.trim().replace(/[(].*[)]/,"(X)");
+    let spell = invocationMagic.find(i=>i.name.trim().replace(/[(].*[)]/,"(X)") == spellname)!;
+    spell.name = invocation;
+    return spell;
   }
 
   hasEnhancements() : boolean {

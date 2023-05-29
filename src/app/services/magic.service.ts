@@ -715,6 +715,12 @@ export const sorceryMagic = [
       "Mark is used to magically tag an object with a mystical sigil, so that it may be located, summoned or even targeted by another spell without being in range of the caster's perception. The magic can mark an object of a SIZ up to three times the spell's Intensity. Whilst the caster is within the Range of the spell, he is aware of the object's distance and direction. Whether or not the magical mark is visible depends on the setting, but once placed it cannot be removed until the spell ends. If cast upon a living creature, it may attempt to resist the effects of the spell.\n \nMystic (Sense)\nConcentration\nMystic (Sense) enables the caster to perceive magic using the sense of perception as specified by the spell. This could take the form of seeing auras, hearing faint tinkling, smelling peculiar scents or even feeling his skin crawl.\nDue to the diversity of senses, the magical object need not be in direct perception, but less precise sensory methods may make it difficult exactly to locate the source. The power of Mystic (Sense) permits it to extend into alternate planes, for example the Spirit World, if such exist in the setting.\nThe sorcerer will be able roughly to judge the Magic Points of objects and people to within 1d3 points. If observing a spell or enchantment with an Intensity equal or less than that of the sorcerer's Mystic (Sense), he may discern what the type of magic (Theistic, Mystic, etc), what it does, and the unique signature of whichever cult, guild or tradition cast it – or if already a member of that group, the individual.",
   },
   {
+    name: 'Mystic (Sense)',
+    tags: 'Concentration',
+    description:
+      "Mystic (Sense) enables the caster to perceive magic using the sense of perception as specified by the spell. This could take the form of seeing auras, hearing faint tinkling, smelling peculiar scents or even feeling his skin crawl. Due to the diversity of senses, the magical object need not be in direct perception, but less precise sensory methods may make it dif- ficult exactly to locate the source. The power of Mystic (Sense) per- mits it to extend into alternate planes, for example the Spirit World, if such exist in the setting. The sorcerer will be able roughly to judge the Magic Points of objects and people to within ld3 points. If observing a spell or enchantment with an Intensity equal or less than that of the sorcer- er's Mystic (Sense), he may discern what the type of magic (Theistic, Mystic, etc), what it does, and the unique signature of whichever cult, guild or tradition cast it - or if already a member of that group, the individual.",
+  },
+  {
     name: 'Neutralise Magic',
     tags: '-',
     description:
@@ -893,19 +899,19 @@ export const theismMagic = [
   },
   {
     name: 'Behold',
-    tags: 'Area (Metres), Duration (Minutes), Rank Initiate, Resist (Willpoeer)',
+    tags: 'Area (Metres), Duration (Minutes), Rank Initiate, Resist (Willpower)',
     description:
       'Behold summons a vision of what a fellow cult member of lesser rank is currently experiencing. The image requires some sort of cult related paraphernalia in which to manifest, such as a sacred mirror, pool of pure water or even narcotic smoke rising from a brazier.\nThe view provided is limited to the defined area, centred upon the target of the miracle, which may permit identification of their location if enough clues are visible. Behold conveys only a single primary sense, which for most cults is a visual image. Some however, depending on the deity in question, use sound or even scent instead;in which case the medium through which the information is transmitted is different.\nIf the target is either magically protected against scrying by a spell of greater Magnitude, held (or hiding) within the consecrated ground of a different cult, or dead, then the miracle fails. The target of Behold may attempt to resist the miracle if desired.',
   },
   {
     name: 'Berserk',
-    tags: 'Duration (Minutes), Rank Initiate, Resist (Willpoeer)',
+    tags: 'Duration (Minutes), Rank Initiate, Resist (Willpower)',
     description:
       'The recipient of Berserk is overcome with bloodlust, causing him to disregard his own safety in exchange for being imbued with tremendous stamina and toughness. For the duration of the miracle the Damage Modifier of the recipient is increased by two steps, the Size of his weapon counts as one step larger for the purpose of penetrating parries, and he is immune to all the detrimental effects of Serious Wounds and Fatigue. A Major wound will still incapacitate him. In return the subject may not Parry, Evade or cast any magic while under the influence of Berserk. However the berserker auto-\nmatically succeeds in resisting any Special Effect used against him.\nUnwilling recipients receive a chance to resist. Normally, the recipient remains in the Berserk state for the entire duration of the spell, but Games Masters may allow a Berserk character to shake off the effects with an unopposed Willpower test. At the end of the spell, the recipient immediately suffers twice the deferred Fatigue levels they would have lost during the entire combat.',
   },
   {
     name: 'Bind Ghost',
-    tags: 'Duration (Days), Rank Acolyte, Resist (Willpoeer)',
+    tags: 'Duration (Days), Rank Acolyte, Resist (Willpower)',
     description:
       'Bind Ghost takes the soul of a creature or person just slain, and temporarily turns it into a Haunt (see page 150) bound to the place of its death. The miracle is usually performed on animal sacrifices or willing volunteers, but in cases where the victim does not wish to be so bound they are permitted the opportunity to resist.\nFor the duration of the miracle the ghost must obey commands given to it by the theist. However, the way it performs its duties is guided by the nature or personality of the victim. Once the miracle ends, the soul is freed from all obligations, and permitted to depart to its intended afterlife. The theist is limited to binding souls whose POW is no more than twice the Intensity of the miracle.',
   },
@@ -971,7 +977,7 @@ export const theismMagic = [
   },
   {
     name: 'Dismiss Elemental',
-    tags: 'Duration (Instant), Ranged (Tens of Metres), Rank Initiate, Resist (Willpoeer)',
+    tags: 'Duration (Instant), Ranged (Tens of Metres), Rank Initiate, Resist (Willpower)',
     description:
       'Dismiss Elemental may be cast against Gnomes, Salamanders, Shades, Sylphs or Undines. The spell affects an elemental of up to 1 cubic metre in size per point of Intensity. Eailure to resist the spell causes the elemental to be dismissed, leaving the material substance of its body in place.',
   },
@@ -1006,13 +1012,13 @@ export const theismMagic = [
   },
   {
     name: 'Excommunicate',
-    tags: 'Duration (Instant), Ranged (Metres), Rank Priest, Resist (Willpoeer)',
+    tags: 'Duration (Instant), Ranged (Metres), Rank Priest, Resist (Willpower)',
     description:
       "Excommunicate can only be called down upon a worshipper of the caster's cult. It severs the mystical link the worshipper shares with his god, causing the target's devotional pool to be drained of all Magic Points, and permanently removing access to miracles from that cult. Unless the target can make amends for whatever transgression caused the excommunication to be cast in the first place, their cult specific skills of Devotion and Exhort become mere academic knowledge with no power.",
   },
   {
     name: 'Exorcism',
-    tags: 'Duration (Instant), Rank Acolyte, Resist (Willpoeer)',
+    tags: 'Duration (Instant), Rank Acolyte, Resist (Willpower)',
     description:
       'By means of this miracle, the theist calls upon their god to drive out a spirit currently possessing a corporeal being. Whether the possession is dominant or covert is immaterial. The magic exorcises spirits with an Intensity of up to half the Intensity of the miracle. What occurs next depends on the attitude and type of spirit, but belligerent ones with the power to discorporate may be tempted to engage other nearby targets in Spirit Combat. Thus this spell can be potentially dangerous for the caster or his fellows.',
   },
@@ -1024,7 +1030,7 @@ export const theismMagic = [
   },
   {
     name: 'Fear',
-    tags: 'Duration (Minutes), Ranged (Metres), Rank Initiate, Resist (Willpoeer)',
+    tags: 'Duration (Minutes), Ranged (Metres), Rank Initiate, Resist (Willpower)',
     description:
       'This miracle causes the target to be gripped with overwhelming fear. Targets which fail to resist will flee in terror away from the theist, and avoid engaging in combat unless brought to bay. It has no effect on unconscious targets, targets without an INT or INS Characteristic, or targets that are currently under the effect of another emotion-controlling spell of higher Intensity.',
   },
@@ -1048,7 +1054,7 @@ export const theismMagic = [
   },
   {
     name: 'Harmonise',
-    tags: 'Duration (Minutes), Ranged (Tens of Metres), Rank Initiate, Resist (Willpoeer)',
+    tags: 'Duration (Minutes), Ranged (Tens of Metres), Rank Initiate, Resist (Willpower)',
     description:
       "Harmonise causes the target to do exactly what the theist does. If not resisted the victim must mimic every physical move, albeit in a jerky, almost puppet-like manner. It only works on beings with roughly the same physiology as the caster; with limbs or locations not shared by both participants remaining unaffected by the magic. The miracle only controls gross motor skills, and does not permit control of the victim's speech. Use of this magic can humiliate someone from afar, or perhaps even force them into performing a murderous or suicidal act.\nIf Harmonise is used to force the subject to attack or defend, the combat style rolls are automatically one grade harder to accomplish owing to the jerky movement of the victim.",
   },
@@ -1101,13 +1107,13 @@ export const theismMagic = [
   },
   {
     name: 'Madness',
-    tags: 'Duration (Days), Ranged (Metres), Rank Initiate, Resist (Willpoeer)',
+    tags: 'Duration (Days), Ranged (Metres), Rank Initiate, Resist (Willpower)',
     description:
       'This miracle infuses the target with gibbering madness. Targets which fail to resist will rant and rave uncontrollably, performing acts of utter insanity in a manner fitting to their personality, plot line and dramatic circumstances. In general, mad characters should be more harmless distractions than ticking time bombs. In the case of player characters, until the Madness subsides or is somehow cured, the insane victim should be placed under control of the Games Master unless he deems the player is capable of acting out the insanity.',
   },
   {
     name: 'Mindblast',
-    tags: 'Duration (Days), Ranged (Metres), Rank Initiate, Resist (Willpoeer)',
+    tags: 'Duration (Days), Ranged (Metres), Rank Initiate, Resist (Willpower)',
     description:
       "This spell blasts the intellect of the victim, obliterating their sapience. If not resisted, the victim's INT is temporarily converted to animalistic INS, removing from them the power of speech, writing or any other form of communication. It also prevents them from utilising equipment and devices. If forced to fight in this condition, the victim will by default use their Unarmed skill. Although prevented from utilising complex thought, it does not limit instinct and base cunning.",
   },
@@ -1125,13 +1131,13 @@ export const theismMagic = [
   },
   {
     name: 'Obliterate',
-    tags: 'Area (Wilometres), Duration (Instant), Rank Priest, Resist (Willpoeer)',
+    tags: 'Area (Wilometres), Duration (Instant), Rank Priest, Resist (Willpower)',
     description:
       'A dire spell to those who seek fame or remembrance after death, Obliterate removes every record of their existence – scouring it from scrolls, clay tablets, carved hieroglyphs, and every other method of inscribing knowledge. In addition the name of that person is wiped from the mind of everyone within range, save for the casting priest, unless they resist the miracle. Although this miracle is normally used to expunge the glory of those whose crimes are so unforgivable that they must be forgotten for all time, some darker gods offer this as a means for their worshippers to maintain secretive anonymity.',
   },
   {
     name: 'Pacify',
-    tags: 'Area (Tens of Meters), Duration (Minutes), Rank Acolyte, Resist (Willpoeer)',
+    tags: 'Area (Tens of Meters), Duration (Minutes), Rank Acolyte, Resist (Willpower)',
     description:
       'Pacify suppresses aggressive and violent behaviour within its area of effect. Those that fail to resist the miracle are unable to cause harm to another, although they may defend themselves using non-harmful techniques. If unthreatened, those subject to the magic will sheathe or drop weapons, stop belligerent demonstration and cease all arguments. The miracle does not change personal opinion, merely makes it difficult to act in a hostile manner.',
   },
@@ -1215,7 +1221,7 @@ export const theismMagic = [
   },
   {
     name: 'Steadfast',
-    tags: 'Area (Metres), Duration (Minutes), Rank Initiate, Resist (Willpoeer)',
+    tags: 'Area (Metres), Duration (Minutes), Rank Initiate, Resist (Willpower)',
     description:
       'Used when facing overwhelming odds or terrifying challenges, this miracle renders those within its area immune to any natural mental or emotional manipulation. Magical attacks which generate a similar effect, such as Eear, Eanaticism, Domination, and the like, must exceed the Magnitude of the miracle to stand a chance of affecting the target.',
   },
