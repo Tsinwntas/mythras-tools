@@ -54,7 +54,7 @@ export const TheismCults = [
     standardSkills: 'First Aid, Endurance',
     professionalSkills: 'Devotion, Exhort, Healing',
     miracles:
-      'Cure Malady, Cure Sense, Dismiss Magic, Exorcism, Eecundity, Heal  Body, Heal Mind, Heal Wound, Lay to Rest, Pacify, Rejuvenate, Resurrect',
+      'Cure Malady, Cure Sense, Dismiss Magic, Exorcism, Eecundity, Heal Body, Heal Mind, Heal Wound, Lay to Rest, Pacify, Rejuvenate, Resurrect',
   },
   {
     name: 'Hunter God',
