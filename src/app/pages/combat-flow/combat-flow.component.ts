@@ -83,15 +83,28 @@ export class CombatFlowComponent extends StatePageComponent {
     },
     {
       stepLabel: "Attack",
-      component: AttackOptionsComponent
+      component: AttackOptionsComponent,
+      next: [
+        {target:2, label: "Free Action"}
+        ,{target:3, label: "Defender Action"}
+        ,{target:4, label: "Finish Attack/Defend"}
+      ]
     },
     {
       stepLabel: "Free Actions (Attacker and Defender)",
-      component: FreeActionsComponent
+      component: FreeActionsComponent,
+      next: [
+        {target:1, label:"Attack"}
+        ,{target:3, label: "Defender Action"}
+      ]
     },
     {
       stepLabel: "Defender chooses whether to spend Action Point for Defense",
-      component: DefenderActionComponent
+      component: DefenderActionComponent,
+      next: [
+        {target:1, label:"Attack"},{target:2, label: "Free Action"}
+        ,{target:4, label: "Finish Attack/Defend"}
+      ]
     },
     {
       stepLabel: "Compare Results",
