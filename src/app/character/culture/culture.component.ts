@@ -83,7 +83,8 @@ export class CultureComponent {
   getPointsLeft() {
     return 100-(orZero(this.character.skills.combatstyles?.map(style=>orZero(style.cultureBonus)).reduce((a,b)=>a+b,0))
     + orZero(this.character.skills.skills?.map(skill=>orZero(skill.cultureBonus)).reduce((a,b)=>a+b,0))
-    + orZero(this.character.skills.specialized?.map(skill=>orZero(skill.cultureBonus)).reduce((a,b)=>a+b,0)));
+    + orZero(this.character.skills.specialized?.map(skill=>orZero(skill.cultureBonus)).reduce((a,b)=>a+b,0))
+    + orZero(this.character.skills.extraProfessionalCultureSkills?.map(skill=>orZero(skill.cultureBonus)).reduce((a,b)=>a+b,0)));
   }
 
   setAllStandardsToFive(){
@@ -95,7 +96,17 @@ export class CultureComponent {
   }
   
   getProfessionalCulturalSkills(): Skill[] {
-    return getProfessionalCulturalSkills(this.character);
+    return getProfessionalCulturalSkills(this.character).concat(this.character.skills.extraProfessionalCultureSkills);
+  }
+  
+  getProfessionalProps(){
+    return {
+      skills : this.character.skills.skills,
+      page: 1,
+      selectedSkill:(skill : Skill) => {
+        this.character.skills.extraProfessionalCultureSkills.push(skill);
+      }
+    }
   }
 
   getSkill(skill :Skill) : number {
@@ -105,6 +116,7 @@ export class CultureComponent {
   resetSkills() {
     this.character.skills.skills.forEach(skill=>skill.cultureBonus=0);
     this.character.skills.combatstyles.forEach(skill=>skill.cultureBonus=0);
+    this.character.skills.extraProfessionalCultureSkills.forEach(skill=>skill.cultureBonus=0);
     if(this.character.skills.specialized)
     this.character.skills.specialized.forEach(skill=>skill.cultureBonus=0);
   }

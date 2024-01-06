@@ -165,6 +165,7 @@ import { NgxPrintModule } from 'ngx-print';
 import { MenuComponent } from './pages/menu/menu.component';
 import { LoadCharacterComponent } from './modals/load-character/load-character.component';
 import { ViewCharacterComponent } from './pages/view-character/view-character.component';
+import { CreateSkillComponent } from './character/modals/create-skill/create-skill.component';
 
 
 
@@ -312,7 +313,8 @@ import { ViewCharacterComponent } from './pages/view-character/view-character.co
     AutoresizeDirective,
     MenuComponent,
     LoadCharacterComponent,
-    ViewCharacterComponent
+    ViewCharacterComponent,
+    CreateSkillComponent
   ],
   imports: [
     BrowserModule,

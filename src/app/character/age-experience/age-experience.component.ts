@@ -149,6 +149,16 @@ export class AgeExperienceComponent {
           ? [this.character.skills.hobby]
           : []
       )
+      .concat(
+        this.character.skills.extraProfessionalCultureSkills.filter(
+          (skill) => skill.cultureBonus || skill.careerBonus
+        )
+      )
+      .concat(
+        this.character.skills.extraProfessionalCareerSkills.filter(
+          (skill) => skill.cultureBonus || skill.careerBonus
+        )
+      )
       .sort((skill1, skill2) => skill1.name.localeCompare(skill2.name));
   }
 }

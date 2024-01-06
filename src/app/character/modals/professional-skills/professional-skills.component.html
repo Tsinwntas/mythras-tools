@@ -1,3 +1,4 @@
 <div class="skill-grid">
     <button mat-flat-button *ngFor="let skill of getRemainingSkills()" (click)="select(skill)">{{skill.name}}</button>
+    <open-modal modal="create-skill" [prop]="getCreateProps()"><button mat-flat-button><mat-icon>add</mat-icon></button></open-modal>
 </div>

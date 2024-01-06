@@ -11,6 +11,11 @@ import { Skill } from 'src/app/model/skill';
 export class ProfessionalSkillsComponent implements ModalInnerContent {
   skills : Skill[];
   selectedSkill : (skill :Skill) => void;
+  culturePage : boolean;
+  careerPage: boolean;
+
+  CULTURE_PAGE = 1;
+  CAREER_PAGE = 2;
 
   constructor(private dialogRef: MatDialogRef<ProfessionalSkillsComponent>){}
 
@@ -21,15 +26,29 @@ export class ProfessionalSkillsComponent implements ModalInnerContent {
   setProps(props: any): void {
     this.skills = props.skills;
     this.selectedSkill = props.selectedSkill;
+    if(props.page){
+      this.culturePage = props.page==this.CULTURE_PAGE;
+      this.careerPage = props.page==this.CAREER_PAGE;
+    }
   }
 
   getRemainingSkills() : Skill[] {
-    return this.skills.filter((s : Skill)=>s.professional && !s.cultureBonus && !s.careerBonus).sort((a, b) => a.name.localeCompare(b.name));
+    return this.skills.filter((s : Skill)=>s.professional && (this.careerPage || !s.cultureBonus) && (this.culturePage || !s.careerBonus)).sort((a, b) => a.name.localeCompare(b.name));
   }
 
   select(skill : Skill) {
     this.selectedSkill(skill);
     this.dialogRef.close(); 
+  }
+
+  getCreateProps(){
+    return {
+      createdSkill:(skill : Skill) => {
+        if(!skill.name)
+          skill.name = "Unnamed Skill";
+        this.skills.push(skill);
+      }
+    }
   }
   
 }

@@ -21,6 +21,9 @@ export class CharacterSkills {
     combatstyles : CombatStyle[]; 
     hobby : Skill;
 
+    extraProfessionalCultureSkills : Skill[];
+    extraProfessionalCareerSkills : Skill[];
+
     constructor() {
         this.ap = new Skill("Action Points", false, "int","dex").setOperations({divide:12});
         this.damage = new Skill("Damage Modifier", false, "str","siz").setOperations({divide:5});
@@ -30,6 +33,8 @@ export class CharacterSkills {
         this.luck = new Skill("Luck", false, "pow").setOperations({divide:6});
         this.combatstyles = [];
         this.specialized = [];
+        this.extraProfessionalCultureSkills = [];
+        this.extraProfessionalCareerSkills = [];
         initSkills(this);
     }
 }

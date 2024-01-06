@@ -1,0 +1,30 @@
+
+<mat-form-field>
+    <mat-label>Name:</mat-label>
+    <input matInput [(ngModel)]="skill.name">
+</mat-form-field>
+<br/>
+<mat-label>Base:</mat-label>
+<div class="row name-row">
+    <mat-form-field>
+        <input matInput [(ngModel)]="skill.multiply" type="number"> 
+    </mat-form-field> * (
+        <mat-form-field appearance="fill">
+            <mat-label>Skill A:</mat-label>
+            <mat-select [(value)]="skill.base[0]">
+              <mat-option *ngFor="let culture of ['str','dex','con','pow','int','cha','siz']" [value]="culture">{{culture}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    +
+        <mat-form-field appearance="fill">
+            <mat-label>Skill B:</mat-label>
+            <mat-select [(value)]="skill.base[1]">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let culture of ['str','dex','con','pow','int','cha','siz']" [value]="culture">{{culture}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    ) + 
+    <mat-form-field>
+        <input matInput [(ngModel)]="skill.add" type="number"> 
+    </mat-form-field>
+</div>

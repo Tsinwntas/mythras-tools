@@ -78,6 +78,7 @@ import { ProfessionalSkillsComponent } from '../character/modals/professional-sk
 import { AgeExperienceModalComponent } from '../character/modals/age-experience/age-experience.component';
 import { FolkMagicComponent } from '../character/modals/folk-magic/folk-magic.component';
 import { LoadCharacterComponent } from '../modals/load-character/load-character.component';
+import { CreateSkillComponent } from '../character/modals/create-skill/create-skill.component';
 
 @Component({
   selector: 'open-modal',
@@ -109,6 +110,7 @@ export class OpenModalComponent {
       case 'close-combat-situational': this.modals.open(CloseCombatSituationalComponent);return;
       case 'combat-styles': this.modals.open(CombatStylesComponent, this.prop);return;
       case 'counterspell': this.modals.open(CounterspellComponent);return;
+      case 'create-skill': this.modals.open(CreateSkillComponent, this.prop);return;
       case 'damage-reduction': this.modals.open(DamageReductionComponent);return;
       case 'deadly-ability': this.modals.open(DeadlyAbilityComponent);return;
       case 'defensive-specials': this.modals.open(DefensiveSpecialEffectsComponent);return;

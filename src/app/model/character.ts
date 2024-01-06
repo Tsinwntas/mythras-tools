@@ -76,6 +76,7 @@ export class Character {
         this.brotherhood = {name: '', level: '', standardSkills: '', professionalSkills: ''};
         this.animistCult = {name: '', level: '', standardSkills: '', professionalSkills: '', spirits: ''};
         this.sorceryOrder = {name: '', level: '', standardSkills: '', professionalSkills: '', spells: ''};
+        this.movementRate = 6;
     }
 
 }

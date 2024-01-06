@@ -15,6 +15,7 @@ export class InfoModalComponent implements AfterViewInit{
 
   loaded : boolean;
   loadingObservable : Observable<any>;
+  okFunction : {function: (props?:any)=>void,props: any}[]; 
 
   constructor(
     public dialogRef: MatDialogRef<InfoModalComponent>,
@@ -22,8 +23,14 @@ export class InfoModalComponent implements AfterViewInit{
     private resolver: ComponentFactoryResolver
   ) {
     this.component = data?.component;
+    this.okFunction = [];
     this.passProps(data?.props);
     this.setObservable();
+  }
+
+  pressedOk(){
+    if(this.okFunction.length > 0)
+      this.okFunction[0].function(this.okFunction[0].props);
   }
 
   getHeader() : string {
@@ -44,7 +51,7 @@ export class InfoModalComponent implements AfterViewInit{
 
   passProps(props : any) {
     if(props)
-    (this.component as any)['prototype'].setProps(props);
+    (this.component as any)['prototype'].setProps(props,this.okFunction);
   }
 
   setObservable() {

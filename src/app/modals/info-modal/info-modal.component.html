@@ -7,5 +7,5 @@
 </div>
 <div mat-dialog-actions>
     <p class="info-sources">{{getSources()}}</p>
-    <button mat-button [mat-dialog-close] cdkFocusInitial>OK</button>
+    <button mat-button [mat-dialog-close] cdkFocusInitial (click)="pressedOk()">OK</button>
 </div>
