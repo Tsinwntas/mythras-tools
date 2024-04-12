@@ -109,7 +109,7 @@ export class EquipmentComponent implements OnInit {
 
 const equipmentsMap = [
   {
-    name: 'Exile',
+    name: 'Outcast',
     clothing: 'One set of ragged, probably dirty clothes ',
     weapons:
       "One well used weapon of a provenance suitable to the character's origin",
