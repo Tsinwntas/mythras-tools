@@ -165,6 +165,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { LoadCharacterComponent } from './modals/load-character/load-character.component';
 import { ViewCharacterComponent } from './pages/view-character/view-character.component';
 import { CreateSkillComponent } from './character/modals/create-skill/create-skill.component';
+import { MythrasToDndMonsterBlockComponent } from './pages/mythras-to-dnd-monster-block/mythras-to-dnd-monster-block.component';
 
 
 
@@ -313,7 +314,8 @@ import { CreateSkillComponent } from './character/modals/create-skill/create-ski
     MenuComponent,
     LoadCharacterComponent,
     ViewCharacterComponent,
-    CreateSkillComponent
+    CreateSkillComponent,
+    MythrasToDndMonsterBlockComponent
   ],
   imports: [
     BrowserModule,

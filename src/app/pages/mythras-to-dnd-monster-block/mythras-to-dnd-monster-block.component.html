@@ -1,0 +1,54 @@
+<div class="page-wrapper">
+    <div class="header">
+      <span class="title">MYTHRAS TOOLS</span> -
+      <span class="author">by Tsinik</span>
+    </div>
+    <div class="disclaimer">
+      <b
+        >This page saves in the browser's local storage, so if you clean your
+        cache, everything saved will be lost.</b
+      >
+    </div>
+    <div class="text-holder">
+        <label>Generate creatures from Mythras Encounter Generator and then copy paste the creature you want and paste here. Make sure to copy from "Chars" all the way to the end.</label>
+        <textarea style="min-height: 500px;width: 100%;" [(ngModel)]="mythrasStatBlock"></textarea>
+    </div>
+    <div class="ovewrites">
+        <div><input placeholder="Name" [(ngModel)]="name"/></div>
+        <div><input placeholder="HP Overwrite" [(ngModel)]="hpOvewrite"/></div>
+        <div><input placeholder="AC Overwrite" [(ngModel)]="acOvewrite"/></div>
+        <div><input placeholder="Proficiency" [(ngModel)]="prof"/></div>
+    </div>
+    <div><textarea placeholder="Extra Abilities" style="width: 60%;" [(ngModel)]="extraAbilities"></textarea></div>
+    <div class="dnd-holder" *ngIf="isMythrasStatBlockIsInitialised()">
+        <b>CHECK IF PARSED CORRECTLY AND ADD PROFICIENCY</b>
+        <div class="attributes">
+            <div>STR: {{getByCheck("STR:")}}</div>
+            <div>CON: {{getByCheck("CON:")}}</div>
+            <div>SIZ: {{getByCheck("SIZ:")}}</div>
+            <div>DEX: {{getByCheck("DEX:")}}</div>
+            <div>INT: {{getByCheck("INT:")}}</div>
+            <div>WIS: {{getByCheck("POW:")}}</div>
+            <div>CHA: {{getByCheck("CHA:")}}</div>
+        </div>
+        <div class="ac-prof-hp">
+            <div>HP: {{calculateHP()}}</div>
+            <div>AC: {{this.parsed['finalAC'] = (acOvewrite != undefined && acOvewrite != "" ? acOvewrite : parsed["AC"])}}</div>
+        </div>
+        <div class="skills">{{getSkills()}}</div>
+        <div class="abilities">
+            <div *ngFor="let ability of getRestOfAbilities()">
+                {{ability}}
+            </div>
+        </div>
+        <div class="attacks">
+            <div *ngFor="let attack of getAttacks()">
+                {{attack}}
+            </div>
+        </div>
+        <div class="download-button-holder">
+            <a mat-flat-button [href]="generateDownloadXmlLink()"
+                [download]="parsed['name']+'.xml'"><mat-icon>download</mat-icon> Download Character</a>
+        </div>
+    </div>
+</div>
