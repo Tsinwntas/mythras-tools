@@ -9,6 +9,7 @@ export default function convert(parsedValues: any) : string {
         <int>${parsedValues['INT:']}</int>
         <wis>${parsedValues['POW:']}</wis>
         <cha>${parsedValues['CHA:']}</cha>
+        <siz>${parsedValues['SIZ:']}</siz>
         <importedSkills>${parsedValues['skills']}</importedSkills>
         ${restOfAbilities(parsedValues)}
         ${attacks(parsedValues)}
