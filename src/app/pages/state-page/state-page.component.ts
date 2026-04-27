@@ -42,6 +42,7 @@ export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChec
 
   ngAfterViewChecked(): void {
     if(this.stepper){
+      //TODO: find better way to change indicator type
       setTimeout(()=>{
         this.stepper!._getIndicatorType = () => 'number';
         if(this.switchedType){
