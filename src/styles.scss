@@ -267,6 +267,29 @@ body {
     background-color: unset !important;
 }
 
+.app-shell,
+.app-container,
+.page {
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+}
+
+.preview-shell {
+    display: none !important;
+}
+
+.pdf-shell,
+#character-pdf {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+}
+
 .header {
     visibility: hidden;
 }

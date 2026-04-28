@@ -54,6 +54,7 @@ export function initSkills(skills: CharacterSkills) {
   );
 
   //PROFESSIONAL SKILLS
+  skills.skills.push(new Skill('Acrobatics', true, 'str', 'dex'));
   skills.skills.push(
     new Skill('Acting', true, 'cha').setOperations({ multiply: 2 })
   );

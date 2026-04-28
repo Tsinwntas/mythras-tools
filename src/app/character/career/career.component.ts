@@ -209,13 +209,26 @@ export class CareerComponent {
   }
 
   findSkill(skill: string): Skill {
-    let extraSkill = this.character.skills.extraProfessionalCareerSkills.find(s=>skill.startsWith(s.name));
-    return extraSkill ? extraSkill : this.character.skills.skills.find((s) => skill.startsWith(s.name))!;
+    const extraSkill = this.character.skills.extraProfessionalCareerSkills.find((s) =>
+      skill.startsWith(s.name)
+    );
+    const baseSkill = this.character.skills.skills.find((s) =>
+      skill.startsWith(s.name)
+    );
+    if (extraSkill) {
+      return extraSkill;
+    }
+    if (baseSkill) {
+      return baseSkill;
+    }
+    // Prevent template crashes for mismatched career data entries.
+    return new Skill(skill, true);
   }
 
   isAny(skill: string): boolean {
     return skill.match(/[ ]*[(][Aa]ny.*[)]/) != null;
   }
+
 }
 
 function getSpecialization(skill: string): string {

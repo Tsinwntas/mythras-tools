@@ -6,3 +6,50 @@
     display: grid;
     gap: var(--app-space-3);
 }
+
+.preview-shell {
+    padding: var(--app-space-4);
+    display: grid;
+    gap: var(--app-space-3);
+}
+
+.preview-info {
+    gap: var(--app-space-2);
+}
+
+.line {
+    margin: 0;
+}
+
+.controls-wrap {
+    align-items: center;
+}
+
+.pdf-shell {
+    padding: var(--app-space-3);
+    overflow: auto;
+}
+
+@media (max-width: 959px) {
+    .preview-shell {
+        padding: var(--app-space-3);
+    }
+}
+
+@media (max-width: 599px) {
+    .preview-shell {
+        padding: var(--app-space-2);
+    }
+
+    .controls-wrap > * {
+        width: 100%;
+    }
+
+    .back-button {
+        margin-left: 0;
+    }
+
+    .pdf-shell {
+        padding: var(--app-space-2);
+    }
+}
