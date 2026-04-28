@@ -2,6 +2,16 @@
     color : red;
 }
 
+.card-content{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-content mat-form-field{
+    flex: 1 1 auto;
+}
+
 .add{
     button {
         width:100%;
