@@ -57,6 +57,7 @@ import { RegainFootingComponent } from './../modals/regain-footing/regain-footin
 import { DifficultyGradesComponent } from './../modals/difficulty-grades/difficulty-grades.component';
 import { FamiliarUnfamiliarComponent } from './../modals/familiar-unfamiliar/familiar-unfamiliar.component';
 import { SimilarWeaponsComponent } from './../modals/similar-weapons/similar-weapons.component';
+import { DifferentWeaponsComponent } from './../modals/different-weapons/different-weapons.component';
 import { BroadlySimilarWeaponsComponent } from './../modals/broadly-similar-weapons/broadly-similar-weapons.component';
 import { ReasonablyDifferentWeaponsComponent } from './../modals/reasonably-different-weapons/reasonably-different-weapons.component';
 import { SubstantiallyDifferentWeaponComponent } from './../modals/substantially-different-weapon/substantially-different-weapon.component';
@@ -80,6 +81,143 @@ import { FolkMagicComponent } from '../character/modals/folk-magic/folk-magic.co
 import { LoadCharacterComponent } from '../modals/load-character/load-character.component';
 import { CreateSkillComponent } from '../character/modals/create-skill/create-skill.component';
 
+const modalRegistry = {
+  aiming: (modals: ModalHandlerService, prop: any) => modals.open(AimingComponent),
+  'all-styles': (modals: ModalHandlerService, prop: any) =>
+    modals.open(AllCombatStylesComponent, prop),
+  'armor-penalty': (modals: ModalHandlerService, prop: any) =>
+    modals.open(ArmorPenaltyComponent),
+  'assess-situation': (modals: ModalHandlerService, prop: any) =>
+    modals.open(AssessSituationComponent),
+  augment: (modals: ModalHandlerService, prop: any) => modals.open(AugmentModalComponent),
+  'background-events': (modals: ModalHandlerService, prop: any) =>
+    modals.open(BackgroundEventsModalComponent),
+  brace: (modals: ModalHandlerService, prop: any) => modals.open(BraceComponent),
+  'broadly-similar': (modals: ModalHandlerService, prop: any) =>
+    modals.open(BroadlySimilarWeaponsComponent),
+  'cast-magic': (modals: ModalHandlerService, prop: any) => modals.open(CastMagicComponent),
+  careers: (modals: ModalHandlerService, prop: any) => modals.open(CareersModalComponent, prop),
+  'change-range': (modals: ModalHandlerService, prop: any) =>
+    modals.open(ChangeRangeComponent),
+  character: (modals: ModalHandlerService, prop: any) => modals.open(CharacterComponent),
+  charging: (modals: ModalHandlerService, prop: any) => modals.open(ChargingComponent),
+  'close-combat-situational': (modals: ModalHandlerService, prop: any) =>
+    modals.open(CloseCombatSituationalComponent),
+  'combat-styles': (modals: ModalHandlerService, prop: any) =>
+    modals.open(CombatStylesComponent, prop),
+  counterspell: (modals: ModalHandlerService, prop: any) => modals.open(CounterspellComponent),
+  'create-skill': (modals: ModalHandlerService, prop: any) =>
+    modals.open(CreateSkillComponent, prop),
+  'damage-reduction': (modals: ModalHandlerService, prop: any) =>
+    modals.open(DamageReductionComponent),
+  'deadly-ability': (modals: ModalHandlerService, prop: any) =>
+    modals.open(DeadlyAbilityComponent),
+  'defensive-specials': (modals: ModalHandlerService, prop: any) =>
+    modals.open(DefensiveSpecialEffectsComponent),
+  delay: (modals: ModalHandlerService, prop: any) => modals.open(DelayComponent),
+  'different-weapons': (modals: ModalHandlerService, prop: any) =>
+    modals.open(DifferentWeaponsComponent),
+  'difficulty-grades': (modals: ModalHandlerService, prop: any) =>
+    modals.open(DifficultyGradesComponent),
+  dither: (modals: ModalHandlerService, prop: any) => modals.open(DitherComponent),
+  'drop-weapon': (modals: ModalHandlerService, prop: any) => modals.open(DropWeaponComponent),
+  'enc-penalty': (modals: ModalHandlerService, prop: any) => modals.encModal(prop),
+  evade: (modals: ModalHandlerService, prop: any) => modals.open(EvadeComponent),
+  experience: (modals: ModalHandlerService, prop: any) =>
+    modals.open(AgeExperienceModalComponent, prop),
+  'falling-and-combat': (modals: ModalHandlerService, prop: any) =>
+    modals.open(FallingAndCombatComponent),
+  'familiar-unfamiliar': (modals: ModalHandlerService, prop: any) =>
+    modals.open(FamiliarUnfamiliarComponent),
+  fatigue: (modals: ModalHandlerService, prop: any) => modals.open(FatigueComponent),
+  'firing-into-crowd': (modals: ModalHandlerService, prop: any) =>
+    modals.open(FiringIntoCrowdComponent),
+  'firing-moving': (modals: ModalHandlerService, prop: any) =>
+    modals.open(FiringMovingComponent),
+  folkMagic: (modals: ModalHandlerService, prop: any) =>
+    modals.open(FolkMagicComponent, prop, prop.callBack),
+  grapple: (modals: ModalHandlerService, prop: any) => modals.open(GrappleComponent),
+  'group-luck': (modals: ModalHandlerService, prop: any) => modals.open(GroupLuckComponent),
+  'healing-wounds': (modals: ModalHandlerService, prop: any) =>
+    modals.open(HealingWoundsComponent),
+  'heroic-last-action': (modals: ModalHandlerService, prop: any) =>
+    modals.open(HeroicLastActionComponent),
+  'hit-locations': (modals: ModalHandlerService, prop: any) =>
+    modals.open(HitLocationsComponent),
+  'hold-magic': (modals: ModalHandlerService, prop: any) => modals.open(HoldMagicComponent),
+  'inanimate-object': (modals: ModalHandlerService, prop: any) =>
+    modals.open(InanimateObjectsComponent),
+  initiative: (modals: ModalHandlerService, prop: any) => modals.initiativeNotes(prop),
+  interrupt: (modals: ModalHandlerService, prop: any) => modals.open(InterruptComponent),
+  'into-contact': (modals: ModalHandlerService, prop: any) => modals.open(IntoContactComponent),
+  knockback: (modals: ModalHandlerService, prop: any) => modals.open(KnockbackComponent),
+  'leaping-attacks': (modals: ModalHandlerService, prop: any) =>
+    modals.open(LeapingAttacksComponent),
+  load: (modals: ModalHandlerService, prop: any) => modals.open(LoadCharacterComponent, prop),
+  'luck-point': (modals: ModalHandlerService, prop: any) => modals.open(LuckPointComponent),
+  'magic-situational': (modals: ModalHandlerService, prop: any) =>
+    modals.open(MagicSituationalComponent),
+  mount: (modals: ModalHandlerService, prop: any) => modals.open(MountComponent),
+  'mounted-combat': (modals: ModalHandlerService, prop: any) =>
+    modals.open(MountedCombatComponent),
+  move: (modals: ModalHandlerService, prop: any) => modals.open(MoveComponent),
+  'natural-specials': (modals: ModalHandlerService, prop: any) =>
+    modals.open(NaturalSpecialsComponent),
+  'offensive-specials': (modals: ModalHandlerService, prop: any) =>
+    modals.open(OffensiveSpecialEffectsComponent),
+  outmaneuvre: (modals: ModalHandlerService, prop: any) =>
+    modals.open(OutmanoeuvringComponent),
+  parry: (modals: ModalHandlerService, prop: any) => modals.open(ParryComponent),
+  'passive-blocking': (modals: ModalHandlerService, prop: any) =>
+    modals.open(PassiveBlockingComponent),
+  'possession-exorcism': (modals: ModalHandlerService, prop: any) =>
+    modals.open(PossessionExorcismComponent),
+  'professional-skills': (modals: ModalHandlerService, prop: any) =>
+    modals.open(ProfessionalSkillsComponent, prop),
+  'ranged-situational': (modals: ModalHandlerService, prop: any) =>
+    modals.open(RangedSituationalComponent),
+  'ready-weapon': (modals: ModalHandlerService, prop: any) =>
+    modals.open(ReadyWeaponComponent),
+  'reasonably-different': (modals: ModalHandlerService, prop: any) =>
+    modals.open(ReasonablyDifferentWeaponsComponent),
+  'regain-footing': (modals: ModalHandlerService, prop: any) =>
+    modals.open(RegainFootingComponent),
+  reload: (modals: ModalHandlerService, prop: any) => modals.open(ReloadComponent),
+  'running-out-of-mana': (modals: ModalHandlerService, prop: any) =>
+    modals.open(RunningOutOfManaComponent),
+  'shorter-reach': (modals: ModalHandlerService, prop: any) =>
+    modals.open(ShorterReachComponent),
+  signal: (modals: ModalHandlerService, prop: any) => modals.open(SignalComponent),
+  similar: (modals: ModalHandlerService, prop: any) => modals.open(SimilarWeaponsComponent),
+  situational: (modals: ModalHandlerService, prop: any) =>
+    modals.open(SituationalModifiersComponent),
+  speak: (modals: ModalHandlerService, prop: any) => modals.open(SpeakComponent),
+  'special-effects': (modals: ModalHandlerService, prop: any) => modals.specialEffects(prop),
+  specialized: (modals: ModalHandlerService, prop: any) =>
+    modals.open(SpecializedComponent, prop),
+  'spirit-combat': (modals: ModalHandlerService, prop: any) =>
+    modals.open(SpiritCombatComponent),
+  'spirit-specials': (modals: ModalHandlerService, prop: any) =>
+    modals.open(SpiritCombatSpecialEffectsComponent),
+  struggle: (modals: ModalHandlerService, prop: any) => modals.open(StruggleComponent),
+  'substantially-different': (modals: ModalHandlerService, prop: any) =>
+    modals.open(SubstantiallyDifferentWeaponComponent),
+  'success-levels': (modals: ModalHandlerService, prop: any) =>
+    modals.open(SuccessLevelsComponent),
+  surprise: (modals: ModalHandlerService, prop: any) => modals.open(SurpriseComponent),
+  'take-cover': (modals: ModalHandlerService, prop: any) => modals.open(TakeCoverComponent),
+  'through-contact': (modals: ModalHandlerService, prop: any) =>
+    modals.open(ThroughContactComponent),
+  traits: (modals: ModalHandlerService, prop: any) => modals.open(TraitsComponent, prop),
+  'unarmed-combat': (modals: ModalHandlerService, prop: any) =>
+    modals.open(UnarmedCombatComponent),
+  'withdraw-from-combat': (modals: ModalHandlerService, prop: any) =>
+    modals.open(WithdrawFromCombatComponent),
+  ignore: (modals: ModalHandlerService, prop: any) => {},
+} as const;
+
+export type ModalKey = keyof typeof modalRegistry;
+
 @Component({
   selector: 'open-modal',
   templateUrl: './open-modal.component.html',
@@ -87,97 +225,13 @@ import { CreateSkillComponent } from '../character/modals/create-skill/create-sk
 })
 export class OpenModalComponent {
 
-  @Input() modal : string;
+  @Input() modal : ModalKey;
   @Input() prop : any;
 
   constructor(private modals : ModalHandlerService){}
 
   openModal(){
-    switch(this.modal){
-      case 'aiming': this.modals.open(AimingComponent);return;
-      case 'all-styles': this.modals.open(AllCombatStylesComponent, this.prop);return;
-      case 'armor-penalty': this.modals.open(ArmorPenaltyComponent);return;
-      case 'assess-situation': this.modals.open(AssessSituationComponent);return;
-      case 'augment': this.modals.open(AugmentModalComponent);return;
-      case 'background-events': this.modals.open(BackgroundEventsModalComponent);return;
-      case 'brace': this.modals.open(BraceComponent);return;
-      case 'broadly-similar': this.modals.open(BroadlySimilarWeaponsComponent);return;
-      case 'cast-magic': this.modals.open(CastMagicComponent);return;
-      case 'careers': this.modals.open(CareersModalComponent, this.prop);return;
-      case 'change-range': this.modals.open(ChangeRangeComponent);return;
-      case 'character': this.modals.open(CharacterComponent);return;
-      case 'charging': this.modals.open(ChargingComponent);return;
-      case 'close-combat-situational': this.modals.open(CloseCombatSituationalComponent);return;
-      case 'combat-styles': this.modals.open(CombatStylesComponent, this.prop);return;
-      case 'counterspell': this.modals.open(CounterspellComponent);return;
-      case 'create-skill': this.modals.open(CreateSkillComponent, this.prop);return;
-      case 'damage-reduction': this.modals.open(DamageReductionComponent);return;
-      case 'deadly-ability': this.modals.open(DeadlyAbilityComponent);return;
-      case 'defensive-specials': this.modals.open(DefensiveSpecialEffectsComponent);return;
-      case 'delay': this.modals.open(DelayComponent);return;
-      case 'different-weapons': this.modals.open(DropWeaponComponent);return;
-      case 'difficulty-grades': this.modals.open(DifficultyGradesComponent);return;
-      case 'dither': this.modals.open(DitherComponent);return;
-      case 'drop-weapon': this.modals.open(DropWeaponComponent);return;
-      case 'enc-penalty': this.modals.encModal(this.prop);return;
-      case 'evade': this.modals.open(EvadeComponent);return;
-      case 'experience': this.modals.open(AgeExperienceModalComponent, this.prop);return;
-      case 'falling-and-combat': this.modals.open(FallingAndCombatComponent);return;
-      case 'familiar-unfamiliar': this.modals.open(FamiliarUnfamiliarComponent);return;
-      case 'fatigue': this.modals.open(FatigueComponent);return;
-      case 'firing-into-crowd': this.modals.open(FiringIntoCrowdComponent);return;
-      case 'firing-moving': this.modals.open(FiringMovingComponent);return;
-      case 'folkMagic': this.modals.open(FolkMagicComponent, this.prop, this.prop.callBack);return;
-      case 'grapple': this.modals.open(GrappleComponent);return;
-      case 'group-luck': this.modals.open(GroupLuckComponent);return;
-      case 'healing-wounds': this.modals.open(HealingWoundsComponent);return;
-      case 'heroic-last-action': this.modals.open(HeroicLastActionComponent);return;
-      case 'hit-locations': this.modals.open(HitLocationsComponent);return;
-      case 'hold-magic': this.modals.open(HoldMagicComponent);return;
-      case 'inanimate-object': this.modals.open(InanimateObjectsComponent);return;
-      case 'initiative': this.modals.initiativeNotes(this.prop);return;
-      case 'interrupt': this.modals.open(InterruptComponent);return;
-      case 'into-contact': this.modals.open(IntoContactComponent);return;
-      case 'knockback': this.modals.open(KnockbackComponent);return;
-      case 'leaping-attacks': this.modals.open(LeapingAttacksComponent);return;
-      case 'load': this.modals.open(LoadCharacterComponent, this.prop);return;
-      case 'luck-point': this.modals.open(LuckPointComponent);return;
-      case 'magic-situational': this.modals.open(MagicSituationalComponent);return;
-      case 'mount': this.modals.open(MountComponent);return;
-      case 'mounted-combat': this.modals.open(MountedCombatComponent);return;
-      case 'move': this.modals.open(MoveComponent);return;
-      case 'natural-specials': this.modals.open(NaturalSpecialsComponent);return;
-      case 'offensive-specials': this.modals.open(OffensiveSpecialEffectsComponent);return;
-      case 'outmaneuvre': this.modals.open(OutmanoeuvringComponent);return;
-      case 'parry': this.modals.open(ParryComponent);return;
-      case 'passive-blocking': this.modals.open(PassiveBlockingComponent);return;
-      case 'possession-exorcism': this.modals.open(PossessionExorcismComponent);return;
-      case 'professional-skills': this.modals.open(ProfessionalSkillsComponent, this.prop);return;
-      case 'ranged-situational': this.modals.open(RangedSituationalComponent);return;
-      case 'ready-weapon': this.modals.open(ReadyWeaponComponent);return;
-      case 'reasonably-different': this.modals.open(ReasonablyDifferentWeaponsComponent);return;
-      case 'regain-footing': this.modals.open(RegainFootingComponent);return;
-      case 'reload': this.modals.open(ReloadComponent);return;
-      case 'running-out-of-mana': this.modals.open(RunningOutOfManaComponent);return;
-      case 'shorter-reach': this.modals.open(ShorterReachComponent);return;
-      case 'signal': this.modals.open(SignalComponent);return;
-      case 'similar': this.modals.open(SimilarWeaponsComponent);return;
-      case 'situational': this.modals.open(SituationalModifiersComponent);return;
-      case 'speak': this.modals.open(SpeakComponent);return;
-      case 'special-effects': this.modals.specialEffects(this.prop);return;
-      case 'specialized': this.modals.open(SpecializedComponent, this.prop);return;
-      case 'spirit-combat': this.modals.open(SpiritCombatComponent);return;
-      case 'spirit-specials': this.modals.open(SpiritCombatSpecialEffectsComponent);return;
-      case 'struggle': this.modals.open(StruggleComponent);return;
-      case 'substantially-different': this.modals.open(SubstantiallyDifferentWeaponComponent);return;
-      case 'success-levels': this.modals.open(SuccessLevelsComponent);return;
-      case 'surprise': this.modals.open(SurpriseComponent);return;
-      case 'take-cover': this.modals.open(TakeCoverComponent);return;
-      case 'through-contact': this.modals.open(ThroughContactComponent);return;
-      case 'traits': this.modals.open(TraitsComponent, this.prop);return;
-      case 'unarmed-combat': this.modals.open(UnarmedCombatComponent);return;
-      case 'withdraw-from-combat': this.modals.open(WithdrawFromCombatComponent);return;
-    }
+    modalRegistry[this.modal](this.modals, this.prop);
   }
 
 }

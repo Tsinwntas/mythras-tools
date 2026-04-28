@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppStorageService } from 'src/app/services/app-storage.service';
 
 @Component({
   selector: 'app-attack-options',
@@ -9,25 +10,33 @@ export class AttackOptionsComponent implements OnInit {
 
   type : string;
 
-  
-  ngDoCheck() {
-    localStorage['attack-type'] = this.type;
-  }
+  constructor(private storage: AppStorageService) {}
 
   ngOnInit(): void {
-    if(localStorage['attack-type'])
-      this.type = localStorage['attack-type'];
+    const type = this.storage.getRaw('attack-type');
+    if(type) {
+      this.type = type;
+    }
+  }
+
+  private save(): void {
+    if (this.type) {
+      this.storage.setRaw('attack-type', this.type);
+    }
   }
 
   melee(): void {
     this.type = 'melee';
+    this.save();
   }
 
   ranged(): void {
     this.type = 'ranged';
+    this.save();
   }
 
   magic(): void {
     this.type = 'magic';
+    this.save();
   }
 }

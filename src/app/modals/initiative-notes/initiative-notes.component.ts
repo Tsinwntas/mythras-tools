@@ -1,19 +1,34 @@
-import { TableService } from './../../services/table.service';
 import { TableComponent } from 'src/app/table-component/table.component';
 import { RoundHolder } from './../../model/round-holder';
 import { ModalInnerContent } from './../../model/modal-inner-content';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { Initiative } from 'src/app/model/initiative';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import {
+  AppStorageService,
+  DebouncedSaveHandle,
+} from 'src/app/services/app-storage.service';
 
 @Component({
   selector: 'app-initiative-notes',
   templateUrl: './initiative-notes.component.html',
   styleUrls: ['./initiative-notes.component.scss']
 })
-export class InitiativeNotesComponent extends TableComponent implements ModalInnerContent, OnInit {
+export class InitiativeNotesComponent
+  extends TableComponent
+  implements ModalInnerContent, OnInit, OnDestroy
+{
   round : RoundHolder;
   initiative: Initiative = new Initiative();
+  private saveHandle: DebouncedSaveHandle;
+
+  constructor(private storage: AppStorageService) {
+    super();
+    this.saveHandle = this.storage.createDebouncedSave(
+      () => this.persistInitiative(),
+      300
+    );
+  }
 
   getObservable() : Observable<boolean> {
     (window as any)['loadingSubject'] = new Subject<boolean>();
@@ -29,12 +44,31 @@ export class InitiativeNotesComponent extends TableComponent implements ModalInn
   }
 
   ngOnInit(): void {
-    if(localStorage['initiative'])
-      this.initiative = Object.assign(new Initiative(), JSON.parse(localStorage['initiative']));
+    const initiativeRaw = this.storage.getRaw('initiative');
+    if(initiativeRaw)
+      this.initiative = Object.assign(new Initiative(), JSON.parse(initiativeRaw));
   }
 
-  ngDoCheck() {
-    localStorage['initiative']=JSON.stringify(this.initiative);
+  @HostListener('document:input')
+  @HostListener('document:change')
+  @HostListener('document:click')
+  onUserInteraction(): void {
+    this.saveHandle.schedule();
+  }
+
+  @HostListener('window:beforeunload')
+  onBeforeUnload(): void {
+    this.saveHandle.flush();
+  }
+
+  @HostListener('window:pagehide')
+  onPageHide(): void {
+    this.saveHandle.flush();
+  }
+
+  ngOnDestroy(): void {
+    this.saveHandle.flush();
+    this.saveHandle.destroy();
   }
 
   override getTable(): any[] {
@@ -82,7 +116,7 @@ export class InitiativeNotesComponent extends TableComponent implements ModalInn
       leftLeg: 0,
       rightLeg: 0,
     });
-    localStorage['initiative']=JSON.stringify(this.initiative);
+    this.persistInitiative();
     (window as any)['loadingSubject'].next(true);
   }
 
@@ -90,7 +124,7 @@ export class InitiativeNotesComponent extends TableComponent implements ModalInn
     this.initiative.participants.splice(index,1);
     if(!this.initiative.participants.length)
       this.addParticipant();
-    localStorage['initiative']=JSON.stringify(this.initiative);
+    this.persistInitiative();
     (window as any)['loadingSubject'].next(true);
   }
 
@@ -102,6 +136,10 @@ export class InitiativeNotesComponent extends TableComponent implements ModalInn
       let val = this.round.round/c.div;
       return Math.floor(val) == val;
     }).map(c=>c.label).join(", ");
+  }
+
+  private persistInitiative(): void {
+    this.storage.setJson('initiative', this.initiative);
   }
 
 }

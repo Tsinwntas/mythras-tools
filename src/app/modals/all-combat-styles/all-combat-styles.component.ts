@@ -5,6 +5,7 @@ import { ModalInnerContent } from 'src/app/model/modal-inner-content';
 import { StyleFilters } from 'src/app/model/style-filters';
 import { CombatStylesService } from 'src/app/services/combat-styles.service';
 import { StylesTableComponent } from 'src/app/styles-table/styles-table.component';
+import { AppStorageService } from 'src/app/services/app-storage.service';
 
 @Component({
   selector: 'app-all-combat-styles',
@@ -17,21 +18,21 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
   styles : CombatStyle[];
   filters : StyleFilters = new StyleFilters();
   selectStyle : (style : CombatStyle) => void;
-  constructor(private dialogRef: MatDialogRef<AllCombatStylesComponent>, private styleService: CombatStylesService, private ref: ChangeDetectorRef) {
+  constructor(
+    private dialogRef: MatDialogRef<AllCombatStylesComponent>,
+    private styleService: CombatStylesService,
+    private ref: ChangeDetectorRef,
+    private storage: AppStorageService
+  ) {
   }
 
   ngOnInit(): void {
-    if(localStorage['style-filters'])
-      this.filters = Object.assign(new StyleFilters(),JSON.parse(localStorage['style-filters']));
+    const storedFilters = this.storage.getRaw('style-filters');
+    if(storedFilters)
+      this.filters = Object.assign(new StyleFilters(), JSON.parse(storedFilters));
     if(this.culture)
       this.filters.culture = this.culture;
-  }
-
-  ngDoCheck() {
-    let filters = JSON.stringify(this.filters);
-    if(filters != localStorage.getItem('style-filters')) {
-      localStorage.setItem('style-filters', filters);
-    }
+    this.persistFilters();
   }
 
   getStyles(): CombatStyle[] {
@@ -62,6 +63,7 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
     this.styles = this.getFilteredStyles();
     this.tableComponent.resetTable();
     this.ref.detectChanges();
+    this.persistFilters();
   }
 
   styleSelected(style: CombatStyle) {
@@ -79,5 +81,12 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
     this.selectStyle = props.selectStyle;
     if(props.culture)
       this.culture = props.culture;
+  }
+
+  private persistFilters(): void {
+    const filters = JSON.stringify(this.filters);
+    if (filters !== this.storage.getRaw('style-filters')) {
+      this.storage.setRaw('style-filters', filters);
+    }
   }
 }

@@ -8,11 +8,14 @@ import { StartOfCombatCycleComponent } from './../start-of-combat-cycle/start-of
 import { FatigueCheckComponent } from './../fatigue-check/fatigue-check.component';
 import { StartOfCombatRoundComponent } from './../start-of-combat-round/start-of-combat-round.component';
 import { StartOfCombatComponent } from './../start-of-combat/start-of-combat.component';
-import { AfterViewChecked, AfterViewInit, Component, ComponentFactoryResolver, OnInit, QueryList, ViewChild, ViewChildren, ViewContainerRef} from '@angular/core';
-import { MatStepper } from '@angular/material/stepper';
+import { Component, ComponentFactoryResolver, HostListener } from '@angular/core';
 import { CombatState } from 'src/app/model/combat-state';
 import { FreeActionsComponent } from '../free-actions/free-actions.component';
 import { StatePageComponent } from '../state-page/state-page.component';
+import {
+  AppStorageService,
+  DebouncedSaveHandle,
+} from 'src/app/services/app-storage.service';
 
 @Component({
   selector: 'app-combat-flow',
@@ -115,27 +118,61 @@ export class CombatFlowComponent extends StatePageComponent {
     }
   ]
   round : RoundHolder = {round : 1};
-  constructor(private resolverLocal: ComponentFactoryResolver){
+  private saveHandle: DebouncedSaveHandle;
+
+  constructor(
+    private resolverLocal: ComponentFactoryResolver,
+    private storage: AppStorageService
+  ){
     super(resolverLocal);
     this.userType=UserTypes.UNKNOWN;
+    this.saveHandle = this.storage.createDebouncedSave(
+      () => this.persistCombatState(),
+      300
+    );
   } 
 
   override ngOnInit(){
-    if(localStorage['user-type'])
-        this.userType = localStorage['user-type'];
-      if(localStorage['round'] != undefined)
-        this.round.round = parseInt(localStorage['round']);
-      this.updateCombatState();
+    const userType = this.storage.getNumber('user-type');
+    if (userType !== null) {
+      this.userType = userType as UserTypes;
+    }
+    if(this.storage.getRaw('round') != undefined) {
+      this.round.round = this.storage.getNumber('round') ?? this.round.round;
+    }
+    this.updateCombatState();
   }
-  
-  override ngDoCheck() {
-    localStorage['user-type'] = this.userType;
-    if(this.userType == UserTypes.GM)
-      localStorage['combat-state-gm'] = this.pageState;
-    if(this.userType == UserTypes.PLAYER)
-      localStorage['combat-state-player'] = this.pageState;
-    localStorage['round']=this.round.round;
-    
+
+  override onStepChange(event: any): void {
+    super.onStepChange(event);
+    this.requestSave();
+  }
+
+  override stepTo(index: any, click?: ()=>void): void {
+    super.stepTo(index, click);
+    this.requestSave();
+  }
+
+  ngOnDestroy(): void {
+    this.flushSave();
+    this.saveHandle.destroy();
+  }
+
+  @HostListener('document:input')
+  @HostListener('document:change')
+  @HostListener('document:click')
+  onUserInteraction(): void {
+    this.requestSave();
+  }
+
+  @HostListener('window:beforeunload')
+  onBeforeUnload(): void {
+    this.flushSave();
+  }
+
+  @HostListener('window:pagehide')
+  onPageHide(): void {
+    this.flushSave();
   }
 
   override getStates() : CombatState[] {
@@ -149,13 +186,31 @@ export class CombatFlowComponent extends StatePageComponent {
     this.userType = type;
     this.switchedType=true;
     this.updateCombatState();
+    this.requestSave();
   }
 
   updateCombatState(){
     if(this.userType == UserTypes.GM)
-      this.pageState = localStorage['combat-state-gm'] ? localStorage['combat-state-gm'] : 0;
+      this.pageState = this.storage.getNumber('combat-state-gm') ?? 0;
     if(this.userType == UserTypes.PLAYER)
-      this.pageState = localStorage['combat-state-player'] ? localStorage['combat-state-player'] : 0;
+      this.pageState = this.storage.getNumber('combat-state-player') ?? 0;
+  }
+
+  private requestSave(): void {
+    this.saveHandle.schedule();
+  }
+
+  private flushSave(): void {
+    this.saveHandle.flush();
+  }
+
+  private persistCombatState(): void {
+    this.storage.setRaw('user-type', this.userType);
+    if(this.userType == UserTypes.GM)
+      this.storage.setRaw('combat-state-gm', this.pageState ?? 0);
+    if(this.userType == UserTypes.PLAYER)
+      this.storage.setRaw('combat-state-player', this.pageState ?? 0);
+    this.storage.setRaw('round', this.round.round ?? 1);
   }
 
 

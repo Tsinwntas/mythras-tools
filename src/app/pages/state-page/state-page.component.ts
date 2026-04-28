@@ -17,6 +17,7 @@ export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChec
   states : CombatState[] = [];
   pageState : number;
   switchedType : boolean;
+  private indicatorTypeSet = false;
 
   constructor(private resolver: ComponentFactoryResolver){
       
@@ -33,6 +34,7 @@ export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChec
   ngAfterViewInit() {
     if(this.stepper){
       setTimeout(()=>{
+        this.setIndicatorType();
         if(this.pageState)
           this.stepper!.selectedIndex = this.pageState;
         this.loadComponent();
@@ -41,17 +43,22 @@ export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChec
   }
 
   ngAfterViewChecked(): void {
-    if(this.stepper){
-      //TODO: find better way to change indicator type
-      setTimeout(()=>{
-        this.stepper!._getIndicatorType = () => 'number';
-        if(this.switchedType){
-          this.switchedType = false;
-          this.stepper!.selectedIndex = this.pageState;
-          this.loadComponent();
-        }
-      },0)
+    this.setIndicatorType();
+    if(this.stepper && this.switchedType){
+      this.switchedType = false;
+      setTimeout(() => {
+        this.stepper!.selectedIndex = this.pageState;
+        this.loadComponent();
+      }, 0);
     }
+  }
+
+  private setIndicatorType(): void {
+    if(!this.stepper || this.indicatorTypeSet)
+      return;
+    // TODO: find better way to change indicator type.
+    this.stepper._getIndicatorType = () => 'number';
+    this.indicatorTypeSet = true;
   }
 
   getStates() : CombatState[] {
@@ -72,9 +79,11 @@ export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChec
   }
 
   loadComponent(): void {
-    for (let i = 0; i < this.stateComponents.toArray().length; i++) {
-      let target = this.stateComponents.toArray()[i];
-      let tabComponent = this.getStates()[i].component;
+    const components = this.stateComponents.toArray();
+    const states = this.getStates();
+    for (let i = 0; i < components.length; i++) {
+      let target = components[i];
+      let tabComponent = states[i].component;
       if(!tabComponent)
         continue;
       let componentFactory =

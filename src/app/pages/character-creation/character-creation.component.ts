@@ -1,4 +1,3 @@
-import { CharacterPreviewComponent } from './../../character/character-preview/character-preview.component';
 import { BackgroundDetailsComponent } from './../../character/background-details/background-details.component';
 import { EquipmentComponent } from './../../character/equipment/equipment.component';
 import { StartingMagicComponent } from './../../character/starting-magic/starting-magic.component';
@@ -12,6 +11,7 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
+  HostListener,
 } from '@angular/core';
 import { AgeComponent } from 'src/app/character/age/age.component';
 import { ConceptComponent } from 'src/app/character/concept/concept.component';
@@ -26,6 +26,10 @@ import { StatePageComponent } from '../state-page/state-page.component';
 import { CareerComponent } from 'src/app/character/career/career.component';
 import { BonusSkillComponent } from 'src/app/character/bonus-skill/bonus-skill.component';
 import { Router } from '@angular/router';
+import {
+  AppStorageService,
+  DebouncedSaveHandle,
+} from 'src/app/services/app-storage.service';
 
 @Component({
   selector: 'app-character-creation',
@@ -34,6 +38,7 @@ import { Router } from '@angular/router';
 })
 export class CharacterCreationComponent extends StatePageComponent {
   character: Character;
+  private saveHandle: DebouncedSaveHandle;
 
   override states: CombatState[] = [
     { stepLabel: 'Details', component: DetailsComponent },
@@ -61,8 +66,11 @@ export class CharacterCreationComponent extends StatePageComponent {
           target: -1,
           label: 'Preview',
           click: () => {
-            localStorage['view-character'] =
-              localStorage['character-' + this.character.id];
+            this.flushSave();
+            this.storage.copyRaw(
+              this.storage.getCharacterKey(this.character.id),
+              'view-character'
+            );
             this.router.navigate(['/view']);
           },
         },
@@ -74,19 +82,22 @@ export class CharacterCreationComponent extends StatePageComponent {
 
   constructor(
     private resolverLocal: ComponentFactoryResolver,
-    private router: Router
+    private router: Router,
+    private storage: AppStorageService
   ) {
     super(resolverLocal);
+    this.saveHandle = this.storage.createDebouncedSave(
+      () => this.persistCharacterState(),
+      300
+    );
   }
 
   override ngOnInit() {
-    this.pageState = localStorage['creation-state']
-      ? localStorage['creation-state']
-      : 0;
-    this.character = localStorage['creation-character']
+    this.pageState = this.storage.getNumber('creation-state') ?? 0;
+    this.character = this.storage.getRaw('creation-character')
       ? Object.assign(
           new Character(),
-          JSON.parse(localStorage['creation-character'])
+          JSON.parse(this.storage.getRaw('creation-character')!)
         )
       : new Character();
     this.character.skills = Object.assign(
@@ -95,13 +106,55 @@ export class CharacterCreationComponent extends StatePageComponent {
     );
   }
 
-  override ngDoCheck() {
-    localStorage['creation-state'] = this.pageState;
-    localStorage['creation-character'] = JSON.stringify(this.character);
-    if (this.character.id)
-      localStorage['character-' + this.character.id] = JSON.stringify(
+  override onStepChange(event: any): void {
+    super.onStepChange(event);
+    this.requestSave();
+  }
+
+  override stepTo(index: any, click?: () => void): void {
+    super.stepTo(index, click);
+    this.requestSave();
+  }
+
+  @HostListener('document:input')
+  @HostListener('document:change')
+  @HostListener('document:click')
+  onUserInteraction(): void {
+    this.requestSave();
+  }
+
+  @HostListener('window:beforeunload')
+  onBeforeUnload(): void {
+    this.flushSave();
+  }
+
+  @HostListener('window:pagehide')
+  onPageHide(): void {
+    this.flushSave();
+  }
+
+  ngOnDestroy(): void {
+    this.flushSave();
+    this.saveHandle.destroy();
+  }
+
+  private requestSave(): void {
+    this.saveHandle.schedule();
+  }
+
+  private flushSave(): void {
+    this.saveHandle.flush();
+  }
+
+  private persistCharacterState(): void {
+    this.storage.setRaw('creation-state', this.pageState ?? 0);
+    this.storage.setJson('creation-character', this.character);
+    if (this.character.id) {
+      this.storage.setJson(
+        this.storage.getCharacterKey(this.character.id),
         this.character
       );
+    }
   }
 
   override setProps(component: ComponentRef<any>): void {
