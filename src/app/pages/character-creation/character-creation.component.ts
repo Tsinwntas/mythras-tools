@@ -235,8 +235,15 @@ export class CharacterCreationComponent
     const componentFactory = this.resolverLocal.resolveComponentFactory(
       state.component as any
     );
-    this.activeStateHost.clear();
+    if (this.activeStateHost.length > 0) {
+      this.activeStateHost.detach(0);
+    }
     let componentRef = this.sectionComponents.get(targetIndex);
+    const hostView = componentRef?.hostView as EmbeddedViewRef<unknown> | undefined;
+    if (componentRef && hostView?.destroyed) {
+      this.sectionComponents.delete(targetIndex);
+      componentRef = undefined;
+    }
     if (!componentRef) {
       componentRef = this.activeStateHost.createComponent(componentFactory);
       this.setProps(componentRef);

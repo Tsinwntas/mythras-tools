@@ -60,15 +60,15 @@
     </div>
     <div class="skill-category professional-skills">
         <p><b>Professional Skills</b><i><small> - Choose only 3, if a professional skill has no cultural or career bonus, it will have 0 as a base level.</small></i></p>
-        <div class="skill-wrapper"  *ngFor="let skill of getProfessionalCareerSkills()">
+        <div class="skill-wrapper"  *ngFor="let skill of getProfessionalCareerSkills(); let i = index">
         <div class="attribute" *ngIf="!canBeSpecialized(skill)">
             <span class="skill-name">{{skill}}</span>
             <span class="skill-base">{{getSkill(findSkill(skill))}}</span>
         </div>
         <div class="attribute" *ngIf="canBeSpecialized(skill)">
-            <span class="skill-name" *ngIf="isAny(skill)"><open-modal modal="specialized" [prop]="getSpecializedProps(skill)">{{getSpecialized(skill).name}}</open-modal></span>
-            <span class="skill-name" *ngIf="!isAny(skill)">{{getSpecialized(skill).name}}</span>
-            <span class="skill-base">{{getSkill(getSpecialized(skill))}}</span>
+            <span class="skill-name" *ngIf="isAny(skill)"><open-modal modal="specialized" [prop]="getSpecializedProps(skill, i)">{{getSpecialized(skill, i).name}}</open-modal></span>
+            <span class="skill-name" *ngIf="!isAny(skill)">{{getSpecialized(skill, i).name}}</span>
+            <span class="skill-base">{{getSkill(getSpecialized(skill, i))}}</span>
         </div>
         <mat-form-field *ngIf="!canBeSpecialized(skill)">
             <mat-label>Bonus:</mat-label>
@@ -76,7 +76,7 @@
         </mat-form-field>
         <mat-form-field *ngIf="canBeSpecialized(skill)">
             <mat-label>Bonus:</mat-label>
-            <input matInput type="number" [(ngModel)]="getSpecialized(skill).careerBonus">
+            <input matInput type="number" [(ngModel)]="getSpecialized(skill, i).careerBonus">
         </mat-form-field>
         </div>
         <open-modal modal="professional-skills" [prop]="getProfessionalProps()"><button mat-flat-button>Choose Another Professional Skill</button></open-modal>

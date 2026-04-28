@@ -15,10 +15,7 @@ export class CultureComponent {
 
   @Input() public character: Character;
 
-  art : Skill;
-  craft : Skill;
-  language: Skill;
-  lore : Skill;
+  specializations: { [key: string]: Skill } = {};
   style : CombatStyle;
 
   canBeSpecialized(skill : Skill) : boolean{
@@ -26,40 +23,23 @@ export class CultureComponent {
     return specialized.filter(s=>skill.name.startsWith(s)).length != 0;
   }
 
-  getSpecialized(skill : Skill) : Skill {
-    let specialized = this.checkSpecialized(skill);
-    if(specialized.name.startsWith('Art')){
-      this.art = this.art ? this.art : specialized;
-      return this.art;
-    } if(specialized.name.startsWith('Craft')) {
-      this.craft = this.craft? this.craft : specialized;
-      return this.craft;
-    } if(specialized.name.startsWith('Language')) {
-      this.language = this.language ? this.language : specialized;
-      return this.language;
-    } if(specialized.name.startsWith('Lore')) {
-      this.lore = this.lore ? this.lore : specialized;
-      return this.lore;
+  getSpecialized(skill : Skill, index?: number) : Skill {
+    const key = this.getSpecializationKey(skill, index);
+    if (!this.specializations[key]) {
+      this.specializations[key] = this.checkSpecialized(skill);
     }
-    return specialized;
+    return this.specializations[key];
   }
 
-  setSpecialized(skill : Skill) {
-    if(skill.name.startsWith('Art')){
-      this.art = skill;
-    } if(skill.name.startsWith('Craft')) {
-      this.craft = skill;
-    } if(skill.name.startsWith('Language')) {
-      this.language = skill;
-    } if(skill.name.startsWith('Lore')) {
-      this.lore = skill;
-    }
+  setSpecialized(skill : Skill, key: string) {
+    this.specializations[key] = skill;
   }
 
-  getSpecializedProps(currentSkill : Skill) {
+  getSpecializedProps(currentSkill : Skill, index?: number) {
+    const specializationKey = this.getSpecializationKey(currentSkill, index);
     return {
       character:this.character, skill:currentSkill,
-      selectSkill : (skill : Skill)=>{this.setSpecialized(skill)}
+      selectSkill : (skill : Skill)=>{this.setSpecialized(skill, specializationKey)}
     }
   }
 
@@ -73,11 +53,18 @@ export class CultureComponent {
     if(specializedArray.length == 0)
       this.character.skills.specialized.push(specialized = new Skill(skill.name+" (EDIT)", true).setBase(skill.base).setOperations({add:skill.add, multiply: skill.multiply, divide: skill.divide}));
     else{
-      specialized = specializedArray.find(s=>s.cultureBonus);
+      const usedSpecialized = Object.values(this.specializations);
+      specialized = specializedArray.find(s => !usedSpecialized.includes(s));
+      if(!specialized)
+        specialized = specializedArray.find(s=>s.cultureBonus);
       if(!specialized)
         specialized = specializedArray[0];
     }
     return specialized;      
+  }
+
+  private getSpecializationKey(skill: Skill, index?: number): string {
+    return `${skill.name}_${index ?? 0}`;
   }
 
   getPointsLeft() {

@@ -31,25 +31,30 @@ export class CareerComponent {
   }
 
   canBeSpecialized(skill: string): boolean {
-    return skill.match(/[(].*[)]/) != null;
+    return (
+      skill.match(/[(].*[)]/) != null ||
+      ['Art', 'Craft', 'Language', 'Lore'].some((name) => skill.startsWith(name))
+    );
   }
 
-  getSpecialized(skill: string): Skill {
-    let prop = getSpecialization(skill);
+  getSpecialized(skill: string, index?: number): Skill {
+    let prop = getSpecialization(skill, index);
     return this.specializations[prop]
       ? this.specializations[prop]
-      : this.checkSpecialized(skill);
+      : this.checkSpecialized(skill, prop);
   }
 
-  checkSpecialized(skill: string): Skill {
+  checkSpecialized(skill: string, key: string): Skill {
     if (!this.character.skills.specialized)
       this.character.skills.specialized = [];
 
     let specialized = undefined;
+    const usedSpecialized = Object.values(this.specializations);
     let specializedArray = this.character.skills.specialized.filter((s) =>
       s.name.startsWith(skill.replace(/[ ]*[(][Aa]ny.*[)]/g, ''))
     );
-    if (specializedArray.length == 0) {
+    specialized = specializedArray.find((s) => !usedSpecialized.includes(s));
+    if (!specialized) {
       let s = this.findSkill(skill);
       this.character.skills.specialized.push(
         (specialized = new Skill(skill, true)
@@ -60,19 +65,18 @@ export class CareerComponent {
             divide: s.divide,
           }))
       );
-    } else {
-      specialized = specializedArray.find((s) => s.careerBonus);
-      if (!specialized) specialized = specializedArray[0];
     }
+    this.specializations[key] = specialized;
     return specialized;
   }
 
-  getSpecializedProps(currentSkill: string) {
+  getSpecializedProps(currentSkill: string, index?: number) {
+    const specializationKey = getSpecialization(currentSkill, index);
     return {
       character: this.character,
       skill: this.findSkill(currentSkill),
       selectSkill: (skill: Skill) => {
-        this.specializations[getSpecialization(currentSkill)] = skill;
+        this.specializations[specializationKey] = skill;
       },
     };
   }
@@ -203,9 +207,6 @@ export class CareerComponent {
     return (Careers as any).find((c: any) => c.career == this.character.career)[
       type
     ];
-    // let careers : any = Careers;
-    // let career = careers.find((c:any)=>this.character.career==careers[c].career)!;
-    // return this.character.skills.skills.filter(s=>career[type].find((n:any)=>n.startsWith(s.name)));
   }
 
   findSkill(skill: string): Skill {
@@ -226,15 +227,20 @@ export class CareerComponent {
   }
 
   isAny(skill: string): boolean {
-    return skill.match(/[ ]*[(][Aa]ny.*[)]/) != null;
+    return (
+      skill.match(/[ ]*[(][Aa]ny.*[)]/) != null ||
+      ['Art', 'Craft', 'Language', 'Lore'].some((name) => skill.startsWith(name))
+    );
   }
 
 }
 
-function getSpecialization(skill: string): string {
+function getSpecialization(skill: string, index?: number): string {
+  const suffix = index == undefined ? '' : `_${index}`;
   return skill.match(/[(].*[)]/) != null
     ? skill.replace(/[(].*[)].*$/g, '') +
         '_' +
-        skill.match(/[(].*[)]/)![0].replace(/[ ]/g, '')
-    : skill;
+        skill.match(/[(].*[)]/)![0].replace(/[ ]/g, '') +
+        suffix
+    : skill + suffix;
 }
