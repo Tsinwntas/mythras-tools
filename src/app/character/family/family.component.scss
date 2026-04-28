@@ -1,6 +1,7 @@
 .family {
     display: flex;
     align-items: stretch;
+    gap: 8px;
 }
 
 .family *{
@@ -10,4 +11,10 @@
 button {
     height: 100% !important;
     width: 100% !important;
+}
+
+@media (max-width: 600px) {
+    .family {
+        flex-direction: column;
+    }
 }

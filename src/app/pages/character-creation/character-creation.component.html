@@ -1,32 +1,52 @@
 <div class="app-shell">
 <div class="app-container page-wrapper">
     <div class="header app-page-header">
+        <button mat-icon-button class="sidebar-toggle" (click)="toggleSidebar()" aria-label="Toggle section menu">
+            <mat-icon>menu</mat-icon>
+        </button>
         <h2 class="app-page-title">Character Creation Wizard</h2>
         <div></div>
         <button mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
     </div>
 
-    <mat-stepper [linear]="false" #stepper (selectionChange)="onStepChange($event)" orientation="vertical" >
-        <mat-step *ngFor="let state of states">
+    <div class="creation-layout">
+        <aside class="creation-sidebar app-card-surface" [class.open]="sidebarOpen">
+            <h3>Sections</h3>
+            <div class="creation-progress">{{pageState + 1}} / {{states.length}}</div>
+            <div class="step-list">
+                <button
+                    type="button"
+                    class="step-list-item"
+                    *ngFor="let state of states; let i = index"
+                    [class.active]="pageState === i"
+                    (click)="goToStep(i)"
+                >
+                    <span class="step-index">{{i + 1}}</span>
+                    <span class="step-name">{{state.stepLabel}}</span>
+                </button>
+            </div>
+        </aside>
+
+        <section class="creation-main">
             <mat-card class="app-card-surface">
                 <mat-card-header>
-                    <h3>{{state.stepLabel}}</h3>
+                    <h3>{{getCurrentState().stepLabel}}</h3>
                 </mat-card-header>	
                 <mat-card-content >
                     <div class="state-content-wrapper">
-                        <ng-container #stateComponents></ng-container>
+                        <ng-container #activeStateHost></ng-container>
                     </div>
-                    <div *ngIf="state.next == undefined" class="next-button app-action-row" >
-                        <button mat-stroked-button matStepperPrevious >Back</button>
-                        <button mat-stroked-button matStepperNext >Next</button>
+                    <div *ngIf="getCurrentState().next == undefined" class="next-button app-action-row" >
+                        <button mat-stroked-button (click)="previousStep()" [disabled]="pageState === 0">Back</button>
+                        <button mat-stroked-button (click)="nextStep()" [disabled]="pageState === states.length - 1">Next</button>
                     </div>
-                    <div *ngIf="state.next != undefined" class="next-button app-action-row">
-                        <button mat-stroked-button matStepperPrevious *ngIf="state.back">Back</button>
-                        <button mat-stroked-button *ngFor="let button of state.next" (click)="stepTo(button.target, button.click)">{{button.label? button.label : 'Next'}}</button>
+                    <div *ngIf="getCurrentState().next != undefined" class="next-button app-action-row">
+                        <button mat-stroked-button *ngIf="getCurrentState().back" (click)="previousStep()">Back</button>
+                        <button mat-stroked-button *ngFor="let button of getCurrentState().next" (click)="stepTo(button.target, button.click)">{{button.label? button.label : 'Next'}}</button>
                     </div>
                 </mat-card-content>
             </mat-card>
-        </mat-step>
-    </mat-stepper>
+        </section>
+    </div>
 </div>
 </div>

@@ -9,6 +9,10 @@
     }
 }
 
+.sidebar-toggle {
+    display: none;
+}
+
 .view-as{
     flex: 0 0 100%;
 }
@@ -17,7 +21,7 @@
 .round-span{
     display:flex;
     flex-grow: 1;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .back{
@@ -29,9 +33,140 @@
     gap: var(--app-space-4);
 }
 
+.app-toolbar-wrap {
+    align-items: flex-start;
+    height: auto;
+    min-height: 0;
+    padding-top: var(--app-space-2);
+    padding-bottom: var(--app-space-2);
+}
+
+.loading-wrap {
+    display: grid;
+    justify-content: center;
+}
+
+.combat-layout {
+    display: grid;
+    grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+    gap: var(--app-space-4);
+    align-items: start;
+}
+
+.combat-sidebar {
+    position: sticky;
+    top: var(--app-space-3);
+    padding: var(--app-space-3);
+    display: grid;
+    gap: var(--app-space-2);
+}
+
+.combat-progress {
+    font-size: var(--app-font-size-sm);
+    color: var(--app-color-muted);
+}
+
+.step-list {
+    display: grid;
+    gap: var(--app-space-2);
+}
+
+.step-list-item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: var(--app-space-2);
+    align-items: start;
+    padding: var(--app-space-2);
+    border-radius: var(--app-radius-sm);
+    border: 1px solid transparent;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+}
+
+.step-list-item.active {
+    border-color: var(--app-color-border);
+    background: #ffffffc9;
+}
+
+.step-index {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #6f6f6f;
+    color: #fff;
+    font-size: var(--app-font-size-xs);
+}
+
+.step-name {
+    font-size: var(--app-font-size-sm);
+    line-height: 1.3;
+}
+
+.combat-main {
+    min-width: 0;
+    overflow-x: auto;
+}
+
+.combat-main ::ng-deep mat-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 @media (max-width: 959px) {
     .app-toolbar-wrap button {
         font-size: var(--app-font-size-xs);
         padding-inline: var(--app-space-2);
+    }
+}
+
+@media (max-width: 700px) {
+    .app-toolbar-wrap {
+        gap: var(--app-space-2);
+    }
+
+    .app-toolbar-wrap .back {
+        margin-left: 0;
+        order: 100;
+        width: 100%;
+    }
+
+    .app-toolbar-wrap .back button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .combat-layout {
+        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+        gap: var(--app-space-3);
+    }
+}
+
+@media (max-width: 600px) {
+    .combat-layout {
+        grid-template-columns: 1fr;
+        gap: var(--app-space-3);
+    }
+
+    .combat-layout .combat-sidebar {
+        position: static;
+        display: none !important;
+    }
+
+    .combat-layout .combat-sidebar.open {
+        display: grid !important;
+    }
+
+    .sidebar-toggle {
+        display: inline-flex;
+    }
+
+    .step-list {
+        grid-template-columns: 1fr;
     }
 }

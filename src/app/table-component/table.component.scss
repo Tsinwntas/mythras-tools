@@ -1,0 +1,15 @@
+.table-scroll-shell {
+    border: 1px solid var(--app-color-border);
+    border-radius: var(--app-radius-sm);
+    background: #fff;
+}
+
+:host ::ng-deep .app-table .mat-mdc-header-cell {
+    font-weight: 600;
+    background: #f4f6fa;
+    white-space: nowrap;
+}
+
+:host ::ng-deep .app-table .mat-mdc-cell {
+    word-break: normal;
+}

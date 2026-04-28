@@ -10,9 +10,84 @@
     flex-wrap: wrap;
 }
 
+.sidebar-toggle {
+    display: none;
+}
+
 .page-wrapper {
     display: grid;
     gap: var(--app-space-3);
+}
+
+.creation-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    gap: var(--app-space-4);
+    align-items: start;
+}
+
+.creation-sidebar {
+    position: sticky;
+    top: var(--app-space-3);
+    padding: var(--app-space-3);
+    display: grid;
+    gap: var(--app-space-2);
+}
+
+.creation-progress {
+    font-size: var(--app-font-size-sm);
+    color: var(--app-color-muted);
+}
+
+.step-list {
+    display: grid;
+    gap: var(--app-space-2);
+}
+
+.step-list-item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: var(--app-space-2);
+    align-items: start;
+    padding: var(--app-space-2);
+    border-radius: var(--app-radius-sm);
+    border: 1px solid transparent;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+}
+
+.step-list-item.active {
+    border-color: var(--app-color-border);
+    background: #ffffffc9;
+}
+
+.step-index {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #6f6f6f;
+    color: #fff;
+    font-size: var(--app-font-size-xs);
+}
+
+.step-name {
+    font-size: var(--app-font-size-sm);
+    line-height: 1.3;
+}
+
+.creation-main {
+    min-width: 0;
+    overflow-x: auto;
+}
+
+.creation-main ::ng-deep mat-card {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @media (max-width: 599px) {
@@ -22,5 +97,45 @@
 
     .header button {
         width: 100%;
+    }
+
+    .next-button > * {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .creation-layout {
+        grid-template-columns: 1fr;
+        gap: var(--app-space-3);
+    }
+
+    .creation-layout .creation-sidebar {
+        position: static;
+        display: none !important;
+    }
+
+    .creation-layout .creation-sidebar.open {
+        display: grid !important;
+    }
+
+    .step-list {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .sidebar-toggle {
+        display: inline-flex;
+    }
+}
+
+@media (min-width: 1001px) {
+    .creation-layout .creation-sidebar {
+        display: grid !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .step-list {
+        grid-template-columns: 1fr;
     }
 }

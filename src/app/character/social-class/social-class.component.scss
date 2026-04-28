@@ -8,3 +8,22 @@
 .class-money{
     grid-template-columns: 210px 95px max-content;
 }
+
+@media (max-width: 900px) {
+    .starting-money{
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+    }
+
+    .class-money{
+        grid-template-columns: minmax(0, 1fr) auto auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .starting-money,
+    .class-money{
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}

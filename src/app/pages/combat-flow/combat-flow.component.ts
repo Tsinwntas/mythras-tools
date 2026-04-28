@@ -8,7 +8,16 @@ import { StartOfCombatCycleComponent } from './../start-of-combat-cycle/start-of
 import { FatigueCheckComponent } from './../fatigue-check/fatigue-check.component';
 import { StartOfCombatRoundComponent } from './../start-of-combat-round/start-of-combat-round.component';
 import { StartOfCombatComponent } from './../start-of-combat/start-of-combat.component';
-import { Component, ComponentFactoryResolver, HostListener } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  EmbeddedViewRef,
+  HostListener,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { CombatState } from 'src/app/model/combat-state';
 import { FreeActionsComponent } from '../free-actions/free-actions.component';
 import { StatePageComponent } from '../state-page/state-page.component';
@@ -26,6 +35,11 @@ export class CombatFlowComponent extends StatePageComponent {
 
   userType : UserTypes;
   UserTypes = UserTypes;
+  sidebarOpen = false;
+  @ViewChild('activeStateHost', { read: ViewContainerRef })
+  private activeStateHost?: ViewContainerRef;
+  private sectionComponents = new Map<number, ComponentRef<any>>();
+  private activeSectionIndex = -1;
   override states : CombatState[] = [
     {
       stepLabel: "Start of Combat",
@@ -133,6 +147,7 @@ export class CombatFlowComponent extends StatePageComponent {
   } 
 
   override ngOnInit(){
+    this.syncSidebarForViewport();
     const userType = this.storage.getNumber('user-type');
     if (userType !== null) {
       this.userType = userType as UserTypes;
@@ -143,19 +158,31 @@ export class CombatFlowComponent extends StatePageComponent {
     this.updateCombatState();
   }
 
+  override ngAfterViewInit(): void {
+    this.renderActiveState();
+  }
+
   override onStepChange(event: any): void {
-    super.onStepChange(event);
+    this.pageState = event.selectedIndex;
+    this.renderActiveState();
     this.requestSave();
   }
 
   override stepTo(index: any, click?: ()=>void): void {
-    super.stepTo(index, click);
+    if(index >= 0){
+      this.pageState = index;
+      this.renderActiveState();
+    }
+    if(click)
+      click();
     this.requestSave();
   }
 
   ngOnDestroy(): void {
     this.flushSave();
     this.saveHandle.destroy();
+    this.sectionComponents.forEach((componentRef) => componentRef.destroy());
+    this.sectionComponents.clear();
   }
 
   @HostListener('document:input')
@@ -175,6 +202,11 @@ export class CombatFlowComponent extends StatePageComponent {
     this.flushSave();
   }
 
+  @HostListener('window:resize')
+  onResize(): void {
+    this.syncSidebarForViewport();
+  }
+
   override getStates() : CombatState[] {
       if(this.userType == UserTypes.GM)
         return this.states;
@@ -186,6 +218,12 @@ export class CombatFlowComponent extends StatePageComponent {
     this.userType = type;
     this.switchedType=true;
     this.updateCombatState();
+    this.activeSectionIndex = -1;
+    this.sectionComponents.forEach((componentRef) => componentRef.destroy());
+    this.sectionComponents.clear();
+    this.activeStateHost?.clear();
+    this.renderActiveState();
+    this.loading=false;
     this.requestSave();
   }
 
@@ -211,6 +249,72 @@ export class CombatFlowComponent extends StatePageComponent {
     if(this.userType == UserTypes.PLAYER)
       this.storage.setRaw('combat-state-player', this.pageState ?? 0);
     this.storage.setRaw('round', this.round.round ?? 1);
+  }
+
+  toggleSidebar(): void {
+    if (window.innerWidth > 600) {
+      return;
+    }
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  goToStep(index: number): void {
+    this.stepTo(index);
+    if (window.innerWidth <= 600) {
+      this.sidebarOpen = false;
+    }
+  }
+
+  nextStep(): void {
+    const next = Math.min(this.getStates().length - 1, (this.pageState ?? 0) + 1);
+    this.stepTo(next);
+  }
+
+  getCurrentState(): CombatState {
+    return this.getStates()[this.pageState ?? 0];
+  }
+
+  private renderActiveState(): void {
+    if (!this.activeStateHost || this.userType === UserTypes.UNKNOWN) {
+      return;
+    }
+    const states = this.getStates();
+    const targetIndex = this.pageState ?? 0;
+    const state = states[targetIndex];
+    if (!state?.component) {
+      return;
+    }
+    if (this.activeSectionIndex === targetIndex) {
+      return;
+    }
+    const componentFactory = this.resolverLocal.resolveComponentFactory(
+      state.component as any
+    );
+    if (this.activeStateHost.length > 0) {
+      this.activeStateHost.detach(0);
+    }
+    let componentRef = this.sectionComponents.get(targetIndex);
+    const hostView = componentRef?.hostView as EmbeddedViewRef<unknown> | undefined;
+    if (componentRef && hostView?.destroyed) {
+      this.sectionComponents.delete(targetIndex);
+      componentRef = undefined;
+    }
+    if (!componentRef) {
+      componentRef = this.activeStateHost.createComponent(componentFactory);
+      this.setProps(componentRef);
+      this.sectionComponents.set(targetIndex, componentRef);
+    } else {
+      this.activeStateHost.insert(
+        componentRef.hostView as EmbeddedViewRef<unknown>
+      );
+    }
+    this.activeSectionIndex = targetIndex;
+  }
+
+  private syncSidebarForViewport(): void {
+    if (window.innerWidth <= 600) {
+      this.sidebarOpen = false;
+    }
   }
 
 

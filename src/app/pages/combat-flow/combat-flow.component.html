@@ -52,36 +52,54 @@
         <button mat-raised-button color="accent" (click)="setUserType(UserTypes.PLAYER)">Player</button>
     </div>
     <div class="combat-flow-wrapper" *ngIf="userType != UserTypes.UNKNOWN" >
-        
-        <div *ngIf="loading" >
+        <button mat-icon-button class="sidebar-toggle" (click)="toggleSidebar()" aria-label="Toggle combat section menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div *ngIf="loading" class="loading-wrap">
             <mat-spinner></mat-spinner>
         </div>
-        <mat-stepper [linear]="false" #stepper (selectionChange)="onStepChange($event)" [ngStyle]="{'display': loading ? 'none' : 'block' }" >
-            <mat-step *ngFor="let state of getStates()">
+        <div class="combat-layout" [ngStyle]="{'display': loading ? 'none' : 'grid' }">
+            <aside class="combat-sidebar app-card-surface" [class.open]="sidebarOpen">
+                <h3>Sections</h3>
+                <div class="combat-progress">{{pageState + 1}} / {{getStates().length}}</div>
+                <div class="step-list">
+                    <button
+                        type="button"
+                        class="step-list-item"
+                        *ngFor="let state of getStates(); let i = index"
+                        [class.active]="pageState === i"
+                        (click)="goToStep(i)"
+                    >
+                        <span class="step-index">{{i + 1}}</span>
+                        <span class="step-name">{{state.stepLabel}}</span>
+                    </button>
+                </div>
+            </aside>
+            <section class="combat-main">
                 <mat-card class="app-card-surface">
                     <mat-card-header>
-                        <h3>{{state.stepLabel}}</h3>
+                        <h3>{{getCurrentState().stepLabel}}</h3>
                         <span *ngIf="userType == UserTypes.GM && pageState == 2" class="round-span">
-                        <mat-form-field>
-                            <mat-label>Round</mat-label>
-                            <input matInput placeholder="1" type="number" [(ngModel)]="round.round">
-                        </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Round</mat-label>
+                                <input matInput placeholder="1" type="number" [(ngModel)]="round.round">
+                            </mat-form-field>
                         </span>
                     </mat-card-header>	
                     <mat-card-content >
                         <div class="state-content-wrapper">
-                            <ng-container #stateComponents></ng-container>
+                            <ng-container #activeStateHost></ng-container>
                         </div>
-                        <div *ngIf="state.next == undefined" class="app-action-row">
-                            <button mat-stroked-button matStepperNext >Next</button>
+                        <div *ngIf="getCurrentState().next == undefined" class="app-action-row">
+                            <button mat-stroked-button (click)="nextStep()">Next</button>
                         </div>
-                        <div *ngIf="state.next != undefined" class="app-action-row">
-                            <button mat-stroked-button *ngFor="let button of state.next" (click)="stepTo(button.target, button.click)">{{button.label? button.label : 'Next'}}</button>
+                        <div *ngIf="getCurrentState().next != undefined" class="app-action-row">
+                            <button mat-stroked-button *ngFor="let button of getCurrentState().next" (click)="stepTo(button.target, button.click)">{{button.label? button.label : 'Next'}}</button>
                         </div>
                     </mat-card-content>
                 </mat-card>
-            </mat-step>
-        </mat-stepper>
+            </section>
+        </div>
     </div>
     <div class="user-type-reselection" *ngIf="userType != UserTypes.UNKNOWN" >
         <div>View as:</div>

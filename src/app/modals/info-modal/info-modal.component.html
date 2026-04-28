@@ -1,11 +1,13 @@
-<h1 mat-dialog-title class="u-mb-3 app-page-title">{{getHeader()}}</h1>
-<div *ngIf="!loaded" class="text-center">
+<div class="app-modal-shell info-modal-shell">
+<h1 mat-dialog-title class="u-mb-3 app-page-title info-modal-title">{{getHeader()}}</h1>
+<div *ngIf="!loaded" class="text-center info-modal-loading">
     <mat-spinner></mat-spinner>
 </div>
-<div mat-dialog-content class="u-mb-3 app-form-stack">
+<div mat-dialog-content class="u-mb-3 app-form-stack app-modal-content info-modal-content">
     <ng-container #infoComponent></ng-container>
 </div>
-<div mat-dialog-actions class="u-gap-3 app-action-row">
+<div mat-dialog-actions class="u-gap-3 app-action-row app-modal-actions info-modal-actions">
     <p class="info-sources">{{getSources()}}</p>
     <button mat-button [mat-dialog-close] cdkFocusInitial (click)="pressedOk()">OK</button>
+</div>
 </div>

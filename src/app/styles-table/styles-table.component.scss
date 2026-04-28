@@ -1,0 +1,32 @@
+.styles-table-shell {
+    border: 1px solid var(--app-color-border);
+    border-radius: var(--app-radius-sm);
+    background: #fff;
+}
+
+:host ::ng-deep .app-table .mat-mdc-header-cell {
+    font-weight: 600;
+    background: #f4f6fa;
+    white-space: nowrap;
+}
+
+:host ::ng-deep .app-table .mat-mdc-cell {
+    vertical-align: middle;
+    white-space: normal;
+    word-break: break-word;
+}
+
+:host ::ng-deep .app-table .mat-mdc-icon-button {
+    width: 38px;
+    height: 38px;
+}
+
+:host ::ng-deep .app-table .mat-mdc-form-field {
+    min-width: 140px;
+}
+
+@media (max-width: 599px) {
+    :host ::ng-deep .app-table .mat-mdc-form-field {
+        min-width: 120px;
+    }
+}

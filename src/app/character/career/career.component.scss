@@ -6,3 +6,94 @@
 .career-button{
     margin-bottom:10px;
 }
+
+.cultural-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.skill-categories {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.skill-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.attribute {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 52px;
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.skill-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.skill-base {
+    font-size: 13px;
+    text-align: right;
+}
+
+:host ::ng-deep .skill-wrapper .mat-mdc-form-field {
+    width: 90px;
+    min-width: 72px;
+    font-size: 13px;
+}
+
+:host ::ng-deep .skill-wrapper .mdc-text-field--filled {
+    height: 36px;
+}
+
+:host ::ng-deep .skill-wrapper .mat-mdc-form-field-infix {
+    min-height: 30px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .skill-categories {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .skill-wrapper {
+        gap: 6px;
+    }
+
+    .attribute {
+        grid-template-columns: minmax(0, 1fr) 44px;
+        gap: 6px;
+    }
+
+    .skill-name,
+    .skill-base {
+        font-size: 12px;
+    }
+
+    :host ::ng-deep .skill-wrapper .mat-mdc-form-field {
+        width: 72px;
+        min-width: 64px;
+        font-size: 12px;
+    }
+}

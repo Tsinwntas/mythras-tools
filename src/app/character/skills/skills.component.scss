@@ -2,4 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .characteristic {
+        justify-content: stretch;
+    }
 }

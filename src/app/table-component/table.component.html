@@ -1,5 +1,5 @@
-<div>
-    <table mat-table [dataSource]="tableData">
+<div class="app-table-scroll table-scroll-shell">
+    <table mat-table [dataSource]="tableData" class="app-table">
         
         <ng-container *ngFor="let col of columnDefinitions"  [matColumnDef]="col">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="highlightedColumns.includes(col) ? {'background-color':'#c0c0c05e'} : null"> {{columnHeaderMap[col]}} </th>

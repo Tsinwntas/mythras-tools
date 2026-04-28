@@ -8,10 +8,14 @@ import { PassionsComponent } from './../../character/passions/passions.component
 import { SocialClassComponent } from './../../character/social-class/social-class.component';
 import { BackgroundEventsComponent } from './../../character/background-events/background-events.component';
 import {
+  AfterViewInit,
   Component,
   ComponentFactoryResolver,
+  EmbeddedViewRef,
   ComponentRef,
   HostListener,
+  ViewChild,
+  ViewContainerRef,
 } from '@angular/core';
 import { AgeComponent } from 'src/app/character/age/age.component';
 import { ConceptComponent } from 'src/app/character/concept/concept.component';
@@ -36,9 +40,17 @@ import {
   templateUrl: './character-creation.component.html',
   styleUrls: ['./character-creation.component.scss'],
 })
-export class CharacterCreationComponent extends StatePageComponent {
+export class CharacterCreationComponent
+  extends StatePageComponent
+  implements AfterViewInit
+{
   character: Character;
+  sidebarOpen = false;
   private saveHandle: DebouncedSaveHandle;
+  @ViewChild('activeStateHost', { read: ViewContainerRef })
+  private activeStateHost?: ViewContainerRef;
+  private sectionComponents = new Map<number, ComponentRef<any>>();
+  private activeSectionIndex = -1;
 
   override states: CombatState[] = [
     { stepLabel: 'Details', component: DetailsComponent },
@@ -93,6 +105,7 @@ export class CharacterCreationComponent extends StatePageComponent {
   }
 
   override ngOnInit() {
+    this.syncSidebarForViewport();
     this.pageState = this.storage.getNumber('creation-state') ?? 0;
     this.character = this.storage.getRaw('creation-character')
       ? Object.assign(
@@ -106,13 +119,24 @@ export class CharacterCreationComponent extends StatePageComponent {
     );
   }
 
+  override ngAfterViewInit(): void {
+    this.renderActiveState();
+  }
+
   override onStepChange(event: any): void {
-    super.onStepChange(event);
+    this.pageState = event.selectedIndex;
+    this.renderActiveState();
     this.requestSave();
   }
 
   override stepTo(index: any, click?: () => void): void {
-    super.stepTo(index, click);
+    if (index >= 0) {
+      this.pageState = index;
+      this.renderActiveState();
+    }
+    if (click) {
+      click();
+    }
     this.requestSave();
   }
 
@@ -133,9 +157,16 @@ export class CharacterCreationComponent extends StatePageComponent {
     this.flushSave();
   }
 
+  @HostListener('window:resize')
+  onResize(): void {
+    this.syncSidebarForViewport();
+  }
+
   ngOnDestroy(): void {
     this.flushSave();
     this.saveHandle.destroy();
+    this.sectionComponents.forEach((componentRef) => componentRef.destroy());
+    this.sectionComponents.clear();
   }
 
   private requestSave(): void {
@@ -159,5 +190,68 @@ export class CharacterCreationComponent extends StatePageComponent {
 
   override setProps(component: ComponentRef<any>): void {
     component.instance.character = this.character;
+  }
+
+  toggleSidebar(): void {
+    if (window.innerWidth > 600) {
+      return;
+    }
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  goToStep(index: number): void {
+    this.stepTo(index);
+    if (window.innerWidth <= 959) {
+      this.sidebarOpen = false;
+    }
+  }
+
+  nextStep(): void {
+    const next = Math.min(this.states.length - 1, (this.pageState ?? 0) + 1);
+    this.stepTo(next);
+  }
+
+  previousStep(): void {
+    const previous = Math.max(0, (this.pageState ?? 0) - 1);
+    this.stepTo(previous);
+  }
+
+  getCurrentState(): CombatState {
+    return this.states[this.pageState ?? 0];
+  }
+
+  private renderActiveState(): void {
+    if (!this.activeStateHost) {
+      return;
+    }
+    const targetIndex = this.pageState ?? 0;
+    const state = this.states[targetIndex];
+    if (!state?.component) {
+      return;
+    }
+    if (this.activeSectionIndex === targetIndex) {
+      return;
+    }
+    const componentFactory = this.resolverLocal.resolveComponentFactory(
+      state.component as any
+    );
+    this.activeStateHost.clear();
+    let componentRef = this.sectionComponents.get(targetIndex);
+    if (!componentRef) {
+      componentRef = this.activeStateHost.createComponent(componentFactory);
+      this.setProps(componentRef);
+      this.sectionComponents.set(targetIndex, componentRef);
+    } else {
+      this.activeStateHost.insert(
+        (componentRef.hostView as EmbeddedViewRef<unknown>)
+      );
+    }
+    this.activeSectionIndex = targetIndex;
+  }
+
+  private syncSidebarForViewport(): void {
+    if (window.innerWidth <= 600) {
+      this.sidebarOpen = false;
+    }
   }
 }

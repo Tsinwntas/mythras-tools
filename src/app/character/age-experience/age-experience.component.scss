@@ -1,4 +1,12 @@
 .points-wrapper {
     display: flex;
     justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .points-wrapper {
+        flex-direction: column;
+    }
 }

@@ -30,9 +30,14 @@ export class ModalHandlerService {
 
   open(component : any, props? : any, callback? : ()=>void) {
     let data = {component: component, props : props}; 
+    const depth = this.dialog.openDialogs.length + 1;
     const dialogRef = this.dialog.open(InfoModalComponent, 
       {
         data: data,
+        autoFocus: false,
+        restoreFocus: false,
+        panelClass: ['app-info-modal-panel', `app-info-modal-panel-depth-${depth}`],
+        backdropClass: ['app-info-modal-backdrop', `app-info-modal-backdrop-depth-${depth}`],
       });
 
     dialogRef.afterClosed().subscribe(result => {

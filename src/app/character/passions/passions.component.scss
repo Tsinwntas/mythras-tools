@@ -1,5 +1,6 @@
 .passion-fields{
     display: flex;
+    gap: 8px;
     .mod{
         width:50%;
     }
@@ -9,4 +10,14 @@
 }
 .passion-fields mat-form-field:first-child{
     flex-grow: 1;
+}
+
+@media (max-width: 600px) {
+    .passion-fields{
+        flex-direction: column;
+    }
+
+    .passion-fields .mod{
+        width: 100%;
+    }
 }

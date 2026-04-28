@@ -1,19 +1,52 @@
+.info-modal-title {
+    margin-bottom: 0;
+    font-size: clamp(20px, 2.6vw, 30px);
+}
+
 .info-sources{
-    margin-right: 20px;
-    margin-bottom: 0px;
+    margin-right: auto;
+    margin-bottom: 0;
     color: var(--app-color-muted);
     font-size: var(--app-font-size-sm);
 }
-mat-spinner{
+
+.info-modal-loading {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100% !important;
-    height: 100% !important;
+    inset: 0;
     background: #0000005e;
     z-index: 101;
+    display: grid;
+    place-items: center;
 }
 
-:host ::ng-deep .mat-mdc-dialog-content {
-    max-height: min(72vh, 760px);
+.info-modal-content {
+    position: relative;
+}
+
+:host ::ng-deep .app-info-modal-panel .mat-mdc-dialog-container .mdc-dialog__surface {
+    max-height: 92vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+:host ::ng-deep .app-info-modal-panel .mat-mdc-dialog-content.app-modal-content {
+    overflow: auto !important;
+    max-height: calc(92vh - 170px) !important;
+}
+
+:host ::ng-deep .info-modal-content .mat-mdc-form-field {
+    width: 100%;
+}
+
+@media (max-width: 599px) {
+    .info-modal-title {
+        font-size: 22px;
+        line-height: 1.2;
+    }
+
+    .info-sources{
+        width: 100%;
+        margin-right: 0;
+    }
 }

@@ -1,7 +1,16 @@
 .form-wrapper{
     display: flex;
     justify-content: space-evenly;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 .size-table{
     margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .form-wrapper{
+        justify-content: stretch;
+        flex-direction: column;
+    }
 }

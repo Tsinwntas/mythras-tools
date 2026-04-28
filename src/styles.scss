@@ -133,6 +133,55 @@ p {
   margin-left: auto;
 }
 
+.app-modal-shell {
+  width: min(92vw, 980px);
+  max-height: 88vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--app-space-3);
+}
+
+.app-modal-content {
+  overflow: auto;
+  max-height: min(64vh, 680px);
+  min-height: 0;
+  padding-right: var(--app-space-1);
+}
+
+.app-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--app-space-2);
+  justify-content: flex-end;
+}
+
+.app-table-scroll {
+  width: 100%;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable both-edges;
+}
+
+.app-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.app-table th,
+.app-table td {
+  padding: var(--app-space-2) var(--app-space-3);
+  vertical-align: top;
+}
+
+.app-table .mat-mdc-icon-button {
+  width: 36px;
+  height: 36px;
+}
+
 .u-flex {
   display: flex;
 }
@@ -197,6 +246,15 @@ p {
   .app-page-title {
     font-size: var(--app-font-size-lg);
   }
+
+  .app-modal-shell {
+    width: min(94vw, 860px);
+    max-height: 90vh;
+  }
+
+  .app-modal-content {
+    max-height: min(68vh, 700px);
+  }
 }
 
 @media (max-width: 599px) {
@@ -215,6 +273,34 @@ p {
   .app-action-row > * {
     width: 100%;
   }
+
+  .app-modal-shell {
+    width: 96vw;
+    max-height: 92vh;
+    gap: var(--app-space-2);
+  }
+
+  .app-modal-content {
+    max-height: 70vh;
+  }
+
+  .app-modal-actions {
+    justify-content: stretch;
+  }
+
+  .app-modal-actions > * {
+    width: 100%;
+  }
+
+  .app-table {
+    min-width: 520px;
+  }
+
+  .app-table th,
+  .app-table td {
+    padding: var(--app-space-2);
+    font-size: var(--app-font-size-sm);
+  }
 }
 
 .modal-opener{
@@ -230,6 +316,14 @@ p {
     width: 100vw !important;
 }
 
+.cdk-overlay-pane.app-info-modal-panel {
+  max-width: min(96vw, 1120px) !important;
+}
+
+.cdk-overlay-backdrop.app-info-modal-backdrop {
+  background: rgba(0, 0, 0, 0.42);
+}
+
 page-wrapper{
     background-color: beige;
     // width: 100vw;
@@ -239,12 +333,6 @@ page-wrapper{
 
 mat-stepper{
     background-color: unset !important;
-}
-
-.mat-vertical-content-container{
-    top: 50px;
-    position: absolute !important;
-    z-index: 1;
 }
 
 .mat-step .mat-step-icon {

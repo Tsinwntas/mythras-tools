@@ -8,8 +8,20 @@
     display: flex;
     justify-content: space-around;
     padding: 10px;
+    gap: 8px;
+    flex-wrap: wrap;
 
     .add-button mat-icon{
         margin-right: 0px;
+    }
+}
+
+@media (max-width: 600px) {
+    .background-event-buttons {
+        justify-content: stretch;
+    }
+
+    .background-event-buttons > * {
+        width: 100%;
     }
 }
