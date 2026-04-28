@@ -92,11 +92,19 @@
 
 @media (max-width: 599px) {
     .header {
-        align-items: stretch;
+        align-items: center;
+        flex-wrap: nowrap;
     }
 
-    .header button {
-        width: 100%;
+    .header .app-page-title {
+        margin: 0;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .header > button[mat-raised-button] {
+        width: auto;
+        white-space: nowrap;
     }
 
     .next-button > * {
