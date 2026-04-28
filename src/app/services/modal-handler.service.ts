@@ -1,6 +1,7 @@
 import { InitiativeNotesComponent } from './../modals/initiative-notes/initiative-notes.component';
 import { RoundHolder } from './../model/round-holder';
 import { SpecialEffectsComponent } from './../modals/special-effects/special-effects.component';
+import { AllCombatStylesComponent } from './../modals/all-combat-styles/all-combat-styles.component';
 import { EncPenaltyComponent } from './../modals/enc-penalty/enc-penalty.component';
 import { SituationalModifiersComponent } from './../modals/situational-modifiers/situational-modifiers.component';
 import { AugmentModalComponent } from './../modals/augment-modal/augment-modal.component';
@@ -31,12 +32,16 @@ export class ModalHandlerService {
   open(component : any, props? : any, callback? : ()=>void) {
     let data = {component: component, props : props}; 
     const depth = this.dialog.openDialogs.length + 1;
+    const panelClasses = ['app-info-modal-panel', `app-info-modal-panel-depth-${depth}`];
+    if (component === AllCombatStylesComponent || component?.name === 'AllCombatStylesComponent') {
+      panelClasses.push('app-info-modal-panel-wide');
+    }
     const dialogRef = this.dialog.open(InfoModalComponent, 
       {
         data: data,
         autoFocus: false,
         restoreFocus: false,
-        panelClass: ['app-info-modal-panel', `app-info-modal-panel-depth-${depth}`],
+        panelClass: panelClasses,
         backdropClass: ['app-info-modal-backdrop', `app-info-modal-backdrop-depth-${depth}`],
       });
 

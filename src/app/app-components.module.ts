@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CombatFlowComponent } from './pages/combat-flow/combat-flow.component';
 import {MatButtonModule} from '@angular/material/button';
-import {MatStepperModule} from '@angular/material/stepper';
 import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
@@ -318,7 +317,6 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     FormsModule,
     MatButtonModule,
-    MatStepperModule,
     MatCardModule,
     MatTooltipModule,
     MatIconModule,

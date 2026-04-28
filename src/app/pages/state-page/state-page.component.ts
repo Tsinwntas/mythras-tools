@@ -1,5 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, OnInit, QueryList, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
-import { MatStepper } from '@angular/material/stepper';
+import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, OnInit, QueryList, ViewChildren, ViewContainerRef } from '@angular/core';
 import { CombatState } from 'src/app/model/combat-state';
 
 @Component({
@@ -7,17 +6,14 @@ import { CombatState } from 'src/app/model/combat-state';
   templateUrl: './state-page.component.html',
   styleUrls: ['./state-page.component.scss']
 })
-export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChecked{
+export class StatePageComponent  implements OnInit, AfterViewInit{
 
 
-  @ViewChild('stepper') stepper: MatStepper | undefined;
   @ViewChildren('stateComponents', {read: ViewContainerRef}) public stateComponents: QueryList<ViewContainerRef>;
   
   loading : boolean;
   states : CombatState[] = [];
   pageState : number;
-  switchedType : boolean;
-  private indicatorTypeSet = false;
 
   constructor(private resolver: ComponentFactoryResolver){
       
@@ -31,35 +27,7 @@ export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChec
     //override
   }
     
-  ngAfterViewInit() {
-    if(this.stepper){
-      setTimeout(()=>{
-        this.setIndicatorType();
-        if(this.pageState)
-          this.stepper!.selectedIndex = this.pageState;
-        this.loadComponent();
-      },0)
-    }
-  }
-
-  ngAfterViewChecked(): void {
-    this.setIndicatorType();
-    if(this.stepper && this.switchedType){
-      this.switchedType = false;
-      setTimeout(() => {
-        this.stepper!.selectedIndex = this.pageState;
-        this.loadComponent();
-      }, 0);
-    }
-  }
-
-  private setIndicatorType(): void {
-    if(!this.stepper || this.indicatorTypeSet)
-      return;
-    // TODO: find better way to change indicator type.
-    this.stepper._getIndicatorType = () => 'number';
-    this.indicatorTypeSet = true;
-  }
+  ngAfterViewInit() {}
 
   getStates() : CombatState[] {
     return this.states;
@@ -72,7 +40,6 @@ export class StatePageComponent  implements OnInit, AfterViewInit, AfterViewChec
   stepTo(index: any, click?: ()=>void){
     if(index >= 0){
       this.pageState = index;
-      this.stepper!.selectedIndex = index;
     }
     if(click)
       click();

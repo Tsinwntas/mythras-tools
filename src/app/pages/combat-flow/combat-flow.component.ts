@@ -216,7 +216,6 @@ export class CombatFlowComponent extends StatePageComponent {
   setUserType(type : UserTypes) {
     this.loading=true;
     this.userType = type;
-    this.switchedType=true;
     this.updateCombatState();
     this.activeSectionIndex = -1;
     this.sectionComponents.forEach((componentRef) => componentRef.destroy());

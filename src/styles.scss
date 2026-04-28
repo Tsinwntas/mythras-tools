@@ -309,7 +309,7 @@ p {
     text-decoration: underline;
 }
 .mat-mdc-dialog-actions {
-    justify-content: end !important;
+    justify-content: flex-end !important;
 }
 .cdk-overlay-container{
     height: 100vh !important;
@@ -317,7 +317,18 @@ p {
 }
 
 .cdk-overlay-pane.app-info-modal-panel {
-  max-width: min(96vw, 1120px) !important;
+  width: min(94vw, 980px) !important;
+  max-width: min(94vw, 980px) !important;
+}
+
+.cdk-overlay-pane.app-info-modal-panel-wide {
+  width: min(98vw, 1280px) !important;
+  max-width: min(98vw, 1280px) !important;
+}
+
+.cdk-overlay-pane.app-info-modal-panel-wide .app-modal-shell {
+  width: 100% !important;
+  max-width: none !important;
 }
 
 .cdk-overlay-backdrop.app-info-modal-backdrop {
@@ -329,14 +340,6 @@ page-wrapper{
     // width: 100vw;
     height: 100vh;
     padding: 10px 20px;
-}
-
-mat-stepper{
-    background-color: unset !important;
-}
-
-.mat-step .mat-step-icon {
-    z-index: 2 !important;
 }
 
 app-initiative-notes mat-form-field{
@@ -379,10 +382,6 @@ body {
 }
 
 .header {
-    visibility: hidden;
-}
-
-.mat-step-icon{
     visibility: hidden;
 }
 

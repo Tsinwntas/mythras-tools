@@ -10,10 +10,16 @@
     white-space: nowrap;
 }
 
+:host ::ng-deep .app-table {
+    min-width: 1400px;
+    table-layout: auto;
+}
+
 :host ::ng-deep .app-table .mat-mdc-cell {
     vertical-align: middle;
     white-space: normal;
-    word-break: break-word;
+    word-break: normal;
+    overflow-wrap: break-word;
 }
 
 :host ::ng-deep .app-table .mat-mdc-icon-button {

@@ -20,8 +20,9 @@ export class CombatStyle extends Skill {
         this.traits = style.traits;
         this.selectedTrait = style.selectedTrait;
         this.weapons = style.weapons;
-        this.critOffensive = style['crit-offensive'];
-        this.critDefensive = style['crit-defensive'];
+        // Support both raw JSON keys and in-memory camelCase keys.
+        this.critOffensive = style['crit-offensive'] ?? style.critOffensive;
+        this.critDefensive = style['crit-defensive'] ?? style.critDefensive;
         this.offensive = style.offensive;
         this.defensive = style.defensive;
     }
