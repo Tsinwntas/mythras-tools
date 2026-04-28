@@ -1,8 +1,26 @@
 .next-button{
-    margin-top:20px
+    margin-top: var(--app-space-4);
 }
 
 .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--app-space-3);
+    flex-wrap: wrap;
+}
+
+.page-wrapper {
     display: grid;
-    grid-template-columns: max-content auto max-content;
+    gap: var(--app-space-3);
+}
+
+@media (max-width: 599px) {
+    .header {
+        align-items: stretch;
+    }
+
+    .header button {
+        width: 100%;
+    }
 }

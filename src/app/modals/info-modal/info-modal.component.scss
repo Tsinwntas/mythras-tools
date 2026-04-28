@@ -1,6 +1,8 @@
 .info-sources{
     margin-right: 20px;
     margin-bottom: 0px;
+    color: var(--app-color-muted);
+    font-size: var(--app-font-size-sm);
 }
 mat-spinner{
     position: absolute;
@@ -10,4 +12,8 @@ mat-spinner{
     height: 100% !important;
     background: #0000005e;
     z-index: 101;
+}
+
+:host ::ng-deep .mat-mdc-dialog-content {
+    max-height: min(72vh, 760px);
 }

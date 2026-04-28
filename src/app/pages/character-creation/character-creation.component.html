@@ -1,13 +1,14 @@
-<div class="page-wrapper">
-    <div class="header">
-        <h2>Character Creation Wizard</h2>
+<div class="app-shell">
+<div class="app-container page-wrapper">
+    <div class="header app-page-header">
+        <h2 class="app-page-title">Character Creation Wizard</h2>
         <div></div>
         <button mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
     </div>
 
     <mat-stepper [linear]="false" #stepper (selectionChange)="onStepChange($event)" orientation="vertical" >
         <mat-step *ngFor="let state of states">
-            <mat-card>
+            <mat-card class="app-card-surface">
                 <mat-card-header>
                     <h3>{{state.stepLabel}}</h3>
                 </mat-card-header>	
@@ -15,11 +16,11 @@
                     <div class="state-content-wrapper">
                         <ng-container #stateComponents></ng-container>
                     </div>
-                    <div *ngIf="state.next == undefined" class="next-button" >
+                    <div *ngIf="state.next == undefined" class="next-button app-action-row" >
                         <button mat-stroked-button matStepperPrevious >Back</button>
                         <button mat-stroked-button matStepperNext >Next</button>
                     </div>
-                    <div *ngIf="state.next != undefined" class="next-button">
+                    <div *ngIf="state.next != undefined" class="next-button app-action-row">
                         <button mat-stroked-button matStepperPrevious *ngIf="state.back">Back</button>
                         <button mat-stroked-button *ngFor="let button of state.next" (click)="stepTo(button.target, button.click)">{{button.label? button.label : 'Next'}}</button>
                     </div>
@@ -27,4 +28,5 @@
             </mat-card>
         </mat-step>
     </mat-stepper>
+</div>
 </div>

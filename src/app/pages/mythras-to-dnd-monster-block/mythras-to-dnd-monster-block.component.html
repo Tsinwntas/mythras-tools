@@ -1,26 +1,32 @@
-<div class="page-wrapper">
-    <div class="header">
-      <span class="title">MYTHRAS TOOLS</span> -
+<div class="app-shell">
+<div class="app-container page-wrapper">
+    <div class="header app-page-header app-card-surface">
+      <div>
+        <h1 class="title app-page-title">MYTHRAS TOOLS</h1>
+        <p class="app-page-subtitle">Mythras to DND Stat Block Converter</p>
+      </div>
       <span class="author">by Tsinik</span>
     </div>
-    <div class="disclaimer">
+    <div class="disclaimer app-card-surface">
       <b
         >This page saves in the browser's local storage, so if you clean your
         cache, everything saved will be lost.</b
       >
     </div>
-    <div class="text-holder">
+    <div class="text-holder app-section app-card-surface">
         <label>Generate creatures from Mythras Encounter Generator and then copy paste the creature you want and paste here. Make sure to copy from "Chars" all the way to the end.</label>
-        <textarea style="min-height: 500px;width: 100%;" [(ngModel)]="mythrasStatBlock"></textarea>
+        <textarea class="source-textarea" [(ngModel)]="mythrasStatBlock"></textarea>
     </div>
-    <div class="ovewrites">
-        <div><input placeholder="Name" [(ngModel)]="name"/></div>
-        <div><input placeholder="HP Overwrite" [(ngModel)]="hpOvewrite"/></div>
-        <div><input placeholder="AC Overwrite" [(ngModel)]="acOvewrite"/></div>
-        <div><input placeholder="Proficiency" [(ngModel)]="prof"/></div>
+    <div class="overwrites-wrap app-card-surface app-section">
+      <div class="overwrites app-form-grid">
+          <div><input placeholder="Name" [(ngModel)]="name"/></div>
+          <div><input placeholder="HP Overwrite" [(ngModel)]="hpOvewrite"/></div>
+          <div><input placeholder="AC Overwrite" [(ngModel)]="acOvewrite"/></div>
+          <div><input placeholder="Proficiency" [(ngModel)]="prof"/></div>
+      </div>
+      <div class="app-section"><textarea placeholder="Extra Abilities" class="extra-abilities" [(ngModel)]="extraAbilities"></textarea></div>
     </div>
-    <div><textarea placeholder="Extra Abilities" style="width: 60%;" [(ngModel)]="extraAbilities"></textarea></div>
-    <div class="dnd-holder" *ngIf="isMythrasStatBlockIsInitialised()">
+    <div class="dnd-holder app-card-surface" *ngIf="isMythrasStatBlockIsInitialised()">
         <b>CHECK IF PARSED CORRECTLY AND ADD PROFICIENCY</b>
         <div class="attributes">
             <div>STR: {{getByCheck("STR:")}}</div>
@@ -51,4 +57,5 @@
                 [download]="parsed['name']+'.xml'"><mat-icon>download</mat-icon> Download Character</a>
         </div>
     </div>
+</div>
 </div>

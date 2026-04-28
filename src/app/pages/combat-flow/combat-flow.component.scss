@@ -2,9 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: var(--app-space-3);
 
     button {
-        margin: 0px 10px;
+        margin: 0;
     }
 }
 
@@ -21,4 +22,16 @@
 
 .back{
     margin-left : auto;
+}
+
+.page-wrapper {
+    display: grid;
+    gap: var(--app-space-4);
+}
+
+@media (max-width: 959px) {
+    .app-toolbar-wrap button {
+        font-size: var(--app-font-size-xs);
+        padding-inline: var(--app-space-2);
+    }
 }

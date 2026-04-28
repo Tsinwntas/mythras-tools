@@ -1,14 +1,15 @@
 .page-wrapper{
     display: grid;
-    align-items: center;
-    justify-items: center;
-    padding: 30px;
+    align-items: start;
+    gap: var(--app-space-4);
 }
 .header {
-    padding: 20px;
+    width: 100%;
+    padding: var(--app-space-4);
+    box-sizing: border-box;
     .title{
         font-family: math;
-        font-size: 30px;
+        margin: 0;
     }
     .author{
         font-style: italic;
@@ -16,16 +17,51 @@
     }
 }
 
+.disclaimer {
+    width: min(100%, 720px);
+    padding: var(--app-space-3) var(--app-space-4);
+    box-sizing: border-box;
+}
+
 .options{
-    text-align: center;
+    width: min(100%, 720px);
+    padding: var(--app-space-4);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--app-space-3);
 }
 
 .option {
-    margin: 15px;
+    margin: 0;
+    button {
+        width: 100%;
+    }
 }
 
 .credits {
-    margin-top: 75px;
+    width: min(100%, 920px);
+    margin-top: var(--app-space-4);
+    padding: var(--app-space-4);
+    box-sizing: border-box;
     font-family: monospace;
+    line-height: 1.6;
+}
+
+@media (max-width: 959px) {
+    .options {
+        grid-template-columns: 1fr;
+        gap: var(--app-space-2);
+        padding: var(--app-space-3);
+    }
+
+    .header {
+        padding: var(--app-space-3);
+    }
+
+    .credits {
+        padding: var(--app-space-3);
+        line-height: 1.45;
+    }
 }
 

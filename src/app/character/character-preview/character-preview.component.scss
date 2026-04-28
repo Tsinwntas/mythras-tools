@@ -1,3 +1,8 @@
 .back-button { 
-    float:right;
+    margin-left: auto;
+}
+
+.page {
+    display: grid;
+    gap: var(--app-space-3);
 }

@@ -1,4 +1,6 @@
-<mat-toolbar>
+<div class="app-shell">
+<div class="app-container">
+<mat-toolbar class="app-section app-toolbar-wrap">
     <open-modal *ngIf="userType==UserTypes.GM"  modal="initiative" [prop]="round">
         <button mat-button>
             Initiative Notes
@@ -43,7 +45,7 @@
         <button mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
     </open-modal>
 </mat-toolbar>
-<div class="page-wrapper">
+<div class="page-wrapper app-form-stack">
     <div class="user-type-selection" *ngIf="userType == UserTypes.UNKNOWN" >
         <h3 class="view-as">Select from which perspective to view the Combat Flow:</h3>
         <button mat-raised-button color="primary" (click)="setUserType(UserTypes.GM)">GM</button>
@@ -56,7 +58,7 @@
         </div>
         <mat-stepper [linear]="false" #stepper (selectionChange)="onStepChange($event)" [ngStyle]="{'display': loading ? 'none' : 'block' }" >
             <mat-step *ngFor="let state of getStates()">
-                <mat-card>
+                <mat-card class="app-card-surface">
                     <mat-card-header>
                         <h3>{{state.stepLabel}}</h3>
                         <span *ngIf="userType == UserTypes.GM && pageState == 2" class="round-span">
@@ -70,10 +72,10 @@
                         <div class="state-content-wrapper">
                             <ng-container #stateComponents></ng-container>
                         </div>
-                        <div *ngIf="state.next == undefined" >
+                        <div *ngIf="state.next == undefined" class="app-action-row">
                             <button mat-stroked-button matStepperNext >Next</button>
                         </div>
-                        <div *ngIf="state.next != undefined" >
+                        <div *ngIf="state.next != undefined" class="app-action-row">
                             <button mat-stroked-button *ngFor="let button of state.next" (click)="stepTo(button.target, button.click)">{{button.label? button.label : 'Next'}}</button>
                         </div>
                     </mat-card-content>
@@ -86,4 +88,6 @@
         <button mat-raised-button color="primary" (click)="setUserType(UserTypes.GM)" *ngIf="userType == UserTypes.PLAYER">GM</button>
         <button mat-raised-button color="accent" (click)="setUserType(UserTypes.PLAYER)" *ngIf="userType == UserTypes.GM">Player</button>
     </div>
+</div>
+</div>
 </div>
