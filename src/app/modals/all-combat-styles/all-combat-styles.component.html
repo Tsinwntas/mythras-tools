@@ -1,6 +1,15 @@
 <div>
     <style-filters [filters]="filters" (filter)="filter()"></style-filters>
 </div>
-<div class="styles-table">
+<div>
+    <button mat-stroked-button (click)="resetFilters()">Reset Filters</button>
+</div>
+<div *ngIf="getStyles().length === 0">
+    No combat styles match the current filters. Change filters or use "Reset Filters".
+</div>
+<div *ngIf="filtering" class="styles-table">
+    <mat-spinner diameter="40"></mat-spinner>
+</div>
+<div *ngIf="!filtering" class="styles-table">
     <styles-table [styles]="getStyles()" #stylesTable (select)="styleSelected($event)"></styles-table>
 </div>

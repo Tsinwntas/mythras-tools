@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { CombatStyle } from 'src/app/model/combat-style';
 import { ModalInnerContent } from 'src/app/model/modal-inner-content';
 import { StyleFilters } from 'src/app/model/style-filters';
-import { CombatStylesService } from 'src/app/services/combat-styles.service';
+import { CombatStylesService, getSources } from 'src/app/services/combat-styles.service';
 import { StylesTableComponent } from 'src/app/styles-table/styles-table.component';
 import { AppStorageService } from 'src/app/services/app-storage.service';
 
@@ -18,6 +18,7 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
   styles : CombatStyle[];
   filters : StyleFilters = new StyleFilters();
   selectStyle : (style : CombatStyle) => void;
+  filtering = false;
   constructor(
     private dialogRef: MatDialogRef<AllCombatStylesComponent>,
     private styleService: CombatStylesService,
@@ -30,6 +31,8 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
     const storedFilters = this.storage.getRaw('style-filters');
     if(storedFilters)
       this.filters = Object.assign(new StyleFilters(), JSON.parse(storedFilters));
+    if(!this.filters.sources || this.filters.sources.length === 0)
+      this.filters.sources = getSources();
     if(this.culture)
       this.filters.culture = this.culture;
     this.persistFilters();
@@ -60,10 +63,28 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
   private tableComponent!: StylesTableComponent;
 
   filter(open? : any){
-    this.styles = this.getFilteredStyles();
-    this.tableComponent.resetTable();
+    this.filtering = true;
     this.ref.detectChanges();
-    this.persistFilters();
+    setTimeout(() => {
+      this.styles = this.getFilteredStyles();
+      this.ref.detectChanges();
+      setTimeout(() => {
+        if(this.tableComponent){
+          this.tableComponent.resetTable();
+        }
+        this.filtering = false;
+        this.ref.detectChanges();
+        this.persistFilters();
+      }, 0);
+    }, 0);
+  }
+
+  resetFilters(): void {
+    this.filters = new StyleFilters();
+    if (this.culture) {
+      this.filters.culture = this.culture;
+    }
+    this.filter();
   }
 
   styleSelected(style: CombatStyle) {
@@ -79,8 +100,11 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
   }
   setProps(props: any): void {
     this.selectStyle = props.selectStyle;
-    if(props.culture)
+    if(props.culture){
       this.culture = props.culture;
+      this.filters.culture = props.culture;
+    }
+    this.styles = undefined as any;
   }
 
   private persistFilters(): void {

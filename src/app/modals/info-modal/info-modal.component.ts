@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { ModalInnerContent } from './../../model/modal-inner-content';
 import { Component, Inject, ViewChildren, ViewContainerRef, AfterViewInit, ComponentFactoryResolver, QueryList } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ComponentRef } from '@angular/core';
 
 @Component({
   selector: 'app-info-modal',
@@ -11,11 +12,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class InfoModalComponent implements AfterViewInit{
 
   component : ModalInnerContent;
+  private componentRef?: ComponentRef<any>;
   @ViewChildren('infoComponent', {read: ViewContainerRef}) public infoComponent: QueryList<ViewContainerRef>;
 
   loaded : boolean;
   loadingObservable : Observable<any>;
   okFunction : {function: (props?:any)=>void,props: any}[]; 
+  private props: any;
 
   constructor(
     public dialogRef: MatDialogRef<InfoModalComponent>,
@@ -24,7 +27,7 @@ export class InfoModalComponent implements AfterViewInit{
   ) {
     this.component = data?.component;
     this.okFunction = [];
-    this.passProps(data?.props);
+    this.props = data?.props;
     this.setObservable();
   }
 
@@ -36,32 +39,41 @@ export class InfoModalComponent implements AfterViewInit{
   getHeader() : string {
     if(!this.component)
       return "Info";
-    return (this.component as any)['prototype'].getHeader();
+    try{
+      if(this.componentRef?.instance?.getHeader)
+        return this.componentRef.instance.getHeader();
+      return "Info";
+    } catch(e){
+      return "Info";
+    }
   }
 
   getSources() : string {
     if(!this.component)
       return "";
     try{
-      return (this.component as any)['prototype'].getSources();
+      if(this.componentRef?.instance?.getSources)
+        return this.componentRef.instance.getSources();
+      return "";
     } catch(e){
       return "";
     }
   }
 
   passProps(props : any) {
-    if(props)
-    (this.component as any)['prototype'].setProps(props,this.okFunction);
+    if(!props || !this.componentRef?.instance?.setProps)
+      return;
+    this.componentRef.instance.setProps(props, this.okFunction);
   }
 
   setObservable() {
-    if(!(this.component as any)['prototype'].getObservable)
+    if(!this.componentRef?.instance?.getObservable)
       return;
-    this.loadingObservable = (this.component as any)['prototype'].getObservable();
+    this.loadingObservable = this.componentRef.instance.getObservable();
     if(this.loadingObservable){
       this.loadingObservable.subscribe(data=>{
-        if((this.component as any)['prototype'].handleObservableData)
-          (this.component as any)['prototype'].handleObservableData(data);
+        if(this.componentRef?.instance?.handleObservableData)
+          this.componentRef.instance.handleObservableData(data);
       this.loadComponent();
       })
     }
@@ -80,7 +92,9 @@ export class InfoModalComponent implements AfterViewInit{
       this.resolver.resolveComponentFactory((this.component!) as any);
 
       this.infoComponent.get(0)!.clear();
-      this.infoComponent.get(0)!.createComponent(componentFactory);
+      this.componentRef = this.infoComponent.get(0)!.createComponent(componentFactory);
+      this.passProps(this.props);
+      this.setObservable();
       this.loaded = true;
   }
 
