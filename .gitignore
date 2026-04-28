@@ -40,3 +40,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+temp-test-output.txt
+CHANGELOG_PHASE_REPORT.md
