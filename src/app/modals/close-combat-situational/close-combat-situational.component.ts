@@ -21,7 +21,7 @@ export class CloseCombatSituationalComponent extends TableComponent implements M
       {situation:'Defending while on lower ground or against mounted foe.', difficultyGrade:'Hard'},
       {situation:'Fighting while on unstable ground.', difficultyGrade:'Hard'},
       {situation:'Fighting whilst crouching or from one knee', difficultyGrade:'Hard'},
-      {situation:'Fighting in poor visibility (thig fog, snowstorm)', difficultyGrade:'Hard'},
+      {situation:'Fighting in poor visibility (thick fog, snowstorm)', difficultyGrade:'Hard'},
       {situation:'Defending against an attack from behind', difficultyGrade:'Formidable'},
       {situation:'Fighting while prone', difficultyGrade:'Formidable'},
       {situation:'Fighting in partial darkness (dim illumination)', difficultyGrade:'Formidable'},

@@ -161,6 +161,7 @@ import { LoadCharacterComponent } from './modals/load-character/load-character.c
 import { ViewCharacterComponent } from './pages/view-character/view-character.component';
 import { CreateSkillComponent } from './character/modals/create-skill/create-skill.component';
 import { MythrasToDndMonsterBlockComponent } from './pages/mythras-to-dnd-monster-block/mythras-to-dnd-monster-block.component';
+import { ResponsiveCharacterViewerComponent } from './pages/responsive-character-viewer/responsive-character-viewer.component';
 import { RouterModule } from '@angular/router';
 
 
@@ -310,7 +311,8 @@ import { RouterModule } from '@angular/router';
     LoadCharacterComponent,
     ViewCharacterComponent,
     CreateSkillComponent,
-    MythrasToDndMonsterBlockComponent
+    MythrasToDndMonsterBlockComponent,
+    ResponsiveCharacterViewerComponent
   ],
   imports: [
     CommonModule,

@@ -83,7 +83,7 @@ export class CharacterCreationComponent
               this.storage.getCharacterKey(this.character.id),
               'view-character'
             );
-            this.router.navigate(['/view']);
+            this.router.navigate(['/view/responsive']);
           },
         },
       ],

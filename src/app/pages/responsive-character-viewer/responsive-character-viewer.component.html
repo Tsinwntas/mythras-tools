@@ -1,0 +1,656 @@
+<div class="app-shell">
+  <div class="app-container page">
+    <div class="app-card-surface viewer-shell">
+      <div class="app-page-header viewer-header">
+        <div class="viewer-title-block">
+          <h1 class="app-page-title">Responsive Character Viewer</h1>
+          <p class="viewer-subtitle">
+            Character: <strong>{{ character?.name || 'Unnamed Character' }}</strong>
+          </p>
+        </div>
+        <div class="app-action-row viewer-actions">
+          <button mat-raised-button color="primary" routerLink="/view">
+            Open PDF / Print View
+          </button>
+          <button mat-raised-button color="accent" routerLink="/menu">
+            Back to Main Menu
+          </button>
+        </div>
+      </div>
+
+      <nav class="section-nav app-card-surface" aria-label="Character viewer sections">
+        <button
+          *ngFor="let section of sections"
+          mat-stroked-button
+          [class.is-active]="activeSection === section.key"
+          (click)="setSection(section.key)"
+          type="button"
+        >
+          {{ section.label }}
+        </button>
+      </nav>
+
+      <section class="app-card-surface section-card" [ngSwitch]="activeSection">
+        <div *ngSwitchCase="'overview'">
+          <h2 class="section-title">Overview</h2>
+          <div class="overview-grid">
+            <label><strong>Player</strong><input [(ngModel)]="character!.player" /></label>
+            <label><strong>Character</strong><input [(ngModel)]="character!.name" /></label>
+            <label><strong>Species</strong><input [(ngModel)]="character!.species" /></label>
+            <label><strong>Gender</strong><input [(ngModel)]="character!.gender" /></label>
+            <label><strong>Age</strong><input [value]="character?.age ?? ''" (input)="setCharacterNumber('age', $event)" /></label>
+            <label><strong>Frame</strong><input [(ngModel)]="character!.frame" /></label>
+            <label><strong>Culture</strong><input [(ngModel)]="character!.culture" /></label>
+            <label><strong>Height</strong><input [value]="character?.height ?? ''" (input)="setCharacterNumber('height', $event)" /></label>
+            <label><strong>Weight</strong><input [value]="character?.weight ?? ''" (input)="setCharacterNumber('weight', $event)" /></label>
+            <label><strong>Social Class</strong><input [(ngModel)]="character!.socialClass.class" /></label>
+            <label><strong>Career</strong><input [(ngModel)]="character!.career" /></label>
+          </div>
+
+          <div class="section-block">
+            <h3>Money & Resources</h3>
+            <textarea
+              rows="6"
+              [value]="getOrCreateMoney()"
+              (input)="setMoney($event)"
+            ></textarea>
+            <div class="overview-grid compact">
+              <label><strong>Daily Income</strong><input [value]="character?.incomeDay ?? ''" (input)="setCharacterNumber('incomeDay', $event)" /></label>
+              <label><strong>Weekly Income</strong><input [value]="character?.incomeWeek ?? ''" (input)="setCharacterNumber('incomeWeek', $event)" /></label>
+              <label><strong>Seasonal Income</strong><input [value]="character?.incomeSeason ?? ''" (input)="setCharacterNumber('incomeSeason', $event)" /></label>
+              <label><strong>Yearly Income</strong><input [value]="character?.incomeYear ?? ''" (input)="setCharacterNumber('incomeYear', $event)" /></label>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'attributes'">
+          <h2 class="section-title">Attributes</h2>
+          <div class="section-block">
+            <h3>Characteristics</h3>
+            <div class="table-scroll">
+              <table class="simple-table attributes-table">
+                <thead>
+                  <tr>
+                    <th>Stat</th>
+                    <th>Original</th>
+                    <th>Max</th>
+                    <th>Current</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of characteristicRows">
+                    <td>{{ row.label }}</td>
+                    <td>{{ row.orig() }}</td>
+                    <td>{{ row.max() }}</td>
+                    <td><input [value]="row.curr()" (input)="setSkillCharacteristic(row.label.toLowerCase(), $event)" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Derived Characteristics</h3>
+            <div class="overview-grid compact">
+              <label><strong>Action Points</strong><input [value]="getSkill(character?.skills?.ap)" (input)="setSkill(character?.skills?.ap, $event)" /></label>
+              <label><strong>Damage Modifier</strong><input [value]="getSkill(character?.skills?.damage)" (input)="setSkill(character?.skills?.damage, $event)" /></label>
+              <label><strong>Experience Modifier</strong><input [value]="getSkill(character?.skills?.expMod)" (input)="setSkill(character?.skills?.expMod, $event)" /></label>
+              <label><strong>Healing Rate</strong><input [value]="getSkill(character?.skills?.healing)" (input)="setSkill(character?.skills?.healing, $event)" /></label>
+              <label><strong>Initiative</strong><input [value]="getSkill(character?.skills?.init)" (input)="setSkill(character?.skills?.init, $event)" /></label>
+              <label><strong>Luck</strong><input [value]="getSkill(character?.skills?.luck)" (input)="setSkill(character?.skills?.luck, $event)" /></label>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Movement</h3>
+            <div class="movement-grid">
+              <label class="movement-walk">
+                <strong>Walk</strong>
+                <input [value]="character?.movementRate ?? ''" (input)="setCharacterNumber('movementRate', $event)" />
+              </label>
+              <div class="movement-stat"><span>Run</span><strong>{{ getRun() }}</strong></div>
+              <div class="movement-stat"><span>Sprint</span><strong>{{ getSprint() }}</strong></div>
+              <div class="movement-stat"><span>Swim</span><strong>{{ getSwim() }}</strong></div>
+              <div class="movement-stat"><span>Horizontal Jump</span><strong>{{ getHorizontal() }}</strong></div>
+              <div class="movement-stat"><span>Vertical Jump</span><strong>{{ getVertical() }}</strong></div>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Hit Locations (Editable)</h3>
+            <div class="table-scroll">
+              <table class="simple-table attributes-table">
+                <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>AP</th>
+                    <th>HP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Head</td>
+                    <td>{{ character?.equipment?.head?.ap ?? '-' }}</td>
+                    <td class="hp-cell">
+                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.head) }}</strong></div>
+                      <label><span>Current</span><input [value]="getSkill(character?.hp?.head)" (input)="setSkill(character?.hp?.head, $event)" /></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Chest</td>
+                    <td>{{ character?.equipment?.chest?.ap ?? '-' }}</td>
+                    <td class="hp-cell">
+                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.chest) }}</strong></div>
+                      <label><span>Current</span><input [value]="getSkill(character?.hp?.chest)" (input)="setSkill(character?.hp?.chest, $event)" /></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Abdomen</td>
+                    <td>{{ character?.equipment?.abdoment?.ap ?? '-' }}</td>
+                    <td class="hp-cell">
+                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.abdoment) }}</strong></div>
+                      <label><span>Current</span><input [value]="getSkill(character?.hp?.abdoment)" (input)="setSkill(character?.hp?.abdoment, $event)" /></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Left Arm</td>
+                    <td>{{ character?.equipment?.leftArm?.ap ?? '-' }}</td>
+                    <td class="hp-cell">
+                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.leftArm) }}</strong></div>
+                      <label><span>Current</span><input [value]="getSkill(character?.hp?.leftArm)" (input)="setSkill(character?.hp?.leftArm, $event)" /></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Right Arm</td>
+                    <td>{{ character?.equipment?.rightArm?.ap ?? '-' }}</td>
+                    <td class="hp-cell">
+                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.rightArm) }}</strong></div>
+                      <label><span>Current</span><input [value]="getSkill(character?.hp?.rightArm)" (input)="setSkill(character?.hp?.rightArm, $event)" /></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Left Leg</td>
+                    <td>{{ character?.equipment?.leftLeg?.ap ?? '-' }}</td>
+                    <td class="hp-cell">
+                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.leftLeg) }}</strong></div>
+                      <label><span>Current</span><input [value]="getSkill(character?.hp?.leftLeg)" (input)="setSkill(character?.hp?.leftLeg, $event)" /></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Right Leg</td>
+                    <td>{{ character?.equipment?.rightLeg?.ap ?? '-' }}</td>
+                    <td class="hp-cell">
+                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.rightLeg) }}</strong></div>
+                      <label><span>Current</span><input [value]="getSkill(character?.hp?.rightLeg)" (input)="setSkill(character?.hp?.rightLeg, $event)" /></label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'skills'">
+          <h2 class="section-title">Skills</h2>
+          <div class="section-block">
+            <h3>Standard Skills</h3>
+            <div class="table-scroll">
+              <table class="simple-table attributes-table">
+                <thead>
+                  <tr>
+                    <th>Skill</th>
+                    <th>Base</th>
+                    <th>Total</th>
+                    <th>Bonus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let skill of getStandardSkills()">
+                    <td>{{ skill.name }}</td>
+                    <td>{{ getSkillBaseValue(skill) }}</td>
+                    <td>
+                      <input
+                        [value]="getFixedSkill(skill.name)"
+                        (input)="setFixedSkill(skill.name, $event)"
+                      />
+                    </td>
+                    <td>{{ skill.extraBonus || 0 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Professional Skills</h3>
+            <div class="table-scroll">
+              <table class="simple-table attributes-table">
+                <thead>
+                  <tr>
+                    <th>Skill Name</th>
+                    <th>Base</th>
+                    <th>Total</th>
+                    <th>Bonus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]">
+                    <td>
+                      <input
+                        [value]="getProfSkillName(row)"
+                        list="professional-skills-list"
+                        (change)="setProfSkillNameByValue($any($event.target).value, row)"
+                      />
+                    </td>
+                    <td>{{ getProfBaseSkill(row) }}</td>
+                    <td>
+                      <input
+                        [value]="getProfSkill(row)"
+                        (input)="setProfSkill($event, row)"
+                      />
+                    </td>
+                    <td>
+                      {{
+                        getActualProfSkill(row)?.extraBonus
+                          || 0
+                      }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <datalist id="professional-skills-list">
+                <option
+                  *ngFor="let option of getProfessionalSkillOptions()"
+                  [value]="option"
+                ></option>
+              </datalist>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Languages</h3>
+            <div class="overview-grid compact native-tongue-direct">
+              <label><strong>Native Tongue (Direct)</strong><input class="native-tongue-input" [(ngModel)]="character!.nativeTongue" /></label>
+            </div>
+            <div class="table-scroll">
+              <table class="simple-table passions-table">
+                <thead>
+                  <tr>
+                    <th>Language</th>
+                    <th>Total</th>
+                    <th>Bonus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Native Tongue</td>
+                    <td>
+                      <input
+                        [value]="getFixedSkill('Native Tongue')"
+                        (input)="setFixedSkill('Native Tongue', $event)"
+                      />
+                    </td>
+                    <td>{{ getActualSkill('Native Tongue')?.extraBonus || 0 }}</td>
+                  </tr>
+                  <tr *ngFor="let row of [0,1,2]">
+                    <td>
+                      <input
+                        [value]="getProfSkillName(row, 'Language')"
+                        list="language-skills-list"
+                        (change)="setProfSkillNameByValue($any($event.target).value, row, 'Language')"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getProfSkill(row, 'Language')"
+                        (input)="setProfSkill($event, row, 'Language')"
+                      />
+                    </td>
+                    <td>{{ getActualProfSkill(row, 'Language')?.extraBonus || 0 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <datalist id="language-skills-list">
+                <option
+                  *ngFor="let option of getProfessionalSkillOptions('Language')"
+                  [value]="option"
+                ></option>
+              </datalist>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Religious / Magic Skills</h3>
+            <div class="overview-grid compact">
+              <label><strong>Folk Magic</strong><input [value]="getFixedSkill('Folk Magic')" (input)="setFixedSkill('Folk Magic', $event)" /></label>
+              <label><strong>Binding</strong><input [value]="getFixedSkill('Binding')" (input)="setFixedSkill('Binding', $event)" /></label>
+              <label><strong>Trance</strong><input [value]="getFixedSkill('Trance')" (input)="setFixedSkill('Trance', $event)" /></label>
+              <label><strong>Meditation</strong><input [value]="getFixedSkill('Meditation')" (input)="setFixedSkill('Meditation', $event)" /></label>
+              <label><strong>Mysticism</strong><input [value]="getFixedSkill('Mysticism')" (input)="setFixedSkill('Mysticism', $event)" /></label>
+              <label><strong>Invocation</strong><input [value]="getFixedSkill('Invocation')" (input)="setFixedSkill('Invocation', $event)" /></label>
+              <label><strong>Shaping</strong><input [value]="getFixedSkill('Shaping')" (input)="setFixedSkill('Shaping', $event)" /></label>
+              <label><strong>Devotion</strong><input [value]="getDevotion()" (input)="setDevotion($event)" /></label>
+              <label><strong>Exhort</strong><input [value]="getFixedSkill('Exhort')" (input)="setFixedSkill('Exhort', $event)" /></label>
+              <label><strong>Devotion Pool</strong><input [(ngModel)]="character!.devotionPool" /></label>
+              <label><strong>Devotion Pool Current</strong><input [(ngModel)]="character!.devotionPoolCurrent" /></label>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Passions</h3>
+            <div class="table-scroll">
+              <table class="simple-table passions-table">
+                <thead>
+                  <tr>
+                    <th>Object of Passion</th>
+                    <th>Passion</th>
+                    <th>Percent Rule</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of [0,1,2,3,4]">
+                    <td>
+                      <select
+                        [ngModel]="ensurePassion(row).objectOfPassion"
+                        (ngModelChange)="setPassionObject(row, $event)"
+                      >
+                        <option value="">None</option>
+                        <option *ngFor="let object of passionObjects" [value]="object">
+                          {{ object }}
+                        </option>
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        [value]="getPassion(row)"
+                        (input)="setPassion(row, $event)"
+                      />
+                    </td>
+                    <td>
+                      {{ ensurePassion(row).modifier || getPassionModifierText(ensurePassion(row).objectOfPassion) || '-' }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'combat'">
+          <h2 class="section-title">Combat</h2>
+          <div class="section-block">
+            <h3>Combat Styles</h3>
+            <div class="table-scroll">
+              <table class="simple-table">
+                <thead>
+                  <tr>
+                    <th>Style Name</th>
+                    <th>Weapons</th>
+                    <th>Trait</th>
+                    <th>Total</th>
+                    <th>Bonus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of [0,1,2,3]">
+                    <td>
+                      <input
+                        [value]="getStyleName(row)"
+                        list="combat-style-list"
+                        (change)="setStyleNameByValue($any($event.target).value, row)"
+                      />
+                    </td>
+                    <td>{{ getStyleWeapons(row) || '-' }}</td>
+                    <td>
+                      <ng-container *ngIf="getStyleTraitObject(row); else noTrait">
+                        <open-modal
+                          modal="traits"
+                          [prop]="{ trait: getStyleTraitObject(row), source: getStyleSource(row) }"
+                        >
+                          {{ getStyleTrait(row) }}
+                        </open-modal>
+                      </ng-container>
+                      <ng-template #noTrait>-</ng-template>
+                    </td>
+                    <td>
+                      <input
+                        [value]="getFixedSkill(getStyleName(row))"
+                        (input)="setFixedSkill(getStyleName(row), $event)"
+                      />
+                    </td>
+                    <td>{{ getActualSkill(getStyleName(row))?.extraBonus || 0 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <datalist id="combat-style-list">
+                <option *ngFor="let style of getCombatStyles()" [value]="style.name"></option>
+              </datalist>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'weapons-armor'">
+          <h2 class="section-title">Weapons &amp; Armor</h2>
+          <div class="section-block">
+            <h3>Melee Weapons &amp; Shields</h3>
+            <div class="table-scroll">
+              <table class="simple-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Damage</th>
+                    <th>Size</th>
+                    <th>Reach</th>
+                    <th>Traits / Effects</th>
+                    <th>AP</th>
+                    <th>HP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of getWeaponRows(false)">
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, false, 'name')"
+                        (input)="setWeaponProp(row, false, 'name', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponDamage(row, false)"
+                        (input)="setWeaponProp(row, false, 'damage', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, false, 'size')"
+                        (input)="setWeaponProp(row, false, 'size', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, false, 'reach')"
+                        (input)="setWeaponProp(row, false, 'reach', $event)"
+                      />
+                    </td>
+                    <td class="wrap-cell">
+                      <div>{{ getWeaponTraits(row, false) || '-' }}</div>
+                      <div>{{ getWeaponEffects(row, false) || '-' }}</div>
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, false, 'ap')"
+                        (input)="setWeaponProp(row, false, 'ap', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, false, 'hp')"
+                        (input)="setWeaponProp(row, false, 'hp', $event)"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Ranged Weapons</h3>
+            <div class="table-scroll">
+              <table class="simple-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Damage</th>
+                    <th>DM</th>
+                    <th>Force</th>
+                    <th>Load</th>
+                    <th>Range</th>
+                    <th>Size</th>
+                    <th>Traits / Effects</th>
+                    <th>AP</th>
+                    <th>HP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of getWeaponRows(true)">
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, true, 'name')"
+                        (input)="setWeaponProp(row, true, 'name', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponDamage(row, true)"
+                        (input)="setWeaponProp(row, true, 'damage', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, true, 'dm')"
+                        (input)="setWeaponProp(row, true, 'dm', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, true, 'force')"
+                        (input)="setWeaponProp(row, true, 'force', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, true, 'loadTime')"
+                        (input)="setWeaponProp(row, true, 'loadTime', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, true, 'range')"
+                        (input)="setWeaponProp(row, true, 'range', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, true, 'size')"
+                        (input)="setWeaponProp(row, true, 'size', $event)"
+                      />
+                    </td>
+                    <td class="wrap-cell">
+                      <div>{{ getWeaponTraits(row, true) || '-' }}</div>
+                      <div>{{ getWeaponEffects(row, true) || '-' }}</div>
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, true, 'ap')"
+                        (input)="setWeaponProp(row, true, 'ap', $event)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        [value]="getWeaponProp(row, true, 'hp')"
+                        (input)="setWeaponProp(row, true, 'hp', $event)"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3>Equipment &amp; Armor</h3>
+            <textarea
+              rows="6"
+              [value]="getEquipmentInfo()"
+              (input)="setEquipmentInfo($event)"
+            ></textarea>
+            <div class="overview-grid compact">
+              <label><strong>Equipment ENC</strong><input [value]="getEquipmentEnc()" (input)="setEquipmentEnc($event)" /></label>
+              <label><strong>Armor ENC</strong><input [value]="getArmourEnc()" (input)="setArmourEnc($event)" /></label>
+              <label><strong>Total ENC</strong><input [value]="getTotalEnc()" (input)="setTotalEnc($event)" /></label>
+              <label><strong>Armor Penalty</strong><input [value]="getArmorPenalty()" (input)="setArmorPenalty($event)" /></label>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'notes'">
+          <h2 class="section-title">Notes</h2>
+          <div class="section-block">
+            <h3>Background Overall</h3>
+            <textarea
+              rows="8"
+              [value]="getOrCreateBackground()"
+              (input)="setBackground($event)"
+            ></textarea>
+          </div>
+
+          <div class="section-block">
+            <h3>Contacts / Allies / Enemies</h3>
+            <textarea
+              rows="6"
+              [value]="getOrCreateContacts()"
+              (input)="setContacts($event)"
+            ></textarea>
+          </div>
+
+          <div class="section-block">
+            <h3>Cult Information</h3>
+            <textarea
+              rows="8"
+              [value]="getCultInformation()"
+              (input)="setCultInformation($event)"
+            ></textarea>
+          </div>
+
+          <div class="section-block">
+            <h3>Religion</h3>
+            <textarea
+              rows="3"
+              [value]="getReligion()"
+              (input)="setReligion($event)"
+            ></textarea>
+          </div>
+
+          <div class="section-block">
+            <h3>Magical Abilities</h3>
+            <textarea
+              rows="10"
+              [value]="getAbilities()"
+              (input)="setAbilities($event)"
+            ></textarea>
+          </div>
+
+          <div class="section-block">
+            <h3>Extra Information</h3>
+            <textarea
+              rows="10"
+              [value]="getExtraInformation()"
+              (input)="setExtraInformation($event)"
+            ></textarea>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
