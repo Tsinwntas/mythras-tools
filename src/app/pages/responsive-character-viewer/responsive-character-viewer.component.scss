@@ -59,6 +59,16 @@
   border-top: 1px solid rgba(216, 210, 195, 0.6);
 }
 
+.skills-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--app-space-4);
+}
+
+.skills-columns .section-block {
+  margin-top: 0;
+}
+
 .section-title {
   margin: 0 0 var(--app-space-3) 0;
 }
@@ -135,6 +145,23 @@ textarea {
 
 .simple-table.attributes-table input {
   width: 88px;
+}
+
+.simple-table.skills-table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+}
+
+.simple-table.skills-table th,
+.simple-table.skills-table td {
+  white-space: normal;
+}
+
+.simple-table.skills-table input,
+.simple-table.skills-table select {
+  width: 100%;
+  min-width: 0;
 }
 
 .simple-table.passions-table input,
@@ -254,6 +281,13 @@ textarea {
   }
 }
 
+@media (min-width: 900px) {
+  .skills-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
 @media (max-width: 599px) {
   .viewer-shell {
     padding: var(--app-space-3);
@@ -301,6 +335,24 @@ textarea {
   .simple-table.attributes-table input {
     width: 100%;
     min-width: 56px;
+  }
+
+  .simple-table.skills-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .simple-table.skills-table th,
+  .simple-table.skills-table td {
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .simple-table.skills-table input,
+  .simple-table.skills-table select {
+    width: 100%;
+    min-width: 0;
   }
 
   .simple-table.passions-table input,

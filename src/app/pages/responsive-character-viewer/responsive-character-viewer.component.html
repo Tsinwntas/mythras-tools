@@ -3,12 +3,15 @@
     <div class="app-card-surface viewer-shell">
       <div class="app-page-header viewer-header">
         <div class="viewer-title-block">
-          <h1 class="app-page-title">Responsive Character Viewer</h1>
+          <h1 class="app-page-title">Character Viewer</h1>
           <p class="viewer-subtitle">
             Character: <strong>{{ character?.name || 'Unnamed Character' }}</strong>
           </p>
         </div>
         <div class="app-action-row viewer-actions">
+          <button mat-raised-button routerLink="/character-creation">
+            Open Character Creation
+          </button>
           <button mat-raised-button color="primary" routerLink="/view">
             Open PDF / Print View
           </button>
@@ -192,78 +195,81 @@
 
         <div *ngSwitchCase="'skills'">
           <h2 class="section-title">Skills</h2>
-          <div class="section-block">
-            <h3>Standard Skills</h3>
-            <div class="table-scroll">
-              <table class="simple-table attributes-table">
-                <thead>
-                  <tr>
-                    <th>Skill</th>
-                    <th>Base</th>
-                    <th>Total</th>
-                    <th>Bonus</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let skill of getStandardSkills()">
-                    <td>{{ skill.name }}</td>
-                    <td>{{ getSkillBaseValue(skill) }}</td>
-                    <td>
-                      <input
-                        [value]="getFixedSkill(skill.name)"
-                        (input)="setFixedSkill(skill.name, $event)"
-                      />
-                    </td>
-                    <td>{{ skill.extraBonus || 0 }}</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="skills-columns">
+            <div class="section-block">
+              <h3>Standard Skills</h3>
+              <div class="table-scroll">
+                <table class="simple-table attributes-table skills-table">
+                  <thead>
+                    <tr>
+                      <th>Skill</th>
+                      <th>Base</th>
+                      <th>Total</th>
+                      <th>Bonus</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let skill of getStandardSkills()">
+                      <td>{{ skill.name }}</td>
+                      <td>{{ getSkillBaseValue(skill) }}</td>
+                      <td>
+                        <input
+                          [value]="getFixedSkill(skill.name)"
+                          (input)="setFixedSkill(skill.name, $event)"
+                        />
+                      </td>
+                      <td>{{ skill.extraBonus || 0 }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
 
-          <div class="section-block">
-            <h3>Professional Skills</h3>
-            <div class="table-scroll">
-              <table class="simple-table attributes-table">
-                <thead>
-                  <tr>
-                    <th>Skill Name</th>
-                    <th>Base</th>
-                    <th>Total</th>
-                    <th>Bonus</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let row of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]">
-                    <td>
-                      <input
-                        [value]="getProfSkillName(row)"
-                        list="professional-skills-list"
-                        (change)="setProfSkillNameByValue($any($event.target).value, row)"
-                      />
-                    </td>
-                    <td>{{ getProfBaseSkill(row) }}</td>
-                    <td>
-                      <input
-                        [value]="getProfSkill(row)"
-                        (input)="setProfSkill($event, row)"
-                      />
-                    </td>
-                    <td>
-                      {{
-                        getActualProfSkill(row)?.extraBonus
-                          || 0
-                      }}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <datalist id="professional-skills-list">
-                <option
-                  *ngFor="let option of getProfessionalSkillOptions()"
-                  [value]="option"
-                ></option>
-              </datalist>
+            <div class="section-block">
+              <h3>Professional Skills</h3>
+              <div class="table-scroll">
+                <table class="simple-table attributes-table skills-table">
+                  <thead>
+                    <tr>
+                      <th>Skill Name</th>
+                      <th>Base</th>
+                      <th>Total</th>
+                      <th>Bonus</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]">
+                      <td>
+                        <select
+                          [ngModel]="getProfSkillName(row)"
+                          (ngModelChange)="setProfSkillNameByValue($event, row)"
+                        >
+                          <option value=""></option>
+                          <option
+                            *ngFor="let option of getProfessionalSkillOptionsForRow(row)"
+                            [value]="option"
+                          >
+                            {{ option }}
+                          </option>
+                        </select>
+                      </td>
+                      <td>{{ getProfBaseSkill(row) }}</td>
+                      <td>
+                        <input
+                          [value]="getProfSkill(row)"
+                          (input)="setProfSkill($event, row)"
+                        />
+                      </td>
+                      <td>
+                        {{
+                          getActualProfSkill(row)?.extraBonus
+                            || 0
+                        }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 

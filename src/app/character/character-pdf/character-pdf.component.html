@@ -209,6 +209,8 @@
           data-objref="444 0 R"
           title="STRCURR"
           data-field-name="STRCURR"
+          [ngModel]="getCurrentValue('str', character.skills.str)"
+          (ngModelChange)="setCurrentValue('str', $event)"
         />
         <input
           id="form17_1"
@@ -229,6 +231,8 @@
           data-objref="446 0 R"
           title="APCURR"
           data-field-name="APCURR"
+          [ngModel]="getCurrentValue('ap', getSkill(character.skills.ap))"
+          (ngModelChange)="setCurrentValue('ap', $event)"
         />
         <input
           id="form19_1"
@@ -256,6 +260,8 @@
           data-objref="449 0 R"
           title="CONCURR"
           data-field-name="CONCURR"
+          [ngModel]="getCurrentValue('con', character.skills.con)"
+          (ngModelChange)="setCurrentValue('con', $event)"
         />
         <input
           id="form22_1"
@@ -276,6 +282,8 @@
           data-objref="451 0 R"
           title="DMCURR"
           data-field-name="DMCURR"
+          [ngModel]="getCurrentValue('damage', getSkill(character.skills.damage))"
+          (ngModelChange)="setCurrentValue('damage', $event)"
         />
         <input
           id="form24_1"
@@ -303,6 +311,8 @@
           data-objref="454 0 R"
           title="SIZCURR"
           data-field-name="SIZCURR"
+          [ngModel]="getCurrentValue('siz', character.skills.siz)"
+          (ngModelChange)="setCurrentValue('siz', $event)"
         />
         <input
           id="form27_1"
@@ -323,6 +333,8 @@
           data-objref="456 0 R"
           title="EXPCURR"
           data-field-name="EXPCURR"
+          [ngModel]="getCurrentValue('expMod', getSkill(character.skills.expMod))"
+          (ngModelChange)="setCurrentValue('expMod', $event)"
         />
         <input
           id="form29_1"
@@ -350,6 +362,8 @@
           data-objref="459 0 R"
           title="DEXCURR"
           data-field-name="DEXCURR"
+          [ngModel]="getCurrentValue('dex', character.skills.dex)"
+          (ngModelChange)="setCurrentValue('dex', $event)"
         />
         <input
           id="form32_1"
@@ -370,6 +384,8 @@
           data-objref="461 0 R"
           title="HRCURR"
           data-field-name="HRCURR"
+          [ngModel]="getCurrentValue('healing', getSkill(character.skills.healing))"
+          (ngModelChange)="setCurrentValue('healing', $event)"
         />
         <input
           id="form34_1"
@@ -397,6 +413,8 @@
           data-objref="464 0 R"
           title="INTCURR"
           data-field-name="INTCURR"
+          [ngModel]="getCurrentValue('int', character.skills.int)"
+          (ngModelChange)="setCurrentValue('int', $event)"
         />
         <input
           id="form37_1"
@@ -417,6 +435,8 @@
           data-objref="466 0 R"
           title="INITBONUSCURR"
           data-field-name="INITBONUSCURR"
+          [ngModel]="getCurrentValue('init', getSkill(character.skills.init))"
+          (ngModelChange)="setCurrentValue('init', $event)"
         />
         <input
           id="form39_1"
@@ -444,6 +464,8 @@
           data-objref="469 0 R"
           title="POWCURR"
           data-field-name="POWCURR"
+          [ngModel]="getCurrentValue('pow', character.skills.pow)"
+          (ngModelChange)="setCurrentValue('pow', $event)"
         />
         <input
           id="form42_1"
@@ -464,6 +486,8 @@
           data-objref="471 0 R"
           title="LUCKCURR"
           data-field-name="LUCKCURR"
+          [ngModel]="getCurrentValue('luck', getSkill(character.skills.luck))"
+          (ngModelChange)="setCurrentValue('luck', $event)"
         />
         <input
           id="form44_1"
@@ -491,6 +515,8 @@
           data-objref="474 0 R"
           title="CHACURR"
           data-field-name="CHACURR"
+          [ngModel]="getCurrentValue('cha', character.skills.cha)"
+          (ngModelChange)="setCurrentValue('cha', $event)"
         />
         <input
           id="form47_1"
@@ -510,6 +536,8 @@
           data-objref="476 0 R"
           title="MRCURR"
           data-field-name="MRCURR"
+          [ngModel]="getCurrentValue('movementRate', character.movementRate)"
+          (ngModelChange)="setCurrentValue('movementRate', $event)"
         />
         <textarea
           id="form49_1"

@@ -29,10 +29,31 @@ export class CharacterPdfComponent {
 
   constructor(private effects: SpecialEffectsService) {}
 
+  getCurrentValue(key: string, baseValue: any): any {
+    const store = this.getCurrentStore();
+    if (!(key in store)) {
+      store[key] = baseValue;
+    }
+    return store[key];
+  }
+
+  setCurrentValue(key: string, value: any): void {
+    this.getCurrentStore()[key] = value;
+  }
+
+  private getCurrentStore(): Record<string, any> {
+    const characterAny = this.character as any;
+    if (!characterAny.currentValues) {
+      characterAny.currentValues = {};
+    }
+    return characterAny.currentValues as Record<string, any>;
+  }
+
   getSkill(skill: Skill): number | string {
+    const calcCharacter = this.getCharacterWithCurrentCharacteristics();
     if (skill.name == 'Damage Modifier')
-      return getDamageModifier(this.character);
-    return getSkillTotal(this.character, skill);
+      return getDamageModifier(calcCharacter);
+    return getSkillTotal(calcCharacter, skill);
   }
 
   setSkill(skill: Skill, value: any) {
@@ -105,7 +126,7 @@ export class CharacterPdfComponent {
   getProfBaseSkill(index: number, skill?: string): number | string {
     let actualSkill = this.getActualProfSkill(index, skill);
     if (!actualSkill) return '';
-    return getSkillBase(this.character, actualSkill);
+    return getSkillBase(this.getCharacterWithCurrentCharacteristics(), actualSkill);
   }
 
   getProfSkill(index: number, skill?: string): number | string {
@@ -145,14 +166,42 @@ export class CharacterPdfComponent {
   }
 
   getDevotionSkill(): Skill {
+    const calcCharacter = this.getCharacterWithCurrentCharacteristics();
     return this.character.skills.skills
       .concat(this.character.skills.hobby)
       .concat(this.character.skills.specialized)
       .filter((s) => s && s.name.includes('Devotion'))
       .sort(
         (a, b) =>
-          getSkillTotal(this.character, b) - getSkillTotal(this.character, a)
+          getSkillTotal(calcCharacter, b) - getSkillTotal(calcCharacter, a)
       )[0];
+  }
+
+  private getCharacterWithCurrentCharacteristics(): Character {
+    const current = this.getCurrentStore();
+    const skills = {
+      ...this.character.skills,
+      str: this.resolveCurrentCharacteristic(current['str'], this.character.skills.str),
+      con: this.resolveCurrentCharacteristic(current['con'], this.character.skills.con),
+      siz: this.resolveCurrentCharacteristic(current['siz'], this.character.skills.siz),
+      dex: this.resolveCurrentCharacteristic(current['dex'], this.character.skills.dex),
+      int: this.resolveCurrentCharacteristic(current['int'], this.character.skills.int),
+      pow: this.resolveCurrentCharacteristic(current['pow'], this.character.skills.pow),
+      cha: this.resolveCurrentCharacteristic(current['cha'], this.character.skills.cha),
+    } as any;
+    return { ...(this.character as any), skills } as Character;
+  }
+
+  private resolveCurrentCharacteristic(currentValue: any, originalValue: any): number {
+    if (
+      currentValue === '' ||
+      currentValue === null ||
+      currentValue === undefined ||
+      Number.isNaN(Number(currentValue))
+    ) {
+      return Number(originalValue) || 0;
+    }
+    return Number(currentValue);
   }
 
   getPassion(index: number): string {

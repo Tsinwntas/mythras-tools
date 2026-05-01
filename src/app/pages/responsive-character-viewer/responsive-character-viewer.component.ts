@@ -50,13 +50,13 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     max: () => number | string;
     curr: () => number | string;
   }[] = [
-    { label: 'STR', orig: () => this.character?.skills?.str ?? '', max: () => '-', curr: () => this.character?.skills?.str ?? '' },
-    { label: 'CON', orig: () => this.character?.skills?.con ?? '', max: () => '-', curr: () => this.character?.skills?.con ?? '' },
-    { label: 'SIZ', orig: () => this.character?.skills?.siz ?? '', max: () => '-', curr: () => this.character?.skills?.siz ?? '' },
-    { label: 'DEX', orig: () => this.character?.skills?.dex ?? '', max: () => '-', curr: () => this.character?.skills?.dex ?? '' },
-    { label: 'INT', orig: () => this.character?.skills?.int ?? '', max: () => '-', curr: () => this.character?.skills?.int ?? '' },
-    { label: 'POW', orig: () => this.character?.skills?.pow ?? '', max: () => '-', curr: () => this.character?.skills?.pow ?? '' },
-    { label: 'CHA', orig: () => this.character?.skills?.cha ?? '', max: () => '-', curr: () => this.character?.skills?.cha ?? '' },
+    { label: 'STR', orig: () => this.character?.skills?.str ?? '', max: () => '-', curr: () => this.getCurrentCharacteristic('str') },
+    { label: 'CON', orig: () => this.character?.skills?.con ?? '', max: () => '-', curr: () => this.getCurrentCharacteristic('con') },
+    { label: 'SIZ', orig: () => this.character?.skills?.siz ?? '', max: () => '-', curr: () => this.getCurrentCharacteristic('siz') },
+    { label: 'DEX', orig: () => this.character?.skills?.dex ?? '', max: () => '-', curr: () => this.getCurrentCharacteristic('dex') },
+    { label: 'INT', orig: () => this.character?.skills?.int ?? '', max: () => '-', curr: () => this.getCurrentCharacteristic('int') },
+    { label: 'POW', orig: () => this.character?.skills?.pow ?? '', max: () => '-', curr: () => this.getCurrentCharacteristic('pow') },
+    { label: 'CHA', orig: () => this.character?.skills?.cha ?? '', max: () => '-', curr: () => this.getCurrentCharacteristic('cha') },
   ];
 
   ngOnInit(): void {
@@ -92,24 +92,56 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
   }
 
   setSkillCharacteristic(field: string, event: any): void {
-    this.setNumberValue(this.character?.skills as any, field, event);
+    const raw = event?.target?.value;
+    const parsed = parseInt(raw, 10);
+    this.setCurrentCharacteristic(field, Number.isNaN(parsed) ? '' : parsed);
+  }
+
+  private getCurrentStore(): Record<string, any> {
+    const characterAny = this.character as any;
+    if (!characterAny) {
+      return {};
+    }
+    if (!characterAny.currentValues) {
+      characterAny.currentValues = {};
+    }
+    return characterAny.currentValues as Record<string, any>;
+  }
+
+  getCurrentCharacteristic(field: string): number | string {
+    if (!this.character) {
+      return '';
+    }
+    const store = this.getCurrentStore();
+    if (!(field in store)) {
+      store[field] = (this.character.skills as any)?.[field] ?? '';
+    }
+    return store[field];
+  }
+
+  setCurrentCharacteristic(field: string, value: number | string): void {
+    if (!this.character) {
+      return;
+    }
+    this.getCurrentStore()[field] = value;
   }
 
   getSkill(skill: Skill | undefined): number | string {
     if (!this.character || !skill) {
       return '';
     }
+    const calcCharacter = this.getCharacterWithCurrentCharacteristics();
     if (skill.name === 'Damage Modifier') {
-      return getDamageModifier(this.character);
+      return getDamageModifier(calcCharacter);
     }
-    return getSkillTotal(this.character, skill);
+    return getSkillTotal(calcCharacter, skill);
   }
 
   getSkillBaseValue(skill: Skill | undefined): number | string {
     if (!this.character || !skill) {
       return '';
     }
-    return getSkillBase(this.character, skill);
+    return getSkillBase(this.getCharacterWithCurrentCharacteristics(), skill);
   }
 
   setSkill(skill: Skill | undefined, value: any): void {
@@ -267,7 +299,7 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     if (!actual || !this.character) {
       return '';
     }
-    return getSkillBase(this.character, actual);
+    return getSkillBase(this.getCharacterWithCurrentCharacteristics(), actual);
   }
 
   getProfSkill(index: number, skill?: string): number | string {
@@ -294,10 +326,27 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
   }
 
   setProfSkillName(value: any, index: number, skill?: string): void {
-    const actual = this.getActualProfSkill(index, skill);
     const incoming = (value?.target?.value || '').trim();
-    if (!incoming && actual && actual.force) {
-      actual.force = false;
+    if (!incoming) {
+      const target = this.getSelectedProfessionalSkills(skill)[index];
+      if (target) {
+        if (target.force) {
+          target.force = false;
+        }
+        // If the row is being cleared and isn't a career/culture-assigned skill,
+        // drop transient extra bonus too so it actually disappears from selection.
+        if (!target.careerBonus && !target.cultureBonus) {
+          target.extraBonus = 0;
+        }
+      }
+      return;
+    }
+
+    const selected = this.getSelectedProfessionalSkills(skill);
+    const duplicateAtAnotherRow = selected.some(
+      (s, rowIndex) => rowIndex !== index && s.name === incoming
+    );
+    if (duplicateAtAnotherRow) {
       return;
     }
 
@@ -311,19 +360,65 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     return this.getProffSkills(skill).map((s) => s.name);
   }
 
+  getProfessionalSkillOptionsForRow(index: number, skill?: string): string[] {
+    const selectedNames = this.getSelectedProfessionalSkills(skill)
+      .map((s) => s.name);
+    const current = this.getProfSkillName(index, skill);
+    return this.getProfessionalSkillOptions(skill).filter(
+      (name) => name === current || !selectedNames.includes(name)
+    );
+  }
+
+  private getSelectedProfessionalSkills(skill?: string): Skill[] {
+    return this.getProffSkills(skill).filter(
+      (s) => s && (s.force || !(!s.careerBonus && !s.cultureBonus && !s.extraBonus))
+    );
+  }
+
   getDevotionSkill(): Skill | undefined {
     if (!this.character) {
       return undefined;
     }
+    const calcCharacter = this.getCharacterWithCurrentCharacteristics();
     return this.character.skills.skills
       .concat(this.character.skills.hobby)
       .concat(this.character.skills.specialized)
       .filter((s) => s && s.name.includes('Devotion'))
       .sort(
         (a, b) =>
-          getSkillTotal(this.character as Character, b) -
-          getSkillTotal(this.character as Character, a)
+          getSkillTotal(calcCharacter, b) -
+          getSkillTotal(calcCharacter, a)
       )[0];
+  }
+
+  private getCharacterWithCurrentCharacteristics(): Character {
+    if (!this.character) {
+      return this.character as any;
+    }
+    const current = this.getCurrentStore();
+    const skills = {
+      ...this.character.skills,
+      str: this.resolveCurrentCharacteristic(current['str'], this.character.skills.str),
+      con: this.resolveCurrentCharacteristic(current['con'], this.character.skills.con),
+      siz: this.resolveCurrentCharacteristic(current['siz'], this.character.skills.siz),
+      dex: this.resolveCurrentCharacteristic(current['dex'], this.character.skills.dex),
+      int: this.resolveCurrentCharacteristic(current['int'], this.character.skills.int),
+      pow: this.resolveCurrentCharacteristic(current['pow'], this.character.skills.pow),
+      cha: this.resolveCurrentCharacteristic(current['cha'], this.character.skills.cha),
+    } as any;
+    return { ...(this.character as any), skills } as Character;
+  }
+
+  private resolveCurrentCharacteristic(currentValue: any, originalValue: any): number {
+    if (
+      currentValue === '' ||
+      currentValue === null ||
+      currentValue === undefined ||
+      Number.isNaN(Number(currentValue))
+    ) {
+      return Number(originalValue) || 0;
+    }
+    return Number(currentValue);
   }
 
   getDevotion(): number {
