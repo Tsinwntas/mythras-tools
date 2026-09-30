@@ -14,12 +14,13 @@
         
         <ng-container *ngFor="let col of getSuperDefs()"  [matColumnDef]="col">
             <th mat-header-cell *matHeaderCellDef>{{getColumnHeader(col)}}</th>
-            <td mat-cell *matCellDef="let participant"> 
-                <mat-form-field *ngIf="col!='name' && col!='remove'" style="width: 70px;" >
+            <td mat-cell *matCellDef="let participant" 
+                [ngStyle]="isRollingForFatique(participant) ? {'background-color': '#c5898942'} : null"> 
+                <mat-form-field *ngIf="col!='name' && col!='remove'"  style="width: 80px;">
                   <mat-label>{{getInputLabel(col)}}</mat-label>
                   <input matInput placeholder="0" type="number" [(ngModel)]="participant[col]">
                 </mat-form-field> 
-                <mat-form-field *ngIf="col=='name'" style="width: 70px;" >
+                <mat-form-field *ngIf="col=='name'" >
                   <mat-label>{{getInputLabel(col)}}</mat-label>
                   <input matInput placeholder="Tsinik Tsinik" [(ngModel)]="participant[col]">
                 </mat-form-field> 

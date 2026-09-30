@@ -103,18 +103,24 @@ export class InitiativeNotesComponent
     return super.getColumnHeader(col);
   }
 
+  isRollingForFatique(participant: any): boolean {
+    const allFatigues = this.getFatigues().split(", ");
+    return allFatigues.some((fatiguePair) => {
+      const fatigues = fatiguePair.split("-");
+      if(fatigues.length != 2)
+        return false;
+      return parseInt(fatigues[0]) <= participant.con && participant.con <= parseInt(fatigues[1]);
+    });
+  }
+
   addParticipant(){
     this.initiative.participants.push({
       initiative:0,
       name: 'Nameth McName',
+      con: 0,
+      fatigue: 0,
       actionPoints: 3,
-      head: 0,
-      chest: 0,
-      abdoment: 0,
-      leftArm: 0,
-      rightArm: 0,
-      leftLeg: 0,
-      rightLeg: 0,
+      used: 0
     });
     this.persistInitiative();
     (window as any)['loadingSubject'].next(true);
