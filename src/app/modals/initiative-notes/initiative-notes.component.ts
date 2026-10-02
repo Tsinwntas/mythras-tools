@@ -113,6 +113,13 @@ export class InitiativeNotesComponent
     });
   }
 
+  sortParticipantsByInitiative(): void {
+    this.initiative.participants = [...this.initiative.participants].sort(
+      (a, b) => (b.initiative ?? 0) - (a.initiative ?? 0)
+    );
+    this.persistInitiative();
+  }
+
   addParticipant(){
     this.initiative.participants.push({
       initiative:0,

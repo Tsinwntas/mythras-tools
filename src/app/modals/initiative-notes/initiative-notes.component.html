@@ -10,6 +10,11 @@
         </div>
     </div>
 
+    <button mat-raised-button type="button" (click)="sortParticipantsByInitiative()">
+        <mat-icon>sort</mat-icon>
+        Sort by initiative
+    </button>
+
     <table mat-table [dataSource]="getTable()">
         
         <ng-container *ngFor="let col of getSuperDefs()"  [matColumnDef]="col">
