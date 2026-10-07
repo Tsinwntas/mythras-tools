@@ -3,6 +3,7 @@
 </div>
 <div>
     <button mat-stroked-button (click)="resetFilters()">Reset Filters</button>
+    <p role="status">{{getStyles().length}} combat styles match the current filters.</p>
 </div>
 <div *ngIf="getStyles().length === 0">
     No combat styles match the current filters. Change filters or use "Reset Filters".
@@ -10,6 +11,6 @@
 <div *ngIf="filtering" class="styles-table-y">
     <mat-spinner diameter="40"></mat-spinner>
 </div>
-<div *ngIf="!filtering" class="styles-table-y">
-    <styles-table [styles]="getStyles()" #stylesTable (select)="styleSelected($event)"></styles-table>
+<div *ngIf="!filtering" class="styles-table-y" [class.styles-page-results]="browseOnly">
+    <styles-table [styles]="getStyles()" [browseOnly]="browseOnly" #stylesTable (select)="styleSelected($event)"></styles-table>
 </div>

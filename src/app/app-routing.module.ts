@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {
+    path: 'combat-styles',
+    loadComponent: () => import('./pages/combat-styles/combat-styles-page.component').then(m => m.CombatStylesPageComponent),
+  },
   {path: '', redirectTo: '/menu', pathMatch: 'full'},
   {
     path: 'menu',

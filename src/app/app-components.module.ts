@@ -333,6 +333,7 @@ import { RouterModule } from '@angular/router';
     MatExpansionModule,
   ],
   exports: [
+    AllCombatStylesComponent,
     CombatFlowComponent,
     CharacterCreationComponent,
     MenuComponent,

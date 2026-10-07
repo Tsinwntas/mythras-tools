@@ -11,6 +11,7 @@ export class StylesTableComponent extends TableComponent {
 
   @Input() styles : CombatStyle[];
   @Input() singleTrait: boolean;
+  @Input() browseOnly = false;
   @Output() select = new EventEmitter<CombatStyle>();
   @Output() remove = new EventEmitter<number>();
   @Output() setSelectedTrait = new EventEmitter<any>();
@@ -35,6 +36,9 @@ export class StylesTableComponent extends TableComponent {
   }
 
   override getColumnsDefinition(): string[] {
+    if (this.browseOnly) {
+      return ['name', 'culture', 'source', 'traits', 'weapons'];
+    }
     let cols = ['select', 'name', 'culture', 'source', 'traits', 'weapons', 'critOffensive', 'critDefensive', 'offensive', 'defensive'];
     if(this.singleTrait){
       return cols.concat('remove')
@@ -43,7 +47,7 @@ export class StylesTableComponent extends TableComponent {
   }
 
   getWeapons(weapons : any) : any[] {
-    return Object.keys(weapons).map(weapon => { 
+    return Object.keys(weapons || {}).map(weapon => {
       return {type: weapon, weapons: weapons[weapon]};
     })
   }

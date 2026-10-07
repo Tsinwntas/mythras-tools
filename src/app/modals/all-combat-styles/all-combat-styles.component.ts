@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, Optional, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CombatStyle } from 'src/app/model/combat-style';
 import { ModalInnerContent } from 'src/app/model/modal-inner-content';
@@ -19,8 +19,9 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
   filters : StyleFilters = new StyleFilters();
   selectStyle : (style : CombatStyle) => void;
   filtering = false;
+  @Input() browseOnly = false;
   constructor(
-    private dialogRef: MatDialogRef<AllCombatStylesComponent>,
+    @Optional() private dialogRef: MatDialogRef<AllCombatStylesComponent>,
     private styleService: CombatStylesService,
     private ref: ChangeDetectorRef,
     private storage: AppStorageService
@@ -29,9 +30,9 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
 
   ngOnInit(): void {
     const storedFilters = this.storage.getRaw('style-filters');
-    if(storedFilters)
+    if(storedFilters && !this.browseOnly)
       this.filters = Object.assign(new StyleFilters(), JSON.parse(storedFilters));
-    if(!this.filters.sources || this.filters.sources.length === 0)
+    if(!this.browseOnly && (!this.filters.sources || this.filters.sources.length === 0))
       this.filters.sources = getSources();
     if(this.culture)
       this.filters.culture = this.culture;
@@ -88,8 +89,9 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
   }
 
   styleSelected(style: CombatStyle) {
+    if (this.browseOnly || !this.selectStyle) return;
     this.selectStyle(style);
-    this.dialogRef.close(style);
+    this.dialogRef?.close(style);
   }
 
   getHeader(): string {
@@ -99,6 +101,8 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
     return "Combat Style Encyclopedia";
   }
   setProps(props: any): void {
+    props = props || {};
+    this.browseOnly = !!props.browseOnly;
     this.selectStyle = props.selectStyle;
     if(props.culture){
       this.culture = props.culture;
@@ -108,6 +112,7 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
   }
 
   private persistFilters(): void {
+    if (this.browseOnly) return;
     const filters = JSON.stringify(this.filters);
     if (filters !== this.storage.getRaw('style-filters')) {
       this.storage.setRaw('style-filters', filters);

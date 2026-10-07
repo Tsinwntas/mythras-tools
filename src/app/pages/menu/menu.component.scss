@@ -39,6 +39,13 @@
     }
 }
 
+.option .combat-styles-button {
+    --mdc-protected-button-container-color: #00796b;
+    --mdc-protected-button-label-text-color: #fff;
+    background-color: #00796b;
+    color: #fff;
+}
+
 .credits {
     width: min(100%, 920px);
     margin-top: var(--app-space-4);

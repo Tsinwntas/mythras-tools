@@ -4,6 +4,31 @@
     background: #fff;
 }
 
+.style-cards { display: none; }
+
+:host ::ng-deep .browse-table .app-table {
+    min-width: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+@media (max-width: 900px) {
+    .browse-table { display: none; }
+    .style-cards { display: grid; gap: 16px; }
+    .style-card {
+        padding: 16px;
+        border: 1px solid var(--app-color-border);
+        border-radius: var(--app-radius-sm);
+        background: #fff;
+        overflow-wrap: anywhere;
+        min-width: 0;
+    }
+    .style-card h3 { margin: 0 0 12px; font-size: 18px; }
+    .style-card dl { margin: 0; }
+    .style-card dt { font-weight: 600; margin-top: 12px; }
+    .style-card dd { margin: 4px 0 0; }
+}
+
 :host ::ng-deep .app-table .mat-mdc-header-cell {
     font-weight: 600;
     background: #f4f6fa;

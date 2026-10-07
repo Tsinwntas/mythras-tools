@@ -1,4 +1,4 @@
-<div class="app-table-scroll styles-table-shell">
+<div class="app-table-scroll styles-table-shell" [class.browse-table]="browseOnly">
     <table mat-table [dataSource]="tableData" class="app-table">
         
         <ng-container *ngFor="let col of columnDefinitions"  [matColumnDef]="col">
@@ -37,4 +37,25 @@
         <tr mat-header-row *matHeaderRowDef="columnDefinitions; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: columnDefinitions;"></tr>
     </table>
+</div>
+<div *ngIf="browseOnly" class="style-cards">
+    <article *ngFor="let style of styles" class="style-card">
+        <h3>{{style.name}}</h3>
+        <dl>
+            <dt>Culture</dt><dd>{{style.culture || '—'}}</dd>
+            <dt>Source</dt><dd>{{style.source || '—'}}</dd>
+            <dt>Traits</dt>
+            <dd>
+                <div *ngFor="let trait of style.traits">
+                    <open-modal modal="traits" [prop]="{trait:trait, source:style.source}">{{trait.name}}</open-modal>
+                </div>
+                <span *ngIf="!style.traits?.length">—</span>
+            </dd>
+            <dt>Weapons</dt>
+            <dd>
+                <div *ngFor="let weapon of getWeapons(style.weapons)"><strong>{{weapon.type}}:</strong> {{weapon.weapons}}</div>
+                <span *ngIf="!getWeapons(style.weapons).length">—</span>
+            </dd>
+        </dl>
+    </article>
 </div>
