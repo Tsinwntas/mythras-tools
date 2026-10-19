@@ -1,0 +1,58 @@
+<div class="app-shell">
+  <main class="app-container">
+    <header class="app-page-header app-card-surface">
+      <div>
+        <h1 class="app-page-title">Mythras Rules Index</h1>
+        <p class="app-page-subtitle">Searchable session notes with printed rulebook page references.</p>
+      </div>
+      <a mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</a>
+    </header>
+
+    <section class="filters app-card-surface app-section" aria-label="Filter rules">
+      <div class="controls">
+        <mat-form-field appearance="outline">
+          <mat-label>Search rules</mat-label>
+          <input #searchInput matInput type="search" [(ngModel)]="query" (ngModelChange)="filterRules()"
+            placeholder="Parry, wound, trip, reach, shield...">
+          <mat-hint>Search all text, or press / to focus search.</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <mat-select [(ngModel)]="category" (ngModelChange)="filterRules()">
+            <mat-option value="">All categories</mat-option>
+            <mat-option *ngFor="let item of categories" [value]="item">{{ item }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="filter-summary">
+        <p class="app-page-subtitle" role="status">{{ filteredRules.length }} of {{ rules.length }} rules shown</p>
+        <button *ngIf="query || category" mat-button color="primary" (click)="clearFilters()">Clear filters</button>
+      </div>
+    </section>
+
+    <div class="rules-grid">
+      <article *ngFor="let rule of filteredRules" class="rule-card app-card-surface">
+        <div class="meta">
+          <span class="chip">{{ rule.cat }}</span>
+          <span class="chip status" [class.raw]="isRaw(rule.status)">{{ rule.status }}</span>
+        </div>
+        <p class="reference">Printed p. {{ rule.page }} · {{ rule.section }}</p>
+        <h2>{{ rule.title }}</h2>
+        <p>{{ rule.summary }}</p>
+        <div class="tags" aria-label="Search by tag">
+          <button *ngFor="let tag of rule.tags" type="button" class="tag" (click)="selectTag(tag)"
+            [attr.aria-label]="'Search for ' + tag">{{ tag }}</button>
+        </div>
+        <details>
+          <summary>Show details<span class="sr-only"> for {{ rule.title }}</span></summary>
+          <ul *ngIf="rule.details.length">
+            <li *ngFor="let detail of rule.details">{{ detail }}</li>
+          </ul>
+          <p *ngIf="rule.note" class="note">{{ rule.note }}</p>
+        </details>
+      </article>
+    </div>
+    <p *ngIf="!filteredRules.length" class="empty app-card-surface">No matching rules. Try another search or clear the filters.</p>
+    <footer>RAW, interpretation and table rulings are labelled separately. This is a session reference, not a replacement for the full rulebook.</footer>
+  </main>
+</div>

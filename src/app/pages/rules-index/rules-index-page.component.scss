@@ -1,0 +1,77 @@
+:host { display: block; }
+
+header, .filters, .rule-card { padding: var(--app-space-4); }
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  gap: var(--app-space-3);
+}
+
+mat-form-field { width: 100%; }
+
+.filter-summary, .meta, .tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--app-space-2);
+}
+
+.filter-summary {
+  justify-content: space-between;
+  margin-top: var(--app-space-3);
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  align-items: start;
+  gap: var(--app-space-4);
+}
+
+.rule-card { min-width: 0; overflow-wrap: anywhere; }
+h2 { font-size: var(--app-font-size-lg); }
+
+.chip, .tag {
+  padding: var(--app-space-1) var(--app-space-2);
+  border: 1px solid var(--app-color-border);
+  border-radius: var(--app-radius-lg);
+  background: var(--app-color-bg);
+  color: var(--app-color-text);
+  font-size: var(--app-font-size-xs);
+}
+
+.status { border-style: dashed; }
+.status.raw { border-style: solid; }
+.reference { margin-top: var(--app-space-2); color: var(--app-color-muted); font-size: var(--app-font-size-xs); }
+.tag { cursor: pointer; font-family: inherit; }
+.tag:hover { border-color: var(--app-color-primary); color: var(--app-color-primary); }
+.tag:focus-visible, summary:focus-visible { outline: 2px solid var(--app-color-primary); outline-offset: 3px; }
+
+details {
+  margin-top: var(--app-space-3);
+  padding-top: var(--app-space-3);
+  border-top: 1px solid var(--app-color-border);
+}
+
+summary { cursor: pointer; color: var(--app-color-primary); font-weight: 500; }
+ul { padding-left: var(--app-space-5); margin-bottom: 0; }
+li { margin-top: var(--app-space-2); }
+
+.note {
+  margin: var(--app-space-3) 0 0;
+  padding: var(--app-space-3);
+  background: var(--app-color-bg);
+  border-left: 3px solid var(--app-color-primary);
+  border-radius: var(--app-radius-sm);
+  font-size: var(--app-font-size-sm);
+}
+
+.empty { text-align: center; padding: var(--app-space-7) var(--app-space-4); }
+footer { padding: var(--app-space-5) 0; color: var(--app-color-muted); font-size: var(--app-font-size-sm); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (max-width: 599px) {
+  .controls { grid-template-columns: minmax(0, 1fr); }
+  header > a { width: 100%; }
+}

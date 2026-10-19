@@ -46,6 +46,13 @@
     color: #fff;
 }
 
+.option .rules-index-button {
+    --mdc-protected-button-container-color: #795548;
+    --mdc-protected-button-label-text-color: #fff;
+    background-color: #795548;
+    color: #fff;
+}
+
 .credits {
     width: min(100%, 920px);
     margin-top: var(--app-space-4);

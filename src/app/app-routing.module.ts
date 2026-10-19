@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'rules-index',
+    loadComponent: () => import('./pages/rules-index/rules-index-page.component').then(m => m.RulesIndexPageComponent),
+  },
+  {
     path: 'combat-styles',
     loadComponent: () => import('./pages/combat-styles/combat-styles-page.component').then(m => m.CombatStylesPageComponent),
   },
