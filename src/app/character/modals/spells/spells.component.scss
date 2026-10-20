@@ -1,3 +1,8 @@
-mat-card {
-    cursor : pointer;
-}
+.spell-picker-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); gap:16px; margin-top:20px; }
+mat-card { border:1px solid #e5daed; border-radius:12px; background:#faf7fd; box-shadow:none; height:100%; }
+mat-card-header { padding:20px; }
+mat-card-title { font-size:18px; color:#603a7d; }
+mat-card-subtitle { font-size:12px; color:#967ba6; }
+mat-card-content { font-size:14px; line-height:1.7; padding:0 20px; }
+mat-card-actions { padding:16px 20px; margin-top:auto; }
+mat-card-actions button { min-height:44px; white-space:normal; }

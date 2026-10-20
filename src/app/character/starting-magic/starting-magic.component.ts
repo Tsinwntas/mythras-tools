@@ -48,11 +48,11 @@ export class StartingMagicComponent implements OnInit {
   }
 
   getAugmentations() : string[] {
-    return this.character.mysticalOrder.paths.match(/Augment[ ][^,]*/g)!.map(a=>a.replace(/Augment[ ]/g,'').trim());
+    return this.character.mysticalOrder.paths.match(/Augment[ ][^,]*/g)?.map(a=>a.replace(/Augment[ ]/g,'').trim()) || [];
   }
 
   getInvocations() : string[] {
-    return this.character.mysticalOrder.paths.match(/Invoke[ ][^,]*/g)!.map(a=>a.replace(/Invoke[ ]/g,'').trim());
+    return this.character.mysticalOrder.paths.match(/Invoke[ ][^,]*/g)?.map(a=>a.replace(/Invoke[ ]/g,'').trim()) || [];
   }
 
   findInvocation(invocation:string) : Spell {
@@ -61,8 +61,7 @@ export class StartingMagicComponent implements OnInit {
       spellname = "Immunity (X)";
     spellname = spellname.trim().replace(/[(].*[)]/,"(X)");
     let spell = invocationMagic.find(i=>i.name.trim().replace(/[(].*[)]/,"(X)") == spellname)!;
-    spell.name = invocation;
-    return spell;
+    return {...(spell || {tags:'',description:''}), name:invocation};
   }
 
   hasEnhancements() : boolean {
@@ -70,11 +69,11 @@ export class StartingMagicComponent implements OnInit {
   }
 
   getEnhancements() : string[] {
-    return this.character.mysticalOrder.paths.match(/Enhance[ ][^,]*/g)!.map(a=>a.replace(/Enhance[ ]/g,'').trim());
+    return this.character.mysticalOrder.paths.match(/Enhance[ ][^,]*/g)?.map(a=>a.replace(/Enhance[ ]/g,'').trim()) || [];
   }
 
   findEnhancement(enhancement:string) : Spell {
-    return enhancementMagic.find(e=>e.name.trim().replace(/[(].*[)]/,"(X)") == enhancement)!;
+    return {...(enhancementMagic.find(e=>e.name.trim().replace(/[(].*[)]/,"(X)") == enhancement) || {name:enhancement,description:''})};
   }
 
   getSorceries() : string[] {
@@ -83,8 +82,7 @@ export class StartingMagicComponent implements OnInit {
 
   findSorcery(sorcery:string) : Spell {
     let s = sorceryMagic.find(s=>s.name.replace(/[(].*[)]/,"").trim() == sorcery.replace(/[(].*[)]/,"").trim())!;
-    s.name = sorcery;
-    return s;
+    return {...(s || {tags:'',description:''}), name:sorcery};
   }
 
   getMiracles() : string[] {
@@ -93,8 +91,7 @@ export class StartingMagicComponent implements OnInit {
 
   findMiracle(miracle:string) : Spell {
     let s = theismMagic.find(s=>s.name.replace(/[(].*[)]/,"").trim() == miracle.replace(/[(].*[)]/,"").trim())!;
-    s.name = miracle;
-    return s;
+    return {...(s || {tags:'',description:''}), name:miracle};
   }
 
   getSpellDescription(description : string) : string {

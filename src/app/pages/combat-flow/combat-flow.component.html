@@ -1,111 +1,54 @@
 <div class="app-shell">
-<div class="app-container">
-<mat-toolbar class="app-section app-toolbar-wrap">
-    <open-modal *ngIf="userType==UserTypes.GM"  modal="initiative" [prop]="round">
-        <button mat-button>
-            Initiative Notes
-        </button>
-    </open-modal>
-    <open-modal *ngIf="userType==UserTypes.PLAYER" modal="character">
-        <button mat-button>
-            Character
-        </button>
-    </open-modal>
-    <open-modal modal="fatigue">
-        <button mat-button>
-            Fatigue
-        </button>
-    </open-modal>
-    <open-modal modal="success-levels">
-        <button mat-button>
-            Roll Check
-        </button>
-    </open-modal>
-    <open-modal modal="hit-locations">
-        <button mat-button>
-            Hit Locations
-        </button>
-    </open-modal>
-    <open-modal modal="offensive-specials">
-        <button mat-button>
-            Offensive Special Effects
-        </button>
-    </open-modal>
-    <open-modal modal="defensive-specials">
-        <button mat-button>
-            Defensive Special Effects
-        </button>
-    </open-modal>
-    <open-modal modal="situational">
-        <button mat-button>
-            Situational Modifier
-        </button>
-    </open-modal>
-    <open-modal modal="ignore" class="back">
-        <button mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
-    </open-modal>
-</mat-toolbar>
-<div class="page-wrapper app-form-stack">
-    <div class="user-type-selection" *ngIf="userType == UserTypes.UNKNOWN" >
-        <h3 class="view-as">Select from which perspective to view the Combat Flow:</h3>
-        <button mat-raised-button color="primary" (click)="setUserType(UserTypes.GM)">GM</button>
-        <button mat-raised-button color="accent" (click)="setUserType(UserTypes.PLAYER)">Player</button>
+  <main class="app-container combat-workspace">
+    <header class="tool-header">
+      <div><p class="page-eyebrow">At the table</p><h1>Combat Flow</h1><p>A guided reference for every exchange. Follow the phases, or jump straight to the rule you need.</p></div>
+      <a mat-stroked-button routerLink="/menu"><mat-icon>arrow_back</mat-icon> All tools</a>
+    </header>
+    <section class="quick-reference app-card-surface" aria-labelledby="quick-reference-title" [class.is-open]="referenceOpen">
+      <header class="quick-reference-heading"><div><h2 id="quick-reference-title">Quick reference</h2><p>Common combat rules, one click away.</p></div><a mat-button routerLink="/rules-index">Browse all rules <mat-icon>arrow_forward</mat-icon></a></header>
+      <button type="button" class="reference-toggle" (click)="referenceOpen = !referenceOpen" [attr.aria-expanded]="referenceOpen" aria-controls="combat-reference-links"><span><strong>Quick reference</strong><small>Rolls, effects, fatigue &amp; hit locations</small></span><mat-icon>{{referenceOpen ? 'expand_less' : 'expand_more'}}</mat-icon></button>
+      <div id="combat-reference-links" class="quick-reference-content">
+      <nav class="quick-reference-grid" aria-label="Combat quick links">
+        <open-modal *ngIf="userType==UserTypes.GM" modal="initiative" [prop]="round"><button mat-stroked-button>Initiative notes</button></open-modal>
+        <open-modal *ngIf="userType==UserTypes.PLAYER" modal="character"><button mat-stroked-button>Character</button></open-modal>
+        <open-modal modal="fatigue"><button mat-stroked-button>Fatigue</button></open-modal>
+        <open-modal modal="success-levels"><button mat-stroked-button>Roll check</button></open-modal>
+        <open-modal modal="hit-locations"><button mat-stroked-button>Hit locations</button></open-modal>
+        <open-modal modal="offensive-specials"><button mat-stroked-button>Offensive effects</button></open-modal>
+        <open-modal modal="defensive-specials"><button mat-stroked-button>Defensive effects</button></open-modal>
+        <open-modal modal="situational"><button mat-stroked-button>Situational modifiers</button></open-modal>
+      </nav>
+      <a class="mobile-all-rules" mat-button routerLink="/rules-index">Browse all rules <mat-icon>arrow_forward</mat-icon></a>
+      </div>
+    </section>
+    <section class="perspective-choice" *ngIf="userType === UserTypes.UNKNOWN">
+      <p class="page-eyebrow">Choose your seat</p><h2>How are you playing?</h2><p>Each view keeps its own place in the combat sequence.</p>
+      <div class="perspective-grid">
+        <button class="perspective-card" (click)="setUserType(UserTypes.GM)"><mat-icon>explore</mat-icon><strong>Game Master</strong><span>Manage rounds, initiative, fatigue and the full combat cycle.</span><b>Open GM flow <mat-icon>arrow_forward</mat-icon></b></button>
+        <button class="perspective-card" (click)="setUserType(UserTypes.PLAYER)"><mat-icon>shield</mat-icon><strong>Player</strong><span>Choose actions, resolve attacks and defenses, and compare results.</span><b>Open player flow <mat-icon>arrow_forward</mat-icon></b></button>
+      </div>
+    </section>
+    <div *ngIf="userType !== UserTypes.UNKNOWN" class="combat-flow-wrapper">
+      <div class="combat-session-bar"><span class="perspective-badge">{{userType === UserTypes.GM ? 'Game Master' : 'Player'}} view</span><span>Round {{round.round}}</span><button mat-button (click)="setUserType(userType === UserTypes.GM ? UserTypes.PLAYER : UserTypes.GM)">Switch to {{userType === UserTypes.GM ? 'Player' : 'GM'}}</button></div>
+      <button class="sidebar-toggle" (click)="toggleSidebar()" [attr.aria-expanded]="sidebarOpen"><mat-icon>list</mat-icon><span>Phase {{pageState + 1}} of {{getStates().length}} · {{phaseLabel(pageState)}}</span><mat-icon>{{sidebarOpen ? 'expand_less' : 'expand_more'}}</mat-icon></button>
+      <div *ngIf="loading" class="loading-wrap"><mat-spinner diameter="40"></mat-spinner></div>
+      <div class="combat-layout" [hidden]="loading">
+        <aside class="combat-sidebar" [class.open]="sidebarOpen">
+          <p class="page-eyebrow">Combat sequence</p>
+          <nav class="step-list" aria-label="Combat phases">
+            <button type="button" class="step-list-item" *ngFor="let state of getStates(); let i=index" [class.active]="pageState === i" [attr.aria-current]="pageState === i ? 'step' : null" (click)="goToStep(i)"><span class="step-index">{{i+1}}</span><span class="step-name">{{phaseLabel(i)}}</span></button>
+          </nav>
+        </aside>
+        <section class="combat-main app-card-surface">
+          <header class="combat-phase-header"><div><p class="page-eyebrow">Phase {{pageState + 1}} / {{getStates().length}}</p><h2>{{phaseLabel(pageState)}}</h2></div><mat-form-field *ngIf="userType === UserTypes.GM && pageState === 2"><mat-label>Round</mat-label><input matInput type="number" [(ngModel)]="round.round"></mat-form-field></header>
+          <div class="combat-phase-content"><ng-container #activeStateHost></ng-container></div>
+          <footer class="combat-next-actions">
+            <button mat-stroked-button *ngIf="pageState > 0" (click)="goToStep(pageState-1)">Back</button>
+            <button mat-flat-button color="primary" *ngIf="getCurrentState().next === undefined" (click)="nextStep()">Continue <mat-icon>arrow_forward</mat-icon></button>
+            <button mat-flat-button color="primary" *ngFor="let button of getCurrentState().next" (click)="stepTo(button.target,button.click)">{{button.label || 'Continue'}}</button>
+          </footer>
+        </section>
+      </div>
     </div>
-    <div class="combat-flow-wrapper" *ngIf="userType != UserTypes.UNKNOWN" >
-        <button mat-icon-button class="sidebar-toggle" (click)="toggleSidebar()" aria-label="Toggle combat section menu">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <div *ngIf="loading" class="loading-wrap">
-            <mat-spinner></mat-spinner>
-        </div>
-        <div class="combat-layout" [ngStyle]="{'display': loading ? 'none' : 'grid' }">
-            <aside class="combat-sidebar app-card-surface" [class.open]="sidebarOpen">
-                <h3>Sections</h3>
-                <div class="combat-progress">{{pageState + 1}} / {{getStates().length}}</div>
-                <div class="step-list">
-                    <button
-                        type="button"
-                        class="step-list-item"
-                        *ngFor="let state of getStates(); let i = index"
-                        [class.active]="pageState === i"
-                        (click)="goToStep(i)"
-                    >
-                        <span class="step-index">{{i + 1}}</span>
-                        <span class="step-name">{{state.stepLabel}}</span>
-                    </button>
-                </div>
-            </aside>
-            <section class="combat-main">
-                <mat-card class="app-card-surface">
-                    <mat-card-header>
-                        <h3>{{getCurrentState().stepLabel}}</h3>
-                        <span *ngIf="userType == UserTypes.GM && pageState == 2" class="round-span">
-                            <mat-form-field>
-                                <mat-label>Round</mat-label>
-                                <input matInput placeholder="1" type="number" [(ngModel)]="round.round">
-                            </mat-form-field>
-                        </span>
-                    </mat-card-header>	
-                    <mat-card-content >
-                        <div class="state-content-wrapper">
-                            <ng-container #activeStateHost></ng-container>
-                        </div>
-                        <div *ngIf="getCurrentState().next == undefined" class="app-action-row">
-                            <button mat-stroked-button (click)="nextStep()">Next</button>
-                        </div>
-                        <div *ngIf="getCurrentState().next != undefined" class="app-action-row">
-                            <button mat-stroked-button *ngFor="let button of getCurrentState().next" (click)="stepTo(button.target, button.click)">{{button.label? button.label : 'Next'}}</button>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </section>
-        </div>
-    </div>
-    <div class="user-type-reselection" *ngIf="userType != UserTypes.UNKNOWN" >
-        <div>View as:</div>
-        <button mat-raised-button color="primary" (click)="setUserType(UserTypes.GM)" *ngIf="userType == UserTypes.PLAYER">GM</button>
-        <button mat-raised-button color="accent" (click)="setUserType(UserTypes.PLAYER)" *ngIf="userType == UserTypes.GM">Player</button>
-    </div>
-</div>
-</div>
+  </main>
 </div>

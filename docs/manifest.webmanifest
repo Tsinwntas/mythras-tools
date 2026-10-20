@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Mythras Tools",
+  "short_name": "Mythras",
+  "description": "Your Mythras character workshop and adventure companion.",
+  "lang": "en",
+  "start_url": "./#/menu",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#56308d",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

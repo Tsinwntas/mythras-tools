@@ -1,0 +1,10 @@
+:host { display:inline-block; max-width:100%; }
+.skill-choice { display:flex; align-items:center; max-width:100%; border:1px solid transparent; border-radius:8px; }
+.skill-choice.custom { border-color:#d9cbe5; background:#f3edf8; }
+.skill-name { min-height:44px; max-width:100%; white-space:normal; overflow-wrap:anywhere; }
+.custom .skill-name { -webkit-touch-callout:none; user-select:none; touch-action:pan-y; background:transparent; }
+.skill-more { flex:none; }
+.selected-label { display:block; font-size:10px; color:#756181; }
+.menu-anchor { position:fixed; width:1px; height:1px; visibility:hidden; }
+
+.skill-label { padding: 4px 6px; overflow-wrap:anywhere; min-width:0; }

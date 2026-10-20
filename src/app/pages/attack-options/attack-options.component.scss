@@ -1,7 +1,4 @@
-.attack-options{
-    background-color: #d3d3d357;
-    padding: 10px;
-}
-ul{
-    margin-bottom: 5px;
-}
+.attack-modes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); padding:6px; gap:6px; border:1px solid #e1d5eb; border-radius:12px; background:#f2edf8; margin-bottom:24px; }
+.attack-modes button { border:0; background:transparent; min-height:44px; color:#776187; }
+.attack-modes button.active { background:#673ab7; color:white; }
+.reference-links > li:not(.list-inline-item):first-child { line-height:1.7; }

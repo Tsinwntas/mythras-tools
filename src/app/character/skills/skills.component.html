@@ -1,9 +1,9 @@
-<p>Roll for and Assign Characteristics</p>
+<details class="creation-notes"><summary>How to generate characteristics</summary>
 <p>For Humans, there are 2 ways to calculate characteristics.</p>
 <ul>
     <li>Roll 3d6 each for STR, CON, DEX, POW and CHA. Roll 2d6+6 each for INT and SIZ.</li>
-    <li>Distribute from a pool of 80 points to the skills as you or the GM see fit. Minimum allocation is 3 points per characteristic except for INT and SIZ which is 6. Maximum 18 for all. </li>
-</ul>
+    <li>Distribute from a pool of 80 points to the skills as you or the GM see fit. Minimum allocation is 3 points per characteristic except for INT and SIZ which is 8. Maximum 18 for all. </li>
+</ul></details>
 <div class="characteristics">
     <div class="characteristic">
         <mat-form-field>
@@ -69,5 +69,5 @@
         </div>
     </div>
 </div>
-<p>Points: {{calculatePoints()}}</p>
+<p>Points remaining: {{calculatePoints()}} / {{character.creationAllowances['characteristics'] ?? 80}}</p>
 

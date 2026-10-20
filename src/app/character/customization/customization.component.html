@@ -1,0 +1,395 @@
+<p class="intro">
+  Your campaign, your rules. Create and edit anything below. Point allowances are guidance; every bonus remains editable.
+</p>
+<details open>
+  <summary>
+    Professional skills & specializations
+    <span>
+      {{customSkills.length}}
+    </span>
+  </summary>
+  <p>
+    Choose the two characteristics used for the base. The same characteristic twice gives twice its value. Custom skills are included on your sheet.
+  </p>
+  <article *ngFor="let skill of customSkills; let i=index">
+    <div class="entry-heading">
+      <label>
+        Skill name
+        <input [(ngModel)]="skill.name">
+      </label>
+      <strong>
+        {{total(skill)}}%
+      </strong>
+      <button type="button" class="remove" (click)="remove(customSkills,i)" aria-label="Remove skill">
+        Remove
+      </button>
+    </div>
+    <div class="field-grid">
+      <label *ngFor="let n of [0,1]">
+        Base characteristic {{n+1}}
+        <select [(ngModel)]="skill.base[n]">
+          <option [ngValue]="undefined">
+            None
+          </option>
+          <option *ngFor="let stat of characteristics" [value]="stat">
+            {{stat.toUpperCase()}}
+          </option>
+        </select>
+      </label>
+      <label>
+        Base multiplier
+        <input type="number" [(ngModel)]="skill.multiply" placeholder="1">
+      </label>
+      <label>
+        Base adjustment
+        <input type="number" [(ngModel)]="skill.add" placeholder="0">
+      </label>
+      <label>
+        Culture points
+        <input type="number" [(ngModel)]="skill.cultureBonus">
+      </label>
+      <label>
+        Career points
+        <input type="number" [(ngModel)]="skill.careerBonus">
+      </label>
+      <label>
+        Bonus points
+        <input type="number" [(ngModel)]="skill.extraBonus">
+      </label>
+    </div>
+  </article>
+  <button type="button" (click)="addSkill()">
+    + Professional skill
+  </button>
+</details>
+<details>
+  <summary>
+    Combat styles & traits
+    <span>
+      {{character.skills.combatstyles.length}}
+    </span>
+  </summary>
+  <article *ngFor="let style of character.skills.combatstyles; let i=index">
+    <div class="entry-heading">
+      <label>
+        Style name
+        <input [(ngModel)]="style.name">
+      </label>
+      <strong>
+        {{total(style)}}%
+      </strong>
+      <button type="button" class="remove" (click)="remove(character.skills.combatstyles,i)">
+        Remove
+      </button>
+    </div>
+    <div class="field-grid">
+      <label>
+        Culture points
+        <input type="number" [(ngModel)]="style.cultureBonus">
+      </label>
+      <label>
+        Career points
+        <input type="number" [(ngModel)]="style.careerBonus">
+      </label>
+      <label>
+        Bonus points
+        <input type="number" [(ngModel)]="style.extraBonus">
+      </label>
+      <label *ngFor="let key of ['Melee','Ranged','Shields']">
+        {{key}} weapons
+        <input [(ngModel)]="style.weapons[key]">
+      </label>
+    </div>
+    <button *ngIf="!style.selectedTrait" type="button" (click)="style.selectedTrait={name:'',trait:''}">
+      Add trait
+    </button>
+    <div *ngIf="style.selectedTrait">
+      <label>
+        Trait name
+        <input [(ngModel)]="style.selectedTrait.name">
+      </label>
+      <label>
+        Trait rules
+        <textarea rows="3" [(ngModel)]="style.selectedTrait.trait">
+        </textarea>
+      </label>
+    </div>
+  </article>
+  <button type="button" (click)="addStyle()">
+    + Combat style
+  </button>
+</details>
+<details>
+  <summary>
+    Magic, spirits & abilities
+  </summary>
+  <p>
+    Add spells to any tradition, including traditions without a cult. Other magic can describe any homebrew system.
+  </p>
+  <section *ngFor="let type of magicTypes">
+    <h3>
+      {{type.label}}
+    </h3>
+    <article *ngFor="let spell of spells(type.key); let i=index">
+      <div class="entry-heading">
+        <label>
+          Name
+          <input [(ngModel)]="spell.name">
+        </label>
+        <button type="button" class="remove" (click)="remove(spells(type.key),i)">
+          Remove
+        </button>
+      </div>
+      <label>
+        Tags / system / cost
+        <input [(ngModel)]="spell.tags">
+      </label>
+      <label>
+        Description & rules
+        <textarea rows="4" [(ngModel)]="spell.description">
+        </textarea>
+      </label>
+    </article>
+    <button type="button" (click)="spells(type.key).push({name:'New spell',tags:'',description:''})">
+      + {{type.label}}
+    </button>
+  </section>
+  <label>
+    Spirits & bindings
+    <textarea rows="4" [(ngModel)]="character.magic.spirits">
+    </textarea>
+  </label>
+  <label>
+    Mystic path
+    <input [(ngModel)]="character.magic.path.path">
+  </label>
+  <label>
+    Other abilities
+    <textarea rows="4" [(ngModel)]="character.magic.abilities">
+    </textarea>
+  </label>
+</details>
+<details>
+  <summary>
+    Weapons, items & armour
+  </summary>
+  <h3>
+    Weapons
+  </h3>
+  <article *ngFor="let weapon of character.equipment.weapons; let i=index">
+    <div class="entry-heading">
+      <label>
+        Name
+        <input [(ngModel)]="weapon.name">
+      </label>
+      <button type="button" class="remove" (click)="remove(character.equipment.weapons,i)">
+        Remove
+      </button>
+    </div>
+    <div class="field-grid">
+      <label>
+        Damage
+        <input [(ngModel)]="weapon.damage">
+      </label>
+      <label>
+        Size
+        <input [(ngModel)]="weapon.size">
+      </label>
+      <label>
+        Reach
+        <input [(ngModel)]="weapon.reach">
+      </label>
+      <label>
+        Range
+        <input [(ngModel)]="weapon.range">
+      </label>
+      <label>
+        AP
+        <input type="number" [(ngModel)]="weapon.ap">
+      </label>
+      <label>
+        HP
+        <input type="number" [(ngModel)]="weapon.hp">
+      </label>
+      <label>
+        ENC
+        <input type="number" [(ngModel)]="weapon.enc">
+      </label>
+      <label>
+        Cost
+        <input type="number" [(ngModel)]="weapon.cost">
+      </label>
+      <label>
+        Quantity
+        <input type="number" [(ngModel)]="weapon.quantity">
+      </label>
+    </div>
+    <label>
+      Traits & notes
+      <textarea [(ngModel)]="weapon.extra">
+      </textarea>
+    </label>
+  </article>
+  <button type="button" (click)="addWeapon()">
+    + Weapon
+  </button>
+  <h3>
+    Items & equipment
+  </h3>
+  <article *ngFor="let item of character.equipment.items; let i=index">
+    <div class="entry-heading">
+      <label>
+        Name
+        <input [(ngModel)]="item.name">
+      </label>
+      <button type="button" class="remove" (click)="remove(character.equipment.items,i)">
+        Remove
+      </button>
+    </div>
+    <div class="field-grid">
+      <label>
+        Quantity
+        <input type="number" [(ngModel)]="item.quantity">
+      </label>
+      <label>
+        ENC
+        <input type="number" [(ngModel)]="item.enc">
+      </label>
+      <label>
+        Cost
+        <input type="number" [(ngModel)]="item.cost">
+      </label>
+    </div>
+    <label>
+      Description
+      <textarea [(ngModel)]="item.description">
+      </textarea>
+    </label>
+  </article>
+  <button type="button" (click)="addItem()">
+    + Item
+  </button>
+  <h3>
+    Armour by location
+  </h3>
+  <article *ngFor="let loc of armourLocations">
+    <h4>
+      {{loc.label}}
+    </h4>
+    <div class="field-grid">
+      <label>
+        Type
+        <input [(ngModel)]="armour(loc.key).type">
+      </label>
+      <label>
+        Material
+        <input [(ngModel)]="armour(loc.key).material">
+      </label>
+      <label>
+        AP
+        <input type="number" [(ngModel)]="armour(loc.key).ap">
+      </label>
+      <label>
+        ENC
+        <input type="number" [(ngModel)]="armour(loc.key).enc">
+      </label>
+      <label>
+        Cost
+        <input type="number" [(ngModel)]="armour(loc.key).cost">
+      </label>
+    </div>
+  </article>
+</details>
+<details>
+  <summary>
+    Cults, orders & factions
+  </summary>
+  <p>
+    Edit an existing membership or add any number of other organizations.
+  </p>
+  <article *ngFor="let entry of cults">
+    <h3>
+      {{entry.label}}
+    </h3>
+    <div class="field-grid">
+      <label>
+        Name
+        <input [(ngModel)]="cult(entry.key).name">
+      </label>
+      <label>
+        Rank
+        <input [(ngModel)]="cult(entry.key).level">
+      </label>
+    </div>
+    <label>
+      Standard skills
+      <input [(ngModel)]="cult(entry.key).standardSkills">
+    </label>
+    <label>
+      Professional skills
+      <input [(ngModel)]="cult(entry.key).professionalSkills">
+    </label>
+    <label>
+      Spells, paths, spirits & membership rules
+      <textarea rows="3" [(ngModel)]="cult(entry.key)[entry.detail]">
+      </textarea>
+    </label>
+  </article>
+  <article *ngFor="let faction of factions; let i=index">
+    <div class="entry-heading">
+      <label>
+        Organization
+        <input [(ngModel)]="faction.name">
+      </label>
+      <button type="button" class="remove" (click)="remove(factions,i)">
+        Remove
+      </button>
+    </div>
+    <label>
+      Rank / role
+      <input [(ngModel)]="faction.rank">
+    </label>
+    <label>
+      Rules, benefits & obligations
+      <textarea rows="4" [(ngModel)]="faction.description">
+      </textarea>
+    </label>
+  </article>
+  <button type="button" (click)="factions.push({name:'New faction',rank:'',description:''})">
+    + Cult or faction
+  </button>
+</details>
+<details>
+  <summary>
+    Campaign notes & custom details
+  </summary>
+  <div class="field-grid">
+    <label>
+      Custom culture
+      <input [(ngModel)]="character.culture">
+    </label>
+    <label>
+      Custom career
+      <input [(ngModel)]="character.career">
+    </label>
+  </div>
+  <article *ngFor="let note of notes; let i=index">
+    <div class="entry-heading">
+      <label>
+        Title
+        <input [(ngModel)]="note.name">
+      </label>
+      <button type="button" class="remove" (click)="remove(notes,i)">
+        Remove
+      </button>
+    </div>
+    <label>
+      Details
+      <textarea rows="5" [(ngModel)]="note.description">
+      </textarea>
+    </label>
+  </article>
+  <button type="button" (click)="notes.push({name:'New detail',description:''})">
+    + Custom detail
+  </button>
+</details>

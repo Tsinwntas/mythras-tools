@@ -1,3 +1,4 @@
+import { getAllocationTotal, getAllCharacterSkills } from 'src/app/services/character-service.service';
 import { Component } from '@angular/core';
 import { Character } from 'src/app/model/character';
 import { CombatStyle } from 'src/app/model/combat-style';
@@ -8,6 +9,7 @@ import {
   getStandardCulturalSkills,
 } from 'src/app/services/character-service.service';
 import { orZero } from 'src/app/services/common.service';
+import { isCustomSkill } from 'src/app/services/custom-skills';
 
 @Component({
   selector: 'app-career',
@@ -31,6 +33,7 @@ export class CareerComponent {
   }
 
   canBeSpecialized(skill: string): boolean {
+    if (isCustomSkill(this.findSkill(skill))) return false;
     return (
       skill.match(/[(].*[)]/) != null ||
       ['Art', 'Craft', 'Language', 'Lore'].some((name) => skill.startsWith(name))
@@ -81,30 +84,8 @@ export class CareerComponent {
     };
   }
 
-  getPointsLeft() {
-    return (
-      100 -
-      (orZero(
-        this.character.skills.combatstyles
-          ?.map((style) => orZero(style.careerBonus))
-          .reduce((a, b) => a + b, 0)
-      ) +
-        orZero(
-          this.character.skills.skills
-            ?.map((skill) => orZero(skill.careerBonus))
-            .reduce((a, b) => a + b, 0)
-        ) +
-        orZero(
-          this.character.skills.specialized
-            ?.map((skill) => orZero(skill.careerBonus))
-            .reduce((a, b) => a + b, 0)
-        ) +
-        orZero(
-          this.character.skills.extraProfessionalCareerSkills
-            ?.map((skill) => orZero(skill.careerBonus))
-            .reduce((a, b) => a + b, 0)
-        ))
-    );
+  getPointsLeft(): number {
+    return (this.character.creationAllowances?.['career'] ?? 100) - getAllocationTotal(this.character, 'careerBonus');
   }
 
   resetSkills() {
@@ -194,6 +175,7 @@ export class CareerComponent {
 
   getProfessionalProps() {
     return {
+      character: this.character,
       skills: this.character.skills.skills,
       page: 2,
       selectedSkill: (skill: Skill) => {
@@ -204,9 +186,7 @@ export class CareerComponent {
 
   getCareerSkills(type: string): string[] {
     if (!this.character.career || !this.character.career.length) return [];
-    return (Careers as any).find((c: any) => c.career == this.character.career)[
-      type
-    ];
+    return (Careers as any).find((c: any) => c.career == this.character.career)?.[type] || [];
   }
 
   findSkill(skill: string): Skill {

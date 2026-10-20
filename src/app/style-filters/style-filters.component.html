@@ -1,18 +1,19 @@
 <div class="filters-wrap">
     <mat-form-field>
-        <mat-label>Name or trait:</mat-label>
+        <mat-label>Search by name or trait</mat-label>
         <input matInput [(ngModel)]="filters.name" (input)="filter.emit()">
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Cultural Background:</mat-label>
+      <mat-label>Culture</mat-label>
       <mat-select [(value)]="filters.culture" (selectionChange)="filter.emit()">
         <mat-option>None</mat-option>
         <mat-option *ngFor="let culture of ['Barbarian', 'Civilized', 'Nomadic', 'Primitive']" [value]="culture">{{culture}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
+        <mat-label>Source</mat-label>
         <mat-select placeholder="Source" multiple [(ngModel)]="filters.sources" (selectionChange)="filter.emit()">
-            <input [(ngModel)]="sourceFilter"/>
+            <input class="filter-option-search" aria-label="Search sources" placeholder="Search sources" [(ngModel)]="sourceFilter" (keydown)="$event.stopPropagation()"/>
             <button class="clear-weapons" mat-flat-button (click)="clearSources()">Clear Selections</button>
             <mat-option *ngFor="let source of getSources()" [value]="source" [ngStyle]="isHidden(sourceFilter, source)?{'display':'none'}:null">
                 {{source}}
@@ -20,8 +21,9 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field>
+        <mat-label>Weapons</mat-label>
         <mat-select placeholder="Weapons" multiple [(ngModel)]="filters.weapons" (selectionChange)="filter.emit()">
-          <input [(ngModel)]="weaponFilter"/>
+          <input class="filter-option-search" aria-label="Search weapons" placeholder="Search weapons" [(ngModel)]="weaponFilter" (keydown)="$event.stopPropagation()"/>
           <button class="clear-weapons" mat-flat-button (click)="clearWeapons()">Clear Selections</button>
           <mat-optgroup *ngFor="let group of getWeaponGroups()" [label]="group.name">
             <mat-option *ngFor="let weapon of group.weapons" [value]="weapon" [ngStyle]="isHidden(weaponFilter, weapon)?{'display':'none'}:null">
@@ -31,8 +33,9 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <mat-select placeholder="Specials Effects" multiple [(ngModel)]="filters.specials" (selectionChange)="filter.emit()">
-          <input [(ngModel)]="specialFilter"/>
+        <mat-label>Special effects</mat-label>
+        <mat-select placeholder="Special effects" multiple [(ngModel)]="filters.specials" (selectionChange)="filter.emit()">
+          <input class="filter-option-search" aria-label="Search effects" placeholder="Search effects" [(ngModel)]="specialFilter" (keydown)="$event.stopPropagation()"/>
           <button class="clear-weapons" mat-flat-button (click)="clearSpecials()">Clear Selections</button>
           <mat-optgroup *ngFor="let group of getSpecialGroups()" [label]="group.name">
             <mat-option *ngFor="let special of group.specials" [value]="special" [ngStyle]="isHidden(specialFilter, special)?{'display':'none'}:null">

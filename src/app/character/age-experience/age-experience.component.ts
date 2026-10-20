@@ -1,3 +1,4 @@
+import { getAllocationTotal, getAllCharacterSkills } from 'src/app/services/character-service.service';
 import { CombatStyle } from 'src/app/model/combat-style';
 import { getCombatStyles, getSkillTotal, isHobbyCombatStyle } from 'src/app/services/character-service.service';
 import { Skill } from 'src/app/model/skill';
@@ -24,21 +25,21 @@ export class AgeExperienceComponent {
       backgroundEventRolls: 0,
     },
     {
-      ageCategory: 'Young-Adult',
+      ageCategory: 'Adult',
       ageRange: '17-27',
       bonusSkillPoints: 150,
       maximumSkillIncrease: 15,
       backgroundEventRolls: 1,
     },
     {
-      ageCategory: 'Adult',
+      ageCategory: 'Middle Aged',
       ageRange: '28-43',
       bonusSkillPoints: 200,
       maximumSkillIncrease: 20,
       backgroundEventRolls: 2,
     },
     {
-      ageCategory: 'Middle-Aged',
+      ageCategory: 'Senior',
       ageRange: '44-64',
       bonusSkillPoints: 250,
       maximumSkillIncrease: 25,
@@ -66,30 +67,11 @@ export class AgeExperienceComponent {
   }
 
   getPointsLeft(): number {
-    return (
-      this.getMaxPoints() -
-      this.character.skills.skills
-        .map((skill) => orZero(skill.extraBonus))
-        .concat(
-          this.character.skills.combatstyles.map((skill) =>
-            orZero(skill.extraBonus)
-          )
-        )
-        .concat(
-          this.character.skills.specialized.map((skill) =>
-            orZero(skill.extraBonus)
-          )
-        )
-        .concat(
-          this.character.skills.hobby
-            ? [orZero(this.character.skills.hobby.extraBonus)]
-            : [0]
-        )
-        .reduce((a, b) => a + b, 0)
-    );
+    return this.getMaxPoints() - getAllocationTotal(this.character, 'extraBonus');
   }
 
   getMaxPoints(): number {
+    if (this.character.creationAllowances?.['bonus'] != null) return this.character.creationAllowances['bonus'];
     let age = this.getCharacerAgeCategory();
     return age
       ? age.bonusSkillPoints
@@ -134,21 +116,7 @@ export class AgeExperienceComponent {
   }
 
   getProfessionalSkills(): Skill[] {
-    return this.character.skills.skills
-      .filter(
-        (skill) =>
-          skill.professional && (skill.cultureBonus || skill.careerBonus)
-      )
-      .concat(
-        this.character.skills.specialized.filter(
-          (skill) => skill.cultureBonus || skill.careerBonus
-        )
-      )
-      .concat(
-        this.character.skills.hobby && !isHobbyCombatStyle(this.character)
-          ? [this.character.skills.hobby]
-          : []
-      )
-      .sort((skill1, skill2) => skill1.name.localeCompare(skill2.name));
+    return getAllCharacterSkills(this.character).filter(skill => skill.professional && (skill.force || skill.cultureBonus || skill.careerBonus || skill.extraBonus || skill === this.character.skills.hobby))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 }

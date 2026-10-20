@@ -4,8 +4,8 @@
     <input matInput [(ngModel)]="search" />
   </mat-form-field>
 </div>
-<div>
-  <mat-card *ngFor="let spell of getFilteredSpells()" (click)="select(spell)">
+<div class="spell-picker-grid">
+  <mat-card *ngFor="let spell of getFilteredSpells()">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{ spell.name }}</mat-card-title>
@@ -15,5 +15,5 @@
     <mat-card-content>
       {{ spell.description }}
     </mat-card-content>
-  </mat-card>
+  <mat-card-actions><button mat-stroked-button (click)="select(spell)">Select {{spell.name}}</button></mat-card-actions></mat-card>
 </div>

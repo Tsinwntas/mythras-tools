@@ -1,6 +1,61 @@
-.add-participant{
-    width: 100%;
-    mat-icon{
-        margin-right: 0;
-    }
+:host { display:block; min-width:0; }
+.initiative-toolbar { display:flex; align-items:center; flex-wrap:wrap; gap:10px 16px; margin-bottom:12px; }
+.round-control { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:500; color:#5d4270; }
+.round-control input { width:64px; min-height:36px; padding:4px 8px; border:1px solid #cfc0de; border-radius:6px; background:#faf7fd; font:inherit; font-size:16px; text-align:center; }
+.roster-count { font-size:12px; color:#887193; margin-right:auto; }
+.initiative-toolbar button { min-height:36px; font-size:12px; }
+.fatigue-summary { padding:10px 12px; margin:0 0 14px; background:#f6f3fa; border:1px solid #e3d9eb; border-radius:8px; }
+.fatigue-summary.has-checks { background:#fff4db; border-color:#ddbc72; }
+.fatigue-summary-heading { display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 16px; }
+.fatigue-summary strong { font-size:13px; font-weight:600; color:#694811; }
+.fatigue-summary-heading > span { font-size:12px; color:#81718a; }
+.fatigue-summary p { font-size:13px; line-height:1.5; margin:4px 0 0; color:#755117; overflow-wrap:anywhere; }
+.initiative-table { width:100%; border-collapse:separate; border-spacing:0; font-size:13px; table-layout:fixed; }
+.initiative-table th { position:sticky; top:0; z-index:1; padding:8px 5px; color:#816690; font-size:11px; font-weight:500; text-align:center; background:#f2edf7; border-bottom:1px solid #dacde4; }
+.initiative-table th:nth-child(2) { text-align:left; }
+.initiative-column { width:64px; }
+.initiative-table th:nth-child(n+3):nth-child(-n+6) { width:68px; }
+.check-column { width:134px; }
+.remove-column { width:38px; }
+.initiative-table td { padding:3px 5px; border-bottom:1px solid #ebe4f0; vertical-align:middle; }
+.initiative-table tr:nth-child(even) td { background:#fcfaff; }
+.initiative-table tr.fatigue-due td { background:#fff4db; border-bottom-color:#e9d39e; }
+.initiative-table tr.fatigue-due td:first-child { box-shadow:inset 3px 0 #c28b24; }
+.initiative-table label { display:block; margin:0; min-width:0; }
+.initiative-table input { width:100%; min-width:0; box-sizing:border-box; min-height:34px; height:34px; padding:4px 6px; border:1px solid #e0d7e7; border-radius:5px; background:#ffffffc9; color:#493357; font:inherit; font-size:14px; font-variant-numeric:tabular-nums; text-align:center; }
+.initiative-table input[type=number] { appearance:textfield; -moz-appearance:textfield; }
+.initiative-table input::-webkit-inner-spin-button, .initiative-table input::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+.initiative-table input:hover { border-color:#bca3cf; }
+.initiative-table input:focus { border-color:#8a5cb2; outline:2px solid #e5d5f2; outline-offset:0; }
+.initiative-table .name-cell input { text-align:left; }
+.check-due { display:flex; justify-content:center; align-items:center; gap:4px; font-size:11px; font-weight:600; color:#78500a; white-space:nowrap; }
+.check-due mat-icon { font-size:16px; width:16px; height:16px; flex:none; }
+.check-none { display:block; text-align:center; font-size:12px; color:#9787a1; }
+.remove-cell button { width:32px; height:32px; min-height:32px; padding:4px; color:#a18baa; }
+.remove-cell mat-icon { width:18px; height:18px; font-size:18px; }
+.mobile-field-label { display:none; }
+.participant-number-fields { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+@media(max-width:799px) {
+ .initiative-toolbar { gap:8px; }
+ .initiative-toolbar button { flex:1 1 130px; }
+ .initiative-table, .initiative-table tbody { display:block; }
+ .initiative-table thead { display:none; }
+ .initiative-table tr { display:grid; grid-template-columns:48px minmax(0,1fr) 92px 28px; gap:6px; padding:10px; margin-bottom:8px; border:1px solid #e2d6ea; border-radius:8px; background:#fcfaff; }
+ .initiative-table tr.fatigue-due { border-color:#d8b367; background:#fff4db; box-shadow:inset 3px 0 #c28b24; }
+ .initiative-table td, .initiative-table tr:nth-child(even) td, .initiative-table tr.fatigue-due td { display:block; padding:0; border:0; background:transparent; box-shadow:none; }
+ .initiative-cell { grid-column:1; grid-row:1; }
+ .name-cell { grid-column:2; grid-row:1; align-self:end; }
+ .check-cell { grid-column:3; grid-row:1; align-self:center; }
+ .remove-cell { grid-column:4; grid-row:1; align-self:center; }
+ .numbers-group { grid-column:1 / -1; grid-row:2; }
+ .participant-number-fields { gap:6px; }
+ .mobile-field-label { display:block; color:#8d729c; font-size:10px; line-height:1.2; margin-bottom:3px; text-align:center; font-weight:400; }
+ .initiative-table input { height:36px; min-height:36px; font-size:16px; }
+ .check-due { flex-direction:column; gap:2px; font-size:10px; line-height:1.2; }
+ .check-due mat-icon { font-size:15px; height:15px; width:15px; }
+ .remove-cell button { width:28px; padding:2px; }
+}
+@media(max-width:359px) {
+ .initiative-table tr { grid-template-columns:40px minmax(0,1fr) 74px 24px; gap:4px; padding:8px; }
+ .check-due { font-size:9px; }
 }

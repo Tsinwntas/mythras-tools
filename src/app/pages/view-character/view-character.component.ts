@@ -12,7 +12,7 @@ import {
   styleUrls: ['../../character/character-preview/character-preview.component.scss']
 })
 export class ViewCharacterComponent extends CharacterPreviewComponent implements OnInit{
-  private readonly storage = inject(AppStorageService);
+  public readonly storage = inject(AppStorageService);
   private saveHandle!: DebouncedSaveHandle;
 
   override character : Character;
@@ -24,15 +24,12 @@ export class ViewCharacterComponent extends CharacterPreviewComponent implements
     );
     this.load = true;
     this.hideDisclaimer = true;
-    this.character = Object.assign(
-      new Character(),
-      JSON.parse(this.storage.getRaw('view-character')!)
-    );
+    this.character = this.storage.readCharacter('view-character');
   }
 
   @HostListener('document:input')
-  @HostListener('document:change')
   @HostListener('document:click')
+  @HostListener('document:change')
   onUserInteraction(): void {
     if (this.saveHandle) {
       this.saveHandle.schedule();
@@ -61,13 +58,7 @@ export class ViewCharacterComponent extends CharacterPreviewComponent implements
   }
 
   private persistCharacter(): void {
-    this.storage.setJson('view-character', this.character);
-    if (this.character.id) {
-      this.storage.setJson(
-        this.storage.getCharacterKey(this.character.id),
-        this.character
-      );
-    }
+    this.storage.saveCharacter(this.character, 'view-character');
   }
 
 }

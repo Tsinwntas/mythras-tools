@@ -39,7 +39,7 @@ export class SocialClassComponent implements OnInit {
 
   rollStartingMoney() {
     this.character.startingMoney =
-      rollMany(4, 6) * this.getCulture().multiplier;
+      rollMany(4, 6) * (this.getCulture()?.multiplier ?? 0);
   }
 
   getCulture(): any {
@@ -51,6 +51,8 @@ export class SocialClassComponent implements OnInit {
   getMoneyAfterClass(): number {
     return getMoneyAfterClass(this.character);
   }
+
+  getMoneyMultiplier(): number { return this.character.socialClass.moneyMultiplier ?? 1; }
 
   getSocialClassesForCulture() {
     if (!this.character.culture) {
@@ -75,14 +77,18 @@ export class SocialClassComponent implements OnInit {
 
   rollSocialClass() {
     let dice = roll(100);
-    this.character.socialClass = this.getSocialClassesForCulture().find((x) => {
+    const selected = this.getSocialClassesForCulture().find((x) => {
       return dice <= x.percHigh && dice >= x.percLow;
-    })!.socialClass;
+    });
+    if (selected) this.character.socialClass = { ...selected.socialClass };
+  }
+
+  selectClass(name: string): void {
+    const selected = this.getSocialClassesForCultureNoPerc().find(entry => entry.class === name);
+    this.character.socialClass = selected ? { ...selected } : { class:'', titles:'', resources:'', moneyMultiplier:1 };
   }
 
   findSocialClass() {
-    return this.getSocialClassesForCultureNoPerc().find((x) => {
-      return JSON.stringify(x) == JSON.stringify(this.character.socialClass);
-    });
+    return this.getSocialClassesForCultureNoPerc().find(entry => entry.class === this.character.socialClass.class);
   }
 }

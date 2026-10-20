@@ -17,9 +17,9 @@ export class CombatStyle extends Skill {
         this.culture = style.culture;
         this.source = style.source;
         this.campaignSpecific = style.campaignSpecific;
-        this.traits = style.traits;
-        this.selectedTrait = style.selectedTrait;
-        this.weapons = style.weapons;
+        this.traits = (style.traits || []).map((trait: any) => ({ ...trait }));
+        this.selectedTrait = style.selectedTrait ? { ...style.selectedTrait } : undefined;
+        this.weapons = { ...(style.weapons || {}) };
         // Support both raw JSON keys and in-memory camelCase keys.
         this.critOffensive = style['crit-offensive'] ?? style.critOffensive;
         this.critDefensive = style['crit-defensive'] ?? style.critDefensive;

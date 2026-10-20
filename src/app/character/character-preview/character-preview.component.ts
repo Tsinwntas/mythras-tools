@@ -1,5 +1,7 @@
+import { inject } from '@angular/core';
+import { AppStorageService } from '../../services/app-storage.service';
 import { Character } from 'src/app/model/character';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, HostListener } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
@@ -9,10 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./character-preview.component.scss'],
 })
 export class CharacterPreviewComponent {
+  readonly saveStorage = inject(AppStorageService);
   character: Character;
   hideDisclaimer: boolean;
   load: boolean;
   loading: boolean;
+  fitToScreen = true;
+  viewportWidth = window.innerWidth;
+  @HostListener('window:resize') onPreviewResize(): void { this.viewportWidth = window.innerWidth; }
+  get sheetZoom(): number { return this.fitToScreen ? Math.min(1, Math.max(0.2, (this.viewportWidth - 64) / 935)) : 1; }
 
 
   constructor(
@@ -34,6 +41,7 @@ export class CharacterPreviewComponent {
   print() {
     let title = (document as any).title;
     (document as any).title = this.character.name;
+    document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('character-pdf input, character-pdf textarea').forEach(field => field.blur());
     (window as any).print();
     (document as any).title = title;
 

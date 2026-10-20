@@ -17,6 +17,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CharacterPassions } from 'src/app/model/character-passions';
 import { Spell } from 'src/app/model/spell';
 import { SpecialEffectsService } from 'src/app/services/special-effects.service';
+import { HitLocation, getCurrentHp, setCurrentHp, getMaximumHp } from 'src/app/services/hit-points';
 
 @Component({
   selector: 'character-pdf',
@@ -26,15 +27,18 @@ import { SpecialEffectsService } from 'src/app/services/special-effects.service'
 })
 export class CharacterPdfComponent {
   @Input() character: Character;
+  readonly pdfHpLocations: {key:HitLocation; top:number}[] = [
+    {key:'head',top:298}, {key:'leftArm',top:343}, {key:'rightArm',top:388},
+    {key:'chest',top:433}, {key:'abdoment',top:478}, {key:'leftLeg',top:523}, {key:'rightLeg',top:568},
+  ];
+  getCurrentHp(location: HitLocation): number | string { return getCurrentHp(this.character, location); }
+  setCurrentHp(location: HitLocation, value: string | number | null): void { setCurrentHp(this.character, location, value); }
+  getMaximumHp(location: HitLocation): number { return getMaximumHp(this.getCharacterWithCurrentCharacteristics(), location); }
 
   constructor(private effects: SpecialEffectsService) {}
 
-  getCurrentValue(key: string, baseValue: any): any {
-    const store = this.getCurrentStore();
-    if (!(key in store)) {
-      store[key] = baseValue;
-    }
-    return store[key];
+  getCurrentValue(key: string): any {
+    return (this.character as any)?.currentValues?.[key] ?? '';
   }
 
   setCurrentValue(key: string, value: any): void {
@@ -58,6 +62,7 @@ export class CharacterPdfComponent {
 
   setSkill(skill: Skill, value: any) {
     if (!skill) return;
+    if (skill.name === 'Damage Modifier') { this.character.damageModifierOverride = value.target.value; return; }
     skill.extraBonus =
       parseInt(value.target.value) -
       parseInt(this.getSkill(skill).toString()) +
@@ -83,6 +88,8 @@ export class CharacterPdfComponent {
     return this.character.skills.skills
       .concat(this.character.skills.combatstyles)
       .concat(this.character.skills.specialized)
+      .concat(this.character.skills.extraProfessionalCultureSkills || [])
+      .concat(this.character.skills.extraProfessionalCareerSkills || [])
       .concat([this.character.skills.hobby])
       .find((s) => s && s.name == skill);
   }
@@ -90,10 +97,12 @@ export class CharacterPdfComponent {
   getProffSkills(skill?: string): Skill[] {
     return this.character.skills.skills
       .concat(this.character.skills.specialized)
+      .concat(this.character.skills.extraProfessionalCultureSkills || [])
+      .concat(this.character.skills.extraProfessionalCareerSkills || [])
       .concat([this.character.skills.hobby])
       .filter(
-        (s) =>
-          s &&
+        (s, index, all) =>
+          s && all.findIndex(candidate => candidate?.name === s.name) === index &&
           s.professional &&
           ((!skill && !s.name.includes('Language')) ||
             (skill && s.name.includes(skill) && s.name != skill))
@@ -159,6 +168,7 @@ export class CharacterPdfComponent {
   setDevotion(value: any) {
     let skill = this.getDevotionSkill();
     if (!skill) return;
+    if (skill.name === 'Damage Modifier') { this.character.damageModifierOverride = value.target.value; return; }
     skill.extraBonus =
       parseInt(value.target.value) -
       parseInt(this.getSkill(skill).toString()) +
@@ -170,6 +180,8 @@ export class CharacterPdfComponent {
     return this.character.skills.skills
       .concat(this.character.skills.hobby)
       .concat(this.character.skills.specialized)
+      .concat(this.character.skills.extraProfessionalCultureSkills || [])
+      .concat(this.character.skills.extraProfessionalCareerSkills || [])
       .filter((s) => s && s.name.includes('Devotion'))
       .sort(
         (a, b) =>

@@ -24,16 +24,19 @@ export class Character {
     frame : string;
 
     hp: CharacterHP;
+    currentHitPoints?: Partial<Record<keyof CharacterHP, number | string | null>>;
+    sessionNotes?: string;
+    fatigueLevel?: string;
     movementRate: number;
     age: number;
     culture : string;
-    backgroundEvents : Rollable[];
+    backgroundEvents : Rollable[] = [];
 
     money: number;
     socialClass: SocialClass;
     startingMoney: number;
 
-    passions : CharacterPassions[];
+    passions : CharacterPassions[] = [];
     family: CharacterFamily;
     career : string;
     magic : CharacterMagic;
@@ -52,6 +55,7 @@ export class Character {
     moneyOverall : string;
     cultOverall :string;
 
+    damageModifierOverride?: string;
     devotionPool : number;
     devotionPoolCurrent : number;
     religion : string;
@@ -62,6 +66,9 @@ export class Character {
     incomeYear : number;
 
     extraInformation : string;
+    creationAllowances: Record<string, number | null | undefined> = {};
+    customFactions: {name: string; rank: string; description: string}[] = [];
+    customNotes: {name: string; description: string}[] = [];
 
     constructor() {
         this.id = uuidv4();

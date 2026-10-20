@@ -1,6 +1,4 @@
-button {
-    width: 100%;
-}
-th {
-    text-align: center;
-}
+.career-groups { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); gap:20px; }
+.career-groups section { padding:16px; border:1px solid #e6dced; border-radius:12px; background:#faf7fd; }
+.career-groups h3 { font-size:15px; color:#78528f; font-weight:500; margin-bottom:16px; }
+.career-groups button { width:100%; text-align:left; margin-bottom:8px; min-height:44px; white-space:normal; background:#fffdfb; }

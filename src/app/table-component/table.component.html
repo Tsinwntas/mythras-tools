@@ -10,3 +10,6 @@
         <tr mat-row *matRowDef="let row; columns: columnDefinitions;"></tr>
     </table>
 </div>
+<div class="reference-data-cards">
+  <article *ngFor="let row of tableData"><dl><ng-container *ngFor="let col of columnDefinitions"><dt [class.is-highlighted]="highlightedColumns.includes(col)">{{columnHeaderMap[col] || col}}</dt><dd>{{row[col]}}</dd></ng-container></dl></article>
+</div>

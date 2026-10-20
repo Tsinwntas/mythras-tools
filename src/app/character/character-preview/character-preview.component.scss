@@ -53,3 +53,6 @@
         padding: var(--app-space-2);
     }
 }
+
+.pdf-shell character-pdf { display: block; width: max-content; }
+@media print { .pdf-shell character-pdf { zoom: 1 !important; width: auto; } }

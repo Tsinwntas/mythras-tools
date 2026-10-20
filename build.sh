@@ -1,3 +1,5 @@
-#bash
-ng build --output-path docs --base-href; 
-cp docs/index.html docs/404.html;
+#!/usr/bin/env bash
+set -euo pipefail
+# Relative assets work both at /mythras-tools/ and on a custom domain.
+# Optional: ./build.sh /mythras-tools/
+node scripts/build-pages.cjs "${1:-./}"

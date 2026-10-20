@@ -1,3 +1,5 @@
+<p *ngIf="message || storage.error" role="status">{{storage.error || message}}</p>
+<p *ngIf="!characters.length">No characters yet. Import a character JSON or a library backup.</p>
 <mat-card *ngFor="let c of characters; let index=index;">
     <mat-card-content>
         <div class="card-content">
@@ -15,5 +17,5 @@
 <div class="add">
     <button type="button" mat-stroked-button (click)="addCharacter.click()">Upload Character From Device</button>
     <!-- <button type="button" *ngIf="action=='pdf'" mat-stroked-button (click)="loadNew()">Create Empty PDF</button> -->
-    <input type="file" class="file-upload" (change)="upload($event)" requiredFileType="text/json" #addCharacter/>
+    <input type="file" class="file-upload" (change)="upload($event)" accept=".json,application/json" #addCharacter/>
 </div>

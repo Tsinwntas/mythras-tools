@@ -14,7 +14,7 @@ export class BonusSkillComponent {
 
   getCombatStyleProps(){
     return {
-      culture: this.character.culture,
+      character: this.character,
       selectStyle: (style : CombatStyle)=>{
         this.character.skills.hobby = style; 
       }
@@ -23,6 +23,7 @@ export class BonusSkillComponent {
 
   getProfessionalProps(){
     return {
+      character: this.character,
       skills : this.character.skills.skills,
       selectedSkill:(skill : Skill) => {
         this.character.skills.hobby = skill;

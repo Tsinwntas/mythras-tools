@@ -36,6 +36,9 @@ export class ModalHandlerService {
     if (component === AllCombatStylesComponent || component?.name === 'AllCombatStylesComponent') {
       panelClasses.push('app-info-modal-panel-wide');
     }
+    if (component === InitiativeNotesComponent) {
+      panelClasses.push('app-info-modal-panel-wide', 'app-initiative-modal-panel');
+    }
     const dialogRef = this.dialog.open(InfoModalComponent, 
       {
         data: data,

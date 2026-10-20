@@ -1,24 +1,4 @@
-.concept-table{
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-}
-.concept-coockie{
-    text-align: center;
-    box-shadow: 1px 1px 5px 0px;
-}
-mat-form-field {
-    width: -webkit-fill-available;
-    margin: 20px 0px;
-}
-
-@media (max-width: 900px) {
-    .concept-table{
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 600px) {
-    .concept-table{
-        grid-template-columns: 1fr;
-    }
-}
+.concept-table { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr)); gap:10px; margin:24px 0; }
+.concept-coockie { text-align:left; padding:14px 16px; background:#faf7fd; border:1px solid #e6daee; border-radius:10px; font-size:14px; color:#77588c; }
+mat-form-field { width:100%; margin:8px 0; }
+textarea { min-height:110px; }

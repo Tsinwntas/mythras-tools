@@ -1,9 +1,11 @@
+import { getAllocationTotal, getAllCharacterSkills } from 'src/app/services/character-service.service';
 import { Component, Input } from '@angular/core';
 import { Character } from 'src/app/model/character';
 import { CombatStyle } from 'src/app/model/combat-style';
 import { Skill } from 'src/app/model/skill';
 import { getProfessionalCulturalSkills, getSkillTotal, getStandardCulturalSkills } from 'src/app/services/character-service.service';
 import { orZero } from 'src/app/services/common.service';
+import { isCustomSkill } from 'src/app/services/custom-skills';
 
 @Component({
   selector: 'app-culture',
@@ -19,6 +21,7 @@ export class CultureComponent {
   style : CombatStyle;
 
   canBeSpecialized(skill : Skill) : boolean{
+    if (isCustomSkill(skill)) return false;
     let specialized = ['Art', 'Craft', 'Language', 'Lore'];
     return specialized.filter(s=>skill.name.startsWith(s)).length != 0;
   }
@@ -67,11 +70,8 @@ export class CultureComponent {
     return `${skill.name}_${index ?? 0}`;
   }
 
-  getPointsLeft() {
-    return 100-(orZero(this.character.skills.combatstyles?.map(style=>orZero(style.cultureBonus)).reduce((a,b)=>a+b,0))
-    + orZero(this.character.skills.skills?.map(skill=>orZero(skill.cultureBonus)).reduce((a,b)=>a+b,0))
-    + orZero(this.character.skills.specialized?.map(skill=>orZero(skill.cultureBonus)).reduce((a,b)=>a+b,0))
-    + orZero(this.character.skills.extraProfessionalCultureSkills?.map(skill=>orZero(skill.cultureBonus)).reduce((a,b)=>a+b,0)));
+  getPointsLeft(): number {
+    return (this.character.creationAllowances?.['culture'] ?? 100) - getAllocationTotal(this.character, 'cultureBonus');
   }
 
   setAllStandardsToFive(){
@@ -88,6 +88,7 @@ export class CultureComponent {
   
   getProfessionalProps(){
     return {
+      character: this.character,
       skills : this.character.skills.skills,
       page: 1,
       selectedSkill:(skill : Skill) => {
@@ -112,6 +113,8 @@ export class CultureComponent {
     return {
       character:this.character,
       selectStyle : (style : CombatStyle)=>{
+        if (!style) { this.style = undefined as any; this.character.skills.culturalCombatStyle = undefined; return; }
+        this.character.skills.culturalCombatStyle = {name:style.name, source:style.source};
         this.style=this.character.skills.combatstyles.find(s=>s.name==style.name && s.source==style.source)!;
       }
     }
@@ -125,7 +128,9 @@ export class CultureComponent {
 
 
   checkSpecializedStyle() : CombatStyle {
-    let specialized  = this.character.skills.combatstyles.find(s => s.cultureBonus);
+    const selected = this.character.skills.culturalCombatStyle;
+    let specialized = this.character.skills.combatstyles.find(s => selected && s.name === selected.name && s.source === selected.source)
+      || this.character.skills.combatstyles.find(s => s.cultureBonus);
       return specialized ? specialized : this.character.skills.combatstyles[0];      
   }
 }

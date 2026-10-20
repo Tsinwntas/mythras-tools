@@ -1,16 +1,9 @@
-<div>
-    <style-filters [filters]="filters" (filter)="filter()"></style-filters>
-</div>
-<div>
-    <button mat-stroked-button (click)="resetFilters()">Reset Filters</button>
-    <p role="status">{{getStyles().length}} combat styles match the current filters.</p>
-</div>
-<div *ngIf="getStyles().length === 0">
-    No combat styles match the current filters. Change filters or use "Reset Filters".
-</div>
-<div *ngIf="filtering" class="styles-table-y">
-    <mat-spinner diameter="40"></mat-spinner>
-</div>
-<div *ngIf="!filtering" class="styles-table-y" [class.styles-page-results]="browseOnly">
-    <styles-table [styles]="getStyles()" [browseOnly]="browseOnly" #stylesTable (select)="styleSelected($event)"></styles-table>
-</div>
+<section class="style-filter-panel">
+  <div class="filter-panel-heading"><div><h2>Find a combat style</h2><p>Search by name or trait, then narrow the collection.</p></div><button mat-button (click)="resetFilters()">Reset filters</button></div>
+  <style-filters [filters]="filters" (filter)="filter()"></style-filters>
+  <button *ngIf="createStyle" mat-flat-button color="primary" (click)="startCustomStyle()">Create custom combat style</button>
+</section>
+<div class="results-toolbar"><p role="status"><strong>{{getStyles().length}}</strong> styles found <span>· {{getVisibleStyles().length}} on this page</span></p><div class="pagination" *ngIf="pageCount > 1"><button mat-stroked-button (click)="changePage(-1)" [disabled]="page === 0" aria-label="Previous styles page">Previous</button><span>Page {{page+1}} of {{pageCount}}</span><button mat-stroked-button (click)="changePage(1)" [disabled]="page+1 >= pageCount" aria-label="Next styles page">Next</button></div></div>
+<div *ngIf="!getStyles().length" class="empty-styles"><h3>No styles found</h3><p>Try a different name, choose more sources or reset your filters.</p><button mat-stroked-button (click)="resetFilters()">Reset filters</button></div>
+<div class="styles-table-y" [class.styles-page-results]="browseOnly"><styles-table [styles]="getVisibleStyles()" [browseOnly]="browseOnly" #stylesTable (select)="styleSelected($event)"></styles-table></div>
+<div class="pagination bottom-pagination" *ngIf="pageCount > 1"><button mat-stroked-button (click)="changePage(-1)" [disabled]="page === 0">Previous</button><span>Page {{page+1}} of {{pageCount}}</span><button mat-stroked-button (click)="changePage(1)" [disabled]="page+1 >= pageCount">Next</button></div>

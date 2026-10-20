@@ -1,4 +1,7 @@
-import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { downloadJson } from 'src/app/services/character-format';
+import { HIT_LOCATIONS, HitLocation, getCurrentHp, setCurrentHp, getMaximumHp } from 'src/app/services/hit-points';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { Character } from 'src/app/model/character';
 import { Skill } from 'src/app/model/skill';
 import { CharacterPassions } from 'src/app/model/character-passions';
@@ -13,12 +16,15 @@ import {
 } from 'src/app/services/app-storage.service';
 
 type ViewerSection =
+  | 'play'
+  | 'magic'
   | 'overview'
   | 'attributes'
   | 'skills'
   | 'combat'
   | 'weapons-armor'
-  | 'notes';
+  | 'notes'
+  | 'customization';
 
 @Component({
   selector: 'app-responsive-character-viewer',
@@ -26,20 +32,40 @@ type ViewerSection =
   styleUrls: ['./responsive-character-viewer.component.scss'],
 })
 export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
-  private readonly storage = inject(AppStorageService);
+  public readonly storage = inject(AppStorageService);
   private readonly effects = inject(SpecialEffectsService);
   private saveHandle!: DebouncedSaveHandle;
 
   character: Character | null = null;
-  activeSection: ViewerSection = 'overview';
+  activeSection: ViewerSection = 'play';
+  skillQuery = '';
+  magicQuery = '';
+  @ViewChild('sectionNavigation') sectionNavigation?: ElementRef<HTMLElement>;
+  @ViewChild('sectionPanel') sectionPanel?: ElementRef<HTMLElement>;
+  readonly fatigueLevels = ['Fresh','Winded','Tired','Wearied','Exhausted','Debilitated','Incapacitated','Semi-Conscious','Comatose','Dead'];
+  readonly weaponGroups = [{ranged:false,label:'Melee weapons & shields'}, {ranged:true,label:'Ranged weapons'}];
+  readonly meleeFields = [{key:'size',label:'Size'}, {key:'reach',label:'Reach'}, {key:'ap',label:'AP'}, {key:'hp',label:'HP'}];
+  readonly rangedFields = [{key:'dm',label:'DM'}, {key:'force',label:'Force'}, {key:'loadTime',label:'Load'}, {key:'range',label:'Range'}, ...this.meleeFields.filter(field=>field.key!=='reach')];
+  readonly hitLocations = HIT_LOCATIONS;
+  getCurrentHp(location: HitLocation): number | string { return this.character ? getCurrentHp(this.character, location) : ''; }
+  setCurrentHp(location: HitLocation, event: Event): void { if (this.character) setCurrentHp(this.character, location, (event.target as HTMLInputElement).value); }
+  getMaximumHp(location: HitLocation): number { return getMaximumHp(this.getCharacterWithCurrentCharacteristics(), location); }
+  getLocationAp(location: HitLocation): number | string { return this.character?.equipment[location]?.ap ?? '—'; }
+  private readonly router = inject(Router);
+  editCharacter(): void { this.persistCharacter(); if (this.storage.error) return; this.storage.setJson('creation-character', this.character); this.router.navigate(['/character-creation']); }
+  download(): void { this.persistCharacter(); downloadJson(this.character, (this.character?.name || 'character') + '.json'); }
+
 
   readonly sections: { key: ViewerSection; label: string }[] = [
+    { key:'play', label:'Play' },
     { key: 'overview', label: 'Overview' },
     { key: 'attributes', label: 'Attributes' },
     { key: 'skills', label: 'Skills' },
     { key: 'combat', label: 'Combat' },
     { key: 'weapons-armor', label: 'Weapons & Armor' },
     { key: 'notes', label: 'Notes' },
+    { key:'magic', label:'Magic' },
+    { key: 'customization', label: 'Customization' },
   ];
   readonly passionObjects = Passions.map((p) => p.objectOfPassion);
   private traitsRecord: Record<string, any> = {};
@@ -64,14 +90,52 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
       () => this.persistCharacter(),
       300
     );
-    this.character = Object.assign(
-      new Character(),
-      JSON.parse(this.storage.getRaw('view-character') || '{}')
-    );
+    this.character = this.storage.readCharacter('view-character');
+    const section = this.storage.getRaw('viewer-section-' + this.character.id);
+    if (this.sections.some(entry=>entry.key===section)) this.activeSection = section as ViewerSection;
   }
 
   setSection(section: ViewerSection): void {
+    this.flushPendingSaves();
     this.activeSection = section;
+    this.storage.setRaw('viewer-section-' + this.character!.id, section);
+    this.sectionPanel?.nativeElement.scrollIntoView({block:'start'});
+    this.sectionPanel?.nativeElement.focus({preventScroll:true});
+  }
+
+  showSections(): void {
+    this.sectionNavigation?.nativeElement.scrollIntoView({block:'start'});
+    this.sectionNavigation?.nativeElement.querySelector<HTMLElement>('[aria-current="true"]')?.focus({preventScroll:true});
+  }
+
+  matchesSkill(skill: Skill): boolean { return skill.name.toLowerCase().includes(this.skillQuery.trim().toLowerCase()); }
+  getSessionStandardSkills(): Skill[] { return this.getStandardSkills().filter(skill=>this.matchesSkill(skill)); }
+  getSessionProfessionalSkills(): Skill[] { return this.getSelectedProfessionalSkills().filter(skill=>this.matchesSkill(skill)); }
+  learnProfessionalSkill(name: string): void { const skill=this.getActualSkill(name); if (skill) skill.force=true; }
+  getUnselectedProfessionalSkills(): string[] {
+    const selected=new Set(this.getSelectedProfessionalSkills().map(skill=>skill.name));
+    return this.getProfessionalSkillOptions().filter(name=>!selected.has(name)).sort();
+  }
+  getLanguageRows(): number[] { return Array.from({length:this.getSelectedProfessionalSkills('Language').length+1},(_,index)=>index); }
+  getWeaponFields(ranged: boolean) { return ranged ? this.rangedFields : this.meleeFields; }
+  getWeaponTraitEntries(index: number, ranged: boolean): {name:string; description:string}[] {
+    const traits=this.getWeaponProp(index,ranged,'traits');
+    return Array.isArray(traits) ? traits.filter(trait=>trait?.name && trait.description) : [];
+  }
+  getWeaponEffectNames(index: number, ranged: boolean): string[] {
+    return [...new Set(this.getWeaponEffects(index,ranged).split(',').map(name=>name.trim()).filter(Boolean))];
+  }
+  hasEffectRules(name: string): boolean { return !!this.effects.getSpecialEffect(name); }
+  getStyleWeaponText(style: any): string { return Object.values(style.weapons || {}).filter(Boolean).join(', '); }
+  trackMagicEntry(index: number, spell: {name:string; tradition:string}): string { return `${spell.tradition}:${spell.name}:${index}`; }
+  getMagicEntries(): {name:string; tags:string; description:string; tradition:string}[] {
+    if (!this.character) return [];
+    const magic=this.character.magic;
+    const groups=[{list:magic.folk,label:'Folk magic'}, {list:magic.sorcery,label:'Sorcery'}, {list:magic.miracles,label:'Theism'}, {list:magic.custom,label:'Other magic'},
+      {list:magic.path.augmentations,label:'Mysticism · Augmentations'}, {list:magic.path.invocations,label:'Mysticism · Invocations'}, {list:magic.path.enhancements,label:'Mysticism · Enhancements'}];
+    const query=this.magicQuery.trim().toLowerCase();
+    return groups.flatMap(group=>(group.list || []).map((spell:any)=>({name:typeof spell==='string'?spell:spell.name || 'Unnamed ability',tags:spell.tags || '',description:spell.description || '',tradition:group.label})))
+      .filter(spell=>[spell.name,spell.tags,spell.description,spell.tradition].join(' ').toLowerCase().includes(query));
   }
 
   setNumberValue(
@@ -109,14 +173,7 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
   }
 
   getCurrentCharacteristic(field: string): number | string {
-    if (!this.character) {
-      return '';
-    }
-    const store = this.getCurrentStore();
-    if (!(field in store)) {
-      store[field] = (this.character.skills as any)?.[field] ?? '';
-    }
-    return store[field];
+    return (this.character as any)?.currentValues?.[field] ?? '';
   }
 
   setCurrentCharacteristic(field: string, value: number | string): void {
@@ -145,20 +202,12 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
   }
 
   setSkill(skill: Skill | undefined, value: any): void {
-    if (!skill) {
-      return;
-    }
+    if (!skill || !this.character) { return; }
+    if (skill.name === 'Damage Modifier') { this.character.damageModifierOverride = value.target.value; return; }
     skill.extraBonus =
       parseInt(value.target.value, 10) -
       parseInt(this.getSkill(skill).toString(), 10) +
       orZero(skill.extraBonus);
-  }
-
-  getHpTotal(skill: Skill | undefined): number | string {
-    if (!skill) {
-      return '';
-    }
-    return parseInt(this.getSkill(skill).toString(), 10) - orZero(skill.extraBonus);
   }
 
   getFixedSkill(skill: string): number | string {
@@ -187,6 +236,8 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     return this.character.skills.skills
       .concat(this.character.skills.combatstyles)
       .concat(this.character.skills.specialized)
+      .concat(this.character.skills.extraProfessionalCultureSkills || [])
+      .concat(this.character.skills.extraProfessionalCareerSkills || [])
       .concat([this.character.skills.hobby])
       .find((s) => s && s.name === skill);
   }
@@ -273,10 +324,12 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     }
     return this.character.skills.skills
       .concat(this.character.skills.specialized)
+      .concat(this.character.skills.extraProfessionalCultureSkills || [])
+      .concat(this.character.skills.extraProfessionalCareerSkills || [])
       .concat([this.character.skills.hobby])
       .filter(
-        (s) =>
-          s &&
+        (s, index, all) =>
+          s && all.findIndex(candidate => candidate?.name === s.name) === index &&
           s.professional &&
           ((!skill && !s.name.includes('Language')) ||
             (skill && s.name.includes(skill) && s.name !== skill))
@@ -284,9 +337,7 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
   }
 
   getActualProfSkill(index: number, skill?: string): Skill | undefined {
-    return this.getProffSkills(skill).filter(
-      (s) => s.force || !(!s.careerBonus && !s.cultureBonus && !s.extraBonus)
-    )[index];
+    return this.getSelectedProfessionalSkills(skill)[index];
   }
 
   getProfSkillName(index: number, skill?: string): string {
@@ -370,8 +421,9 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
   }
 
   private getSelectedProfessionalSkills(skill?: string): Skill[] {
+    const chosen=[...(this.character?.skills.extraProfessionalCultureSkills || []), ...(this.character?.skills.extraProfessionalCareerSkills || []), this.character?.skills.hobby];
     return this.getProffSkills(skill).filter(
-      (s) => s && (s.force || !(!s.careerBonus && !s.cultureBonus && !s.extraBonus))
+      (s) => s && (s.force || !(!s.careerBonus && !s.cultureBonus && !s.extraBonus) || chosen.some(selected=>selected?.name===s.name))
     );
   }
 
@@ -383,6 +435,8 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     return this.character.skills.skills
       .concat(this.character.skills.hobby)
       .concat(this.character.skills.specialized)
+      .concat(this.character.skills.extraProfessionalCultureSkills || [])
+      .concat(this.character.skills.extraProfessionalCareerSkills || [])
       .filter((s) => s && s.name.includes('Devotion'))
       .sort(
         (a, b) =>
@@ -431,9 +485,8 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
 
   setDevotion(value: any): void {
     const skill = this.getDevotionSkill();
-    if (!skill) {
-      return;
-    }
+    if (!skill || !this.character) { return; }
+    if (skill.name === 'Damage Modifier') { this.character.damageModifierOverride = value.target.value; return; }
     skill.extraBonus =
       parseInt(value.target.value, 10) -
       parseInt(this.getSkill(skill).toString(), 10) +
@@ -499,9 +552,7 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
   }
 
   getActiveStyles() {
-    return this.getCombatStyles().filter(
-      (s: any) => s.force || !(!s.careerBonus && !s.cultureBonus && !s.extraBonus)
-    );
+    return this.getCombatStyles();
   }
 
   getStyleName(index: number): string {
@@ -574,13 +625,9 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
   }
 
   getWeaponRows(ranged: boolean): number[] {
-    const minimum = ranged ? 2 : 7;
-    const length = Math.max(
-      minimum,
-      this.character?.equipment?.weapons?.filter((w: any) =>
+    const length = this.character?.equipment?.weapons?.filter((w: any) =>
         ranged ? w.ranged : !w.ranged
-      )?.length || 0
-    );
+      )?.length || 0;
     return Array.from({ length }, (_, i) => i);
   }
 
@@ -589,7 +636,7 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     if (!weapon) {
       return '';
     }
-    return weapon[prop] ? weapon[prop] : '';
+    return weapon[prop] ?? '';
   }
 
   setWeaponProp(index: number, ranged: boolean, prop: string, event: any): void {
@@ -605,6 +652,7 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     if (traits === '') {
       traits = [];
     }
+    if (!Array.isArray(traits)) return typeof traits==='string' ? traits : '';
     return traits
       .map((t: any) => t.name)
       .filter((t: any) => t && t !== 'name')
@@ -1090,8 +1138,8 @@ Enemies: ${family.enemies}`.trim();
   }
 
   @HostListener('document:input')
-  @HostListener('document:change')
   @HostListener('document:click')
+  @HostListener('document:change')
   onUserInteraction(): void {
     this.saveHandle?.schedule();
   }
@@ -1102,6 +1150,9 @@ Enemies: ${family.enemies}`.trim();
     this.saveHandle?.flush();
   }
 
+  @HostListener('document:visibilitychange')
+  onVisibilityChange(): void { if (document.hidden) this.flushPendingSaves(); }
+
   ngOnDestroy(): void {
     this.saveHandle?.flush();
     this.saveHandle?.destroy();
@@ -1111,12 +1162,6 @@ Enemies: ${family.enemies}`.trim();
     if (!this.character) {
       return;
     }
-    this.storage.setJson('view-character', this.character);
-    if (this.character.id) {
-      this.storage.setJson(
-        this.storage.getCharacterKey(this.character.id),
-        this.character
-      );
-    }
+    this.storage.saveCharacter(this.character, 'view-character');
   }
 }

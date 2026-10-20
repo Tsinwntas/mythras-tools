@@ -1,4 +1,5 @@
+<p class="skill-help">Use the three-dot menu, right-click or press and hold for skill actions. Remove from a list keeps the skill available and clears only that step's culture or career points. Delete skill everywhere removes the custom skill and all its selections.</p>
 <div class="skill-grid">
-    <button mat-flat-button *ngFor="let skill of getRemainingSkills()" (click)="select(skill)">{{skill.name}}</button>
-    <open-modal modal="create-skill" [prop]="getCreateProps()"><button mat-flat-button><mat-icon>add</mat-icon></button></open-modal>
+  <app-skill-actions *ngFor="let skill of getRemainingSkills()" [skill]="skill" [character]="character" [selection]="culturePage ? 'culture' : careerPage ? 'career' : 'hobby'" [selected]="isSelected(skill)" (choose)="select($event)"></app-skill-actions>
+  <open-modal modal="create-skill" [prop]="getCreateProps()"><button mat-stroked-button><mat-icon>add</mat-icon> Create skill</button></open-modal>
 </div>

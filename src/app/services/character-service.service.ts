@@ -138,6 +138,8 @@ export function initSkills(skills: CharacterSkills) {
 //         }).join('\n'))
 export function getSkillTotal(character: Character, skill: Skill): number {
   if (!hasSkills(character, skill.base)) return 0;
+  const chosenExtra = [...(character.skills.extraProfessionalCultureSkills || []), ...(character.skills.extraProfessionalCareerSkills || [])].some(s => s.name === skill.name);
+  if (skill.professional && !skill.force && !skill.cultureBonus && !skill.careerBonus && !skill.extraBonus && skill !== character.skills.hobby && !chosenExtra) return 0;
   return (
     getSkillBase(character, skill) +
     orZero(skill.cultureBonus) +
@@ -151,29 +153,36 @@ export function getSkillBase(character: Character, skill: Skill): number {
   let total = 0;
 
   for (let i = 0; i < skill.base.length; i++) {
-    total += parseInt((character.skills as any)[skill.base[i]]);
+    if (skill.base[i]) total += Number((character.skills as any)[skill.base[i]]) || 0;
   }
 
   if (skill.multiply) total *= skill.multiply;
 
   if (skill.divide) total = Math.ceil(total / skill.divide);
 
-  if (skill.add) total += skill.add;
+  if (skill.add) total += Number(skill.add) || 0;
 
   return total;
 }
 
 export function getDamageModifier(character: Character): string {
-  let dice = getSkillBase(character, character.skills.damage);
-  if (dice == 5) return '0';
-  dice = (dice - 5) * 2;
-  if (dice < 0) return '-1d' + Math.abs(dice);
-  return '+1d' + dice;
+  if (character.damageModifierOverride) return character.damageModifierOverride;
+  const sum = Number(character.skills.str || 0) + Number(character.skills.siz || 0);
+  if (sum <= 5) return '-1d8';
+  if (sum <= 10) return '-1d6';
+  if (sum <= 15) return '-1d4';
+  if (sum <= 20) return '-1d2';
+  if (sum <= 25) return '0';
+  const progression = ['1d2','1d4','1d6','1d8','1d10','1d12','2d6','1d8+1d6','2d8','1d10+1d8','2d10'];
+  const step = sum <= 50 ? Math.ceil((sum - 25) / 5) : 5 + Math.ceil((sum - 50) / 10);
+  const groups = Math.floor((step - 1) / progression.length);
+  const dice = progression[(step - 1) % progression.length];
+  return '+' + (groups ? `${groups * 2}d10+` : '') + dice;
 }
 
 function hasSkills(character: Character, attr: string[]) {
-  if (!character || !character.skills) return false;
-  for (let a of attr) {
+  if (!character || !character.skills || !Array.isArray(attr)) return false;
+  for (let a of attr.filter(Boolean)) {
     if ((character.skills as any)[a] == undefined) return false;
   }
   return true;
@@ -213,9 +222,10 @@ export function getStandardCulturalSkills(character: Character): Skill[] {
         'Locale',
         'Perception',
         'Stealth',
-        'Boating ',
+        'Athletics',
+        'Boating',
         'Swim',
-        'Drive ',
+        'Drive',
         'Ride'
       );
     case 'Primitive':
@@ -245,7 +255,7 @@ export function getProfessionalCulturalSkills(character: Character): Skill[] {
         'Healing',
         'Lore',
         'Musicianship',
-        'Navigate',
+        'Navigation',
         'Seamanship',
         'Survival',
         'Track'
@@ -270,7 +280,7 @@ export function getProfessionalCulturalSkills(character: Character): Skill[] {
         'Language',
         'Lore',
         'Musicianship',
-        'Navigate',
+        'Navigation',
         'Survival',
         'Track'
       );
@@ -281,7 +291,7 @@ export function getProfessionalCulturalSkills(character: Character): Skill[] {
         'Healing',
         'Lore',
         'Musicianship',
-        'Navigate',
+        'Navigation',
         'Survival',
         'Track'
       );
@@ -294,8 +304,8 @@ function getIncludedSkills(character: Character, ...skills: string[]): Skill[] {
 
 export function getMoneyAfterClass(character: Character) {
   if (!character.socialClass || !character.socialClass.moneyMultiplier)
-    return 1 * character.startingMoney;
-  return character.socialClass.moneyMultiplier * character.startingMoney;
+    return Number(character.startingMoney) || 0;
+  return character.socialClass.moneyMultiplier * (Number(character.startingMoney) || 0);
 }
 
 export function getTotalFromItems(
@@ -353,25 +363,37 @@ function getPropWithQuantity(item: any, prop: string): number {
 }
 
 export function getAllCombatStyles(character : Character) : CombatStyle[] {
-  return character.skills.combatstyles
+  return [...new Set(character.skills.combatstyles
     .concat(
       character.skills.hobby && isHobbyCombatStyle(character)
         ? [character.skills.hobby as CombatStyle]
         : []
-    );
+    ))];
 
 }
 
 export function getCombatStyles(character: Character): CombatStyle[] {
-  return character.skills.combatstyles
-    .filter((style) => style.cultureBonus || style.careerBonus)
+  return [...new Set(character.skills.combatstyles
+    .filter((style) => style.force || style.cultureBonus || style.careerBonus)
     .concat(
       character.skills.hobby && isHobbyCombatStyle(character)
         ? [character.skills.hobby as CombatStyle]
         : []
-    );
+    ))];
 }
 
 export function isHobbyCombatStyle(character: Character): boolean {
   return (character.skills.hobby as any)['traits'];
+}
+
+/** Count a selected skill once even when culture, career and hobby reference it. */
+export function getAllCharacterSkills(character: Character): Skill[] {
+  const skills = character.skills;
+  return [...new Set([...skills.skills, ...skills.specialized, ...skills.combatstyles,
+    ...skills.extraProfessionalCultureSkills, ...skills.extraProfessionalCareerSkills,
+    ...(skills.hobby ? [skills.hobby] : [])])];
+}
+
+export function getAllocationTotal(character: Character, field: 'cultureBonus' | 'careerBonus' | 'extraBonus'): number {
+  return getAllCharacterSkills(character).reduce((sum, skill) => sum + orZero(skill[field]), 0);
 }

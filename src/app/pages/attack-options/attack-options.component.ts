@@ -8,13 +8,13 @@ import { AppStorageService } from 'src/app/services/app-storage.service';
 })
 export class AttackOptionsComponent implements OnInit {
 
-  type : string;
+  type : string = 'melee';
 
   constructor(private storage: AppStorageService) {}
 
   ngOnInit(): void {
     const type = this.storage.getRaw('attack-type');
-    if(type) {
+    if(type && ['melee','ranged','magic'].includes(type)) {
       this.type = type;
     }
   }

@@ -21,7 +21,7 @@ export class SkillsComponent {
 
   
   calculatePoints() : number {
-    return 80 - [
+    return (this.character.creationAllowances?.['characteristics'] ?? 80) - [
       parseInt(this.character.skills.str as any),
       parseInt(this.character.skills.dex as any),
       parseInt(this.character.skills.con as any),

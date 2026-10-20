@@ -65,7 +65,7 @@ export class EquipmentComponent implements OnInit {
     if (!this.character.socialClass || !this.character.socialClass.class) {
       return 'You should decide on a social class first.';
     }
-    return this.findFromMap()![prop] + '.';
+    return (this.findFromMap()?.[prop] || 'Choose suitable starting equipment with your GM') + '.';
   }
 
   findFromMap(): any {

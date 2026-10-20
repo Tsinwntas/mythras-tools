@@ -1,3 +1,5 @@
+import { AppStorageService } from '../../services/app-storage.service';
+import { parseCharacterFile } from '../../services/character-format';
 import { Router } from '@angular/router';
 import { ModalInnerContent } from './../../model/modal-inner-content';
 import { Component, OnInit } from '@angular/core';
@@ -11,17 +13,14 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./load-character.component.scss'],
 })
 export class LoadCharacterComponent implements ModalInnerContent, OnInit {
+  message = '';
   action: string;
   characters: Character[];
 
-  constructor(private router: Router, private dialogRef: MatDialogRef<LoadCharacterComponent>) {}
+  constructor(public storage: AppStorageService, private router: Router, private dialogRef: MatDialogRef<LoadCharacterComponent>) {}
 
   ngOnInit() {
-    this.characters = [];
-    Object.keys(localStorage).forEach((k) => {
-      if (k.startsWith('character-'))
-        this.characters.push(Object.assign(new Character(), JSON.parse(localStorage[k])));
-    });
+    this.characters = this.storage.listCharacters();
   }
 
   getHeader(): string {
@@ -35,7 +34,7 @@ export class LoadCharacterComponent implements ModalInnerContent, OnInit {
   edit(index: number, value: string) {
     let character = this.characters[index];
     character.name = value;
-    localStorage['character-' + character.id] = JSON.stringify(character);
+    this.storage.saveCharacter(character);
   }
 
   load(id: string) {
@@ -69,32 +68,17 @@ export class LoadCharacterComponent implements ModalInnerContent, OnInit {
     }
   }
 
-  upload(event : any){
-    let reader = new FileReader();
-    try{
-    reader.readAsText(event.target.files[0]);
-    } catch(e){
-      //ignore
-      return;
-    }
-    reader.onload = async () => {
-      const dataString = reader.result;
-      if (!dataString){
-        console.log("No Data in file");
-        return;
+  async upload(event: Event): Promise<void> {
+    const input=event.target as HTMLInputElement; const file=input.files?.[0]; if(!file) return;
+    try {
+      const characters=parseCharacterFile(await file.text());
+      for(const character of characters) {
+        if(this.storage.getRaw('character-'+character.id)) { character.id=uuidv4(); character.name=(character.name || 'Character')+' (imported)'; }
+        this.storage.saveCharacter(character);
+        if(this.storage.error) throw new Error(this.storage.error);
       }
-      try{
-      let character = JSON.parse(dataString.toString());
-      if(!character.id)
-        character.id = uuidv4();
-      if(!localStorage['character-' + character.id] || confirm("This character already exists. Are you sure you want to overwrite?")){
-        localStorage['character-' + character.id] = JSON.stringify(character);
-        this.ngOnInit();
-      }
-
-      }catch(e){
-        console.error("Failed to upload character.")
-      }
-    }
+      this.ngOnInit(); this.message=characters.length+' character(s) imported.';
+    } catch(error) { this.message=error instanceof Error ? error.message : 'Could not import this file.'; }
+    input.value='';
   }
 }

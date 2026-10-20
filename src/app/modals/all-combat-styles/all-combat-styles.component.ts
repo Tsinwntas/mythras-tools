@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, Optional, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, Optional } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CombatStyle } from 'src/app/model/combat-style';
 import { ModalInnerContent } from 'src/app/model/modal-inner-content';
 import { StyleFilters } from 'src/app/model/style-filters';
 import { CombatStylesService, getSources } from 'src/app/services/combat-styles.service';
-import { StylesTableComponent } from 'src/app/styles-table/styles-table.component';
 import { AppStorageService } from 'src/app/services/app-storage.service';
 
 @Component({
@@ -18,7 +17,24 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
   styles : CombatStyle[];
   filters : StyleFilters = new StyleFilters();
   selectStyle : (style : CombatStyle) => void;
+  createStyle?: () => void;
+  startCustomStyle(): void { this.createStyle?.(); this.dialogRef?.close(); }
   filtering = false;
+  page = 0;
+  readonly pageSize = 24;
+  private visibleSource?: CombatStyle[];
+  private visiblePage = -1;
+  private visibleStyles: CombatStyle[] = [];
+  get pageCount(): number { return Math.max(1, Math.ceil(this.getStyles().length / this.pageSize)); }
+  getVisibleStyles(): CombatStyle[] {
+    const all = this.getStyles();
+    if (all !== this.visibleSource || this.page !== this.visiblePage) {
+      this.visibleSource = all; this.visiblePage = this.page;
+      this.visibleStyles = all.slice(this.page * this.pageSize, (this.page + 1) * this.pageSize);
+    }
+    return this.visibleStyles;
+  }
+  changePage(delta: number): void { this.page = Math.max(0, Math.min(this.pageCount - 1, this.page + delta)); }
   @Input() browseOnly = false;
   constructor(
     @Optional() private dialogRef: MatDialogRef<AllCombatStylesComponent>,
@@ -60,24 +76,11 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
     });
   }
 
-  @ViewChild('stylesTable')
-  private tableComponent!: StylesTableComponent;
-
   filter(open? : any){
-    this.filtering = true;
-    this.ref.detectChanges();
-    setTimeout(() => {
-      this.styles = this.getFilteredStyles();
-      this.ref.detectChanges();
-      setTimeout(() => {
-        if(this.tableComponent){
-          this.tableComponent.resetTable();
-        }
-        this.filtering = false;
-        this.ref.detectChanges();
-        this.persistFilters();
-      }, 0);
-    }, 0);
+    this.page = 0;
+    this.styles = this.getFilteredStyles();
+    this.persistFilters();
+    this.ref.markForCheck();
   }
 
   resetFilters(): void {
@@ -104,6 +107,7 @@ export class AllCombatStylesComponent implements ModalInnerContent, OnInit {
     props = props || {};
     this.browseOnly = !!props.browseOnly;
     this.selectStyle = props.selectStyle;
+    this.createStyle = props.createStyle;
     if(props.culture){
       this.culture = props.culture;
       this.filters.culture = props.culture;

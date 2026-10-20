@@ -57,16 +57,16 @@
   <div>
     <mat-form-field *ngIf="character.theistCult.name">
         <mat-label>Standard Skills:</mat-label>
-        <textarea matInput [value]="character.theistCult.standardSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.theistCult.standardSkills"></textarea>
     </mat-form-field>
     <mat-form-field *ngIf="character.theistCult.name">
         <mat-label>Professional Skills:</mat-label>
-        <textarea matInput [value]="character.theistCult.professionalSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.theistCult.professionalSkills"></textarea>
     </mat-form-field>
   </div>
   <mat-form-field *ngIf="character.theistCult.name" class="full">
     <mat-label>Miracles:</mat-label>
-    <textarea matInput [value]="character.theistCult.miracles"></textarea>
+    <textarea matInput [(ngModel)]="character.theistCult.miracles"></textarea>
   </mat-form-field>
 </div>
 
@@ -90,16 +90,16 @@
   <div>
     <mat-form-field *ngIf="character.animistCult.name">
         <mat-label>Standard Skills:</mat-label>
-        <textarea matInput [value]="character.animistCult.standardSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.animistCult.standardSkills"></textarea>
     </mat-form-field>
     <mat-form-field *ngIf="character.animistCult.name">
         <mat-label>Professional Skills:</mat-label>
-        <textarea matInput [value]="character.animistCult.professionalSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.animistCult.professionalSkills"></textarea>
     </mat-form-field>
   </div>
   <mat-form-field *ngIf="character.animistCult.name" class="full">
     <mat-label>Miracles:</mat-label>
-    <textarea matInput [value]="character.animistCult.spirits"></textarea>
+    <textarea matInput [(ngModel)]="character.animistCult.spirits"></textarea>
   </mat-form-field>
 </div>
 
@@ -123,16 +123,16 @@
   <div>
     <mat-form-field *ngIf="character.sorceryOrder.name">
         <mat-label>Standard Skills:</mat-label>
-        <textarea matInput [value]="character.sorceryOrder.standardSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.sorceryOrder.standardSkills"></textarea>
     </mat-form-field>
     <mat-form-field *ngIf="character.sorceryOrder.name">
         <mat-label>Professional Skills:</mat-label>
-        <textarea matInput [value]="character.sorceryOrder.professionalSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.sorceryOrder.professionalSkills"></textarea>
     </mat-form-field>
   </div>
   <mat-form-field *ngIf="character.sorceryOrder.name" class="full">
     <mat-label>Miracles:</mat-label>
-    <textarea matInput [value]="character.sorceryOrder.spells"></textarea>
+    <textarea matInput [(ngModel)]="character.sorceryOrder.spells"></textarea>
   </mat-form-field>
 </div>
 
@@ -156,16 +156,16 @@
   <div>
     <mat-form-field *ngIf="character.mysticalOrder.name">
         <mat-label>Standard Skills:</mat-label>
-        <textarea matInput [value]="character.mysticalOrder.standardSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.mysticalOrder.standardSkills"></textarea>
     </mat-form-field>
     <mat-form-field *ngIf="character.mysticalOrder.name">
         <mat-label>Professional Skills:</mat-label>
-        <textarea matInput [value]="character.mysticalOrder.professionalSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.mysticalOrder.professionalSkills"></textarea>
     </mat-form-field>
   </div>
   <mat-form-field *ngIf="character.mysticalOrder.name" class="full">
     <mat-label>Path:</mat-label>
-    <textarea matInput [value]="character.mysticalOrder.paths"></textarea>
+    <textarea matInput [(ngModel)]="character.mysticalOrder.paths"></textarea>
   </mat-form-field>
 </div>
 
@@ -189,11 +189,11 @@
   <div>
     <mat-form-field *ngIf="character.brotherhood.name">
         <mat-label>Standard Skills:</mat-label>
-        <textarea matInput [value]="character.brotherhood.standardSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.brotherhood.standardSkills"></textarea>
     </mat-form-field>
     <mat-form-field *ngIf="character.brotherhood.name">
         <mat-label>Professional Skills:</mat-label>
-        <textarea matInput [value]="character.brotherhood.professionalSkills"></textarea>
+        <textarea matInput [(ngModel)]="character.brotherhood.professionalSkills"></textarea>
     </mat-form-field>
   </div>
 </div>

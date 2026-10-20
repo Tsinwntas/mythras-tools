@@ -1,13 +1,4 @@
-.characteristic{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 600px) {
-    .characteristic {
-        justify-content: stretch;
-    }
-}
+.characteristics { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:16px; margin:24px 0; }
+.characteristic { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:16px; background:#faf7fd; border:1px solid #e5daef; border-radius:12px; }
+.characteristic mat-form-field { min-width:0; width:100%; }
+.characteristic-buttons button { min-width:64px; }

@@ -43,7 +43,7 @@ export class CultComponent {
         miracles: '',
       };
     else 
-      this.character.theistCult = cult;
+      this.character.theistCult = { ...cult };
   }
 
   ////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ export class CultComponent {
         spirits: '',
       };
     else 
-      this.character.animistCult = cult;
+      this.character.animistCult = { ...cult };
   }
 
   ////////////////////////////////////////////////////////////////
@@ -117,7 +117,7 @@ export class CultComponent {
         spells: '',
       };
     else 
-      this.character.sorceryOrder = cult;
+      this.character.sorceryOrder = { ...cult };
   }
 
   ////////////////////////////////////////////////////////////////
@@ -154,7 +154,7 @@ export class CultComponent {
         paths: '',
       };
     else {
-      this.character.mysticalOrder = cult;
+      this.character.mysticalOrder = { ...cult };
       this.character.magic.path = new MysticPath();
       this.character.magic.path.path = this.getPath();
     }
@@ -195,6 +195,6 @@ export class CultComponent {
         professionalSkills: '',
       };
     else 
-      this.character.brotherhood = cult;
+      this.character.brotherhood = { ...cult };
   }
 }

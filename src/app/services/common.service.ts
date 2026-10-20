@@ -20,7 +20,8 @@ export function roll(d: number) : number{
 }
 
 export function orZero(num: number) : number {
-  return num || 0;
+  const value = Number(num);
+  return Number.isFinite(value) ? value : 0;
 }
 
 export function rollWithTextRange(table: any[], sides: number) : any {

@@ -1,0 +1,4 @@
+.fatigue-intervals { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr)); gap:12px; margin-top:20px; }
+article { display:grid; gap:8px; padding:16px; border:1px solid #e5d9ee; border-radius:10px; background:#faf7fd; }
+article span { color:#897592; font-size:12px; }
+article strong { color:#503164; font-size:15px; font-weight:500; }

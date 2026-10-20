@@ -1,0 +1,125 @@
+/* Screen controls only; the printable character sheet retains its own sizing. */
+@media screen {
+  .app-shell { background:linear-gradient(145deg,#f5f1e9 0%,#f7f5fa 100%); }
+  .app-container { padding:28px 32px; }
+  .app-card-surface { box-shadow:0 2px 8px #35234605; border-color:#e2dce7; border-radius:14px; }
+  .mat-mdc-button-base { letter-spacing:.25px!important; font-weight:500; border-radius:8px!important; }
+  .mat-mdc-unelevated-button, .mat-mdc-raised-button { box-shadow:none!important; }
+  .mat-mdc-outlined-button { border-color:#dcd1e5!important; }
+  .modal-opener { color:#67439b; text-decoration-color:#c7b4dd; text-underline-offset:3px; }
+  .modal-opener:hover { color:#482477; text-decoration-color:currentColor; }
+  .page-eyebrow { font-size:11px; letter-spacing:1.6px; font-weight:600; color:#876ba4; text-transform:uppercase; margin:0 0 8px; }
+  .tool-header { padding:12px 0 28px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .tool-header h1 { font:600 clamp(26px,3vw,38px)/1.2 Roboto,'Helvetica Neue',sans-serif; letter-spacing:-.8px; color:#342441; margin:0 0 10px; }
+  .tool-header p:not(.page-eyebrow) { max-width:650px; color:#75677f; font-size:14px; line-height:1.7; margin:0; }
+  .tool-header a, .tool-header button { min-height:44px; }
+  app-character-creation .creation-main h2, app-responsive-character-viewer .section-title { font-family:Roboto,'Helvetica Neue',sans-serif!important; font-weight:500!important; letter-spacing:-.5px; }
+  app-character-creation .state-content-wrapper { overflow:visible; }
+  app-character-creation .state-content-wrapper > * { display:block; min-width:0; }
+  app-character-creation .state-content-wrapper p, app-character-creation .state-content-wrapper li { line-height:1.7; font-size:14px; }
+  app-character-creation .state-content-wrapper > * > p:first-child { color:#75677f; }
+  app-character-creation .mat-mdc-form-field, .info-modal-content .mat-mdc-form-field, style-filters .mat-mdc-form-field { min-width:0; max-width:100%; }
+  app-character-creation .mat-mdc-form-field-subscript-wrapper { height:0; }
+  app-character-creation .mat-mdc-text-field-wrapper, .info-modal-content .mat-mdc-text-field-wrapper, style-filters .mat-mdc-text-field-wrapper { background:#f8f6fa!important; border-radius:8px 8px 0 0!important; }
+  app-character-creation .mdc-line-ripple::before, .info-modal-content .mdc-line-ripple::before { border-bottom-color:#ddd3e5!important; }
+  app-character-creation .row, app-character-creation .family, app-character-creation .form-wrapper { display:grid!important; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); gap:18px; margin:0 0 24px; width:100%; }
+  app-character-creation .row > * { width:100%; padding:0; min-width:0; }
+  app-character-creation .family .mat-mdc-form-field, app-character-creation .form-wrapper .mat-mdc-form-field { width:100%; }
+  app-character-creation app-cult > div { padding:20px; border:1px solid #e8e0ec; background:#fdfbff; border-radius:12px; margin:20px 0; }
+  app-character-creation app-cult mat-form-field { width:min(100%,320px); margin-right:16px; }
+  app-character-creation app-cult .full { width:100%; }
+  app-character-creation app-background-details mat-form-field { width:100%; }
+  app-character-creation app-background-details textarea { min-height:240px; line-height:1.7; }
+  app-character-creation .mat-expansion-panel { border:1px solid #e5dce9; border-radius:12px!important; box-shadow:none!important; margin:12px 0!important; }
+  app-character-creation .mat-expansion-panel-header { min-height:60px; height:auto; padding:16px 20px; }
+  app-character-creation .mat-expansion-panel-header-title { font-size:16px; font-weight:500; color:#493358; }
+  app-character-creation .mat-expansion-panel-header-description { font-size:12px; }
+  app-character-creation .mat-expansion-panel-body { padding:8px 20px 20px; }
+  app-character-creation .mat-expansion-panel .mat-mdc-card { border:1px solid #e9e1ee; border-radius:12px; box-shadow:none; margin:16px 0; }
+  app-character-creation .mat-mdc-list-item { height:auto!important; min-height:48px; overflow:visible; padding:0; }
+  app-character-creation .location-ap { padding:16px 0; border-bottom:1px solid #eee8f1; }
+  app-character-creation .location-ap > p { font-weight:500; color:#5a426d; }
+  app-character-creation hr { border:0; border-top:1px solid #e9e2ee; margin:24px 0; }
+  .info-modal-shell { gap:0; position:relative; }
+  .info-modal-header { display:flex; align-items:center; border-bottom:1px solid #eee7f3; }
+  .dialog-close { position:relative!important; margin-right:12px; flex:none; color:#846a96!important; }
+  .info-modal-title { flex:1; min-width:0; font:500 23px/1.3 Roboto,sans-serif!important; padding:24px!important; margin:0!important; }
+  .info-modal-content { padding:24px!important; line-height:1.7; font-size:14px; }
+  .info-modal-actions { padding:16px 24px!important; border-top:1px solid #eee7f3; margin:0!important; background:#faf8fc; }
+  .info-modal-actions button { background:#673ab7; color:white!important; min-width:80px; }
+  .app-initiative-modal-panel .info-modal-content { padding:12px 18px!important; }
+  .app-initiative-modal-panel .app-modal-shell { height:min(92dvh,1000px); max-height:92dvh; }
+  .cdk-overlay-pane.app-info-modal-panel.app-initiative-modal-panel .mat-mdc-dialog-content.app-modal-content { max-height:none!important; min-height:0; margin-bottom:0!important; }
+  .app-initiative-modal-panel .info-modal-title::before { display:none!important; }
+  .app-initiative-modal-panel .info-modal-title { padding:18px!important; font-size:21px!important; }
+  .app-initiative-modal-panel .info-modal-actions { padding:8px 18px!important; }
+  .info-modal-content .table { --bs-table-bg:transparent; border-color:#e8e0ec; font-size:14px; }
+  .info-modal-content .table td, .info-modal-content .table th { padding:12px; min-width:80px; }
+  .info-modal-content table { max-width:100%; }
+  .info-modal-content > * { min-width:0; }
+  .info-sources { color:#81718e; font-size:12px; }
+  .reference-panel { padding:24px; border:1px solid #e5deeb; border-radius:16px; background:#fffdfb; margin-bottom:16px; }
+  .reference-panel h3 { font-size:18px; font-weight:500; margin-bottom:14px; color:#412e50; }
+  .reference-panel p:last-child { margin-bottom:0; }
+  .reference-callout { padding:16px 20px; border:1px solid #e2d3ef; background:#f3edf9; color:#5c4470; border-radius:12px; margin-bottom:20px; font-size:14px; line-height:1.7; }
+  .reference-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); gap:10px; list-style:none; padding:0; margin:16px 0; }
+  .reference-links li { margin:0!important; }
+  .reference-links .modal-opener { display:flex; align-items:center; min-height:48px; padding:12px 16px; background:#faf7fc; border:1px solid #e7deef; border-radius:10px; text-decoration:none; font-size:14px; box-sizing:border-box; width:100%; }
+  .reference-links .modal-opener:hover { background:#eee5f8; border-color:#c4aed9; }
+  .equipment-budget { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:0 0 24px; }
+  .equipment-budget > div { display:grid; gap:8px; padding:20px; border:1px solid #e1d5eb; border-radius:12px; background:#f4edf9; }
+  .equipment-budget span { font-size:12px; color:#826991; }
+  .equipment-budget strong { font-size:24px; color:#513364; font-weight:500; }
+  .equipment-budget small { font-size:12px; color:#826991; }
+  app-character-creation equipment { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr)); gap:14px; }
+  app-character-creation equipment mat-form-field { width:100%; margin:0; }
+  app-character-creation item-edit { display:block; padding:18px; border:1px solid #e8deee; border-radius:12px; background:#fdfbff; margin-bottom:16px; }
+  app-character-creation app-age .skills { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr)); gap:14px; }
+  app-character-creation .roll-buttons { display:block; padding:12px 16px; margin:8px 0; border:1px solid #e5ddec; border-radius:10px; background:#faf7fd; }
+  app-character-creation .roll-button { display:flex; align-items:center; gap:12px; flex-wrap:wrap; font-size:14px; }
+  app-character-creation .background-event { padding:18px; border:1px solid #e5ddec; border-radius:12px; margin-bottom:16px; background:#fdfbff; }
+  .filter-option-search { margin:8px 12px; padding:12px; width:calc(100% - 24px); box-sizing:border-box; border:1px solid #e1d5eb; border-radius:8px; font:inherit; font-size:16px; }
+  .reference-data-cards { display:none; }
+  .creation-notes { padding:14px 16px; margin:16px 0; background:#faf7fd; border:1px solid #e6dced; border-radius:10px; }
+  .creation-notes summary { cursor:pointer; font-size:13px; color:#785b8c; font-weight:500; }
+  .creation-notes[open] summary { margin-bottom:14px; }
+  .allocation-summary { display:flex; gap:16px; align-items:center; padding:18px; margin:20px 0; border-radius:12px; border:1px solid #e1d4ec; background:#f3edf9; color:#715382; }
+  .allocation-summary strong { font-size:26px; font-weight:500; color:#57356e; font-variant-numeric:tabular-nums; }
+  .allocation-summary small { font-size:14px; color:#977fa5; font-weight:400; }
+  .allocation-summary > span { font-size:13px; }
+  .attack-instructions { grid-column:1 / -1; color:#7d6988; margin-bottom:14px!important; font-size:14px; }
+  .table-scroll-shell { border:1px solid #e4dce9; border-radius:12px; margin:16px 0; background:#fffdfb; }
+  .table-scroll-shell .mat-mdc-header-cell { background:#f1ebf7!important; color:#6f537f; font-size:12px; font-weight:500; }
+  .table-scroll-shell .mat-mdc-cell { color:#5c4e65; font-size:14px; line-height:1.6; border-bottom-color:#eee7f3; }
+  app-mythras-to-dnd-monster-block .page-wrapper { gap:20px; }
+  app-mythras-to-dnd-monster-block .text-holder, app-mythras-to-dnd-monster-block .overwrites-wrap, app-mythras-to-dnd-monster-block .dnd-holder { padding:24px; }
+  app-mythras-to-dnd-monster-block h2 { font-size:20px; color:#523369; margin:0; font-weight:500; }
+  app-mythras-to-dnd-monster-block label { display:grid; gap:8px; font-size:13px; color:#82708e; }
+  app-mythras-to-dnd-monster-block input, app-mythras-to-dnd-monster-block textarea { border-radius:10px!important; border-color:#ddd0e8!important; background:#faf7fd!important; min-height:44px; }
+  app-mythras-to-dnd-monster-block .extra-abilities { width:100%; }
+  app-mythras-to-dnd-monster-block .source-textarea { min-height:260px; line-height:1.7; font-size:14px; }
+  app-responsive-character-viewer .simple-table { border-collapse:separate; border-spacing:0; border:1px solid #e5dceb; border-radius:10px; overflow:hidden; }
+  app-responsive-character-viewer .simple-table td, app-responsive-character-viewer .simple-table th { border:0; border-bottom:1px solid #eee7f3; padding:12px; }
+  app-responsive-character-viewer .simple-table th { background:#f2ecf8; color:#755884; font-size:12px; font-weight:500; }
+  @media(max-width:599px) {
+    .app-container { padding:20px 12px; }
+    .tool-header { padding:8px 0 24px; gap:16px; }
+    .tool-header > a, .tool-header > button { width:100%; }
+    .reference-panel { padding:18px; }
+    app-character-creation .mat-expansion-panel-header { padding:14px; }
+    app-character-creation .mat-expansion-panel-header .mat-content { flex-direction:column; gap:4px; }
+    app-character-creation .mat-expansion-panel-body { padding:8px 14px 16px; }
+    .info-modal-content { padding:18px!important; }
+    .info-modal-title { padding:20px 12px 20px 18px!important; font-size:21px!important; }
+    .info-modal-actions { padding:14px 18px!important; }
+    .table-scroll-shell { display:none; }
+    .reference-data-cards { display:grid; gap:12px; margin:16px 0; }
+    .reference-data-cards article { padding:16px; border:1px solid #e5daed; border-radius:12px; background:#faf7fd; }
+    .reference-data-cards dl { display:grid; gap:4px; margin:0; }
+    .reference-data-cards dt { font-size:11px; font-weight:500; color:#917a9c; margin:12px 0 0; }
+    .reference-data-cards dt:first-child { margin-top:0; }
+    .reference-data-cards dd { margin:0; color:#51405e; font-size:14px; line-height:1.7; overflow-wrap:anywhere; }
+    .reference-data-cards .is-highlighted { color:#673ab7; }
+  }
+  @media(prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto!important; transition:none!important; animation:none!important; } }
+}

@@ -1,3 +1,9 @@
-td{
-    text-align: center;
-}
+.roll-check-fields { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); gap:16px; margin-bottom:20px; }
+.success-grades { display:grid; gap:14px; }
+.success-grades article { border:1px solid #e4d8ed; border-radius:12px; padding:18px; background:#faf7fd; }
+.success-grades h3 { display:flex; justify-content:space-between; gap:12px; font-size:16px; font-weight:500; color:#694781; margin-bottom:16px; }
+.success-grades h3 span { color:#876c99; font-size:14px; }
+.success-grades dl { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:0; }
+.success-grades dt { font-size:11px; font-weight:400; color:#917b9f; }
+.success-grades dd { margin:4px 0 0; font-size:14px; color:#4d365f; }
+@media(max-width:599px) { .success-grades dl { grid-template-columns:repeat(2,minmax(0,1fr)); } }

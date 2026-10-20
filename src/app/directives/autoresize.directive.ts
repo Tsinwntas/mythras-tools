@@ -1,112 +1,69 @@
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-  AfterViewInit,
-} from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { AfterViewInit, Directive, DoCheck, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
 
-@Directive({
-  selector: '[autoResize]',
-})
-export class AutoresizeDirective implements AfterViewInit {
-  constructor(private el: ElementRef) {}
+// Batch all sheet fields in one frame instead of scheduling a timer per field.
+const pending = new Set<AutoresizeDirective>();
+let frame = 0;
+function schedule(directive: AutoresizeDirective): void {
+  pending.add(directive);
+  if (!frame) frame = requestAnimationFrame(() => {
+    frame = 0;
+    const fields = [...pending]; pending.clear(); fields.forEach(field => field.fit());
+  });
+}
 
+@Directive({ selector: '[autoResize]' })
+export class AutoresizeDirective implements AfterViewInit, DoCheck, OnDestroy {
+  @Input() maxInputFont = 18;
+  @Input() hasArrow = false;
+  private observer?: ResizeObserver;
+  private previousValue = '';
+  private originalTitle = '';
+  private ready = false;
+  constructor(private el: ElementRef<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {}
+  @Input('fixedvalue') set fixedvalue(value: string | number) {
+    const next = value == null ? '' : String(value);
+    if (this.el.nativeElement.value !== next) this.el.nativeElement.value = next;
+    schedule(this);
+  }
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.adjustFontSize(this.el.nativeElement);
-    }, 0);
-  }
-
-  @Input('fixedvalue')
-  set fixedvalue(value: string | number) {
-    this.el.nativeElement.value = value;
-    this.adjustFontSize(this.el.nativeElement);
-  }
-
-  @Input() maxInputFont: number = 18;
-  @Input() hasArrow: boolean;
-
-  @HostListener('input', ['$event.target'])
-  onInput(textArea: HTMLTextAreaElement | HTMLInputElement): void {
-    this.adjustFontSize(textArea);
-  }
-
-  private adjustFontSize(
-    element: HTMLTextAreaElement | HTMLInputElement
-  ): void {
-    const style = window.getComputedStyle(element);
-
-    const { value } = element;
-    const maxHeight = parseInt(style.getPropertyValue('height'), 10);
-
-    if (element.tagName.toLowerCase() === 'textarea') {
-      this.adjustTextArea(element, style, value, maxHeight);
-    } else if (element.tagName.toLowerCase() === 'input') {
-      this.adjustInput(element, style, maxHeight);
-    } else if (element.tagName.toLowerCase() === 'select') {
-      this.adjustSelect(element, style, value, maxHeight);
+    this.ready = true;
+    this.originalTitle = this.el.nativeElement.title;
+    if (this.originalTitle && !this.el.nativeElement.hasAttribute('aria-label')) {
+      this.el.nativeElement.setAttribute('aria-label', this.originalTitle);
     }
+    this.observer = new ResizeObserver(() => schedule(this));
+    this.observer.observe(this.el.nativeElement);
+    document.fonts?.ready.then(() => { if (this.ready) schedule(this); });
+    schedule(this);
   }
-
-  adjustTextArea(element: any, style: any, value: any, maxHeight: any) {
-    const fontSize = parseInt(style.getPropertyValue('font-size'), 10);
-    let newSize = Math.min(this.maxInputFont, maxHeight);
-    element.style.fontSize = `${newSize}px`;
-    while (newSize > 0 && hasOverflowHeight(element)) {
-      newSize -= 1;
-      element.style.fontSize = `${newSize}px`;
-    }
+  ngDoCheck(): void {
+    const value = this.el.nativeElement.value;
+    if (value !== this.previousValue) { this.previousValue = value; schedule(this); }
   }
-
-  adjustInput(element: any, style: any, maxHeight: any) {
-    // resize input by width
-    const fontSize = parseInt(style.getPropertyValue('font-size'), 10);
-    let newSize = Math.min(this.maxInputFont,maxHeight - 1);
-    if (fontSize != newSize)
-      element.style.fontSize = `${newSize}px`;
-    while (newSize > 0 && hasOverflow(element)) {
-      newSize -= 1;
-      element.style.fontSize = `${newSize}px`;
-    }
+  @HostListener('input') onInput(): void { schedule(this); }
+  @HostListener('change') onChange(): void { schedule(this); }
+  @HostListener('window:beforeprint') beforePrint(): void { this.fit(); }
+  ngOnDestroy(): void { this.ready = false; this.observer?.disconnect(); pending.delete(this); }
+  fit(): void {
+    const element = this.el.nativeElement;
+    if (!this.ready || !element.clientWidth || !element.clientHeight) return;
+    const style = getComputedStyle(element);
+    const height = element.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+    const width = element.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - (this.hasArrow ? 16 : 0);
+    const max = Math.max(6, Math.min(this.maxInputFont, height - 1));
+    let low = Math.min(6, max), high = max;
+    const context = document.createElement('canvas').getContext('2d');
+    const fits = (size: number): boolean => {
+      element.style.fontSize = size + 'px';
+      if (element.tagName === 'TEXTAREA') return element.scrollHeight <= element.clientHeight + 1 && element.scrollWidth <= element.clientWidth + 1;
+      if (!context) return true;
+      context.font = `${style.fontWeight} ${size}px ${style.fontFamily}`;
+      const text = element instanceof HTMLSelectElement ? element.selectedOptions[0]?.text || '' : element.value;
+      return context.measureText(text).width <= width;
+    };
+    for (let i = 0; i < 7; i++) { const mid = (low + high) / 2; if (fits(mid)) low = mid; else high = mid; }
+    const overflow = !fits(Math.floor(low * 10) / 10);
+    element.dataset['textOverflow'] = String(overflow);
+    element.title = overflow ? `${this.originalTitle}: Full text is preserved in the character JSON. See the printable details supplement.` : this.originalTitle;
   }
-
-  adjustSelect(select: any, style: any, value : any, maxHeight: any) {
-    const maxWidth = select.offsetWidth;
-
-    // Create a dummy span to measure the text width
-    const dummy = document.createElement('span');
-    dummy.style.visibility = 'hidden';
-    dummy.style.whiteSpace = 'pre';
-    dummy.style.font = style.font;
-    dummy.style.width = maxWidth;
-    dummy.style.height = maxHeight;
-    dummy.textContent= value
-    document.body.appendChild(dummy);
-
-    // Set the font size to 100px to start
-    let fontSize = maxHeight-1;
-    dummy.style.fontSize = fontSize + 'px';
-
-    // Reduce the font size until the text fits inside the select
-    while (dummy.offsetWidth >= maxWidth-(this.hasArrow ? 15 : 0) && fontSize > 5) {
-      fontSize--;
-      dummy.style.fontSize = fontSize + 'px';
-    }
-
-    // Set the font size of the select's options
-    select.style.fontSize =  (fontSize) + 'px';
-
-    // Clean up
-    document.body.removeChild(dummy);
-  }
-}
-
-function hasOverflow(input: HTMLTextAreaElement | HTMLInputElement): boolean {
-  return input.scrollWidth > input.clientWidth + 1;
-}
-
-function hasOverflowHeight(textarea: HTMLTextAreaElement | HTMLInputElement): boolean {
-  return textarea.scrollHeight > textarea.clientHeight + 1;
 }

@@ -194,7 +194,7 @@
           autoResize
           [(ngModel)]="character.skills.str"
         />
-        <input
+        <input autoResize
           id="form15_1"
           type="text"
           tabindex="15"
@@ -202,14 +202,14 @@
           title="STRMAX"
           data-field-name="STRMAX"
         />
-        <input
+        <input autoResize
           id="form16_1"
           type="text"
           tabindex="16"
           data-objref="444 0 R"
           title="STRCURR"
           data-field-name="STRCURR"
-          [ngModel]="getCurrentValue('str', character.skills.str)"
+          [ngModel]="getCurrentValue('str')"
           (ngModelChange)="setCurrentValue('str', $event)"
         />
         <input
@@ -224,14 +224,14 @@
           disabled="true"
           [fixedvalue]="getSkill(character.skills.ap)"
         />
-        <input
+        <input autoResize
           id="form18_1"
           type="text"
           tabindex="18"
           data-objref="446 0 R"
           title="APCURR"
           data-field-name="APCURR"
-          [ngModel]="getCurrentValue('ap', getSkill(character.skills.ap))"
+          [ngModel]="getCurrentValue('ap')"
           (ngModelChange)="setCurrentValue('ap', $event)"
         />
         <input
@@ -245,7 +245,7 @@
           autoResize
           [(ngModel)]="character.skills.con"
         />
-        <input
+        <input autoResize
           id="form20_1"
           type="text"
           tabindex="20"
@@ -253,14 +253,14 @@
           title="CONMAX"
           data-field-name="CONMAX"
         />
-        <input
+        <input autoResize
           id="form21_1"
           type="text"
           tabindex="21"
           data-objref="449 0 R"
           title="CONCURR"
           data-field-name="CONCURR"
-          [ngModel]="getCurrentValue('con', character.skills.con)"
+          [ngModel]="getCurrentValue('con')"
           (ngModelChange)="setCurrentValue('con', $event)"
         />
         <input
@@ -275,14 +275,14 @@
           disabled="true"
           [fixedvalue]="getSkill(character.skills.damage)"
         />
-        <input
+        <input autoResize
           id="form23_1"
           type="text"
           tabindex="23"
           data-objref="451 0 R"
           title="DMCURR"
           data-field-name="DMCURR"
-          [ngModel]="getCurrentValue('damage', getSkill(character.skills.damage))"
+          [ngModel]="getCurrentValue('damage')"
           (ngModelChange)="setCurrentValue('damage', $event)"
         />
         <input
@@ -296,7 +296,7 @@
           autoResize
           [(ngModel)]="character.skills.siz"
         />
-        <input
+        <input autoResize
           id="form25_1"
           type="text"
           tabindex="25"
@@ -304,14 +304,14 @@
           title="SIZMAX"
           data-field-name="SIZMAX"
         />
-        <input
+        <input autoResize
           id="form26_1"
           type="text"
           tabindex="26"
           data-objref="454 0 R"
           title="SIZCURR"
           data-field-name="SIZCURR"
-          [ngModel]="getCurrentValue('siz', character.skills.siz)"
+          [ngModel]="getCurrentValue('siz')"
           (ngModelChange)="setCurrentValue('siz', $event)"
         />
         <input
@@ -326,14 +326,14 @@
           disabled="true"
           [fixedvalue]="getSkill(character.skills.expMod)"
         />
-        <input
+        <input autoResize
           id="form28_1"
           type="text"
           tabindex="28"
           data-objref="456 0 R"
           title="EXPCURR"
           data-field-name="EXPCURR"
-          [ngModel]="getCurrentValue('expMod', getSkill(character.skills.expMod))"
+          [ngModel]="getCurrentValue('expMod')"
           (ngModelChange)="setCurrentValue('expMod', $event)"
         />
         <input
@@ -347,7 +347,7 @@
           autoResize
           [(ngModel)]="character.skills.dex"
         />
-        <input
+        <input autoResize
           id="form30_1"
           type="text"
           tabindex="30"
@@ -355,14 +355,14 @@
           title="DEXMAX"
           data-field-name="DEXMAX"
         />
-        <input
+        <input autoResize
           id="form31_1"
           type="text"
           tabindex="31"
           data-objref="459 0 R"
           title="DEXCURR"
           data-field-name="DEXCURR"
-          [ngModel]="getCurrentValue('dex', character.skills.dex)"
+          [ngModel]="getCurrentValue('dex')"
           (ngModelChange)="setCurrentValue('dex', $event)"
         />
         <input
@@ -377,14 +377,14 @@
           disabled="true"
           [fixedvalue]="getSkill(character.skills.healing)"
         />
-        <input
+        <input autoResize
           id="form33_1"
           type="text"
           tabindex="33"
           data-objref="461 0 R"
           title="HRCURR"
           data-field-name="HRCURR"
-          [ngModel]="getCurrentValue('healing', getSkill(character.skills.healing))"
+          [ngModel]="getCurrentValue('healing')"
           (ngModelChange)="setCurrentValue('healing', $event)"
         />
         <input
@@ -398,7 +398,7 @@
           autoResize
           [(ngModel)]="character.skills.int"
         />
-        <input
+        <input autoResize
           id="form35_1"
           type="text"
           tabindex="35"
@@ -406,14 +406,14 @@
           title="INTMAX"
           data-field-name="INTMAX"
         />
-        <input
+        <input autoResize
           id="form36_1"
           type="text"
           tabindex="36"
           data-objref="464 0 R"
           title="INTCURR"
           data-field-name="INTCURR"
-          [ngModel]="getCurrentValue('int', character.skills.int)"
+          [ngModel]="getCurrentValue('int')"
           (ngModelChange)="setCurrentValue('int', $event)"
         />
         <input
@@ -428,14 +428,14 @@
           disabled="true"
           [fixedvalue]="getSkill(character.skills.init)"
         />
-        <input
+        <input autoResize
           id="form38_1"
           type="text"
           tabindex="38"
           data-objref="466 0 R"
           title="INITBONUSCURR"
           data-field-name="INITBONUSCURR"
-          [ngModel]="getCurrentValue('init', getSkill(character.skills.init))"
+          [ngModel]="getCurrentValue('init')"
           (ngModelChange)="setCurrentValue('init', $event)"
         />
         <input
@@ -449,7 +449,7 @@
           autoResize
           [(ngModel)]="character.skills.pow"
         />
-        <input
+        <input autoResize
           id="form40_1"
           type="text"
           tabindex="40"
@@ -457,14 +457,14 @@
           title="POWMAX"
           data-field-name="POWMAX"
         />
-        <input
+        <input autoResize
           id="form41_1"
           type="text"
           tabindex="41"
           data-objref="469 0 R"
           title="POWCURR"
           data-field-name="POWCURR"
-          [ngModel]="getCurrentValue('pow', character.skills.pow)"
+          [ngModel]="getCurrentValue('pow')"
           (ngModelChange)="setCurrentValue('pow', $event)"
         />
         <input
@@ -479,14 +479,14 @@
           disabled="true"
           [fixedvalue]="getSkill(character.skills.luck)"
         />
-        <input
+        <input autoResize
           id="form43_1"
           type="text"
           tabindex="43"
           data-objref="471 0 R"
           title="LUCKCURR"
           data-field-name="LUCKCURR"
-          [ngModel]="getCurrentValue('luck', getSkill(character.skills.luck))"
+          [ngModel]="getCurrentValue('luck')"
           (ngModelChange)="setCurrentValue('luck', $event)"
         />
         <input
@@ -500,7 +500,7 @@
           autoResize
           [(ngModel)]="character.skills.cha"
         />
-        <input
+        <input autoResize
           id="form45_1"
           type="text"
           tabindex="45"
@@ -508,14 +508,14 @@
           title="CHAMAX"
           data-field-name="CHAMAX"
         />
-        <input
+        <input autoResize
           id="form46_1"
           type="text"
           tabindex="46"
           data-objref="474 0 R"
           title="CHACURR"
           data-field-name="CHACURR"
-          [ngModel]="getCurrentValue('cha', character.skills.cha)"
+          [ngModel]="getCurrentValue('cha')"
           (ngModelChange)="setCurrentValue('cha', $event)"
         />
         <input
@@ -529,14 +529,14 @@
           autoResize
           [(ngModel)]="character.movementRate"
         />
-        <input
+        <input autoResize
           id="form48_1"
           type="text"
           tabindex="48"
           data-objref="476 0 R"
           title="MRCURR"
           data-field-name="MRCURR"
-          [ngModel]="getCurrentValue('movementRate', character.movementRate)"
+          [ngModel]="getCurrentValue('movementRate')"
           (ngModelChange)="setCurrentValue('movementRate', $event)"
         />
         <textarea
@@ -585,7 +585,7 @@
           autoResize
           [(ngModel)]="character.incomeDay"
         />
-        <input
+        <input autoResize
           id="form54_1"
           type="text"
           tabindex="54"
@@ -1501,7 +1501,7 @@
           [fixedvalue]="getProfSkill(2, 'Language')"
           (input)="setProfSkill($event, 2, 'Language')"
         />
-        <input
+        <input autoResize
           id="form129_1"
           type="text"
           tabindex="129"
@@ -2247,6 +2247,7 @@
           autoResize
           [fixedvalue]="getSwim()"
         />
+        <span *ngFor="let location of pdfHpLocations" class="hp-maximum-label" [style.top.px]="location.top">Max {{getMaximumHp(location.key)}}</span>
         <input
           id="form15_2"
           type="number"
@@ -2257,14 +2258,14 @@
           [(ngModel)]="character.equipment.head.ap"
         />
         <input
-          id="form16_2"
+          id="form16_2" title="Current HP — Head"
           type="number"
           tabindex="164"
           data-objref="295 0 R"
-          data-field-name="HPHead"
+          aria-label="Current HP — Head" data-field-name="HPHead"
           autoResize
-          [fixedvalue]="getSkill(character.hp.head)"
-          (input)="setSkill(character.hp.head, $event)"
+          [ngModel]="getCurrentHp('head')"
+          (ngModelChange)="setCurrentHp('head',$event)"
         />
         <input
           id="form17_2"
@@ -2280,10 +2281,10 @@
           type="number"
           tabindex="166"
           data-objref="297 0 R"
-          data-field-name="HPLarm"
+          aria-label="Current HP — Left arm" title="Current HP — Left arm" data-field-name="HPLarm"
           autoResize
-          [fixedvalue]="getSkill(character.hp.leftArm)"
-          (input)="setSkill(character.hp.leftArm, $event)"
+          [ngModel]="getCurrentHp('leftArm')"
+          (ngModelChange)="setCurrentHp('leftArm',$event)"
         />
         <input
           id="form19_2"
@@ -2299,10 +2300,10 @@
           type="number"
           tabindex="168"
           data-objref="299 0 R"
-          data-field-name="HPRarm"
+          aria-label="Current HP — Right arm" title="Current HP — Right arm" data-field-name="HPRarm"
           autoResize
-          [fixedvalue]="getSkill(character.hp.rightArm)"
-          (input)="setSkill(character.hp.rightArm, $event)"
+          [ngModel]="getCurrentHp('rightArm')"
+          (ngModelChange)="setCurrentHp('rightArm',$event)"
         />
         <input
           id="form21_2"
@@ -2318,10 +2319,10 @@
           type="number"
           tabindex="170"
           data-objref="339 0 R"
-          data-field-name="HPChest"
+          aria-label="Current HP — Chest" title="Current HP — Chest" data-field-name="HPChest"
           autoResize
-          [fixedvalue]="getSkill(character.hp.chest)"
-          (input)="setSkill(character.hp.chest, $event)"
+          [ngModel]="getCurrentHp('chest')"
+          (ngModelChange)="setCurrentHp('chest',$event)"
         />
         <input
           id="form23_2"
@@ -2337,10 +2338,10 @@
           type="number"
           tabindex="172"
           data-objref="341 0 R"
-          data-field-name="HPAbdomen"
+          aria-label="Current HP — Abdomen" title="Current HP — Abdomen" data-field-name="HPAbdomen"
           autoResize
-          [fixedvalue]="getSkill(character.hp.abdoment)"
-          (input)="setSkill(character.hp.abdoment, $event)"
+          [ngModel]="getCurrentHp('abdoment')"
+          (ngModelChange)="setCurrentHp('abdoment',$event)"
         />
         <input
           id="form25_2"
@@ -2356,10 +2357,10 @@
           type="number"
           tabindex="174"
           data-objref="343 0 R"
-          data-field-name="HPLleg"
+          aria-label="Current HP — Left leg" title="Current HP — Left leg" data-field-name="HPLleg"
           autoResize
-          [fixedvalue]="getSkill(character.hp.leftLeg)"
-          (input)="setSkill(character.hp.leftLeg, $event)"
+          [ngModel]="getCurrentHp('leftLeg')"
+          (ngModelChange)="setCurrentHp('leftLeg',$event)"
         />
         <input
           id="form27_2"
@@ -2375,10 +2376,10 @@
           type="number"
           tabindex="176"
           data-objref="278 0 R"
-          data-field-name="HPRleg"
+          aria-label="Current HP — Right leg" title="Current HP — Right leg" data-field-name="HPRleg"
           autoResize
-          [fixedvalue]="getSkill(character.hp.rightLeg)"
-          (input)="setSkill(character.hp.rightLeg, $event)"
+          [ngModel]="getCurrentHp('rightLeg')"
+          (ngModelChange)="setCurrentHp('rightLeg',$event)"
         />
         <textarea
           id="form29_2"
@@ -2745,7 +2746,7 @@
           [fixedvalue]="getWeaponProp(0, false, 'hp')"
           (input)="setWeaponProp(0, false, 'hp', $event)"
         />
-        <input
+        <input autoResize
           id="form62_2"
           type="text"
           tabindex="210"
@@ -2841,7 +2842,7 @@
           [fixedvalue]="getWeaponProp(1, false, 'hp')"
           (input)="setWeaponProp(1, false, 'hp', $event)"
         />
-        <input
+        <input autoResize
           id="form71_2"
           type="text"
           tabindex="219"
@@ -2937,7 +2938,7 @@
           [fixedvalue]="getWeaponProp(2, false, 'hp')"
           (input)="setWeaponProp(2, false, 'hp', $event)"
         />
-        <input
+        <input autoResize
           id="form80_2"
           type="text"
           tabindex="228"
@@ -3033,7 +3034,7 @@
           [fixedvalue]="getWeaponProp(3, false, 'hp')"
           (input)="setWeaponProp(3, false, 'hp', $event)"
         />
-        <input
+        <input autoResize
           id="form89_2"
           type="text"
           tabindex="237"
@@ -3129,7 +3130,7 @@
           [fixedvalue]="getWeaponProp(4, false, 'hp')"
           (input)="setWeaponProp(4, false, 'hp', $event)"
         />
-        <input
+        <input autoResize
           id="form98_2"
           type="text"
           tabindex="246"
@@ -3225,7 +3226,7 @@
           [fixedvalue]="getWeaponProp(5, false, 'hp')"
           (input)="setWeaponProp(5, false, 'hp', $event)"
         />
-        <input
+        <input autoResize
           id="form107_2"
           type="text"
           tabindex="255"
@@ -3321,7 +3322,7 @@
           [fixedvalue]="getWeaponProp(6, false, 'hp')"
           (input)="setWeaponProp(6, false, 'hp', $event)"
         />
-        <input
+        <input autoResize
           id="form116_2"
           type="number"
           tabindex="264"
@@ -3439,7 +3440,7 @@
           [fixedvalue]="getWeaponProp(0, true, 'range')"
           (input)="setWeaponProp(0, true, 'range', $event)"
         />
-        <input
+        <input autoResize
           id="form127_2"
           type="text"
           tabindex="275"
@@ -3557,7 +3558,7 @@
           [fixedvalue]="getWeaponProp(1, true, 'hp')"
           (input)="setWeaponProp(1, true, 'hp', $event)"
         />
-        <input
+        <input autoResize
           id="form138_2"
           type="text"
           tabindex="286"
@@ -3616,3 +3617,5 @@
   </div>
 </div>
 <!-- </form> -->
+
+<app-print-supplement [character]="character"></app-print-supplement>

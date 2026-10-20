@@ -1,31 +1,17 @@
 <div class="app-shell">
   <div class="app-container page">
     <div class="app-card-surface viewer-shell">
-      <div class="app-page-header viewer-header">
-        <div class="viewer-title-block">
-          <h1 class="app-page-title">Character Viewer</h1>
-          <p class="viewer-subtitle">
-            Character: <strong>{{ character?.name || 'Unnamed Character' }}</strong>
-          </p>
-        </div>
-        <div class="app-action-row viewer-actions">
-          <button mat-raised-button routerLink="/character-creation">
-            Open Character Creation
-          </button>
-          <button mat-raised-button color="primary" routerLink="/view">
-            Open PDF / Print View
-          </button>
-          <button mat-raised-button color="accent" routerLink="/menu">
-            Back to Main Menu
-          </button>
-        </div>
-      </div>
-
-      <nav class="section-nav app-card-surface" aria-label="Character viewer sections">
+      <header class="app-page-header viewer-header">
+        <div class="viewer-title-block"><p class="page-eyebrow">Character sheet</p><h1 class="app-page-title">{{character?.name || 'Unnamed character'}}</h1><p class="viewer-subtitle">{{character?.player || 'Ready for your next session'}}</p></div>
+        <details class="sheet-tools"><summary>Sheet tools</summary><div class="sheet-tool-actions"><button mat-stroked-button (click)="editCharacter()">Edit character</button><button mat-stroked-button routerLink="/view">PDF / Print</button><button mat-stroked-button (click)="download()">Download JSON backup</button><button mat-stroked-button routerLink="/menu">Character library</button></div></details>
+      </header>
+      <nav #sectionNavigation class="section-nav app-card-surface" aria-label="Character viewer sections">
+        <p class="section-nav-label">Character sections <span>Everything you need during play</span></p>
         <button
           *ngFor="let section of sections"
           mat-stroked-button
           [class.is-active]="activeSection === section.key"
+          [attr.aria-current]="activeSection === section.key ? 'true' : null"
           (click)="setSection(section.key)"
           type="button"
         >
@@ -33,7 +19,52 @@
         </button>
       </nav>
 
-      <section class="app-card-surface section-card" [ngSwitch]="activeSection">
+      <p class="save-status" role="status">{{storage.error || "Changes save automatically on this device."}}</p>
+
+      <ng-template #hitLocationTable>          <div class="section-block">
+            <h3>Hit locations</h3>
+            <p class="hp-help">Total HP is calculated. Current HP stays blank until you enter it.</p>
+            <div class="table-scroll hit-location-scroll">
+              <table class="simple-table hit-location-table">
+                <thead><tr><th scope="col">Location</th><th scope="col">AP</th><th scope="col">Total HP</th><th scope="col">Current HP</th></tr></thead>
+                <tbody><tr *ngFor="let location of hitLocations">
+                  <th scope="row">{{location.label}}</th>
+                  <td>{{getLocationAp(location.key)}}</td>
+                  <td class="hp-total">{{getMaximumHp(location.key)}}</td>
+                  <td><input type="number" [attr.aria-label]="'Current HP — ' + location.label" [value]="getCurrentHp(location.key)" (input)="setCurrentHp(location.key,$event)"></td>
+                </tr></tbody>
+              </table>
+            </div>
+          </div></ng-template>
+      <ng-template #combatStyleCards>
+        <div class="player-card-grid">
+          <article class="player-card" *ngFor="let style of getCombatStyles()">
+            <header><h3>{{style.name}}</h3><strong class="skill-score">{{getSkill(style)}}%</strong></header>
+            <p class="weapon-description">{{getStyleWeaponText(style) || 'No weapons specified'}}</p>
+            <p *ngIf="style.selectedTrait as trait"><open-modal modal="traits" [prop]="{trait:trait,source:style.source}">{{trait.name || 'Trait rules'}}</open-modal></p>
+            <details><summary>Adjust total</summary><label>Skill total <input type="number" [attr.aria-label]="'Total for ' + style.name" [value]="getSkill(style)" (input)="setSkill(style,$event)"></label></details>
+          </article>
+        </div>
+        <p *ngIf="!getCombatStyles().length" class="sheet-empty">No combat styles selected. Add one in <button mat-button (click)="setSection('customization')">Customization</button>.</p>
+      </ng-template>
+      <div class="sheet-navigation-bar"><span>Character sheet</span><button class="sheet-section-shortcut" (click)="showSections()"><mat-icon>apps</mat-icon> Sections</button></div><section #sectionPanel tabindex="-1" class="app-card-surface section-card" [ngSwitch]="activeSection">
+        <div *ngSwitchCase="'play'" class="play-sheet">
+          <h2 class="section-title">Play</h2>
+          <p class="section-description">Track the session here. Current values stay blank until you enter them.</p>
+          <div class="play-resources">
+            <label><span>Current Action Points <small>Total {{getSkill(character?.skills?.ap)}}</small></span><input type="number" aria-label="Current Action Points" [value]="getCurrentCharacteristic('ap')" (input)="setSkillCharacteristic('ap',$event)"></label>
+            <label><span>Current Luck Points <small>Total {{getSkill(character?.skills?.luck)}}</small></span><input type="number" aria-label="Current Luck Points" [value]="getCurrentCharacteristic('luck')" (input)="setSkillCharacteristic('luck',$event)"></label>
+            <label><span>Current Magic Points</span><input type="number" aria-label="Current Magic Points" [value]="getCurrentCharacteristic('magicPoints')" (input)="setSkillCharacteristic('magicPoints',$event)"></label>
+            <label><span>Fatigue</span><select aria-label="Fatigue level" [ngModel]="character!.fatigueLevel || ''" (ngModelChange)="character!.fatigueLevel=$event"><option value="">Not set</option><option *ngFor="let level of fatigueLevels" [value]="level">{{level}}</option></select></label>
+          </div>
+          <div class="play-shortcuts"><button mat-stroked-button (click)="setSection('skills')">Find a skill</button><button mat-stroked-button (click)="setSection('weapons-armor')">Weapons</button><button mat-stroked-button (click)="setSection('magic')">Magic</button><a mat-stroked-button routerLink="/combat">Combat flow</a></div>
+          <div class="play-body">
+            <ng-container *ngTemplateOutlet="hitLocationTable"></ng-container>
+            <div class="section-block play-combat"><h3>Combat styles</h3><ng-container *ngTemplateOutlet="combatStyleCards"></ng-container></div>
+          </div>
+          <label class="session-notes"><strong>Session notes</strong><textarea rows="4" placeholder="Conditions, reminders, ammunition or notes for this session…" [(ngModel)]="character!.sessionNotes"></textarea></label>
+        </div>
+        <app-customization *ngSwitchCase="'customization'" [character]="character!"></app-customization>
         <div *ngSwitchCase="'overview'">
           <h2 class="section-title">Overview</h2>
           <div class="overview-grid">
@@ -119,82 +150,11 @@
             </div>
           </div>
 
-          <div class="section-block">
-            <h3>Hit Locations (Editable)</h3>
-            <div class="table-scroll">
-              <table class="simple-table attributes-table">
-                <thead>
-                  <tr>
-                    <th>Location</th>
-                    <th>AP</th>
-                    <th>HP</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Head</td>
-                    <td>{{ character?.equipment?.head?.ap ?? '-' }}</td>
-                    <td class="hp-cell">
-                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.head) }}</strong></div>
-                      <label><span>Current</span><input [value]="getSkill(character?.hp?.head)" (input)="setSkill(character?.hp?.head, $event)" /></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Chest</td>
-                    <td>{{ character?.equipment?.chest?.ap ?? '-' }}</td>
-                    <td class="hp-cell">
-                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.chest) }}</strong></div>
-                      <label><span>Current</span><input [value]="getSkill(character?.hp?.chest)" (input)="setSkill(character?.hp?.chest, $event)" /></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Abdomen</td>
-                    <td>{{ character?.equipment?.abdoment?.ap ?? '-' }}</td>
-                    <td class="hp-cell">
-                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.abdoment) }}</strong></div>
-                      <label><span>Current</span><input [value]="getSkill(character?.hp?.abdoment)" (input)="setSkill(character?.hp?.abdoment, $event)" /></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Left Arm</td>
-                    <td>{{ character?.equipment?.leftArm?.ap ?? '-' }}</td>
-                    <td class="hp-cell">
-                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.leftArm) }}</strong></div>
-                      <label><span>Current</span><input [value]="getSkill(character?.hp?.leftArm)" (input)="setSkill(character?.hp?.leftArm, $event)" /></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Right Arm</td>
-                    <td>{{ character?.equipment?.rightArm?.ap ?? '-' }}</td>
-                    <td class="hp-cell">
-                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.rightArm) }}</strong></div>
-                      <label><span>Current</span><input [value]="getSkill(character?.hp?.rightArm)" (input)="setSkill(character?.hp?.rightArm, $event)" /></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Left Leg</td>
-                    <td>{{ character?.equipment?.leftLeg?.ap ?? '-' }}</td>
-                    <td class="hp-cell">
-                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.leftLeg) }}</strong></div>
-                      <label><span>Current</span><input [value]="getSkill(character?.hp?.leftLeg)" (input)="setSkill(character?.hp?.leftLeg, $event)" /></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Right Leg</td>
-                    <td>{{ character?.equipment?.rightLeg?.ap ?? '-' }}</td>
-                    <td class="hp-cell">
-                      <div class="hp-meta"><span>Total</span><strong>{{ getHpTotal(character?.hp?.rightLeg) }}</strong></div>
-                      <label><span>Current</span><input [value]="getSkill(character?.hp?.rightLeg)" (input)="setSkill(character?.hp?.rightLeg, $event)" /></label>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <ng-container *ngTemplateOutlet="hitLocationTable"></ng-container>
         </div>
 
         <div *ngSwitchCase="'skills'">
-          <h2 class="section-title">Skills</h2>
+<h2 class="section-title">Skills</h2><label class="sheet-search">Find a standard or professional skill<input type="search" aria-label="Find a skill" [(ngModel)]="skillQuery" placeholder="Perception, Evade, Lore…"></label><p *ngIf="skillQuery" class="skill-filter-status" role="status">{{getSessionStandardSkills().length + getSessionProfessionalSkills().length}} skills match <button mat-button (click)="skillQuery=''">Clear search</button></p>
           <div class="skills-columns">
             <div class="section-block">
               <h3>Standard Skills</h3>
@@ -209,11 +169,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let skill of getStandardSkills()">
+                    <tr *ngFor="let skill of getSessionStandardSkills()">
                       <td>{{ skill.name }}</td>
                       <td>{{ getSkillBaseValue(skill) }}</td>
                       <td>
-                        <input
+                        <input type="number" [attr.aria-label]="'Total for ' + skill.name"
                           [value]="getFixedSkill(skill.name)"
                           (input)="setFixedSkill(skill.name, $event)"
                         />
@@ -226,7 +186,7 @@
             </div>
 
             <div class="section-block">
-              <h3>Professional Skills</h3>
+              <h3>Professional Skills</h3><button mat-button (click)="setSection(&#39;customization&#39;)">Create a custom skill</button>
               <div class="table-scroll">
                 <table class="simple-table attributes-table skills-table">
                   <thead>
@@ -238,41 +198,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let row of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]">
-                      <td>
-                        <select
-                          [ngModel]="getProfSkillName(row)"
-                          (ngModelChange)="setProfSkillNameByValue($event, row)"
-                        >
-                          <option value=""></option>
-                          <option
-                            *ngFor="let option of getProfessionalSkillOptionsForRow(row)"
-                            [value]="option"
-                          >
-                            {{ option }}
-                          </option>
-                        </select>
-                      </td>
-                      <td>{{ getProfBaseSkill(row) }}</td>
-                      <td>
-                        <input
-                          [value]="getProfSkill(row)"
-                          (input)="setProfSkill($event, row)"
-                        />
-                      </td>
-                      <td>
-                        {{
-                          getActualProfSkill(row)?.extraBonus
-                            || 0
-                        }}
-                      </td>
-                    </tr>
+                    <tr *ngFor="let skill of getSessionProfessionalSkills()">
+                    <td>{{skill.name}}</td><td>{{getSkillBaseValue(skill)}}</td>
+                    <td><input type="number" [attr.aria-label]="'Total for ' + skill.name" [value]="getSkill(skill)" (input)="setSkill(skill,$event)"></td><td>{{skill.extraBonus || 0}}</td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
 
+          <label class="add-professional">Add a professional skill<select aria-label="Add professional skill" [ngModel]="''" (ngModelChange)="learnProfessionalSkill($event)"><option value="">Choose a skill…</option><option *ngFor="let name of getUnselectedProfessionalSkills()" [value]="name">{{name}}</option></select></label>
           <div class="section-block">
             <h3>Languages</h3>
             <div class="overview-grid compact native-tongue-direct">
@@ -298,7 +234,7 @@
                     </td>
                     <td>{{ getActualSkill('Native Tongue')?.extraBonus || 0 }}</td>
                   </tr>
-                  <tr *ngFor="let row of [0,1,2]">
+                  <tr *ngFor="let row of getLanguageRows()">
                     <td>
                       <input
                         [value]="getProfSkillName(row, 'Language')"
@@ -383,207 +319,28 @@
         </div>
 
         <div *ngSwitchCase="'combat'">
-          <h2 class="section-title">Combat</h2>
-          <div class="section-block">
-            <h3>Combat Styles</h3>
-            <div class="table-scroll">
-              <table class="simple-table">
-                <thead>
-                  <tr>
-                    <th>Style Name</th>
-                    <th>Weapons</th>
-                    <th>Trait</th>
-                    <th>Total</th>
-                    <th>Bonus</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let row of [0,1,2,3]">
-                    <td>
-                      <input
-                        [value]="getStyleName(row)"
-                        list="combat-style-list"
-                        (change)="setStyleNameByValue($any($event.target).value, row)"
-                      />
-                    </td>
-                    <td>{{ getStyleWeapons(row) || '-' }}</td>
-                    <td>
-                      <ng-container *ngIf="getStyleTraitObject(row); else noTrait">
-                        <open-modal
-                          modal="traits"
-                          [prop]="{ trait: getStyleTraitObject(row), source: getStyleSource(row) }"
-                        >
-                          {{ getStyleTrait(row) }}
-                        </open-modal>
-                      </ng-container>
-                      <ng-template #noTrait>-</ng-template>
-                    </td>
-                    <td>
-                      <input
-                        [value]="getFixedSkill(getStyleName(row))"
-                        (input)="setFixedSkill(getStyleName(row), $event)"
-                      />
-                    </td>
-                    <td>{{ getActualSkill(getStyleName(row))?.extraBonus || 0 }}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <datalist id="combat-style-list">
-                <option *ngFor="let style of getCombatStyles()" [value]="style.name"></option>
-              </datalist>
-            </div>
-          </div>
+          <h2 class="section-title">Combat</h2><button mat-stroked-button (click)="setSection(&#39;customization&#39;)">Add or edit combat styles</button><p class="section-description">All your fighting styles, weapons and trait rules.</p>
+          <ng-container *ngTemplateOutlet="combatStyleCards"></ng-container>
+          <div class="play-shortcuts"><a mat-stroked-button routerLink="/combat">Open combat flow</a><button mat-stroked-button (click)="setSection('play')">HP &amp; current points</button><button mat-stroked-button (click)="setSection('weapons-armor')">Weapons &amp; armour</button></div>
         </div>
-
         <div *ngSwitchCase="'weapons-armor'">
-          <h2 class="section-title">Weapons &amp; Armor</h2>
-          <div class="section-block">
-            <h3>Melee Weapons &amp; Shields</h3>
-            <div class="table-scroll">
-              <table class="simple-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Damage</th>
-                    <th>Size</th>
-                    <th>Reach</th>
-                    <th>Traits / Effects</th>
-                    <th>AP</th>
-                    <th>HP</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let row of getWeaponRows(false)">
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, false, 'name')"
-                        (input)="setWeaponProp(row, false, 'name', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponDamage(row, false)"
-                        (input)="setWeaponProp(row, false, 'damage', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, false, 'size')"
-                        (input)="setWeaponProp(row, false, 'size', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, false, 'reach')"
-                        (input)="setWeaponProp(row, false, 'reach', $event)"
-                      />
-                    </td>
-                    <td class="wrap-cell">
-                      <div>{{ getWeaponTraits(row, false) || '-' }}</div>
-                      <div>{{ getWeaponEffects(row, false) || '-' }}</div>
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, false, 'ap')"
-                        (input)="setWeaponProp(row, false, 'ap', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, false, 'hp')"
-                        (input)="setWeaponProp(row, false, 'hp', $event)"
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <h2 class="section-title">Weapons &amp; Armor</h2><button mat-stroked-button (click)="setSection(&#39;customization&#39;)">Add weapons or equipment</button>
+          <section class="section-block" *ngFor="let group of weaponGroups">
+            <h3>{{group.label}}</h3>
+            <div class="player-card-grid">
+              <article class="player-card weapon-card" *ngFor="let row of getWeaponRows(group.ranged)">
+                <header><h3>{{getWeaponProp(row,group.ranged,'name') || 'Unnamed weapon'}}</h3><strong class="weapon-damage">{{getWeaponDamage(row,group.ranged) || '—'}}</strong></header>
+                <dl class="weapon-stats"><div *ngFor="let field of getWeaponFields(group.ranged)"><dt>{{field.label}}</dt><dd>{{getWeaponProp(row,group.ranged,field.key) === '' ? '—' : getWeaponProp(row,group.ranged,field.key)}}</dd></div></dl>
+                <p *ngIf="getWeaponTraits(row,group.ranged)" class="weapon-description">{{getWeaponTraits(row,group.ranged)}}</p><div class="weapon-rule-links"><ng-container *ngFor="let effect of getWeaponEffectNames(row,group.ranged)"><open-modal *ngIf="hasEffectRules(effect); else customEffect" modal="special-effects" [prop]="effect">{{effect}}</open-modal><ng-template #customEffect><span>{{effect}}</span></ng-template></ng-container></div><div class="weapon-rule-links"><open-modal *ngFor="let trait of getWeaponTraitEntries(row,group.ranged)" modal="traits" [prop]="{trait:{name:trait.name,trait:trait.description},source:&#39;Weapon trait&#39;}">{{trait.name}} rules</open-modal></div>
+                <details><summary>Edit weapon values</summary><div class="weapon-edit-fields">
+                  <label>Name<input [attr.aria-label]="'Name for weapon ' + row + (group.ranged ? ' ranged' : ' melee')" [value]="getWeaponProp(row,group.ranged,'name')" (input)="setWeaponProp(row,group.ranged,'name',$event)"></label>
+                  <label>Damage<input [attr.aria-label]="'Damage for ' + getWeaponProp(row,group.ranged,'name')" [value]="getWeaponDamage(row,group.ranged)" (input)="setWeaponProp(row,group.ranged,'damage',$event)"></label>
+                  <label *ngFor="let field of getWeaponFields(group.ranged)">{{field.label}}<input [attr.aria-label]="field.label + ' for ' + getWeaponProp(row,group.ranged,'name')" [value]="getWeaponProp(row,group.ranged,field.key)" (input)="setWeaponProp(row,group.ranged,field.key,$event)"></label>
+                </div></details>
+              </article>
             </div>
-          </div>
-
-          <div class="section-block">
-            <h3>Ranged Weapons</h3>
-            <div class="table-scroll">
-              <table class="simple-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Damage</th>
-                    <th>DM</th>
-                    <th>Force</th>
-                    <th>Load</th>
-                    <th>Range</th>
-                    <th>Size</th>
-                    <th>Traits / Effects</th>
-                    <th>AP</th>
-                    <th>HP</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let row of getWeaponRows(true)">
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, true, 'name')"
-                        (input)="setWeaponProp(row, true, 'name', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponDamage(row, true)"
-                        (input)="setWeaponProp(row, true, 'damage', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, true, 'dm')"
-                        (input)="setWeaponProp(row, true, 'dm', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, true, 'force')"
-                        (input)="setWeaponProp(row, true, 'force', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, true, 'loadTime')"
-                        (input)="setWeaponProp(row, true, 'loadTime', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, true, 'range')"
-                        (input)="setWeaponProp(row, true, 'range', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, true, 'size')"
-                        (input)="setWeaponProp(row, true, 'size', $event)"
-                      />
-                    </td>
-                    <td class="wrap-cell">
-                      <div>{{ getWeaponTraits(row, true) || '-' }}</div>
-                      <div>{{ getWeaponEffects(row, true) || '-' }}</div>
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, true, 'ap')"
-                        (input)="setWeaponProp(row, true, 'ap', $event)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        [value]="getWeaponProp(row, true, 'hp')"
-                        (input)="setWeaponProp(row, true, 'hp', $event)"
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
+            <p *ngIf="!getWeaponRows(group.ranged).length" class="sheet-empty">No {{group.ranged ? 'ranged weapons' : 'melee weapons or shields'}} recorded.</p>
+          </section>
           <div class="section-block">
             <h3>Equipment &amp; Armor</h3>
             <textarea
@@ -600,6 +357,17 @@
           </div>
         </div>
 
+        <div *ngSwitchCase="'magic'">
+          <h2 class="section-title">Magic</h2><p class="section-description">Your learned spells and abilities, with their rules a tap away.</p>
+          <label class="sheet-search">Find a spell or ability<input type="search" [(ngModel)]="magicQuery" placeholder="Name, tradition, tag or rules…" aria-label="Find a spell or ability"></label>
+          <div class="player-card-grid">
+            <article class="player-card magic-card" *ngFor="let spell of getMagicEntries(); trackBy: trackMagicEntry"><span class="magic-tradition">{{spell.tradition}}</span><h3>{{spell.name}}</h3><p class="weapon-description">{{spell.tags}}</p><details *ngIf="spell.description"><summary>Show rules</summary><p class="spell-rules">{{spell.description}}</p></details></article>
+          </div>
+          <p *ngIf="!getMagicEntries().length" class="sheet-empty">{{magicQuery ? 'No matching spells or abilities.' : 'No spells or abilities recorded yet.'}}</p>
+          <section class="section-block" *ngIf="character!.magic.spirits"><h3>Spirits</h3><p class="spell-rules">{{character!.magic.spirits}}</p></section>
+          <section class="section-block" *ngIf="character!.magic.abilities"><h3>Other abilities</h3><p class="spell-rules">{{character!.magic.abilities}}</p></section>
+          <button mat-stroked-button (click)="setSection('customization')">Add or edit magic</button>
+        </div>
         <div *ngSwitchCase="'notes'">
           <h2 class="section-title">Notes</h2>
           <div class="section-block">

@@ -392,3 +392,123 @@ textarea {
   }
 
 }
+
+.section-nav { grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); background: #f1eaf6; border-color: #e0d4e9; }
+.section-nav button { background: #fffdf8; font-size: 12px; min-width: 0; min-height: 44px; white-space: normal; line-height: 1.4; padding: 10px; }
+.section-nav-label { grid-column: 1 / -1; margin: 0 0 4px; font-size: 14px; font-weight: 600; color: #493456; }
+.section-nav-label span { display: block; margin-top: 4px; font-size: 12px; font-weight: 400; color: #716278; }
+.section-nav button.is-active { background: #673ab7; color: white; }
+.viewer-shell { background: transparent; border: 0; box-shadow: none; padding: 12px 0; }
+.viewer-header .app-page-title { font: 30px Georgia, serif; color: #3b2a49; }
+.section-title { font: 27px Georgia, serif; color: #3b2a49; }
+.section-card { border-radius: 14px; background: #fffdf8; }
+.overview-grid input, .overview-grid select, .simple-table input, .simple-table select { border: 1px solid #d8d2c3; border-radius: 6px; background: #fffdf8; color: #27202f; font: inherit; min-height: 42px; }
+.overview-grid label strong { font-size: 12px; font-weight: 500; color: #806c8d; margin-bottom: 4px; }
+.save-status { margin: 0; }
+.viewer-shell { padding-bottom:90px; }
+.viewer-header { align-items:flex-start; gap:16px; }
+.viewer-title-block { min-width:0; overflow-wrap:anywhere; }
+.sheet-tools { max-width:100%; }
+.sheet-tools summary, .player-card summary { cursor:pointer; min-height:44px; display:list-item; align-content:center; color:#603998; font-weight:500; }
+.sheet-tools summary { padding:0 16px; border:1px solid #d8cce4; border-radius:8px; background:#fffdf8; }
+.sheet-tool-actions { display:grid; gap:8px; margin-top:10px; }
+.section-card { scroll-margin-top:80px; }
+.section-nav { scroll-margin-top:16px; }
+.section-description { color:#73637d; line-height:1.6; margin-bottom:20px; }
+.play-resources { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.play-resources label { display:grid; grid-template-rows:1fr auto; gap:10px; padding:14px; background:#f5effa; border:1px solid #e6dbee; border-radius:10px; font-size:14px; color:#594365; }
+.play-resources small { display:block; margin-top:5px; color:#7c688a; }
+.play-resources input, .play-resources select, .sheet-search input, .add-professional select, .player-card input { width:100%; min-width:0; min-height:44px; box-sizing:border-box; border:1px solid #d8cce4; border-radius:7px; padding:9px 10px; font:inherit; font-size:16px; color:#312438; background:#fffdf8; }
+.play-resources input { font-size:22px; font-variant-numeric:tabular-nums; }
+.play-shortcuts { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 8px; }
+.play-shortcuts a, .play-shortcuts button { min-height:44px; }
+.play-body { min-width:0; }
+.play-body>.section-block { min-width:0; }
+@media(min-width:1000px) {
+ .play-body { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; align-items:start; }
+ .play-combat .player-card-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); }
+}
+.session-notes, .sheet-search, .add-professional { display:grid; gap:8px; margin:20px 0; color:#665172; }
+.session-notes strong { font-weight:500; }
+.sheet-search { max-width:640px; }
+.sheet-search input { background:white; }
+.add-professional { max-width:420px; }
+.player-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr)); gap:14px; margin:16px 0; }
+.player-card { min-width:0; border:1px solid #e4daec; border-radius:12px; padding:16px; background:#fff; overflow-wrap:anywhere; }
+.player-card header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+.player-card h3 { margin:0 0 10px; font-size:17px; font-weight:500; line-height:1.5; color:#4e355f; }
+.skill-score, .weapon-damage { flex-shrink:0; padding:6px 10px; background:#f0e7f8; border-radius:8px; color:#673ab7; font-variant-numeric:tabular-nums; }
+.weapon-damage { max-width:50%; overflow-wrap:anywhere; }
+.weapon-description { color:#74627e; font-size:14px; line-height:1.65; white-space:pre-line; }
+.player-card details { border-top:1px solid #eee6f3; margin-top:12px; }
+.player-card details label { display:grid; gap:6px; font-size:13px; color:#73617e; }
+.weapon-stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:14px 0; }
+.weapon-stats div { min-width:0; }
+.weapon-stats dt { color:#867193; font-size:12px; margin-bottom:5px; }
+.weapon-stats dd { margin:0; color:#42314e; font-size:15px; }
+.weapon-edit-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.magic-tradition { color:#836991; font-size:12px; display:block; margin-bottom:8px; }
+.spell-rules { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; color:#665171; }
+.sheet-empty { color:#806b8c; padding:12px 0; }
+.sheet-navigation-bar { position:sticky; top:0; z-index:10; display:flex; justify-content:space-between; align-items:center; gap:12px; padding:8px 0; background:var(--app-color-surface,#f4f1e8); border-bottom:1px solid #e4daec; }
+.sheet-navigation-bar>span { color:#776181; font-size:13px; padding-left:12px; }
+.sheet-section-shortcut { display:flex; align-items:center; gap:8px; min-height:44px; padding:8px 16px; background:#673ab7; border:1px solid #8056c4; border-radius:8px; color:white; font:inherit; cursor:pointer; }
+.weapon-rule-links { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13px; line-height:2.5; }
+.skills-table th:first-child { width:38%; }
+.skills-table th:nth-child(2) { width:15%; }
+.skills-table th:nth-child(3) { width:29%; }
+.skills-table th:nth-child(4) { width:18%; }
+.simple-table.skills-table input { min-height:44px; font-size:16px; }
+:is(input,select,textarea,summary,button,a):focus-visible { outline:3px solid #a789d6; outline-offset:3px; }
+@media(max-width:899px) { .play-resources { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:599px) {
+ .viewer-header { flex-wrap:wrap; }
+ .sheet-tools { width:100%; }
+ .sheet-tool-actions { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .sheet-tool-actions button { white-space:normal; line-height:1.5; min-height:44px; }
+ .play-resources { gap:8px; }
+ .play-resources label { padding:10px; font-size:13px; }
+ .play-resources input, .play-resources select { padding:8px; }
+ .play-shortcuts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .play-shortcuts a, .play-shortcuts button { min-width:0; padding:0 8px; font-size:12px; }
+ .player-card { padding:14px; }
+ .skills-table th:nth-child(4) { font-size:11px; }
+ .simple-table.skills-table td { vertical-align:middle; }
+ .overview-grid input, .overview-grid select, textarea { font-size:16px; min-height:44px; }
+}
+@media(min-width:360px) and (max-width:599px) {
+ .section-nav { grid-template-columns:repeat(3,minmax(0,1fr)); }
+ .section-nav button { padding:8px 5px; }
+ .section-nav button:last-child { grid-column:auto; }
+}
+@media (max-width: 599px) {
+  .section-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 10px; gap: 8px; }
+  .section-nav button:last-child { grid-column: 1 / -1; }
+  .section-card { padding: 18px 12px; }
+  .viewer-actions button { min-width: 0; }
+  .overview-grid, .overview-grid.compact { grid-template-columns: 1fr; }
+}
+
+.hit-location-scroll { margin-top:14px; max-width:800px; overflow:visible; scrollbar-gutter:auto; }
+.simple-table.hit-location-table { width:100%; min-width:0; table-layout:fixed; }
+.hit-location-table th:first-child { width:38%; }
+.hit-location-table thead th:nth-child(2) { width:14%; }
+.hit-location-table thead th:nth-child(3) { width:20%; }
+.hit-location-table thead th:nth-child(4) { width:28%; }
+.simple-table.hit-location-table th, .simple-table.hit-location-table td { padding:8px 12px; vertical-align:middle; border:0; border-bottom:1px solid #ece4f2; }
+.hit-location-table thead th { background:#f2ecf8; color:#795c8b; }
+.hit-location-table tbody tr:nth-child(even) td, .hit-location-table tbody tr:nth-child(even) th { background:#faf7fd; }
+.hit-location-table tbody tr:last-child td, .hit-location-table tbody tr:last-child th { border-bottom:0; }
+.hit-location-table tbody th { background:transparent; color:#574163; font-size:14px; font-weight:400; }
+.hit-location-table td:not(:last-child), .hit-location-table thead th:not(:first-child) { text-align:center; }
+.hit-location-table .hp-total { font-weight:600; color:#60417c; font-variant-numeric:tabular-nums; }
+.hit-location-table input { display:block; margin:auto; width:100%; max-width:120px; min-width:0; min-height:36px; height:36px; font-size:16px; text-align:center; padding:4px 8px; border-color:#d9cce5; background:#fdfbff; }
+.hp-help { font-size:12px; color:#8a7598; line-height:1.6; margin-bottom:12px; }
+@media(max-width:599px) {
+ .simple-table.hit-location-table th, .simple-table.hit-location-table td { padding:7px 6px; font-size:12px; }
+ .hit-location-table th:first-child { width:34%; }
+ .hit-location-table thead th:nth-child(2) { width:13%; }
+ .hit-location-table thead th:nth-child(3) { width:22%; }
+ .hit-location-table thead th:nth-child(4) { width:31%; }
+ .hit-location-table input { padding:4px; }
+}

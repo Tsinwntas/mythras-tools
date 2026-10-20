@@ -1,3 +1,6 @@
+import { SkillActionsComponent } from './character/skill-actions/skill-actions.component';
+import { PrintSupplementComponent } from './character/print-supplement/print-supplement.component';
+import { CustomizationComponent } from './character/customization/customization.component';
 import { AgeExperienceModalComponent } from './character/modals/age-experience/age-experience.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -156,7 +159,7 @@ import { BackgroundDetailsComponent } from './character/background-details/backg
 import { CharacterPreviewComponent } from './character/character-preview/character-preview.component';
 import { CharacterPdfComponent } from './character/character-pdf/character-pdf.component';
 import { AutoresizeDirective } from './directives/autoresize.directive';
-import { MenuComponent } from './pages/menu/menu.component';
+
 import { LoadCharacterComponent } from './modals/load-character/load-character.component';
 import { ViewCharacterComponent } from './pages/view-character/view-character.component';
 import { CreateSkillComponent } from './character/modals/create-skill/create-skill.component';
@@ -307,7 +310,6 @@ import { RouterModule } from '@angular/router';
     CharacterPreviewComponent,
     CharacterPdfComponent,
     AutoresizeDirective,
-    MenuComponent,
     LoadCharacterComponent,
     ViewCharacterComponent,
     CreateSkillComponent,
@@ -315,6 +317,9 @@ import { RouterModule } from '@angular/router';
     ResponsiveCharacterViewerComponent
   ],
   imports: [
+    CustomizationComponent,
+    SkillActionsComponent,
+    PrintSupplementComponent,
     CommonModule,
     RouterModule,
     FormsModule,
@@ -336,7 +341,6 @@ import { RouterModule } from '@angular/router';
     AllCombatStylesComponent,
     CombatFlowComponent,
     CharacterCreationComponent,
-    MenuComponent,
     ViewCharacterComponent,
     MythrasToDndMonsterBlockComponent
   ]

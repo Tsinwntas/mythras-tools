@@ -1,5 +1,6 @@
-
-:host ::ng-deep .search-button .modal-opener{
-    text-decoration: unset !important;
-    color: unset !important;
-}
+:host { display: block; min-width: 0; }
+.style-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.custom-style-form { display: grid; gap: 8px; min-width: 0; }
+.custom-style-form mat-form-field { width: 100%; }
+:host ::ng-deep .style-actions .modal-opener { color: inherit; text-decoration: none; }
+@media(max-width:599px) { .style-actions > *, .style-actions button { width: 100%; } }

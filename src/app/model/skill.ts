@@ -1,6 +1,7 @@
 export class Skill {
     name : string;
     professional : boolean;
+    custom?: boolean;
     force : boolean;
     base : string[];
     cultureBonus : number;

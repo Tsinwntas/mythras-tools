@@ -1,8 +1,19 @@
-<div *ngIf="character.skills && character.skills.combatstyles && character.skills.combatstyles.length">
-    <styles-table [styles]="getStyles()" [singleTrait]="true" (remove)="remove($event)" (select)="select($event)" (setSelectedTrait)="setSelectedTrait($event)" #characterstyles></styles-table>
+<div class="style-actions" *ngIf="!creatingCustom">
+  <open-modal modal="all-styles" [prop]="getProps()"><button mat-stroked-button><mat-icon>search</mat-icon> Find combat style</button></open-modal>
+  <button mat-flat-button color="primary" (click)="startCustom()">Create custom combat style</button>
 </div>
-<div class="search-button">
-    <open-modal modal="all-styles" [prop]="getProps()">
-    <button mat-flat-button><mat-icon>search</mat-icon>&nbsp;Find Combat Style</button>
-    </open-modal>
+<form *ngIf="creatingCustom" class="custom-style-form" (ngSubmit)="saveCustom()">
+  <h2>Create custom combat style</h2>
+  <p>Choose your weapons and describe any trait. Allocate culture, career or bonus points after selecting the style.</p>
+  <mat-form-field><mat-label>Combat style name</mat-label><input matInput name="styleName" [(ngModel)]="customStyle.name" required></mat-form-field>
+  <mat-form-field *ngFor="let category of ['Melee','Ranged','Shields']"><mat-label>{{category}} weapons</mat-label><input matInput [name]="category" [(ngModel)]="customStyle.weapons[category]"></mat-form-field>
+  <mat-form-field><mat-label>Trait name</mat-label><input matInput name="traitName" [(ngModel)]="customStyle.selectedTrait.name"></mat-form-field>
+  <mat-form-field><mat-label>Trait rules</mat-label><textarea matInput name="traitRules" rows="4" [(ngModel)]="customStyle.selectedTrait.trait"></textarea></mat-form-field>
+  <p *ngIf="customError" role="alert">{{customError}}</p>
+  <div class="style-actions"><button mat-flat-button color="primary" type="submit">Save and select style</button><button mat-stroked-button type="button" (click)="creatingCustom=false">Cancel</button></div>
+</form>
+<div *ngIf="!creatingCustom && character.skills.combatstyles.length">
+  <p>Select a style to use it in this creation step.</p>
+  <styles-table [styles]="character.skills.combatstyles" [singleTrait]="true" (remove)="remove($event)" (select)="select($event)" (setSelectedTrait)="setSelectedTrait($event)"></styles-table>
 </div>
+<p *ngIf="!creatingCustom && !character.skills.combatstyles.length">No styles selected yet. Browse the catalogue or create your own style.</p>

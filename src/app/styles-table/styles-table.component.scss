@@ -1,63 +1,15 @@
-.styles-table-shell {
-    border: 1px solid var(--app-color-border);
-    border-radius: var(--app-radius-sm);
-    background: #fff;
-}
-
-.style-cards { display: none; }
-
-:host ::ng-deep .browse-table .app-table {
-    min-width: 0;
-    width: 100%;
-    table-layout: fixed;
-}
-
-@media (max-width: 900px) {
-    .browse-table { display: none; }
-    .style-cards { display: grid; gap: 16px; }
-    .style-card {
-        padding: 16px;
-        border: 1px solid var(--app-color-border);
-        border-radius: var(--app-radius-sm);
-        background: #fff;
-        overflow-wrap: anywhere;
-        min-width: 0;
-    }
-    .style-card h3 { margin: 0 0 12px; font-size: 18px; }
-    .style-card dl { margin: 0; }
-    .style-card dt { font-weight: 600; margin-top: 12px; }
-    .style-card dd { margin: 4px 0 0; }
-}
-
-:host ::ng-deep .app-table .mat-mdc-header-cell {
-    font-weight: 600;
-    background: #f4f6fa;
-    white-space: nowrap;
-}
-
-:host ::ng-deep .app-table {
-    min-width: 1400px;
-    table-layout: auto;
-}
-
-:host ::ng-deep .app-table .mat-mdc-cell {
-    vertical-align: middle;
-    white-space: normal;
-    word-break: normal;
-    overflow-wrap: break-word;
-}
-
-:host ::ng-deep .app-table .mat-mdc-icon-button {
-    width: 38px;
-    height: 38px;
-}
-
-:host ::ng-deep .app-table .mat-mdc-form-field {
-    min-width: 140px;
-}
-
-@media (max-width: 599px) {
-    :host ::ng-deep .app-table .mat-mdc-form-field {
-        min-width: 120px;
-    }
-}
+:host { display:block; min-width:0; }
+.styles-table-shell { display:none; }
+.style-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); align-items:start; gap:20px; }
+.style-card { padding:24px; border:1px solid #e4dbe9; border-radius:16px; background:#fffdfb; min-width:0; overflow-wrap:anywhere; }
+.style-card h3 { margin:0 0 20px; color:#442a57; font-size:20px; font-weight:500; letter-spacing:-.2px; }
+.style-card dl { margin:0; }
+.style-card dt { font-size:11px; font-weight:600; letter-spacing:.5px; color:#8b7598; text-transform:uppercase; margin-top:18px; }
+.style-card dd { margin:5px 0 0; font-size:14px; line-height:1.7; color:#5c4d67; }
+.style-card dd > div + div { margin-top:6px; }
+.style-card mat-form-field { width:100%; min-width:0; }
+.card-actions { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; }
+.card-actions button { min-height:44px; max-width:100%; white-space:normal; line-height:1.4; padding:10px 16px; }
+.card-effects { border-top:1px solid #ede5f2; margin-top:20px; padding-top:12px; }
+.card-effects summary { cursor:pointer; padding:6px 0; font-size:13px; font-weight:500; color:#75499b; }
+@media(max-width:599px) { .style-card { padding:20px; } .style-cards { gap:14px; } }

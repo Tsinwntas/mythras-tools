@@ -1,6 +1,7 @@
 <div class="app-shell">
 <div class="app-container page">
     <div class="preview-shell app-card-surface">
+<p *ngIf="saveStorage.error" role="status">{{saveStorage.error}}</p>
         <div class="preview-info app-form-stack">
             <p class="line" *ngIf="!hideDisclaimer"><i>This PDF / print view is loaded on demand for better performance. Open it when you are ready to print or export.</i></p>
             <p class="line" *ngIf="!hideDisclaimer"><i><b>Remember, if you clear your cache, all data will be lost. Make sure to
@@ -13,6 +14,7 @@
             <button mat-flat-button routerLink="/view/responsive"><mat-icon>view_sidebar</mat-icon> Open Responsive Viewer</button>
             <a mat-flat-button [href]="generateDownloadJsonUri()"
                 [download]="character.name+'.json'"><mat-icon>download</mat-icon> Download Character</a>
+            <button mat-stroked-button (click)="fitToScreen=!fitToScreen">{{fitToScreen ? 'Actual size' : 'Fit to screen'}}</button>
             <button mat-flat-button (click)="print()"><mat-icon>print</mat-icon> Print PDF</button>
             <button class="back-button" *ngIf="hideDisclaimer && isCreationCharacter()" mat-raised-button color="primary"
                 (click)="backToCreation()">Back to Creation</button>
@@ -26,8 +28,9 @@
                 Main Menu</button>
         </div>
     </div>
+    <p class="line app-page-subtitle">The original sheet keeps its fixed layout. Long text and extra entries continue in the printable details supplement.</p>
     <div id="character-pdf" class="pdf-shell app-card-surface">
-        <character-pdf *ngIf="load" [character]="character" />
+        <character-pdf *ngIf="load" [character]="character" [style.zoom]="sheetZoom" />
     </div>
 
 </div>

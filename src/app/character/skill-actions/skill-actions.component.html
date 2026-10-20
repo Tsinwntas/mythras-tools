@@ -1,0 +1,11 @@
+<div class="skill-choice" [class.custom]="custom">
+  <button *ngIf="selectable; else nameLabel" mat-flat-button class="skill-name" (click)="activate()">{{skill.name}}<span *ngIf="selected" class="selected-label">Selected</span></button>
+  <ng-template #nameLabel><span class="skill-label">{{skill.name}}</span></ng-template>
+  <button *ngIf="hasActions" mat-icon-button class="skill-more" [attr.aria-label]="'Actions for ' + skill.name" aria-haspopup="menu" (click)="more($event)"><mat-icon>more_vert</mat-icon></button>
+</div>
+<div *ngIf="hasActions" class="menu-anchor" [style.left.px]="menuPosition.x" [style.top.px]="menuPosition.y" [matMenuTriggerFor]="skillMenu" [matMenuTriggerRestoreFocus]="false" #contextTrigger="matMenuTrigger"></div>
+<mat-menu #skillMenu="matMenu" (closed)="restoreFocus()">
+  <button *ngIf="removable" mat-menu-item (click)="deselect()"><mat-icon>remove_circle_outline</mat-icon><span>Remove from {{selection}} list</span></button>
+  <button *ngIf="custom" mat-menu-item (click)="edit()"><mat-icon>edit</mat-icon><span>Edit skill</span></button>
+  <button *ngIf="custom" mat-menu-item (click)="remove()"><mat-icon>delete</mat-icon><span>Delete skill everywhere</span></button>
+</mat-menu>

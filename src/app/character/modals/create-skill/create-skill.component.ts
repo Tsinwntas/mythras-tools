@@ -10,15 +10,18 @@ import { Component } from '@angular/core';
 export class CreateSkillComponent implements ModalInnerContent {
 
   skill : Skill;
+  editing = false;
   createdSkill : (skill :Skill) => void;
 
   getHeader() : string {
-    return 'Choose extra Professional Skill';
+    return this.editing ? 'Edit custom skill' : 'Create professional skill';
   }
 
   setProps(props: any,okFunction:{function: (props?:any)=>void,props: any}[]): void {
-    this.skill = new Skill("Skill Name", true, "str", "str").setOperations({add:0, multiply:1});
-    console.log(this.skill);
+    this.editing = !!props.skill;
+    this.skill = props.skill ? Object.assign(new Skill('',true), props.skill, {base:[...props.skill.base]}) : new Skill('',true,'str','str').setOperations({multiply:1});
+    this.skill.custom = true;
+    this.skill.force = true;
     this.createdSkill = props.createdSkill;
     okFunction.push({function:this.createdSkill,props:this.skill});
   }

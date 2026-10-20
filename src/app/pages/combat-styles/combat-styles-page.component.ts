@@ -10,14 +10,15 @@ import { AppComponentsModule } from '../../app-components.module';
   template: `
     <div class="app-shell">
       <main class="app-container">
-        <header class="app-page-header app-card-surface">
+        <header class="tool-header">
           <div>
+            <p class="page-eyebrow">The fighting arts</p>
             <h1 class="app-page-title">Combat Styles</h1>
             <p class="app-page-subtitle">Browse by name or trait, culture, source and weapons. Mythras styles are shown by default.</p>
           </div>
-          <button mat-raised-button color="accent" routerLink="/menu">Back to Main Menu</button>
+          <a mat-stroked-button routerLink="/menu">← All tools</a>
         </header>
-        <section class="app-card-surface app-section" aria-label="Combat styles browser">
+        <section class="app-section" aria-label="Combat styles browser">
           <app-all-combat-styles [browseOnly]="true"></app-all-combat-styles>
         </section>
       </main>

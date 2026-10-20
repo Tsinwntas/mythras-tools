@@ -1,18 +1,7 @@
-<div>
-    <table mat-table [dataSource]="getTable()">
-        
-        <ng-container *ngFor="let col of getColumnsDefinition()"  [matColumnDef]="col">
-            <th mat-header-cell *matHeaderCellDef> {{getColumnHeader(col)}} </th>
-            <td mat-cell *matCellDef="let element"> 
-                <span *ngIf="col=='select'"><button mat-icon-button (click)="select(element.select)"><mat-icon>pan_tool_alt</mat-icon></button> </span>
-                <span *ngIf="col=='remove'"><button mat-icon-button (click)="remove(element.remove)"><mat-icon color="danger">remove</mat-icon></button> </span>
-                <span *ngIf="col=='specialty'"><input matInput [ngModel]="element.specialty" (ngModelChange)="setName(element.select,$event)"></span> 
-            <span *ngIf="!['specialty','select','remove'].includes(col)">{{element[col]}}</span> 
-            </td>
-        </ng-container>
-        
-        <tr mat-header-row *matHeaderRowDef="getColumnsDefinition(); sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: getColumnsDefinition();"></tr>
-    </table>
-    <div><button mat-raised-button class="add-specialization" (click)="add()"><mat-icon>add</mat-icon></button></div>
-</div>
+<p>Choose a specialization, or create another for this skill. Point allocations are shown for reference.</p>
+<div class="specialization-list"><article *ngFor="let row of getTable()">
+<mat-form-field><mat-label>Specialization name</mat-label><input matInput [(ngModel)]="row.specialty" (ngModelChange)="setName(row.select,$event)"></mat-form-field>
+<dl><div><dt>Culture</dt><dd>{{row.culture || 0}}</dd></div><div><dt>Career</dt><dd>{{row.career || 0}}</dd></div><div><dt>Bonus</dt><dd>{{row.extra || 0}}</dd></div></dl>
+<div class="specialization-actions"><button mat-flat-button color="primary" (click)="select(row.select)">Select specialization</button><button *ngIf="row.remove" mat-stroked-button color="warn" (click)="remove(row.remove)">Delete specialization</button></div>
+</article></div>
+<button mat-stroked-button (click)="add()"><mat-icon>add</mat-icon> Add specialization</button>

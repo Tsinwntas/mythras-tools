@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { CombatStyle } from '../model/combat-style';
 import { TableComponent } from '../table-component/table.component';
 
@@ -7,7 +7,8 @@ import { TableComponent } from '../table-component/table.component';
   templateUrl: './styles-table.component.html',
   styleUrls: ['./styles-table.component.scss']
 })
-export class StylesTableComponent extends TableComponent {
+export class StylesTableComponent extends TableComponent implements OnChanges {
+  ngOnChanges(): void { this.resetTable(); }
 
   @Input() styles : CombatStyle[];
   @Input() singleTrait: boolean;
@@ -28,7 +29,7 @@ export class StylesTableComponent extends TableComponent {
   resetTable() {
     // setTimeout(() => {
     if(this.singleTrait){
-      this.table = this.styles.map((style : CombatStyle, index : number) => Object.assign(style, {select:style, remove:index}));
+      this.table = this.styles.map((style : CombatStyle, index : number) => Object.assign({}, style, {select:style, remove:index}));
     } else {
       this.table = this.styles.map(style => Object.assign({select:style},style));
     }
@@ -56,12 +57,17 @@ export class StylesTableComponent extends TableComponent {
     return specials? specials.split(/,[ ]*/g) : [];
   }
 
+  readonly effectFields = [
+    {key:'offensive',label:'Offensive'}, {key:'defensive',label:'Defensive'},
+    {key:'critOffensive',label:'Critical offensive'}, {key:'critDefensive',label:'Critical defensive'}
+  ];
+  getStyleEffect(style: CombatStyle, key: string): string { return (style as any)[key] || ''; }
+  getCardTrait(style: CombatStyle): any { return style.traits?.find(t => t.name === style.selectedTrait?.name); }
+
   currentTrait : {name: string, trait: string};
 
   getSelectedTrait(element: any) : {name: string, trait: string} {
-    if(this.currentTrait)
-      return this.currentTrait;
-    return element.traits.find((t:any)=>t.name==element.select.selectedTrait.name)
+    return (element.traits || []).find((t:any)=>t.name==element.select?.selectedTrait?.name)
   }
 
 }

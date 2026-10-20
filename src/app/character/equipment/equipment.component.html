@@ -1,11 +1,10 @@
-<p>Money {{getMoneyLeft()}}/{{getStartingMoney()}}</p>
-<p>ENC: {{getTotalEnc()}}</p>
+<div class="equipment-budget"><div><span>Money remaining</span><strong>{{getMoneyLeft()}} <small>/ {{getStartingMoney()}} silver</small></strong></div><div><span>Total encumbrance</span><strong>{{getTotalEnc()}} <small>ENC</small></strong></div></div>
 <mat-accordion multi>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title> Armour </mat-panel-title>
       <mat-panel-description>
-        Worm Armour only applies half of its ENC
+        Worn armour counts half its ENC
       </mat-panel-description>
     </mat-expansion-panel-header>
     <p>

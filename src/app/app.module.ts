@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatMenuModule,
     MatSelectModule,
     AppRoutingModule,
   ],

@@ -1,29 +1,32 @@
-.starting-money{
-    display: grid;
-    grid-template-columns: 210px max-content;
-    grid-gap: 20px;
-    align-items: center;
-}
-
-.class-money{
-    grid-template-columns: 210px 95px max-content;
-}
-
-@media (max-width: 900px) {
-    .starting-money{
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 12px;
-    }
-
-    .class-money{
-        grid-template-columns: minmax(0, 1fr) auto auto;
-    }
-}
-
-@media (max-width: 600px) {
-    .starting-money,
-    .class-money{
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
+:host { display: block; min-width: 0; }
+.section-intro { color: #62566c; line-height: 1.6; margin-bottom: 20px; }
+.money-controls { display: grid; grid-template-columns: minmax(180px, 1fr) auto; align-items: start; gap: 12px 20px; }
+.money-controls mat-form-field { width: 100%; min-width: 0; }
+.money-controls button { min-height: 48px; margin-top: 4px; }
+.money-summary { padding: 20px; margin: 8px 0 28px; background: #f2ecf7; border: 1px solid #dfd2e9; border-radius: 10px; color: #3f2b51; }
+.summary-label { display: block; font-size: 13px; margin-bottom: 6px; }
+.money-summary output { display: block; font-size: 30px; line-height: 1.35; font-weight: 500; overflow-wrap: anywhere; }
+.money-summary output span { font-size: 15px; font-weight: 400; white-space: nowrap; }
+.money-summary p { font-size: 13px; margin: 10px 0 0; line-height: 1.5; }
+.class-reference-heading { display: flex; align-items: baseline; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
+.class-reference-heading h3 { margin: 0; font-size: 20px; }
+.class-reference-heading > span { color: #716278; font-size: 12px; }
+.social-class-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+.social-class-card { min-width: 0; border: 1px solid #d8d2c3; border-radius: 10px; padding: 20px; background: #fffdf8; }
+.social-class-card.is-selected { border-color: #9270b3; background: #f9f5fc; box-shadow: inset 3px 0 0 #9270b3; }
+.social-class-card header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+.roll-range { display: block; font-size: 12px; color: #716278; margin-bottom: 6px; }
+.social-class-card h4 { font-size: 22px; color: #3b2b48; margin: 0; }
+.money-multiplier { font-size: 13px; color: #604077; background: #ece3f3; padding: 5px 9px; border-radius: 6px; white-space: nowrap; }
+.social-class-card dl { margin: 20px 0; }
+.social-class-card dt { font-size: 12px; font-weight: 600; color: #716278; margin-top: 16px; }
+.social-class-card dd { font-size: 15px; line-height: 1.65; margin: 4px 0 0; overflow-wrap: break-word; }
+.social-class-card button { width: 100%; min-height: 44px; }
+.reference-source { font-size: 12px; color: #716278; margin-top: 24px; }
+.empty-reference { line-height: 1.6; color: #62566c; }
+@media (max-width: 599px) {
+  .money-controls { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .money-controls button { width: 100%; margin: 0 0 24px; }
+  .social-class-list { grid-template-columns: minmax(0, 1fr); }
+  .social-class-card, .money-summary { padding: 18px; }
 }

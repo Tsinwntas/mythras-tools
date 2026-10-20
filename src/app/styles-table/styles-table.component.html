@@ -23,7 +23,7 @@
                 <span *ngIf="'traits'==col && singleTrait" style="display:flex">
                     <mat-form-field appearance="fill">
                         <mat-label>Trait:</mat-label>
-                        <mat-select [value]="getSelectedTrait(element)" (selectionChange)="currentTrait=$event.value;setSelectedTrait.emit({trait: $event, index: element.remove})">
+                        <mat-select [value]="getSelectedTrait(element)" (selectionChange)="setSelectedTrait.emit({trait: $event, index: element.remove})">
                             <mat-option *ngFor="let trait of element[col]" [value]="trait">{{trait.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -38,9 +38,13 @@
         <tr mat-row *matRowDef="let row; columns: columnDefinitions;"></tr>
     </table>
 </div>
-<div *ngIf="browseOnly" class="style-cards">
-    <article *ngFor="let style of styles" class="style-card">
+<div class="style-cards">
+    <article *ngFor="let style of styles; let index = index" class="style-card">
         <h3>{{style.name}}</h3>
+        <div class="card-actions" *ngIf="!browseOnly">
+            <button mat-flat-button color="primary" (click)="select.emit(style)">Select {{style.name}}</button>
+            <button *ngIf="singleTrait" mat-stroked-button color="warn" (click)="remove.emit(index)" [attr.aria-label]="'Remove ' + style.name">Remove</button>
+        </div>
         <dl>
             <dt>Culture</dt><dd>{{style.culture || '—'}}</dd>
             <dt>Source</dt><dd>{{style.source || '—'}}</dd>
@@ -49,13 +53,30 @@
                 <div *ngFor="let trait of style.traits">
                     <open-modal modal="traits" [prop]="{trait:trait, source:style.source}">{{trait.name}}</open-modal>
                 </div>
-                <span *ngIf="!style.traits?.length">—</span>
+                <span *ngIf="!style.traits?.length && !style.selectedTrait">—</span>
+                <div *ngIf="!style.traits?.length && style.selectedTrait"><strong>{{style.selectedTrait.name}}</strong><p>{{style.selectedTrait.trait}}</p></div>
             </dd>
+            <ng-container *ngIf="singleTrait && style.traits?.length">
+                <dt>Selected trait</dt>
+                <dd><mat-form-field><mat-label>Trait for {{style.name}}</mat-label>
+                    <mat-select [value]="getCardTrait(style)" (selectionChange)="setSelectedTrait.emit({trait: $event, index: index})">
+                        <mat-option *ngFor="let trait of style.traits" [value]="trait">{{trait.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field></dd>
+            </ng-container>
             <dt>Weapons</dt>
             <dd>
                 <div *ngFor="let weapon of getWeapons(style.weapons)"><strong>{{weapon.type}}:</strong> {{weapon.weapons}}</div>
                 <span *ngIf="!getWeapons(style.weapons).length">—</span>
             </dd>
         </dl>
+        <details *ngIf="style.offensive || style.defensive || style.critOffensive || style.critDefensive" class="card-effects">
+            <summary>Combat effects</summary>
+            <dl><ng-container *ngFor="let entry of effectFields">
+                <ng-container *ngIf="getStyleEffect(style, entry.key)"><dt>{{entry.label}}</dt><dd>
+                    <span *ngFor="let special of getSpecials(getStyleEffect(style, entry.key)); let last = last"><open-modal modal="special-effects" [prop]="special">{{special}}</open-modal>{{last ? '' : ', '}}</span>
+                </dd></ng-container>
+            </ng-container></dl>
+        </details>
     </article>
 </div>

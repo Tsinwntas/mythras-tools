@@ -1,42 +1,22 @@
-<div>
-
-    <div>
-        <mat-form-field>
-          <mat-label>Round</mat-label>
-          <input matInput placeholder="0" type="number" [(ngModel)]="round.round" name="init-round">
-        </mat-form-field> 
-        <div>
-            Roll Fatigue for CON: {{getFatigues()}}
-        </div>
-    </div>
-
-    <button mat-raised-button type="button" (click)="sortParticipantsByInitiative()">
-        <mat-icon>sort</mat-icon>
-        Sort by initiative
-    </button>
-
-    <table mat-table [dataSource]="getTable()">
-        
-        <ng-container *ngFor="let col of getSuperDefs()"  [matColumnDef]="col">
-            <th mat-header-cell *matHeaderCellDef>{{getColumnHeader(col)}}</th>
-            <td mat-cell *matCellDef="let participant" 
-                [ngStyle]="isRollingForFatique(participant) ? {'background-color': '#c5898942'} : null"> 
-                <mat-form-field *ngIf="col!='name' && col!='remove'"  style="width: 80px;">
-                  <mat-label>{{getInputLabel(col)}}</mat-label>
-                  <input matInput placeholder="0" type="number" [(ngModel)]="participant[col]">
-                </mat-form-field> 
-                <mat-form-field *ngIf="col=='name'" >
-                  <mat-label>{{getInputLabel(col)}}</mat-label>
-                  <input matInput placeholder="Tsinik Tsinik" [(ngModel)]="participant[col]">
-                </mat-form-field> 
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="remove">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element; let index=index;"> <button mat-flat-button (click)="removeParticipant(index)"><mat-icon>remove</mat-icon></button></td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="getColumnsDefinition(); sticky: true;"></tr>
-        <tr mat-row *matRowDef="let row; columns: getColumnsDefinition();"></tr>
-    </table>
-    <div><button mat-raised-button class="add-participant" (click)="addParticipant()"><mat-icon>add</mat-icon></button></div>
+<div class="initiative-toolbar">
+  <label class="round-control">Round <input type="number" min="1" [(ngModel)]="round.round" aria-label="Round"></label>
+  <span class="roster-count">{{initiative.participants.length}} combatants</span>
+  <button mat-stroked-button (click)="sortParticipantsByInitiative()"><mat-icon>sort</mat-icon> Sort by initiative</button>
+  <button mat-flat-button color="primary" (click)="addParticipant()"><mat-icon>add</mat-icon> Add combatant</button>
 </div>
+<div class="fatigue-summary" [class.has-checks]="getFatigueParticipants().length" aria-live="polite">
+  <div class="fatigue-summary-heading"><strong>{{getFatigueParticipants().length ? getFatigueParticipants().length + ' to roll Endurance' : 'No Endurance checks due'}}</strong><span>Round {{round.round}} · CON {{getFatigues() || 'none due'}}</span></div>
+  <p *ngIf="getFatigueParticipants().length"><ng-container *ngFor="let participant of getFatigueParticipants(); let last=last">{{participant.name || 'Unnamed combatant'}}{{last ? '' : ' · '}}</ng-container></p>
+</div>
+<table class="initiative-table" aria-label="Combat initiative and fatigue">
+  <thead><tr><th scope="col" class="initiative-column">Init.</th><th scope="col">Combatant</th><th scope="col" *ngFor="let field of numericFields">{{field.label}}</th><th scope="col" class="check-column">Fatigue check</th><th scope="col" class="remove-column"><span class="visually-hidden">Remove</span></th></tr></thead>
+  <tbody>
+    <tr *ngFor="let participant of getTable(); let i=index" [class.fatigue-due]="isRollingForFatique(participant)">
+      <td class="initiative-cell"><label><span class="mobile-field-label">Init.</span><input type="number" [(ngModel)]="participant.initiative" [attr.aria-label]="'Initiative for ' + (participant.name || 'combatant ' + (i+1))"></label></td>
+      <td class="name-cell"><label><span class="visually-hidden">Combatant</span><input type="text" [(ngModel)]="participant.name" [attr.aria-label]="'Name for combatant ' + (i+1)"></label></td>
+      <td colspan="4" class="numbers-group"><div class="participant-number-fields"><label *ngFor="let field of numericFields"><span class="mobile-field-label">{{field.label}}</span><input type="number" [(ngModel)]="participant[field.key]" [attr.aria-label]="field.accessibleLabel + ' for ' + (participant.name || 'combatant ' + (i+1))"></label></div></td>
+      <td class="check-cell"><span class="check-due" *ngIf="isRollingForFatique(participant)"><mat-icon>warning_amber</mat-icon> Roll Endurance</span><span class="check-none" *ngIf="!isRollingForFatique(participant)">{{participant.con > 0 ? '—' : 'Set CON'}}</span></td>
+      <td class="remove-cell"><button mat-icon-button (click)="removeParticipant(i)" [attr.aria-label]="'Remove ' + (participant.name || 'combatant ' + (i+1))"><mat-icon>close</mat-icon></button></td>
+    </tr>
+  </tbody>
+</table>

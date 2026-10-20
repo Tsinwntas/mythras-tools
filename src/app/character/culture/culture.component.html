@@ -1,4 +1,4 @@
-<p>Cultural Background:</p>
+
 <mat-form-field appearance="fill">
     <mat-label>Cultural Background:</mat-label>
     <mat-select [(value)]="character.culture">
@@ -6,12 +6,12 @@
       <mat-option *ngFor="let culture of ['Barbarian', 'Civilized', 'Nomadic', 'Primitive']" [value]="culture">{{culture}}</mat-option>
     </mat-select>
 </mat-form-field>
-<p>{{getPointsLeft()}}/100 points to distribute among any of the available skills plus an optional cultural combat style, as listed below.</p>
-<p><i>Minimum of 5 Points can be allocated to each skill (you need to allocate points to all standar skills unless stated otherwise) and a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
-<p><i>If a style has multiple traits, discuss with your GM and apply only one.</i></p>
+<div class="allocation-summary"><strong>{{getPointsLeft()}} <small>/ {{character.creationAllowances['culture'] ?? 100}}</small></strong><span>Culture points remaining</span></div>
+<details class="creation-notes"><summary>Allocation guidance</summary><p><i>Minimum of 5 Points can be allocated to each skill (you need to allocate points to all standar skills unless stated otherwise) and a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
+<p>If a style has multiple traits, discuss with your GM and apply only one.</p></details>
 <div class="culture-combat-style">
     <p><b>Cultural Combat Style: </b></p>
-    <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
+    <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose or create a combat style</open-modal>
     <div class="selected-combat-style" *ngIf="character.skills.combatstyles.length">
         <div class="skill-wrapper">
         <div class="attribute style-attribute">
@@ -32,7 +32,7 @@
         <p><b>Standard Skills</b><i><small> - <span class="clickable" (click)="setAllStandardsToFive()">Set all standards to 5 points.</span></small></i></p>
         <div class="skill-wrapper"  *ngFor="let skill of getStandardCulturalSkills()">
         <div class="attribute">
-            <span class="skill-name">{{skill.name}}</span>
+            <span class="skill-name"><app-skill-actions [skill]="skill" [character]="character" [selectable]="false"></app-skill-actions></span>
             <span class="skill-base">{{getSkill(skill)}}</span>
         </div>
         <mat-form-field>
@@ -45,7 +45,7 @@
         <p><b>Professional Skills</b><i><small> - Choose only 3, if a professional skill has no cultural or career bonus, it will have 0 as a base level.</small></i></p>
         <div class="skill-wrapper"  *ngFor="let skill of getProfessionalCulturalSkills(); let i = index">
         <div class="attribute" *ngIf="!canBeSpecialized(skill)">
-            <span class="skill-name">{{skill.name}}</span>
+            <span class="skill-name"><app-skill-actions [skill]="skill" [character]="character" selection="culture" [selectable]="false"></app-skill-actions></span>
             <span class="skill-base">{{getSkill(skill)}}</span>
         </div>
         <div class="attribute" *ngIf="canBeSpecialized(skill)">

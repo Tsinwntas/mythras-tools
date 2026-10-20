@@ -5,14 +5,14 @@
         </button>
     </open-modal>
 </div>
-<p>{{getPointsLeft()}}/100 points to distribute among any of the available skills plus an optional career combat style, as listed below.</p>
-<p><i>Unlike cultural points, there is no minimum for these skills but there is a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
-<p><i>If a style has multiple traits, discuss with your GM and apply only one.</i></p>
+<div class="allocation-summary"><strong>{{getPointsLeft()}} <small>/ {{character.creationAllowances['career'] ?? 100}}</small></strong><span>Career points remaining</span></div>
+<details class="creation-notes"><summary>Allocation guidance</summary><p><i>Unlike cultural points, there is no minimum for these skills but there is a maximum of 15. Combat Style is optional but if selected, then use the same rules.</i></p>
+<p>If a style has multiple traits, discuss with your GM and apply only one.</p></details>
 <div class="culture-combat-style">
     <p><b>Career Combat Style: </b>({{getCombatStyleByCareer()}})</p>
     <div class="combat-styles">
         <div class="combat-style">
-            <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose a Combat Style</open-modal>
+            <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles?.length" [prop]="getCombatStyleProps()">Choose or create a combat style</open-modal>
             <div class="selected-combat-style" *ngIf="character.skills.combatstyles?.length">
                 <div class="skill-wrapper">
                 <div class="attribute style-attribute">
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="combat-style" *ngIf="character.career && character.career=='Warrior'">
-            <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles || character.skills.combatstyles.length<2" [prop]="getCombatStyleProps(true)">Choose a Combat Style</open-modal>
+            <open-modal modal="combat-styles" *ngIf="!character.skills.combatstyles || character.skills.combatstyles.length<2" [prop]="getCombatStyleProps(true)">Choose or create a combat style</open-modal>
             <div class="selected-combat-style" *ngIf="!(!character.skills.combatstyles || character.skills.combatstyles.length<2)">
                 <div class="skill-wrapper">
                 <div class="attribute style-attribute">
@@ -49,7 +49,7 @@
         <p><b>Standard Skills</b></p>
         <div class="skill-wrapper"  *ngFor="let skill of getStandardCareerSkills()">
         <div class="attribute">
-            <span class="skill-name">{{skill}}</span>
+            <span class="skill-name"><app-skill-actions [skill]="findSkill(skill)" [character]="character" [selectable]="false"></app-skill-actions></span>
             <span class="skill-base">{{getSkill(findSkill(skill))}}</span>
         </div>
         <mat-form-field>
@@ -62,7 +62,7 @@
         <p><b>Professional Skills</b><i><small> - Choose only 3, if a professional skill has no cultural or career bonus, it will have 0 as a base level.</small></i></p>
         <div class="skill-wrapper"  *ngFor="let skill of getProfessionalCareerSkills(); let i = index">
         <div class="attribute" *ngIf="!canBeSpecialized(skill)">
-            <span class="skill-name">{{skill}}</span>
+            <span class="skill-name"><app-skill-actions [skill]="findSkill(skill)" [character]="character" selection="career" [selectable]="false"></app-skill-actions></span>
             <span class="skill-base">{{getSkill(findSkill(skill))}}</span>
         </div>
         <div class="attribute" *ngIf="canBeSpecialized(skill)">

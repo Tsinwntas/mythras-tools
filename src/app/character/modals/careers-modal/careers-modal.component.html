@@ -1,16 +1,2 @@
-<p><i>The groupping is simply a suggestion, if the GM allows it, no one stops you from picking whichever.</i></p>
-<div>
-    <table mat-table [dataSource]="getTable()">
-        
-        <ng-container *ngFor="let col of getColumnsDefinition()"  [matColumnDef]="col">
-            <th mat-header-cell *matHeaderCellDef> {{getColumnHeader(col)}} </th>
-            <td mat-cell *matCellDef="let element"> 
-                <span *ngIf="element[col]" (click)="select(element[col])"><button mat-stroked-button>{{element[col]}}</button></span> 
-                <span *ngIf="!element[col]">{{element[col]}}</span> 
-            </td>
-        </ng-container>
-        
-        <tr mat-header-row *matHeaderRowDef="getColumnsDefinition(); sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: getColumnsDefinition();"></tr>
-    </table>
-</div>
+<p class="reference-callout">These groupings are suggestions. Your GM can allow a career from any category.</p>
+<div class="career-groups"><section *ngFor="let col of getColumnsDefinition()"><h3>{{getColumnHeader(col)}}</h3><ng-container *ngFor="let row of getTable()"><button *ngIf="row[col]" mat-stroked-button (click)="select(row[col])">{{row[col]}}</button></ng-container></section></div>

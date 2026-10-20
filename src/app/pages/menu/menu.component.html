@@ -1,67 +1,271 @@
 <div class="app-shell">
-<div class="app-container page-wrapper">
-  <div class="header app-page-header app-card-surface">
-    <div>
-      <h1 class="title app-page-title">MYTHRAS TOOLS</h1>
-      <p class="app-page-subtitle">by Tsinik</p>
-    </div>
-  </div>
-  <div class="disclaimer app-card-surface">
-    <b>This page saves in the browser's local storage, so if you clean your cache, everything saved will be lost.</b>
-  </div>
-  <div class="options app-card-surface app-section">
-    <div class="option primary">
-      <button mat-raised-button color="primary" (click)="newChararcter()">
-        NEW CHARACTER CREATION
-      </button>
-    </div>
-    <div class="option" *ngIf="isAlreadyCreatingCharacter()">
-      <button
-        mat-raised-button
-        color="primary"
-        routerLink="/character-creation"
-      >
-        CONTINUE CHARACTER CREATION
-      </button>
-    </div>
-    <div class="option">
-      <open-modal modal="load" [prop]="{ action: 'creation' }"
-        ><button mat-raised-button color="primary">
-          LOAD CHARACTER CREATION
-        </button></open-modal
-      >
-    </div>
-    <div class="option">
-      <open-modal modal="load" [prop]="{ action: 'pdf' }"
-        ><button mat-raised-button color="accent">
-          VIEW CHARACTER
-        </button></open-modal
-      >
-    </div>
-    <div class="option">
-      <button mat-raised-button color="warn" routerLink="/combat">
-        COMBAT FLOW
-      </button>
-    </div>
-    <div class="option">
-      <button mat-raised-button class="combat-styles-button" routerLink="/combat-styles">VIEW ALL COMBAT STYLES</button>
-    </div>
-    <div class="option">
-      <button mat-raised-button class="rules-index-button" routerLink="/rules-index">RULES INDEX</button>
-    </div>
-  </div>
-  <div class="credits app-card-surface">
-    Fan Policy Acknowledgement:
-    <br />
-    I own <b>NONE</b> of the info presented in these tools. Design Mechanism Inc owns all official information, these tools are simply to help players and GMs and not to claim any ownership of anything. 
-    Make sure to support Design Mechanism and Mythras by buying official rule books and other products from their page. You can find everything mythras related at <a href="https://thedesignmechanism.com/" target="_blank">https://thedesignmechanism.com/</a>.
-    <br />
-    “Mythras” is a Registered Trademark of The Design Mechanism Inc, and is used
+  <main class="app-container page-wrapper">
+    <header class="header app-page-header">
+      <a class="brand" routerLink="/menu">
+        <img class="brand-mark" src="assets/icons/adventure.svg" width="48" height="48" alt="">
+        <span>
+          MYTHRAS
+          <small>
+            TOOLS BY TSINIK
+          </small>
+        </span>
+      </a>
+      <nav class="header-links">
+        <a routerLink="/rules-index">
+          Rules index
+        </a>
+        <a routerLink="/combat-styles">
+          Combat styles
+        </a>
+      </nav>
+    </header>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">
+          EVERY ADVENTURE BEGINS WITH A CHARACTER
+        </p>
+        <h1>
+          Bring your next
+          <br>
+          legend to life.
+        </h1>
+        <p class="hero-copy">
+          Create a character, make it your own, and keep everything you need for your next session in one place.
+        </p>
+        <div class="hero-actions">
+          <button *ngIf="!install.installed" mat-stroked-button (click)="installPanel.open=true; installPanel.scrollIntoView({block:'start',behavior:'smooth'})"><mat-icon>install_mobile</mat-icon>Install app</button>
+          <button mat-raised-button color="primary" (click)="newChararcter()">
+            <mat-icon>
+              add
+            </mat-icon>
+            Create character
+          </button>
+          <button *ngIf="isAlreadyCreatingCharacter()" mat-stroked-button routerLink="/character-creation">
+            Continue draft
+            <mat-icon>
+              arrow_forward
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+      <aside class="hero-note">
+        <span class="note-icon">
+          &#10022;
+        </span>
+        <p>
+          Made for your table.
+        </p>
+        <span>
+          Guided creation. Flexible rules.
+          <br>
+          Room for every homebrew idea.
+        </span>
+        <div class="note-divider">
+        </div>
+        <span>
+          Mythras 2nd edition
+        </span>
+      </aside>
+    </section>
+    <details #installPanel class="install-panel" [open]="install.installed || install.updateAvailable">
+      <summary>{{install.installed ? 'Your installed app' : 'Install on your device'}} <span *ngIf="install.offlineReady">Ready offline</span></summary>
+      <p>Keep Mythras on your home screen and use your characters, creation tools and references offline once the app files are ready.</p>
+      <ng-container *ngIf="!install.installed">
+        <p *ngIf="install.isAppleMobile"><strong>iPhone / iPad:</strong> In Safari, open Share, choose Add to Home Screen and keep Open as Web App enabled if shown.</p>
+        <p *ngIf="!install.isAppleMobile"><strong>Android / other browsers:</strong> Use the install button below when available, or open your browser menu and choose Install app or Add to Home screen.</p>
+        <p><strong>Your saved characters:</strong> Android/Chrome normally keeps the same browser's saves. On iPhone/iPad, the installed app has separate storage: download a library backup here, then use Import JSON inside the home-screen app. Saves do not sync between browsers or devices.</p>
+        <div class="install-actions"><button mat-stroked-button (click)="storage.exportLibrary()"><mat-icon>download</mat-icon>Back up before installing</button><button *ngIf="install.canPrompt" mat-raised-button color="primary" (click)="install.install()">Install Mythras Tools</button></div>
+      </ng-container>
+      <p *ngIf="install.installed">Characters stay on this device. Use the library's Import JSON to bring in a browser backup, and keep occasional JSON backups.</p>
+      <p *ngIf="!install.offlineReady">Offline files are prepared after opening the published site online. Installation requires HTTPS (GitHub Pages provides it).</p>
+      <p *ngIf="install.message" role="status">{{install.message}}</p>
+      <div *ngIf="install.updateAvailable" class="install-actions"><span>A new version is ready. Reload when you're ready to switch.</span><button mat-stroked-button (click)="install.applyUpdate()">Reload to update</button></div>
+    </details>
+    <section class="library">
+      <div class="library-heading">
+        <div>
+          <p class="eyebrow">
+            YOUR ADVENTURERS
+          </p>
+          <h2>
+            Character library
+            <span class="count">
+              {{characters.length}}
+            </span>
+          </h2>
+        </div>
+        <div class="library-actions">
+          <input type="file" accept=".json,application/json" hidden #importFile (change)="upload($event)">
+          <button mat-stroked-button (click)="importFile.click()">
+            <mat-icon>
+              upload
+            </mat-icon>
+            Import JSON
+          </button>
+          <button mat-stroked-button (click)="storage.exportLibrary()">
+            <mat-icon>
+              download
+            </mat-icon>
+            Back up library
+          </button>
+        </div>
+      </div>
+      <p class="storage-note">
+        <mat-icon>
+          save
+        </mat-icon>
+        Saved automatically on this device. Download backups to keep a copy outside your browser.
+      </p>
+      <p *ngIf="message || storage.error" class="feedback" role="status">
+        {{storage.error || message}}
+      </p>
+      <label class="search-field">
+        <mat-icon>
+          search
+        </mat-icon>
+        <input aria-label="Search characters" placeholder="Search by name, player, culture or career..." [(ngModel)]="search">
+      </label>
+      <div class="character-grid" *ngIf="filteredCharacters.length; else empty">
+        <article class="character-card" *ngFor="let character of filteredCharacters">
+          <div class="character-card-top">
+            <span class="character-avatar">
+              {{(character.name || '?').charAt(0).toUpperCase()}}
+            </span>
+            <span class="character-culture">
+              {{character.culture || 'Your next adventure'}}
+            </span>
+          </div>
+          <h3>
+            {{character.name || 'Unnamed character'}}
+          </h3>
+          <p>
+            {{character.career || 'Career undecided'}}
+            <span *ngIf="character.player">
+              &middot; {{character.player}}
+            </span>
+          </p>
+          <div class="card-primary-actions">
+            <button mat-flat-button color="primary" (click)="open(character)">
+              Open sheet
+            </button>
+            <button mat-stroked-button (click)="open(character,true)">
+              Edit
+            </button>
+          </div>
+          <details class="card-more">
+            <summary>
+              Backups & more
+            </summary>
+            <div class="card-tools">
+              <button type="button" (click)="download(character)">
+                Download JSON
+              </button>
+              <button type="button" (click)="duplicate(character)">
+                Duplicate
+              </button>
+              <button type="button" *ngIf="canRestore(character)" (click)="restore(character)">
+                Restore previous session
+              </button>
+              <button type="button" class="delete" (click)="remove(character)">
+                Delete character
+              </button>
+            </div>
+          </details>
+        </article>
+      </div>
+      <ng-template #empty>
+        <div class="empty-state">
+          <mat-icon>
+            auto_stories
+          </mat-icon>
+          <h3>
+            {{search ? 'No matching adventurers' : 'A blank page. A world of possibilities.'}}
+          </h3>
+          <p>
+            {{search ? 'Try another name, culture or career.' : 'Create your first character or import an existing JSON save.'}}
+          </p>
+          <button *ngIf="!search" mat-stroked-button (click)="newChararcter()">
+            Create a character
+          </button>
+        </div>
+      </ng-template>
+    </section>
+    <section class="tool-grid">
+      <a routerLink="/combat" class="tool-card combat">
+        <mat-icon>
+          sports_martial_arts
+        </mat-icon>
+        <div>
+          <h3>
+            Combat flow
+          </h3>
+          <p>
+            Keep the action moving, step by step.
+          </p>
+        </div>
+        <span>
+          &#8599;
+        </span>
+      </a>
+      <a routerLink="/combat-styles" class="tool-card styles">
+        <mat-icon>
+          shield
+        </mat-icon>
+        <div>
+          <h3>
+            Combat styles
+          </h3>
+          <p>
+            Find weapons, styles and traits.
+          </p>
+        </div>
+        <span>
+          &#8599;
+        </span>
+      </a>
+      <a routerLink="/rules-index" class="tool-card rules">
+        <mat-icon>
+          menu_book
+        </mat-icon>
+        <div>
+          <h3>
+            Rules index
+          </h3>
+          <p>
+            Find the reference you need.
+          </p>
+        </div>
+        <span>
+          &#8599;
+        </span>
+      </a>
+    </section>
+    <div class="credits">
+      Fan Policy Acknowledgement:
+      <br />
+      I own
+      <b>
+        NONE
+      </b>
+      of the info presented in these tools. Design Mechanism Inc owns all official information, these tools are simply to help players and GMs and not to claim any ownership of anything.
+    Make sure to support Design Mechanism and Mythras by buying official rule books and other products from their page. You can find everything mythras related at
+      <a href="https://thedesignmechanism.com/" target="_blank">
+        https://thedesignmechanism.com/
+      </a>
+      .
+      <br />
+      “Mythras” is a Registered Trademark of The Design Mechanism Inc, and is used
     with permission.
-    <br />
-    These tools use 'Notes From Pavis Mythras fan material' based on
-    <a href="http://toolsfrompavis.com/" target="_blank">http://toolsfrompavis.com/</a> and is used with permission of the author. You
-    can find more Mythras fan material at <a href="http://notesfrompavis.blog" target="_blank">https://notesfrompavis.blog</a>
-  </div>
-</div>
+      <br />
+      These tools use 'Notes From Pavis Mythras fan material' based on
+      <a href="http://toolsfrompavis.com/" target="_blank">
+        http://toolsfrompavis.com/
+      </a>
+      and is used with permission of the author. You
+    can find more Mythras fan material at
+      <a href="http://notesfrompavis.blog" target="_blank">
+        https://notesfrompavis.blog
+      </a>
+    </div>
+  </main>
 </div>

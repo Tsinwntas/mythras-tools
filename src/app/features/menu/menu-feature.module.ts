@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { AppComponentsModule } from 'src/app/app-components.module';
+import { MenuComponent } from 'src/app/pages/menu/menu.component';
 import { MenuFeatureRoutingModule } from './menu-feature-routing.module';
 
 @NgModule({
-  imports: [AppComponentsModule, MenuFeatureRoutingModule],
+  imports: [MenuComponent, MenuFeatureRoutingModule],
 })
 export class MenuFeatureModule {}

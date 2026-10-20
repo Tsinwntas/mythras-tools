@@ -1,33 +1,30 @@
 <div class="app-shell">
 <div class="app-container page-wrapper">
-    <div class="header app-page-header app-card-surface">
+    <header class="tool-header">
       <div>
-        <h1 class="title app-page-title">MYTHRAS TOOLS</h1>
-        <p class="app-page-subtitle">Mythras to DND Stat Block Converter</p>
+        <p class="page-eyebrow">Creature workshop</p>
+        <h1>Stat Block Converter</h1>
+        <p>Bring a Mythras encounter into your D&amp;D tools. Paste a creature, review the result, and export.</p>
       </div>
-      <span class="author">by Tsinik</span>
-    </div>
-    <div class="disclaimer app-card-surface">
-      <b
-        >This page saves in the browser's local storage, so if you clean your
-        cache, everything saved will be lost.</b
-      >
-    </div>
+      <a mat-stroked-button routerLink="/menu">← All tools</a>
+    </header>
     <div class="text-holder app-section app-card-surface">
-        <label>Generate creatures from Mythras Encounter Generator and then copy paste the creature you want and paste here. Make sure to copy from "Chars" all the way to the end.</label>
-        <textarea class="source-textarea" [(ngModel)]="mythrasStatBlock"></textarea>
+        <h2>1. Paste your creature</h2>
+        <label for="creature-source">Copy the creature from Mythras Encounter Generator, from “Chars” through the end of its entry.</label>
+        <textarea id="creature-source" class="source-textarea" placeholder="Paste a Mythras creature here…" [(ngModel)]="mythrasStatBlock"></textarea>
     </div>
     <div class="overwrites-wrap app-card-surface app-section">
+      <h2>2. Adjust the result</h2><p>Optional overrides for the converted creature.</p>
       <div class="overwrites app-form-grid">
-          <div><input placeholder="Name" [(ngModel)]="name"/></div>
-          <div><input placeholder="HP Overwrite" [(ngModel)]="hpOvewrite"/></div>
-          <div><input placeholder="AC Overwrite" [(ngModel)]="acOvewrite"/></div>
-          <div><input placeholder="Proficiency" [(ngModel)]="prof"/></div>
+          <label>Name<input [(ngModel)]="name"/></label>
+          <label>Hit Points<input type="number" [(ngModel)]="hpOvewrite"/></label>
+          <label>Armour Class<input type="number" [(ngModel)]="acOvewrite"/></label>
+          <label>Proficiency<input type="number" [(ngModel)]="prof"/></label>
       </div>
-      <div class="app-section"><textarea placeholder="Extra Abilities" class="extra-abilities" [(ngModel)]="extraAbilities"></textarea></div>
+      <label>Extra abilities<textarea class="extra-abilities" [(ngModel)]="extraAbilities"></textarea></label>
     </div>
     <div class="dnd-holder app-card-surface" *ngIf="isMythrasStatBlockIsInitialised()">
-        <b>CHECK IF PARSED CORRECTLY AND ADD PROFICIENCY</b>
+        <h2>3. Review &amp; export</h2><p>Check the parsed values and set proficiency before downloading.</p>
         <div class="attributes">
             <div>STR: {{getByCheck("STR:")}}</div>
             <div>CON: {{getByCheck("CON:")}}</div>

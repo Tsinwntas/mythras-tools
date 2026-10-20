@@ -6368,37 +6368,37 @@ select {
 
 @font-face {
   font-family: BaskervilleMTStd-Bold_m;
-  src: url("/assets/fonts/BaskervilleMTStd-Bold_m.woff") format("woff");
+  src: url("../../../assets/fonts/BaskervilleMTStd-Bold_m.woff") format("woff");
 }
 
 @font-face {
   font-family: BaskervilleMTStd-Regular_o;
-  src: url("/assets/fonts/BaskervilleMTStd-Regular_o.woff") format("woff");
+  src: url("../../../assets/fonts/BaskervilleMTStd-Regular_o.woff") format("woff");
 }
 
 @font-face {
   font-family: BaskervilleMTStd-Regular_o_1;
-  src: url("/assets/fonts/BaskervilleMTStd-Regular_o_1.woff") format("woff");
+  src: url("../../../assets/fonts/BaskervilleMTStd-Regular_o_1.woff") format("woff");
 }
 
 @font-face {
   font-family: Behistun_w;
-  src: url("/assets/fonts/Behistun_w.woff") format("woff");
+  src: url("../../../assets/fonts/Behistun_w.woff") format("woff");
 }
 
 @font-face {
   font-family: MinionPro-Cn_u;
-  src: url("/assets/fonts/MinionPro-Cn_u.woff") format("woff");
+  src: url("../../../assets/fonts/MinionPro-Cn_u.woff") format("woff");
 }
 
 @font-face {
   font-family: MinionPro-Regular_s;
-  src: url("/assets/fonts/MinionPro-Regular_s.woff") format("woff");
+  src: url("../../../assets/fonts/MinionPro-Regular_s.woff") format("woff");
 }
 
 @font-face {
   font-family: SavaPro-Medium_q;
-  src: url("/assets/fonts/SavaPro-Medium_q.woff") format("woff");
+  src: url("../../../assets/fonts/SavaPro-Medium_q.woff") format("woff");
 }
 
 #page3{
@@ -6446,4 +6446,23 @@ select {
   background-color: white;
   z-index: 5;
   padding: 0px 5px;
+}
+@media screen { [data-text-overflow="true"] { outline: 1px dotted #a46d36; } }
+@media print {
+  :host { display: block; }
+  #contentContainer { zoom: 0.824; width: 935px; }
+  #page1, #page2, #page3 { width: 935px !important; height: 1210px !important; margin: 0 !important; padding: 0 !important; break-after: page; break-inside: avoid; }
+  input, textarea, select { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+
+.hp-maximum-label {
+ position:absolute;
+ z-index:2;
+ left:578px;
+ width:29px;
+ height:11px;
+ font:8px/11px Arial,sans-serif;
+ color:#43384a;
+ text-align:center;
+ white-space:nowrap;
 }

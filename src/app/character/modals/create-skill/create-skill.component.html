@@ -1,30 +1,8 @@
-
-<mat-form-field>
-    <mat-label>Name:</mat-label>
-    <input matInput [(ngModel)]="skill.name">
-</mat-form-field>
-<br/>
-<mat-label>Base:</mat-label>
-<div class="row name-row">
-    <mat-form-field>
-        <input matInput [(ngModel)]="skill.multiply" type="number"> 
-    </mat-form-field> * (
-        <mat-form-field appearance="fill">
-            <mat-label>Skill A:</mat-label>
-            <mat-select [(value)]="skill.base[0]">
-              <mat-option *ngFor="let culture of ['str','dex','con','pow','int','cha','siz']" [value]="culture">{{culture}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    +
-        <mat-form-field appearance="fill">
-            <mat-label>Skill B:</mat-label>
-            <mat-select [(value)]="skill.base[1]">
-              <mat-option>None</mat-option>
-              <mat-option *ngFor="let culture of ['str','dex','con','pow','int','cha','siz']" [value]="culture">{{culture}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    ) + 
-    <mat-form-field>
-        <input matInput [(ngModel)]="skill.add" type="number"> 
-    </mat-form-field>
+<mat-form-field><mat-label>Skill name</mat-label><input matInput [(ngModel)]="skill.name" placeholder="Name your professional skill"></mat-form-field>
+<div class="formula-grid">
+  <mat-form-field><mat-label>Base multiplier</mat-label><input matInput [(ngModel)]="skill.multiply" type="number" placeholder="1"></mat-form-field>
+  <mat-form-field><mat-label>Characteristic A</mat-label><mat-select [(value)]="skill.base[0]"><mat-option *ngFor="let stat of ['str','dex','con','pow','int','cha','siz']" [value]="stat">{{stat.toUpperCase()}}</mat-option></mat-select></mat-form-field>
+  <mat-form-field><mat-label>Characteristic B</mat-label><mat-select [(value)]="skill.base[1]"><mat-option [value]="undefined">None</mat-option><mat-option *ngFor="let stat of ['str','dex','con','pow','int','cha','siz']" [value]="stat">{{stat.toUpperCase()}}</mat-option></mat-select></mat-form-field>
+  <mat-form-field><mat-label>Base adjustment</mat-label><input matInput [(ngModel)]="skill.add" type="number" placeholder="0"></mat-form-field>
 </div>
+<p *ngIf="editing">Culture, career and bonus points are kept when you edit this skill.</p>

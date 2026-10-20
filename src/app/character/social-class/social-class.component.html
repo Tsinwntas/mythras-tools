@@ -1,25 +1,27 @@
-<p>Money (in silver pieces) from {{character.culture? character.culture : 'Culture'}}:</p>
-<div class="starting-money">
-  <mat-form-field>
-    <mat-label>Starting Money</mat-label>
-    <input matInput type="number" [(ngModel)]="character.startingMoney">
-  </mat-form-field>
-  <button mat-raised-button (click)="rollStartingMoney()">4d6 X
-    {{character.culture ? getCulture().multiplier : '0'}}</button>
+<p class="section-intro">Set your starting money, then choose or roll a social class. All amounts are in silver pieces.</p>
+<div class="money-controls">
+  <mat-form-field><mat-label>Starting money</mat-label><input matInput type="number" [(ngModel)]="character.startingMoney"></mat-form-field>
+  <button mat-stroked-button (click)="rollStartingMoney()" [disabled]="!getCulture()">Roll 4d6 × {{getCulture()?.multiplier ?? 0}}</button>
+  <mat-form-field><mat-label>Social class</mat-label><mat-select [value]="character.socialClass.class || ''" (selectionChange)="selectClass($event.value)">
+    <mat-option value="">None</mat-option>
+    <mat-option *ngFor="let entry of getSocialClassesForCulture()" [value]="entry.socialClass.class">{{entry.socialClass.class}}</mat-option>
+    <mat-option *ngIf="character.socialClass.class && !findSocialClass()" [value]="character.socialClass.class">{{character.socialClass.class}}</mat-option>
+  </mat-select></mat-form-field>
+  <button mat-stroked-button (click)="rollSocialClass()" [disabled]="!getSocialClassesForCulture().length">Roll social class</button>
 </div>
-<div class="starting-money class-money">
-    <mat-form-field>
-      <mat-label>After Class Modifier</mat-label>
-      <input matInput type="number" [value]="getMoneyAfterClass()" disabled="true">
-    </mat-form-field>
-  <mat-select [value]="findSocialClass()" (selectionChange)="this.character.socialClass=$event.value" placeholder="Choose a Social Class">
-    <mat-option>None</mat-option>
-    <mat-option *ngFor="let socialClass of getSocialClassesForCultureNoPerc()" [value]="socialClass">
-      {{socialClass.class}}</mat-option>
-  </mat-select>
-  <button mat-raised-button (click)="rollSocialClass()">Roll Social Class</button>
+<div class="money-summary" aria-live="polite">
+  <span class="summary-label">Starting money after class modifier</span>
+  <output aria-label="Starting money after class modifier">{{getMoneyAfterClass() | number:'1.0-2'}} <span>silver pieces</span></output>
+  <p *ngIf="character.socialClass.class">{{character.socialClass.class}} · {{character.startingMoney || 0 | number:'1.0-2'}} × {{getMoneyMultiplier()}}</p>
+  <p *ngIf="!character.socialClass.class">Choose a social class to apply its money multiplier.</p>
 </div>
-<div>
-    <rollable-table [table]="getSocialClasssesTable()" [columnHeaders]="['1d100']"/>
+<div class="class-reference-heading"><h3>Social classes</h3><span>{{character.culture || 'Choose a culture'}} · 1d100 reference</span></div>
+<div class="social-class-list">
+  <article *ngFor="let entry of getSocialClassesForCulture()" class="social-class-card" [class.is-selected]="character.socialClass.class === entry.socialClass.class">
+    <header><div><span class="roll-range">Roll {{entry.percLow}}–{{entry.percHigh}}</span><h4>{{entry.socialClass.class}}</h4></div><span class="money-multiplier">Money × {{entry.socialClass.moneyMultiplier}}</span></header>
+    <dl><dt>Titles</dt><dd>{{entry.socialClass.titles}}</dd><dt>Resources</dt><dd>{{entry.socialClass.resources}}</dd></dl>
+    <button mat-stroked-button (click)="selectClass(entry.socialClass.class)" [attr.aria-pressed]="character.socialClass.class === entry.socialClass.class">{{character.socialClass.class === entry.socialClass.class ? 'Selected' : 'Choose ' + entry.socialClass.class}}</button>
+  </article>
 </div>
-<p><b>Source: Mythras Core Rules 24</b></p>
+<p *ngIf="!getSocialClassesForCulture().length" class="empty-reference">Choose a standard culture to see its social-class reference. You can still enter starting money for a custom culture.</p>
+<p class="reference-source">Source: Mythras Core Rules 24</p>

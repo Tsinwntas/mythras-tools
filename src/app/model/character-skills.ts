@@ -18,6 +18,7 @@ export class CharacterSkills {
     luck : Skill;
     skills : Skill[];
     specialized: Skill[];
+    culturalCombatStyle?: {name: string; source: string};
     combatstyles : CombatStyle[]; 
     hobby : Skill;
 

@@ -1,38 +1,38 @@
-<div>
-    <button mat-stroked-button (click)="melee()" >Melee</button>
-    <button mat-stroked-button (click)="ranged()" >Ranged</button>
-    <button mat-stroked-button (click)="magic()" >Magic</button>
+<div class="attack-modes" role="group" aria-label="Attack type">
+    <button mat-stroked-button (click)="melee()" [class.active]="type === 'melee'" [attr.aria-pressed]="type === 'melee'" >Melee</button>
+    <button mat-stroked-button (click)="ranged()" [class.active]="type === 'ranged'" [attr.aria-pressed]="type === 'ranged'" >Ranged</button>
+    <button mat-stroked-button (click)="magic()" [class.active]="type === 'magic'" [attr.aria-pressed]="type === 'magic'" >Magic</button>
 </div>
 
 <div class="attack-options">
-    <ul class="list-inline" *ngIf="type=='melee'" >
-        <li>If simple attack roll your Combat Style skill and proceed to next step, else choose one of the options below:</li>
-        <li>&nbsp;</li>
-        <li class="list-inline-item"><open-modal modal="charging">Charging</open-modal> </li>
-        <li class="list-inline-item"><open-modal modal="into-contact">into contact</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="through-contact">through Contact 102</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="falling-and-combat">Falling and combat (Prone fights at Formidable)</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="leaping-attacks">Leaping Attacks 104</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="mounted-combat">Mounted Combat 104</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="outmaneuvre">Outmaneuvre 104</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="surprise">Surprise 105</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="unarmed-combat">Unarmed Combat 105,222</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="withdraw-from-combat">Withdraw from combat 105</open-modal></li>
+    <ul class="reference-links" *ngIf="type=='melee'" >
+        <li class="attack-instructions">For a simple attack, roll your Combat Style and continue. Otherwise, open an option below.</li>
+
+        <li ><open-modal modal="charging">Charging</open-modal> </li>
+        <li ><open-modal modal="into-contact">into contact</open-modal></li>
+        <li ><open-modal modal="through-contact">through Contact 102</open-modal></li>
+        <li ><open-modal modal="falling-and-combat">Falling and combat (Prone fights at Formidable)</open-modal></li>
+        <li ><open-modal modal="leaping-attacks">Leaping Attacks 104</open-modal></li>
+        <li ><open-modal modal="mounted-combat">Mounted Combat 104</open-modal></li>
+        <li ><open-modal modal="outmaneuvre">Outmaneuvre 104</open-modal></li>
+        <li ><open-modal modal="surprise">Surprise 105</open-modal></li>
+        <li ><open-modal modal="unarmed-combat">Unarmed Combat 105,222</open-modal></li>
+        <li ><open-modal modal="withdraw-from-combat">Withdraw from combat 105</open-modal></li>
     </ul>
-    <ul class="list-inline" *ngIf="type=='ranged'" >
-        <li class="list-inline-item"><open-modal modal="aiming">Aiming 108</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="firing-into-crowd">Firing into a crowd 108</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="firing-moving">Firing on the move 108</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="reload">Ranged weapons reload 109</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="ranged-situational">Ranged combat situational modifiers</open-modal> </li>
+    <ul class="reference-links" *ngIf="type=='ranged'" >
+        <li ><open-modal modal="aiming">Aiming 108</open-modal></li>
+        <li ><open-modal modal="firing-into-crowd">Firing into a crowd 108</open-modal></li>
+        <li ><open-modal modal="firing-moving">Firing on the move 108</open-modal></li>
+        <li ><open-modal modal="reload">Ranged weapons reload 109</open-modal></li>
+        <li ><open-modal modal="ranged-situational">Ranged combat situational modifiers</open-modal> </li>
     </ul>
-    <ul class="list-inline" *ngIf="type=='magic'" >
+    <ul class="reference-links" *ngIf="type=='magic'" >
         <p>Cast Spell. Before using a spell make sure to read all the information of the tradition.</p>
         <p>There is too much information to note everything here.</p>
         <hr/>
-        <li sclass="list-inline-item"><open-modal modal="magic-situational">Magic situational effects</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="running-out-of-mana">Running out of Magic Points 117</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="spirit-combat">Spirit Combat 137</open-modal></li>
-        <li class="list-inline-item"><open-modal modal="spirit-specials">Spirit Combat Special Effects</open-modal></li>
+        <li s><open-modal modal="magic-situational">Magic situational effects</open-modal></li>
+        <li ><open-modal modal="running-out-of-mana">Running out of Magic Points 117</open-modal></li>
+        <li ><open-modal modal="spirit-combat">Spirit Combat 137</open-modal></li>
+        <li ><open-modal modal="spirit-specials">Spirit Combat Special Effects</open-modal></li>
     </ul>
 </div>

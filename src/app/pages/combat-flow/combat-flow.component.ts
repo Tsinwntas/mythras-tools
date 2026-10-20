@@ -36,8 +36,13 @@ export class CombatFlowComponent extends StatePageComponent {
   userType : UserTypes;
   UserTypes = UserTypes;
   sidebarOpen = false;
-  @ViewChild('activeStateHost', { read: ViewContainerRef })
+  referenceOpen = false;
   private activeStateHost?: ViewContainerRef;
+  @ViewChild('activeStateHost', { read: ViewContainerRef })
+  set activeHost(host: ViewContainerRef | undefined) {
+    this.activeStateHost = host;
+    if (host) this.renderActiveState();
+  }
   private sectionComponents = new Map<number, ComponentRef<any>>();
   private activeSectionIndex = -1;
   override states : CombatState[] = [
@@ -231,6 +236,13 @@ export class CombatFlowComponent extends StatePageComponent {
       this.pageState = this.storage.getNumber('combat-state-gm') ?? 0;
     if(this.userType == UserTypes.PLAYER)
       this.pageState = this.storage.getNumber('combat-state-player') ?? 0;
+    this.pageState = Math.max(0, Math.min(this.getStates().length - 1, this.pageState ?? 0));
+  }
+
+  phaseLabel(index: number): string {
+    const gm = ['Prepare combat','Begin the round','Check fatigue','Begin the cycle','Choose an action','Resolve an attack','Free actions','Choose a defense','Compare results','End the cycle'];
+    const player = ['Choose an action','Resolve an attack','Free actions','Choose a defense','Compare results'];
+    return (this.userType === UserTypes.GM ? gm : player)[index] || 'Combat';
   }
 
   private requestSave(): void {
@@ -251,7 +263,7 @@ export class CombatFlowComponent extends StatePageComponent {
   }
 
   toggleSidebar(): void {
-    if (window.innerWidth > 600) {
+    if (window.innerWidth > 959) {
       return;
     }
     this.sidebarOpen = !this.sidebarOpen;
@@ -259,7 +271,7 @@ export class CombatFlowComponent extends StatePageComponent {
 
   goToStep(index: number): void {
     this.stepTo(index);
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 959) {
       this.sidebarOpen = false;
     }
   }
@@ -311,7 +323,7 @@ export class CombatFlowComponent extends StatePageComponent {
   }
 
   private syncSidebarForViewport(): void {
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 959) {
       this.sidebarOpen = false;
     }
   }

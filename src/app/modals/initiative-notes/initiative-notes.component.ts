@@ -20,6 +20,12 @@ export class InitiativeNotesComponent
 {
   round : RoundHolder;
   initiative: Initiative = new Initiative();
+  readonly numericFields = [
+    {key:'con', label:'CON', accessibleLabel:'CON'},
+    {key:'fatigue', label:'Fatigue', accessibleLabel:'Fatigue'},
+    {key:'actionPoints', label:'AP', accessibleLabel:'Action points'},
+    {key:'used', label:'Used', accessibleLabel:'Used action points'},
+  ];
   private saveHandle: DebouncedSaveHandle;
 
   constructor(private storage: AppStorageService) {
@@ -113,6 +119,10 @@ export class InitiativeNotesComponent
     });
   }
 
+  getFatigueParticipants(): any[] {
+    return this.initiative.participants.filter(participant => this.isRollingForFatique(participant));
+  }
+
   sortParticipantsByInitiative(): void {
     this.initiative.participants = [...this.initiative.participants].sort(
       (a, b) => (b.initiative ?? 0) - (a.initiative ?? 0)
@@ -130,7 +140,7 @@ export class InitiativeNotesComponent
       used: 0
     });
     this.persistInitiative();
-    (window as any)['loadingSubject'].next(true);
+    (window as any)['loadingSubject']?.next(true);
   }
 
   removeParticipant(index : number){
@@ -138,7 +148,7 @@ export class InitiativeNotesComponent
     if(!this.initiative.participants.length)
       this.addParticipant();
     this.persistInitiative();
-    (window as any)['loadingSubject'].next(true);
+    (window as any)['loadingSubject']?.next(true);
   }
 
   getFatigues() {

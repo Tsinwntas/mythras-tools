@@ -65,7 +65,8 @@ import { SituationalModifiersComponent } from './../modals/situational-modifiers
 import { FatigueComponent } from './../modals/fatigue/fatigue.component';
 import { AugmentModalComponent } from './../modals/augment-modal/augment-modal.component';
 import { ModalHandlerService } from './../services/modal-handler.service';
-import { Component, Input } from '@angular/core';
+import { Component, ContentChild, Input } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 import { FallingAndCombatComponent } from '../modals/falling-and-combat/falling-and-combat.component';
 import { MountedCombatComponent } from '../modals/mounted-combat/mounted-combat.component';
 import { FiringIntoCrowdComponent } from '../modals/firing-into-crowd/firing-into-crowd.component';
@@ -224,11 +225,18 @@ export type ModalKey = keyof typeof modalRegistry;
   styleUrls: ['./open-modal.component.scss']
 })
 export class OpenModalComponent {
+  @ContentChild(MatButton) projectedButton?: MatButton;
 
   @Input() modal : ModalKey;
   @Input() prop : any;
 
   constructor(private modals : ModalHandlerService){}
+
+  onKeyboardOpen(event: Event): void {
+    if (event.target !== event.currentTarget) return;
+    event.preventDefault();
+    this.openModal();
+  }
 
   openModal(){
     modalRegistry[this.modal](this.modals, this.prop);
