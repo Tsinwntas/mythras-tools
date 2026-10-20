@@ -69,7 +69,7 @@
     </section>
     <details #installPanel class="install-panel" [open]="install.installed || install.updateAvailable">
       <summary>{{install.installed ? 'Your installed app' : 'Install on your device'}} <span *ngIf="install.offlineReady">Ready offline</span></summary>
-      <p>Keep Mythras on your home screen and use your characters, creation tools and references offline once the app files are ready.</p>
+      <p>Keep Mythras Tools on your home screen and use your characters, creation tools and references offline once the app files are ready.</p>
       <ng-container *ngIf="!install.installed">
         <p *ngIf="install.isAppleMobile"><strong>iPhone / iPad:</strong> In Safari, open Share, choose Add to Home Screen and keep Open as Web App enabled if shown.</p>
         <p *ngIf="!install.isAppleMobile"><strong>Android / other browsers:</strong> Use the install button below when available, or open your browser menu and choose Install app or Add to Home screen.</p>

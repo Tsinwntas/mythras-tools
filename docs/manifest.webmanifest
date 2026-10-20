@@ -1,7 +1,7 @@
 {
   "id": "./",
   "name": "Mythras Tools",
-  "short_name": "Mythras",
+  "short_name": "Mythras Tools",
   "description": "Your Mythras character workshop and adventure companion.",
   "lang": "en",
   "start_url": "./#/menu",

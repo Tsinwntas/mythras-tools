@@ -20,7 +20,7 @@ export class AppInstallService {
       event.preventDefault();
       this.zone.run(() => this.promptEvent=event as InstallPrompt);
     });
-    window.addEventListener('appinstalled', () => this.zone.run(() => { this.installed=true; this.promptEvent=undefined; this.message='App installed. Open Mythras from your home screen.'; }));
+    window.addEventListener('appinstalled', () => this.zone.run(() => { this.installed=true; this.promptEvent=undefined; this.message='App installed. Open Mythras Tools from your home screen.'; }));
     if ('serviceWorker' in navigator && !isDevMode() && window.isSecureContext) {
       // Keep service-worker bookkeeping out of Angular's change detection loop.
       this.zone.runOutsideAngular(() => {
@@ -39,9 +39,9 @@ export class AppInstallService {
     try {
       await prompt.prompt();
       const choice=await prompt.userChoice;
-      this.message=choice.outcome==='accepted' ? 'Installation requested. Look for Mythras on your home screen.' : 'Installation dismissed. You can still use the browser or install from its menu.';
+      this.message=choice.outcome==='accepted' ? 'Installation requested. Look for Mythras Tools on your home screen.' : 'Installation dismissed. You can still use the browser or install from its menu.';
       if (choice.outcome==='accepted' && navigator.storage?.persist) void navigator.storage.persist().catch(() => false);
-    } catch { this.message='Use your browser menu to install or add Mythras to your home screen.'; }
+    } catch { this.message='Use your browser menu to install or add Mythras Tools to your home screen.'; }
   }
 
   private async register(): Promise<void> {
@@ -62,7 +62,7 @@ export class AppInstallService {
       watch();
       await navigator.serviceWorker.ready;
       check();
-    } catch { this.zone.run(() => this.message='Offline files could not be prepared. You can keep using Mythras online.'); }
+    } catch { this.zone.run(() => this.message='Offline files could not be prepared. You can keep using Mythras Tools online.'); }
   }
 
   applyUpdate(): void {
