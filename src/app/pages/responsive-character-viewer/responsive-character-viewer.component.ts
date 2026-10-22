@@ -246,10 +246,7 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     if (!this.character) {
       return '';
     }
-    if (!this.character.moneyOverall) {
-      this.generateMoney();
-    }
-    return this.character.moneyOverall;
+    return this.character.moneyOverall || this.generateMoney();
   }
 
   setMoney(event: any): void {
@@ -259,16 +256,15 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     this.character.moneyOverall = event.target.value;
   }
 
-  generateMoney(): void {
+  generateMoney(): string {
     if (!this.character) {
-      return;
+      return '';
     }
     const money =
       getMoneyAfterClass(this.character) -
       getTotalFromItems(this.character, 'cost');
     const social = this.character.socialClass;
-    this.character.moneyOverall =
-      `Money: ${Math.floor(money)} S, ${Math.floor(
+    return `Money: ${Math.floor(money)} S, ${Math.floor(
         (money - Math.floor(money)) * 100
       )} C\n\n${social ? social.resources : ''}`.trim() + '\n';
   }
@@ -819,10 +815,7 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     if (!this.character) {
       return '';
     }
-    if (!this.character.backgroundOverall) {
-      this.generateBackground();
-    }
-    return this.character.backgroundOverall;
+    return this.character.backgroundOverall || this.generateBackground();
   }
 
   setBackground(event: any): void {
@@ -832,9 +825,9 @@ export class ResponsiveCharacterViewerComponent implements OnInit, OnDestroy {
     this.character.backgroundOverall = event?.target?.value || '';
   }
 
-  generateBackground(): void {
+  generateBackground(): string {
     if (!this.character) {
-      return;
+      return '';
     }
     let background = '';
     if (this.character.backgroundEvents) {
@@ -854,17 +847,14 @@ ${this.character.family.text}\n\n`;
         background += `${this.character.background}\n\n`;
       }
     }
-    this.character.backgroundOverall = background.trim();
+    return background.trim();
   }
 
   getOrCreateContacts(): string {
     if (!this.character) {
       return '';
     }
-    if (!this.character.contactsOverall) {
-      this.generateContacts();
-    }
-    return this.character.contactsOverall;
+    return this.character.contactsOverall || this.generateContacts();
   }
 
   setContacts(event: any): void {
@@ -874,12 +864,12 @@ ${this.character.family.text}\n\n`;
     this.character.contactsOverall = event?.target?.value || '';
   }
 
-  generateContacts(): void {
+  generateContacts(): string {
     if (!this.character?.family) {
-      return;
+      return '';
     }
     const family = this.character.family;
-    this.character.contactsOverall = `Contacts: ${family.contacts}
+    return `Contacts: ${family.contacts}
 Allies: ${family.allies}
 Rivals: ${family.rivals}
 Enemies: ${family.enemies}`.trim();
@@ -960,8 +950,9 @@ Enemies: ${family.enemies}`.trim();
       this.getMapOrNull(this.character.magic.folk, 'Folk Spells'),
       this.getMapOrNull(this.character.magic.sorcery, 'Sorcery'),
       this.getMapOrNull(this.character.magic.miracles, 'Miracles'),
+      (this.character.magic.custom || []).map(ability => ability.name).filter(Boolean).join(', '),
       this.character.magic.spirits
-        ? 'Spirits\n' + this.character.magic.spirits
+        ? 'Spirits: ' + this.character.magic.spirits
         : undefined,
     ]
       .concat(
@@ -983,13 +974,13 @@ Enemies: ${family.enemies}`.trim();
           : []
       )
       .filter((s) => s && s.length > 0)
-      .join('\n\n');
+        .join('\n\n');
     return magic;
   }
 
   getMapOrNull(list: Spell[] | undefined, title: string): string | undefined {
     return list && list.length
-      ? title + ':\n' + list.map((s) => s.name).join(', ')
+      ? title + ': ' + list.map((s) => s.name).join(', ')
       : undefined;
   }
 
@@ -997,7 +988,7 @@ Enemies: ${family.enemies}`.trim();
     list: string[] | undefined,
     title: string
   ): string | undefined {
-    return list && list.length ? title + ':\n' + list.join(', ') : undefined;
+    return list && list.length ? title + ': ' + list.join(', ') : undefined;
   }
 
   setAbilities(event: any): void {
@@ -1025,6 +1016,7 @@ Enemies: ${family.enemies}`.trim();
     this.getFolkMagicDescription();
     this.getSorceriesDescription();
     this.getMiracleDescription();
+    this.getCustomMagicDescription();
     this.getMysticsDescription();
     return Object.keys(this.traitsRecord)
       .map((k) => this.traitsRecord[k])
@@ -1098,6 +1090,10 @@ Enemies: ${family.enemies}`.trim();
       return;
     }
     this.character.magic.miracles.forEach((t: any) => this.addTrait(t));
+  }
+
+  getCustomMagicDescription(): void {
+    this.character?.magic.custom?.forEach(spell => this.addTrait(spell));
   }
 
   getMysticsDescription(): void {

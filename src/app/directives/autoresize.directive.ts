@@ -64,6 +64,6 @@ export class AutoresizeDirective implements AfterViewInit, DoCheck, OnDestroy {
     for (let i = 0; i < 7; i++) { const mid = (low + high) / 2; if (fits(mid)) low = mid; else high = mid; }
     const overflow = !fits(Math.floor(low * 10) / 10);
     element.dataset['textOverflow'] = String(overflow);
-    element.title = overflow ? `${this.originalTitle}: Full text is preserved in the character JSON. See the printable details supplement.` : this.originalTitle;
+    element.title = overflow ? `${this.originalTitle}: Full text is preserved in the character JSON.` : this.originalTitle;
   }
 }

@@ -247,15 +247,14 @@ export class CharacterPdfComponent {
   }
 
   getOrCreateBackground(): string {
-    if (!this.character.backgroundOverall) this.generateBackground();
-    return this.character.backgroundOverall;
+    return this.character.backgroundOverall || this.generateBackground();
   }
 
   setBackground(event: any) {
     this.character.backgroundOverall = event.target.value;
   }
 
-  generateBackground() {
+  generateBackground(): string {
     let background = '';
     if (this.character.backgroundEvents)
       this.character.backgroundEvents.forEach(
@@ -274,42 +273,39 @@ ${this.character.family.text}\n\n`;
       if (this.character.background)
         background += `${this.character.background}\n\n`;
     }
-    this.character.backgroundOverall = background.trim();
+    return background.trim();
   }
 
   getOrCreateContacts(): string {
-    if (!this.character.contactsOverall) this.generateContacts();
-    return this.character.contactsOverall;
+    return this.character.contactsOverall || this.generateContacts();
   }
 
   setContacts(event: any) {
     this.character.contactsOverall = event.target.value;
   }
 
-  generateContacts() {
+  generateContacts(): string {
     let family = this.character.family;
-    this.character.contactsOverall = `Contacts: ${family.contacts}
+    return `Contacts: ${family.contacts}
 Allies: ${family.allies}
 Rivals: ${family.rivals}
 Enemies: ${family.enemies}`.trim();
   }
 
   getOrCreateMoney(): string {
-    if (!this.character.moneyOverall) this.generateMoney();
-    return this.character.moneyOverall;
+    return this.character.moneyOverall || this.generateMoney();
   }
 
   setMoney(event: any) {
     this.character.moneyOverall = event.target.value;
   }
 
-  generateMoney() {
+  generateMoney(): string {
     let money =
       getMoneyAfterClass(this.character) -
       getTotalFromItems(this.character, 'cost');
     let social = this.character.socialClass;
-    this.character.moneyOverall =
-      `Money: ${Math.floor(money)} S, ${Math.floor(
+    return `Money: ${Math.floor(money)} S, ${Math.floor(
         (money - Math.floor(money)) * 100
       )} C
 
@@ -594,8 +590,9 @@ ${social ? social.resources : ''}`.trim() + '\n';
       this.getMapOrNull(this.character.magic.folk, 'Folk Spells'),
       this.getMapOrNull(this.character.magic.sorcery, 'Sorcery'),
       this.getMapOrNull(this.character.magic.miracles, 'Miracles'),
+      (this.character.magic.custom || []).map(ability => ability.name).filter(Boolean).join(', '),
       this.character.magic.spirits
-        ? 'Spirits\n' + this.character.magic.spirits
+        ? 'Spirits: ' + this.character.magic.spirits
         : undefined,
     ]
       .concat(
@@ -623,12 +620,12 @@ ${social ? social.resources : ''}`.trim() + '\n';
 
   getMapOrNull(list: Spell[], title: string): string | undefined {
     return list && list.length
-      ? title + ':\n' + list.map((s) => s.name).join(', ')
+      ? title + ': ' + list.map((s) => s.name).join(', ')
       : undefined;
   }
 
   getStringMapOrNull(list: string[], title: string): string | undefined {
-    return list && list.length ? title + ':\n' + list.join(', ') : undefined;
+    return list && list.length ? title + ': ' + list.join(', ') : undefined;
   }
 
   setAbilities(event: any) {
@@ -651,6 +648,7 @@ ${social ? social.resources : ''}`.trim() + '\n';
     this.getFolkMagicDescription();
     this.getSorceriesDescription();
     this.getMiracleDescription();
+    this.getCustomMagicDescription();
     this.getMysticsDescription();
     return Object.keys(this.traits)
       .map((k) => this.traits[k])
@@ -710,6 +708,10 @@ ${social ? social.resources : ''}`.trim() + '\n';
   getMiracleDescription() {
     if (!this.character.magic.miracles) return;
     this.character.magic.miracles.forEach(this.addTrait);
+  }
+
+  getCustomMagicDescription() {
+    (this.character.magic.custom || []).forEach(this.addTrait);
   }
 
   getMysticsDescription() {

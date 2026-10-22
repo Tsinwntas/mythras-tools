@@ -6452,6 +6452,7 @@ select {
   :host { display: block; }
   #contentContainer { zoom: 0.824; width: 935px; }
   #page1, #page2, #page3 { width: 935px !important; height: 1210px !important; margin: 0 !important; padding: 0 !important; break-after: page; break-inside: avoid; }
+  #page3 { break-after: auto; }
   input, textarea, select { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
 

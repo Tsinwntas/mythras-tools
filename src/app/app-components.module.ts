@@ -1,5 +1,4 @@
 import { SkillActionsComponent } from './character/skill-actions/skill-actions.component';
-import { PrintSupplementComponent } from './character/print-supplement/print-supplement.component';
 import { CustomizationComponent } from './character/customization/customization.component';
 import { AgeExperienceModalComponent } from './character/modals/age-experience/age-experience.component';
 import { NgModule } from '@angular/core';
@@ -319,7 +318,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     CustomizationComponent,
     SkillActionsComponent,
-    PrintSupplementComponent,
     CommonModule,
     RouterModule,
     FormsModule,

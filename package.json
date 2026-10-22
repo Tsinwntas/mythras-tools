@@ -9,7 +9,7 @@
     "postbuild": "node scripts/prepare-pwa.cjs dist/mythras-tools",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:compat": "ng test --watch=false --browsers=ChromeHeadless --include=src/app/services/character-format.spec.ts --include=src/app/services/app-storage.service.spec.ts --include=src/app/services/custom-skills.spec.ts --include=src/app/services/hit-points.spec.ts"
+    "test:compat": "ng test --watch=false --browsers=ChromeHeadless --include=src/app/services/character-format.spec.ts --include=src/app/services/app-storage.service.spec.ts --include=src/app/services/custom-skills.spec.ts --include=src/app/services/hit-points.spec.ts --include=src/app/services/printed-magic.spec.ts"
   },
   "private": true,
   "dependencies": {
