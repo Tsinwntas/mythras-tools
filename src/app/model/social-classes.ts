@@ -44,7 +44,7 @@ export const BarbarianSocialClasses: {
     percHigh: 95,
     socialClass: {
       class: 'Gentry',
-      titles: 'Ealdormen, Elaith, Hauldr, Reeve, Thane',
+      titles: "Ealdormen, Flaith, Hauldr, Reeve, Thane",
       moneyMultiplier: 3,
       resources:
         'Owns a house and either a farmstead, business or ship; furniture; tools, weapons and armour, mount, several servant or slave retainers; support from locals',

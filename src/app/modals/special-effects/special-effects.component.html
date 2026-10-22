@@ -1,6 +1,11 @@
-<p *ngIf="getSpecialEffect().requirement" ><b><i>Requirement: {{getSpecialEffect().requirement}}</i></b></p>
+<ng-container *ngIf="getSpecialEffect() as effect; else sourceReference">
+<p *ngIf="effect.requirement" ><b><i>Requirement: {{effect.requirement}}</i></b></p>
 <ul>
-    <li *ngFor="let trait of getSpecialEffect().traits" >
+    <li *ngFor="let trait of effect.traits" >
         {{trait}}
     </li>
 </ul>
+</ng-container>
+<ng-template #sourceReference>
+    <p>This effect's rules are not included in the core reference. Check the source listed for the combat style or weapon.</p>
+</ng-template>

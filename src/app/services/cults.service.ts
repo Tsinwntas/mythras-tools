@@ -22,7 +22,7 @@ export const TheismCults = [
     standardSkills: 'Brawn, Endurance',
     professionalSkills: 'Craft (Any), Devotion, Exhort',
     miracles:
-      'Backlash, Dismiss Magic, Fortify, Harmonise, Leeching, Mindlink, Backlash, Dismiss Magic, Fortify, Harmonise, Leeching, Mindlink',
+      "Backlash, Dismiss Magic, Fortify, Harmonise, Leeching, Mindlink",
   },
   {
     name: 'Death God',
@@ -44,9 +44,9 @@ export const TheismCults = [
     name: 'Fertility Goddess',
     level: 'Lay Member',
     standardSkills: 'Endurance, Locale',
-    professionalSkills: 'Craft (Earming or Husbandry), Devotion, Exhort',
+    professionalSkills: "Craft (Farming or Husbandry), Devotion, Exhort",
     miracles:
-      'Beast Form, Bless Crops, Clear Skies, Cloud Call, Dismiss Magic, Entangle, Enthrall, Eecundity, Growth, Heal Wound, Pacify, Ripen',
+      "Beast Form, Bless Crops, Clear Skies, Cloud Call, Dismiss Magic, Entangle, Enthrall, Fecundity, Growth, Heal Wound, Pacify, Ripen",
   },
   {
     name: 'Healing God',
@@ -54,7 +54,7 @@ export const TheismCults = [
     standardSkills: 'First Aid, Endurance',
     professionalSkills: 'Devotion, Exhort, Healing',
     miracles:
-      'Cure Malady, Cure Sense, Dismiss Magic, Exorcism, Eecundity, Heal Body, Heal Mind, Heal Wound, Lay to Rest, Pacify, Rejuvenate, Resurrect',
+      "Cure Malady, Cure Sense, Dismiss Magic, Exorcism, Fecundity, Heal Body, Heal Mind, Heal Wound, Lay to Rest, Pacify, Rejuvenate, Resurrect",
   },
   {
     name: 'Hunter God',
@@ -77,12 +77,12 @@ export const TheismCults = [
     level: 'Lay Member',
     standardSkills: 'Boating, Swim',
     professionalSkills:
-      'Devotion, Exhort, and either Craft (Eishing) or Seamanship',
+      "Devotion, Exhort, and either Craft (Fishing) or Seamanship",
     miracles:
       'Beast Form, Breathe Water, Call Winds, Dismiss Elemental, Elemental Summoning (Undine), Perseverance, Propitiate, Sacred Band, Steadfast, Thunderclap',
   },
   {
-    name: 'Sun God/Eire God',
+    name: "Sun God/Fire God",
     level: 'Lay Member',
     standardSkills: 'Influence, Insight',
     professionalSkills: 'Devotion, Exhort, Oratory',
@@ -174,7 +174,7 @@ export const Brotherhoods = [
     professionalSkills: 'Lore (Any Two)',
   },
   {
-    name: 'Criminal Eraternity',
+    name: "Criminal Fraternity",
     level: 'Associate',
     standardSkills: 'Conceal, Deceit, Endurance',
     professionalSkills: 'Disguise, Sleight',
@@ -290,7 +290,7 @@ export const MysticalOrders = [
     standardSkills: 'Endurance, Willpower',
     professionalSkills: 'Survival, Meditation, Mysticism',
     paths:
-      'Way of Abjuration: Augment Endurance, Augment Survival, Invoke Denial (Food), Invoke Denial (Water), Invoke Denial (Sleep), Enhance Eatigue, Enhance Hit Points',
+      "Way of Abjuration: Augment Endurance, Augment Survival, Invoke Denial (Food), Invoke Denial (Water), Invoke Denial (Sleep), Enhance Fatigue, Enhance Hit Points",
   },
   {
     name: 'School of Enlightened Being',

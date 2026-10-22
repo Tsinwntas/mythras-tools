@@ -5,7 +5,7 @@
   },
   {
     "range": "02",
-    "text": "A curse has been placed upon your family. Eor generations all children of the opposite gender to your character have died in tragic circumstances. It falls to each generation to select one who will find a way to lift the curse, and you are the chosen one."
+    "text": "A curse has been placed upon your family. For generations all children of the opposite gender to your character have died in tragic circumstances. It falls to each generation to select one who will find a way to lift the curse, and you are the chosen one."
   },
   {
     "range": "03-04",
@@ -45,7 +45,7 @@
   },
   {
     "range": "20",
-    "text": "Eate has closely watched over you as you grew to adulthood. Siblings have drowned, friends died from plague, parents disgraced, but you have emerged unscathed from everything. Are you truly blessed by the gods?"
+    "text": "Fate has closely watched over you as you grew to adulthood. Siblings have drowned, friends died from plague, parents disgraced, but you have emerged unscathed from everything. Are you truly blessed by the gods?"
   },
   {
     "range": "21-22",
@@ -77,7 +77,7 @@
   },
   {
     "range": "33-34",
-    "text": "You have a favoured and beloved pet which follows them everywhere. It has no abilities or special powers, but offers comfort and companionship."
+    "text": "You have a favoured and beloved pet which follows you everywhere. It has no abilities or special powers, but offers comfort and companionship."
   },
   {
     "range": "35",
@@ -85,7 +85,7 @@
   },
   {
     "range": "36-37",
-    "text": "You have suffered some form of horrific attack that has left you psychologically scarred, and extremely wary about the situation or thing which harmed you. This might be nearly dying from drowning, man-eating lions or necromantic magic. Whatever it is, gain a new passion of Eear (thing which harmed you) or roleplay your subsequent trepidation."
+    "text": "You have suffered some form of horrific attack that has left you psychologically scarred, and extremely wary about the situation or thing which harmed you. This might be nearly dying from drowning, man-eating lions or necromantic magic. Whatever it is, gain a new passion of Fear (thing which harmed you) or roleplay your subsequent trepidation."
   },
   {
     "range": "38-39",
@@ -145,7 +145,7 @@
   },
   {
     "range": "63-64",
-    "text": "You came across a tinker or peddler on the road. He offered to read your fortune for a silver piece, but you had no money, and instead offered to share your meal with him, which he accepted. Reading your palm he declared you would become a great hero and travel the world, but not before encountering ⁵A great sorrow, a great victory, and a great reversal.' You have often wondered what he meant because none of those things have come to pass. Might the tinker have been lying?"
+    "text": "You came across a tinker or peddler on the road. He offered to read your fortune for a silver piece, but you had no money, and instead offered to share your meal with him, which he accepted. Reading your palm he declared you would become a great hero and travel the world, but not before encountering 'A great sorrow, a great victory, and a great reversal.' You have often wondered what he meant because none of those things have come to pass. Might the tinker have been lying?"
   },
   {
     "range": "65-66",
@@ -181,7 +181,7 @@
   },
   {
     "range": "81-82",
-    "text": "Your family has a reputation for luck. Everything your family does turns-out splendidly; it has wealth it has never seemed to work for; it has a strong reputation; no ill has ever befallen it. You have, however, heard something that makes you suspicious of this charmed life you've led. How did you family come by this luck? Was a much higher price – perhaps a darker price – paid for it?"
+    "text": "Your family has a reputation for luck. Everything your family does turns out splendidly; it has wealth it has never seemed to work for; it has a strong reputation; no ill has ever befallen it. You have, however, heard something that makes you suspicious of this charmed life you've led. How did your family come by this luck? Was a much higher price – perhaps a darker price – paid for it?"
   },
   {
     "range": "83-84",
@@ -193,7 +193,7 @@
   },
   {
     "range": "81-88",
-    "text": "Your hereditary line is slowly becoming extinct, every year one member of the diminishing family dies in a frightful and twisted ⁵accident'. What is behind this run of misfortune? Are you family cursed or has some evil agency taken to expunging your blood line? Are you next?"
+    "text": "Your hereditary line is slowly becoming extinct, every year one member of the diminishing family dies in a frightful and twisted 'accident'. What is behind this run of misfortune? Is your family cursed or has some evil agency taken to expunging your blood line? Are you next?"
   },
   {
     "range": "89-90",
@@ -213,7 +213,7 @@
   },
   {
     "range": "97-98",
-    "text": "You accidentally killed a close friend or sibling when playing together. The horror of the situation caused you to flee, remaining silent about the tragedy. When the adults finally went out to search for the missing adolescent no trace could be found, although they searched the area where you left the body. You have lived with the guilt ever since, but whatever became of you compatriot? Did they escape death or did something unspeakable happen to the body?"
+    "text": "You accidentally killed a close friend or sibling when playing together. The horror of the situation caused you to flee, remaining silent about the tragedy. When the adults finally went out to search for the missing adolescent no trace could be found, although they searched the area where you left the body. You have lived with the guilt ever since, but whatever became of your compatriot? Did they escape death or did something unspeakable happen to the body?"
   },
   {
     "range": "99-00",

@@ -74,7 +74,7 @@
   },
   { "item": "Pickaxe", "enc": "1", "cost": "35" },
   { "item": "Pole, 3m", "enc": "1", "cost": "1" },
-  { "item": "Quills , and ink for writing", "enc": "1", "cost": "30" },
+  { "item": "Quills and ink for writing", "enc": "1", "cost": "30" },
   { "item": "Quiver", "enc": "0", "cost": "2" },
   { "item": "Razor, folding", "enc": "0", "cost": "3" },
   { "item": "Rope (hemp), 10m", "enc": "2", "cost": "10" },
@@ -97,10 +97,10 @@
   },
   { "item": "Shoes, horse", "enc": "1", "cost": "10" },
   { "item": "Spade/Hoe/Pitchfork", "enc": "1", "cost": "25" },
-  { "item": "Torch, l hour", "enc": "0", "cost": "0.4" },
+  { "item": "Torch, 1 hour", "enc": "0", "cost": "0.4" },
   { "item": "Torch, 6 hour", "enc": "1", "cost": "0.8" },
   {
-    "item": "Waterskin or Canteen (holds h litres of liquid)",
+    "item": "Waterskin or Canteen (holds 2 litres of liquid)",
     "enc": "1",
     "cost": "0.5"
   },

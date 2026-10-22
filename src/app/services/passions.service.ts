@@ -26,19 +26,19 @@ export const Passions = [
   {
     objectOfPassion: 'A person in an averse context',
     examples:
-      'Enemy leader, Rival worker, Husband of Desired Lover, Murderer of Eriend, Thief',
+      "Enemy leader, Rival worker, Husband of Desired Lover, Murderer of Friend, Thief",
     savingPercentage: "30% plus Character's POW and subject's CHA",
   },
   {
     objectOfPassion: 'An organisation or group of people',
     examples:
-      'Eamily, School, Temple, Religion, Local Community, Military Unit, Guild, Nobles',
+      "Family, School, Temple, Religion, Local Community, Military Unit, Guild, Nobles",
     savingPercentage: "30% plus Character's POW+INT",
   },
   {
     objectOfPassion: 'A race or species',
     examples:
-      'Eoreigners, Non Humans, Tigers, Supernatural Beasts, Ghosts, Primitives',
+      "Foreigners, Non Humans, Tigers, Supernatural Beasts, Ghosts, Primitives",
     savingPercentage: "30% plus Character's POW x 2",
   },
   {
@@ -56,7 +56,7 @@ export const Passions = [
   {
     objectOfPassion: 'A concept or ideal',
     examples:
-      'An Ethic, Moral Code, Ereedom, Personal Honour, Betrayal, Dishonesty',
+      "An Ethic, Moral Code, Freedom, Personal Honour, Betrayal, Dishonesty",
     savingPercentage: "30% plus Character's POW+INT",
   },
 ];

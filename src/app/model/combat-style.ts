@@ -4,6 +4,7 @@ export class CombatStyle extends Skill {
     override name : string;
     culture: string;
     source: string;
+    background: string;
     campaignSpecific: string;
     traits: {name:string, trait:string}[];
     selectedTrait: {name:string, trait:string};
@@ -16,7 +17,8 @@ export class CombatStyle extends Skill {
         super(name, false, 'str','dex');
         this.culture = style.culture;
         this.source = style.source;
-        this.campaignSpecific = style.campaignSpecific;
+        this.background = style.background;
+        this.campaignSpecific = style['campaign-specific'] ?? style.campaignSpecific;
         this.traits = (style.traits || []).map((trait: any) => ({ ...trait }));
         this.selectedTrait = style.selectedTrait ? { ...style.selectedTrait } : undefined;
         this.weapons = { ...(style.weapons || {}) };

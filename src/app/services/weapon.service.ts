@@ -31,7 +31,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "4",
         "Enc": "1",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Dagger": {
         "Size": "S",
@@ -41,7 +41,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "0",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise"
       },
       "Stone": {
         "Size": "S",
@@ -52,7 +52,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "5/10/20",
         "Load time": "1",
-        "offensive-skills": "Kill Silently,Marksman,Rapid Reload,Stun Location"
+        "offensive-skills": "Kill Silently, Marksman, Rapid Reload, Stun Location"
       },
       "Composite Bow": {
         "Size": "L",
@@ -63,7 +63,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Range": "50/160/450",
         "Load time": "2",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Patarru": {
         "Size": "S",
@@ -74,7 +74,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Extra": "Patarru",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Bleed,Remise"
+        "offensive-skills": "Bleed, Remise"
       },
       "Piercing Axe": {
         "Size": "M",
@@ -86,7 +86,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<1.5m: -1 grade*",
         "Extra": "Zhatu. Some piercing Axes are double ended",
         "Double Ended": "If broken in combat, the length remaining in the hand can be reversed, and used as a shorter version of the original weapon.",
-        "offensive-skills": "Impale,Sunder Babylonian Traditional"
+        "offensive-skills": "Impale, Sunder"
       },
       "Reed Shield": {
         "Size": "H",
@@ -108,7 +108,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "10/150/300",
         "Load time": "3",
-        "offensive-skills": "Marksman,Rapid Reload,Stun Location"
+        "offensive-skills": "Marksman, Rapid Reload, Stun Location"
       },
       "Broad Axe 1H": {
         "Size": "M",
@@ -119,7 +119,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
         "Extra": "Hassinu. The broad axe has a wide blade set into notches in the haft. It sees use as a weapon by city garrisons and gatekeepers; it is useful for slicing ropes and sweeping besiegers off ladders... And it looks imposing.",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Broad Axe 2H": {
         "Size": "L",
@@ -130,7 +130,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
         "Extra": "Hassinu. The broad axe has a wide blade set into notches in the haft. It sees use as a weapon by city garrisons and gatekeepers; it is useful for slicing ropes and sweeping besiegers off ladders... And it looks imposing.",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Fighting Stick": {
         "Size": "S",
@@ -141,8 +141,8 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Narrow": "<1.5m: -1 grade",
         "Defensive": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.",
-        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
-        "offensive-skills": "Remise,Stun Location"
+        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small. Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
+        "offensive-skills": "Remise, Stun Location"
       },
       "MB Knife (Stone)": {
         "Size": "Reach",
@@ -153,7 +153,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Extra": "MB means Mythic Babylon",
         "defensive-skills": "Take Weapon",
-        "offensive-skills": "Bleed,Flurry,Grip,Strangle,Take Weapon"
+        "offensive-skills": "Bleed, Flurry, Grip, Strangle, Take Weapon"
       },
       "MB Knife (Bronze)": {
         "Size": "S",
@@ -164,7 +164,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Extra": "Patarru. MB means Mythic Babylon",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Bleed,Remise"
+        "offensive-skills": "Bleed, Remise"
       },
       "MB Whip": {
         "Size": "M",
@@ -174,12 +174,12 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Narrow": "<3m: -2 grades <1.5m: -3 grades",
-        "Extra": "Qinazzu. Whips are made from braided hide, and mainly used to goad animals or intimidate (or trip up) prisoners.MB means Mythic Babylon",
+        "Extra": "Qinazzu. Whips are made from braided hide, and mainly used to goad animals or intimidate (or trip up) prisoners. MB means Mythic Babylon",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
         "Offensive": "The weapon cannot be used to parry.",
-        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
+        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small. Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle,Stun Location"
+        "offensive-skills": "Entangle, Stun Location"
       },
       "Small Shield": {
         "Size": "M",
@@ -190,7 +190,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 2 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Babylonian Skirmisher"
+        "offensive-skills": "Bash, Stun Location"
       },
       "MB Spear (Stone)": {
         "Size": "M",
@@ -199,7 +199,7 @@ function getWeapons(): Weapon[] {
         "AP": "2",
         "HP": "5",
         "Enc": "2",
-        "Extra": "Sukurru. The spear is by far the most common military weapon of the period. Spears are between 2.5 and 4 m long and used twohanded, either in formation when on the ground or to reach enemies on siege towers or ladders from the top of the wall. They have copper or copper-alloy heads and are attached to the haft by a shoe-socket. Older tanged-style heads are still in use here and there but are more prone to breakage.MB means Mythic Babylon",
+        "Extra": "Sukurru. The spear is by far the most common military weapon of the period. Spears are between 2.5 and 4 m long and used two-handed, either in formation when on the ground or to reach enemies on siege towers or ladders from the top of the wall. They have copper or copper-alloy heads and are attached to the haft by a shoe-socket. Older tanged-style heads are still in use here and there but are more prone to breakage. MB means Mythic Babylon",
         "Set": "The weapon can be set to receive a foot or mounted charge",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
         "offensive-skills": "Impale"
@@ -213,7 +213,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Babylonian Marine"
+        "offensive-skills": "Bash, Stun Location"
       },
       "MB Mace": {
         "Size": "M",
@@ -223,7 +223,7 @@ function getWeapons(): Weapon[] {
         "HP": "6",
         "Enc": "1",
         "Extra": "Masgasu. MB means Mythic Babylon",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "MB Sickle Sword": {
         "Size": "M",
@@ -233,9 +233,9 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
-        "Extra": "Pastu. The sickle-sword is cast as a single piece of bronze, making it strong and durable. The handle is bound with cloth or leather. Sickle-swords contain more bronze per pound than any other type of weapon, so they are extremely expensive.Their use is limited to kings, favoured military officers, or the very wealthiest of citizens. MB means Mythic Babylon",
+        "Extra": "Pastu. The sickle-sword is cast as a single piece of bronze, making it strong and durable. The handle is bound with cloth or leather. Sickle-swords contain more bronze per pound than any other type of weapon, so they are extremely expensive. Their use is limited to kings, favoured military officers, or the very wealthiest of citizens. MB means Mythic Babylon",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Unarmed": {
         "Size": "S",
@@ -245,7 +245,7 @@ function getWeapons(): Weapon[] {
         "HP": "0",
         "Enc": "0",
         "defensive-skills": "Take Weapon",
-        "offensive-skills": "Flurry,Grip,Remise,Strangle,Stun Location,Take Weapon"
+        "offensive-skills": "Flurry, Grip, Remise, Strangle, Stun Location, Take Weapon"
       },
       "MB Self Bow": {
         "Size": "M",
@@ -257,7 +257,7 @@ function getWeapons(): Weapon[] {
         "Range": "15/60/150",
         "Load time": "2",
         "Extra": "MB means Mythic Babylon",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "MB Sling": {
         "Size": "L",
@@ -269,7 +269,7 @@ function getWeapons(): Weapon[] {
         "Range": "10/90/200",
         "Load time": "3",
         "Extra": "MB means Mythic Babylon",
-        "offensive-skills": "Marksman,Rapid Reload,Stun Location"
+        "offensive-skills": "Marksman, Rapid Reload, Stun Location"
       },
       "Throw-Stick": {
         "Size": "M",
@@ -280,7 +280,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "10/20/40",
         "Load time": "1",
-        "offensive-skills": "Marksman,Rapid Reload,Stun Location Styles for Balazar Balazaring Hawk Slayer"
+        "offensive-skills": "Marksman, Rapid Reload, Stun Location"
       },
       "MB Spear (Bronze)": {
         "Size": "M",
@@ -289,7 +289,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "5",
         "Enc": "2",
-        "Extra": "Sukurru. The spear is by far the most common military weapon of the period. Spears are between 2.5 and 4 m long and used twohanded, either in formation when on the ground or to reach enemies on siege towers or ladders from the top of the wall. They have copper or copper-alloy heads and are attached to the haft by a shoe-socket. Older tanged-style heads are still in use here and there but are more prone to breakage.MB means Mythic Babylon",
+        "Extra": "Sukurru. The spear is by far the most common military weapon of the period. Spears are between 2.5 and 4 m long and used two-handed, either in formation when on the ground or to reach enemies on siege towers or ladders from the top of the wall. They have copper or copper-alloy heads and are attached to the haft by a shoe-socket. Older tanged-style heads are still in use here and there but are more prone to breakage. MB means Mythic Babylon",
         "Set": "The weapon can be set to receive a foot or mounted charge",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
         "offensive-skills": "Impale"
@@ -304,10 +304,10 @@ function getWeapons(): Weapon[] {
         "Load time": "1",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
         "Extra": "Saparu. Nets are used to entrap and keep prisoners and slaves. They are large and difficult to use in combat, but can be effective when thrown from a wall onto a scaling ladder, or from a chariot at fleeing enemies.",
-        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
+        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small. Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle,Marksman,Rapid Reload"
+        "offensive-skills": "Entangle, Marksman, Rapid Reload"
       },
       "MB Javelin (Bronze)": {
         "Size": "H",
@@ -319,7 +319,7 @@ function getWeapons(): Weapon[] {
         "Range": "10/20/50",
         "Load time": "1",
         "Extra": "MB means Mythic Babylon",
-        "offensive-skills": "Impale,Marksman,Pin Weapon(Shield),Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Pin Weapon (Shield), Rapid Reload"
       },
       "MB Javelin (sharpened stake)": {
         "Size": "H",
@@ -330,7 +330,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Load time": "1",
         "Extra": "10/20/50 MB means Mythic Babylon",
-        "offensive-skills": "Impale,Marksman,Pin Weapon(Shield),Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Pin Weapon (Shield), Rapid Reload"
       },
       "MB Club": {
         "Size": "M",
@@ -340,7 +340,7 @@ function getWeapons(): Weapon[] {
         "HP": "4",
         "Enc": "1",
         "Extra": "Napassu. A club is simply an impromptu bludgeoning instrument – a stout stick or a bone. Cudgels also fall under this category. MB means Mythic Babylon",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Longspear": {
         "Size": "L",
@@ -360,7 +360,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "10/15/30",
         "Load time": "1",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Short Bow": {
         "Size": "L",
@@ -371,7 +371,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "15/100/200",
         "Load time": "2",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Fist": {
         "Size": "S",
@@ -380,7 +380,7 @@ function getWeapons(): Weapon[] {
         "AP": "0",
         "HP": "0",
         "Enc": "0",
-        "Extra": "*) SIZ 1-10 1d3. SIZ 11-20 damage is 1d4 Styles for Stupor Mundi West Archer"
+        "Extra": "*) SIZ 1-10 1d3. SIZ 11-20 damage is 1d4"
       },
       "Hatchet": {
         "Size": "S",
@@ -391,7 +391,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "10/20/30",
         "Load time": "1",
-        "offensive-skills": "Bleed,Kill Silently,Marksman,Rapid Reload"
+        "offensive-skills": "Bleed, Kill Silently, Marksman, Rapid Reload"
       },
       "Knife": {
         "Size": "S",
@@ -400,7 +400,7 @@ function getWeapons(): Weapon[] {
         "AP": "5",
         "HP": "4",
         "Enc": "0",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise"
       },
       "Buckler": {
         "Size": "M",
@@ -411,7 +411,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Shortsword": {
         "Size": "M",
@@ -420,7 +420,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "HP": "8",
         "Enc": "1",
-        "offensive-skills": "Bleed,Impale Traveling Horse Warrior"
+        "offensive-skills": "Bleed, Impale"
       },
       "Main Gauche": {
         "Size": "S",
@@ -429,9 +429,9 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "Enc": "1",
         "Extra": "Main Gauche is a left handed dagger that is used to guard when fencing.",
-        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
+        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small. Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
         "defensive-skills": "Pin Weapon (Main Gauche)",
-        "offensive-skills": "Bleed,Kill Silently,Pin Weapon (Main Gauche),Remise"
+        "offensive-skills": "Bleed, Kill Silently, Pin Weapon (Main Gauche), Remise"
       },
       "Rapier": {
         "Size": "M",
@@ -440,7 +440,7 @@ function getWeapons(): Weapon[] {
         "AP": "5",
         "HP": "8",
         "Enc": "1",
-        "offensive-skills": "Impale Street Brawler"
+        "offensive-skills": "Impale"
       },
       "Bone Bow": {
         "Size": "H",
@@ -450,7 +450,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "2",
         "Range": "15/100/200",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Chokin": {
         "Size": "S",
@@ -462,7 +462,7 @@ function getWeapons(): Weapon[] {
         "Range": "5/10/20",
         "Load time": "1",
         "Extra": "These are small throwing weapons made either of flint or obsidian, which can impale. The dragonewt may throw up to three chokin or four samarin at the same time during a single Combat Action.",
-        "offensive-skills": "Impale,Kill Silently,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Kill Silently, Marksman, Rapid Reload"
       },
       "Kite": {
         "Size": "H",
@@ -473,7 +473,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Klanth 1H": {
         "Size": "M",
@@ -482,7 +482,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "2",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "Extra": "A klanth is a weapon constructed of flint blades set into a wooden haft. It is normally used one handed by dragonewts of sufficient strength, two handed by others",
+        "Extra": "A klanth is a weapon constructed of flint blades set into a wooden haft. It is normally used one-handed by dragonewts of sufficient strength, two-handed by others",
         "offensive-skills": "Bleed"
       },
       "Samarin": {
@@ -495,7 +495,7 @@ function getWeapons(): Weapon[] {
         "Range": "5/10/20",
         "Load time": "1",
         "Extra": "These are small throwing weapons made either of flint or obsidian, which can impale. The dragonewt may throw up to three chokin or four samarin at the same time during a single Combat Action.",
-        "offensive-skills": "Impale,Kill Silently,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Kill Silently, Marksman, Rapid Reload"
       },
       "Utuma": {
         "Size": "M",
@@ -505,7 +505,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
         "Extra": "This weapon is the dragonewt version of a shortsword. Usually, it is a reinforced flint blade, but a very rare utuma is made from dragon bone.",
-        "offensive-skills": "Bleed Dark Troll Stonewall"
+        "offensive-skills": "Bleed"
       },
       "Klanth 2H": {
         "Size": "L",
@@ -514,8 +514,8 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "2",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "Extra": "A klanth is a weapon constructed of flint blades set into a wooden haft. It is normally used one handed by dragonewts of sufficient strength, two handed by others",
-        "offensive-skills": "Bleed,Sunder"
+        "Extra": "A klanth is a weapon constructed of flint blades set into a wooden haft. It is normally used one-handed by dragonewts of sufficient strength, two-handed by others",
+        "offensive-skills": "Bleed, Sunder"
       },
       "Lancet": {
         "Size": "H",
@@ -526,7 +526,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Range": "15/100/200",
         "Load time": "2",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Tzath": {
         "Size": "L",
@@ -538,7 +538,7 @@ function getWeapons(): Weapon[] {
         "Range": "5/10/30",
         "Load time": "1",
         "Extra": "Throwing javelins which have similarly shaped flint or obsidian heads as Ptsath, including the nasty ability of breaking off in the wound.",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Elf Bow": {
         "Size": "L",
@@ -547,7 +547,7 @@ function getWeapons(): Weapon[] {
         "AP": "8",
         "Enc": "1",
         "Range": "15/100/175",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Heater": {
         "Size": "L",
@@ -558,7 +558,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Shortspear": {
         "Size": "M",
@@ -578,7 +578,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "HP": "6",
         "Enc": "1",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Troll Maul": {
         "Size": "H",
@@ -587,7 +587,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "3",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "offensive-skills": "Bash,Stun Location,Sunder Green Elf Woodguard"
+        "offensive-skills": "Bash, Stun Location, Sunder"
       },
       "Gami": {
         "Size": "M",
@@ -616,7 +616,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "Enc": "4",
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
-        "offensive-skills": "Sunder Assassin"
+        "offensive-skills": "Sunder"
       },
       "Dart": {
         "Size": "M",
@@ -627,7 +627,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "5/10/20",
         "Load time": "1",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Whipstick": {
         "Size": "M",
@@ -637,7 +637,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle Sartarite Alynx Brother"
+        "offensive-skills": "Entangle"
       },
       "Javelin": {
         "Size": "M",
@@ -648,7 +648,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "10/20/50",
         "Load time": "1",
-        "offensive-skills": "Impale,Marksman,Pin Weapon(Shield),Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Pin Weapon (Shield), Rapid Reload"
       },
       "Long Axe 1H": {
         "Size": "M",
@@ -668,7 +668,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "15/125/250",
         "Load time": "2",
-        "offensive-skills": "Marksman,Rapid Reload Styles for Tozer Briarwood Thief"
+        "offensive-skills": "Marksman, Rapid Reload"
       },
       "Orlanthi Round Shield": {
         "Size": "L",
@@ -679,7 +679,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Cavalry"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Broadsword": {
         "Size": "M",
@@ -687,7 +687,7 @@ function getWeapons(): Weapon[] {
         "1h": "1d8",
         "AP": "6",
         "Enc": "2",
-        "offensive-skills": "Bleed,Impale"
+        "offensive-skills": "Bleed, Impale"
       },
       "Great Axe": {
         "Size": "H",
@@ -696,7 +696,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "2",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Orlanthi Scutum Shield": {
         "Size": "H",
@@ -708,7 +708,7 @@ function getWeapons(): Weapon[] {
         "Extra": "rectangular, semi-cylindrical shield",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 5 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Peltast Shield": {
         "Size": "L",
@@ -719,7 +719,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Ptsath 1H": {
         "Size": "M",
@@ -728,7 +728,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "5",
         "Enc": "1",
-        "Extra": "A spear by any other name, it has a carefully napped flint or obsidian head, each one uniquely shaped with razor sharp spurs and flanges, for that particular dragonewt. When used to impale a victim the fragile, decorative barbs tend to break off, causing a further 1d3 points of damage per round of using/flexing the location even after the Ptsath is withdrawn, until the fragments are removed by surgery.",
+        "Extra": "A spear by any other name, it has a carefully knapped flint or obsidian head, each one uniquely shaped with razor sharp spurs and flanges, for that particular dragonewt. When used to impale a victim the fragile, decorative barbs tend to break off, causing a further 1d3 points of damage per round of using/flexing the location even after the Ptsath is withdrawn, until the fragments are removed by surgery.",
         "offensive-skills": "Impale"
       },
       "Ptsath 2H": {
@@ -738,7 +738,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "5",
         "Enc": "1",
-        "Extra": "A spear by any other name, it has a carefully napped flint or obsidian head, each one uniquely shaped with razor sharp spurs and flanges, for that particular dragonewt. When used to impale a victim the fragile, decorative barbs tend to break off, causing a further 1d3 points of damage per round of using/flexing the location even after the Ptsath is withdrawn, until the fragments are removed by surgery.",
+        "Extra": "A spear by any other name, it has a carefully knapped flint or obsidian head, each one uniquely shaped with razor sharp spurs and flanges, for that particular dragonewt. When used to impale a victim the fragile, decorative barbs tend to break off, causing a further 1d3 points of damage per round of using/flexing the location even after the Ptsath is withdrawn, until the fragments are removed by surgery.",
         "Barbed": "If impaled it will cause full rather than half damage on being yanked free.",
         "offensive-skills": "Impale"
       },
@@ -752,7 +752,7 @@ function getWeapons(): Weapon[] {
         "Extra": "Hoplite shield",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Recurve Bow": {
         "Size": "H",
@@ -763,7 +763,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "15/125/250",
         "Load time": "2",
-        "offensive-skills": "Impale,Marksman,Rapid Reload Wealthy Fop"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Sickle Sword": {
         "Size": "M",
@@ -775,7 +775,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<1.5m: -1 grade",
         "Set": "The weapon can be set to receive a foot or mounted charge",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Bleed,Sunder Styles for Dragon Pass - Lunar Cavalry Corps Arrowstone"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Kontos": {
         "Size": "L",
@@ -797,7 +797,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Pelorian Peltast Shield": {
         "Size": "L",
@@ -808,7 +808,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Lance": {
         "Size": "H",
@@ -817,7 +817,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "3",
         "Mount": "The weapon must be used from the back of a moving mount.",
-        "offensive-skills": "Impale,Sunder"
+        "offensive-skills": "Impale, Sunder"
       },
       "Kopis": {
         "Size": "M",
@@ -839,7 +839,7 @@ function getWeapons(): Weapon[] {
         "Extra": "rectangular, semi-cylindrical shield",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 5 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Target Shield": {
         "Size": "L",
@@ -850,7 +850,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Impale Peasant Militia"
+        "offensive-skills": "Bash, Impale"
       },
       "Hoplite": {
         "Size": "H",
@@ -861,7 +861,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Battleaxe": {
         "Size": "M",
@@ -871,7 +871,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Small Rhomphaia": {
         "Size": "L",
@@ -881,8 +881,8 @@ function getWeapons(): Weapon[] {
         "HP": "6",
         "Enc": "1",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "Extra": "Rhomphaias were weapons with a straight or slightly curved single-edged bladeattached to a pole, which in most cases was considerably shorter than the blade. . A glaive (or glave) is a polearm, consisting of a single-edged blade on the end of a pole. Typically, the blade is around 45 centimetres (18 in) long, on the end of a pole 2 metres (7 ft) long, and the blade is affixed in a socket-shaft configuration similar to an axe head, rather than having a tang like a sword or naginata. Occasionally, glaive blades were created with a small hook on the reverse side to better catch riders. Such blades are called glaive-guisarmes.",
-        "offensive-skills": "Bleed Styles for Prax Agimori"
+        "Extra": "Rhomphaias were weapons with a straight or slightly curved single-edged blade attached to a pole, which in most cases was considerably shorter than the blade. A glaive (or glave) is a polearm, consisting of a single-edged blade on the end of a pole. Typically, the blade is around 45 centimetres (18 in) long, on the end of a pole 2 metres (7 ft) long, and the blade is affixed in a socket-shaft configuration similar to an axe head, rather than having a tang like a sword or naginata. Occasionally, glaive blades were created with a small hook on the reverse side to better catch riders. Such blades are called glaive-guisarmes.",
+        "offensive-skills": "Bleed"
       },
       "2H Mace": {
         "Size": "H",
@@ -891,7 +891,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "3",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "Extra": "Redflags"
+        "Extra": ""
       },
       "Quarterstaff": {
         "Size": "M",
@@ -913,7 +913,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<1.5m: -2 grades*",
         "Extra": "a long two-handed thrusting spear between 3 and 6 meters long.",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Impale Rorarii and Accensi 4th Century"
+        "offensive-skills": "Impale"
       },
       "Longsword": {
         "Size": "M",
@@ -922,7 +922,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "Enc": "2",
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
-        "offensive-skills": "Bleed,Impale"
+        "offensive-skills": "Bleed, Impale"
       },
       "Heavy Crossbow": {
         "Size": "H",
@@ -933,7 +933,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "20/150/300",
         "Load time": "4",
-        "offensive-skills": "Impale,Marksman,Rapid Reload,Sunder"
+        "offensive-skills": "Impale, Marksman, Rapid Reload, Sunder"
       },
       "Long Axe 2H": {
         "Size": "L",
@@ -942,7 +942,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "1",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Disorder Keg": {
         "Size": "H",
@@ -951,9 +951,9 @@ function getWeapons(): Weapon[] {
         "HP": "4",
         "Enc": "0",
         "Range": "10/15/30",
-        "Extra": "Critical",
-        "defensive-skills": "(*)Disarm(Crit) Critical",
-        "offensive-skills": "(*)Disarm(Crit),(*)Overpenetrate,(*)Weapon Malfunction Circumvent Cover,Drop Foe,Duck Back,Marksman,Pin Down,Rapid Reload"
+        "Extra": "",
+        "defensive-skills": "(*)Disarm Opponent (Crit)",
+        "offensive-skills": "(*)Disarm Opponent (Crit), (*)Overpenetration, (*)Weapon Malfunction, Circumvent Cover, Drop Foe, Duck Back, Marksman, Pin Down, Rapid Reload"
       },
       "Great Hammer": {
         "Size": "H",
@@ -962,7 +962,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "3",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "offensive-skills": "Bash,Stun Location,Sunder"
+        "offensive-skills": "Bash, Stun Location, Sunder"
       },
       "Blunderbuss": {
         "Size": "Reach",
@@ -972,7 +972,7 @@ function getWeapons(): Weapon[] {
         "HP": "6",
         "Enc": "2",
         "Range": "5/10/25",
-        "offensive-skills": "Bash,Drop Foe,Marksman,Rapid Reload,Scatter,Stun Location"
+        "offensive-skills": "Bash, Drop Foe, Marksman, Rapid Reload, Scatter, Stun Location"
       },
       "Flintlock Musket": {
         "Size": "Reach",
@@ -981,9 +981,9 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "3",
         "Range": "15/100/200",
-        "Extra": "Critical",
-        "defensive-skills": "(*)Disarm(Crit) Critical",
-        "offensive-skills": "(*)Disarm(Crit),(*)Overpenetrate,(*)Weapon Malfunction Bash,Circumvent Cover,Drop Foe,Duck Back,Marksman,Pin Down,Rapid Reload"
+        "Extra": "",
+        "defensive-skills": "(*)Disarm Opponent (Crit)",
+        "offensive-skills": "(*)Disarm Opponent (Crit), (*)Overpenetration, (*)Weapon Malfunction, Bash, Circumvent Cover, Drop Foe, Duck Back, Marksman, Pin Down, Rapid Reload"
       },
       "Flintlock Pistol": {
         "Size": "Reach",
@@ -992,9 +992,9 @@ function getWeapons(): Weapon[] {
         "HP": "4",
         "Enc": "1",
         "Range": "10/20/50",
-        "Extra": "Critical",
-        "defensive-skills": "(*)Disarm(Crit) Critical",
-        "offensive-skills": "(*)Disarm(Crit),(*)Overpenetrate,(*)Weapon Malfunction Bash,Circumvent Cover,Drop Foe,Duck Back,Marksman,Pin Down,Rapid Reload"
+        "Extra": "",
+        "defensive-skills": "(*)Disarm Opponent (Crit)",
+        "offensive-skills": "(*)Disarm Opponent (Crit), (*)Overpenetration, (*)Weapon Malfunction, Bash, Circumvent Cover, Drop Foe, Duck Back, Marksman, Pin Down, Rapid Reload"
       },
       "Flintlock Pistol - Double Barrel": {
         "Size": "Reach",
@@ -1003,9 +1003,9 @@ function getWeapons(): Weapon[] {
         "HP": "4",
         "Enc": "2",
         "Range": "10/20/50",
-        "Extra": "Critical",
-        "defensive-skills": "(*)Disarm(Crit) Critical",
-        "offensive-skills": "(*)Disarm(Crit),(*)Overpenetrate,(*)Weapon Malfunction Bash,Circumvent Cover,Drop Foe,Duck Back,Marksman,Pin Down,Rapid Reload"
+        "Extra": "",
+        "defensive-skills": "(*)Disarm Opponent (Crit)",
+        "offensive-skills": "(*)Disarm Opponent (Crit), (*)Overpenetration, (*)Weapon Malfunction, Bash, Circumvent Cover, Drop Foe, Duck Back, Marksman, Pin Down, Rapid Reload"
       },
       "Bo staff": {
         "Size": "M",
@@ -1044,7 +1044,7 @@ function getWeapons(): Weapon[] {
         "AP": "5",
         "Enc": "2",
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
-        "offensive-skills": "Bleed,Impale"
+        "offensive-skills": "Bleed, Impale"
       },
       "Masakari": {
         "Size": "M",
@@ -1064,8 +1064,8 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "3",
         "Narrow": "<3m: -2 grades* <1.5m: -3 grades*",
-        "Extra": "A naginata consists of a wooden or metal pole with a curved single-edged blade on the end; Naginata often have a round handguard (tsuba) between the blade and shaft, when mounted in a koshirae. The 30 cm to 60 cm long naginata blade. The shaft ranges from 120 cm to 240 cm in length and is oval shaped. The end of the shaft has a heavy metal end cap (ishizuki or hirumaki). When not in use the blade would be covered with a wooden sheath",
-        "offensive-skills": "Bleed,Impale,Sunder"
+        "Extra": "A naginata consists of a wooden or metal pole with a curved single-edged blade on the end; Naginata often have a round handguard (tsuba) between the blade and shaft, when mounted in a koshirae. The naginata blade is 30 cm to 60 cm long. The shaft ranges from 120 cm to 240 cm in length and is oval shaped. The end of the shaft has a heavy metal end cap (ishizuki or hirumaki). When not in use the blade would be covered with a wooden sheath",
+        "offensive-skills": "Bleed, Impale, Sunder"
       },
       "No-Dachi": {
         "Size": "H",
@@ -1085,7 +1085,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Extra": "Sai dagger is a blunted, prong shaped metal baton, with two curved prongs (yoku) projecting from the handle",
-        "offensive-skills": "Impale,Kill Silently,Remise"
+        "offensive-skills": "Impale, Kill Silently, Remise"
       },
       "Tachi": {
         "Size": "L",
@@ -1096,7 +1096,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Narrow": "<3m: -2 grades <1.5m: -3 grades",
         "Extra": "Katana type sword with cutting-edge down. Average cutting edge length (nagasa) of 70–80 cm and compared to a katana was generally lighter in proportion to its length, had a greater taper from hilt to point, was more curved and had a smaller point area",
-        "offensive-skills": "Bleed,Impale,Sunder"
+        "offensive-skills": "Bleed, Impale, Sunder"
       },
       "Tanto": {
         "Size": "S",
@@ -1105,8 +1105,8 @@ function getWeapons(): Weapon[] {
         "AP": "5",
         "HP": "5",
         "Enc": "1",
-        "Extra": "The blade is single or double edged with a length between 15 and 30cm (1 Japanese shaku). The tantn was designed primarily as a stabbing weapon, but the edge can be used for slashing as well.",
-        "offensive-skills": "Bleed,Kill Silently,Remise"
+        "Extra": "The blade is single or double edged with a length between 15 and 30cm (1 Japanese shaku). The tanto was designed primarily as a stabbing weapon, but the edge can be used for slashing as well.",
+        "offensive-skills": "Bleed, Kill Silently, Remise"
       },
       "Tetsubo": {
         "Size": "H",
@@ -1116,7 +1116,7 @@ function getWeapons(): Weapon[] {
         "Enc": "4",
         "Narrow": "<3m: -2 grades <1.5m: -3 grades",
         "Extra": "Metal staff 120+cm long. Weighs 6kg+",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Nunchaku": {
         "Size": "M",
@@ -1126,7 +1126,7 @@ function getWeapons(): Weapon[] {
         "HP": "6",
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
-        "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on. Way of the Iron Fist"
+        "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on."
       },
       "Tonfa": {
         "Size": "S",
@@ -1136,7 +1136,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Extra": "It consists of a stick with a perpendicular handle attached a third of the way down the length of the stick, and is about 15–20 inches (380–510 mm) long. It was traditionally made from red or white oak and wielded in pairs",
-        "offensive-skills": "Bash,Kill Silently,Remise Quanyuan quan"
+        "offensive-skills": "Bash, Kill Silently, Remise"
       },
       "Hanbo": {
         "Size": "M",
@@ -1146,7 +1146,7 @@ function getWeapons(): Weapon[] {
         "HP": "4",
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
-        "Extra": "1 meters wooden staff",
+        "Extra": "A one-metre wooden staff.",
         "offensive-skills": "Stun Location"
       },
       "Kusari": {
@@ -1169,7 +1169,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "5/15/25",
         "Load time": "1",
-        "offensive-skills": "Marksman,Rapid Reload"
+        "offensive-skills": "Marksman, Rapid Reload"
       },
       "Yawara": {
         "Size": "S",
@@ -1181,7 +1181,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<3m: ?",
         "Extra": "small object held in one hand to amplify the effect of punch",
         "defensive-skills": "Take Weapon",
-        "offensive-skills": "Flurry,Grip,Remise,Strangle,Stun Location,Take Weapon Monk"
+        "offensive-skills": "Flurry, Grip, Remise, Strangle, Stun Location, Take Weapon"
       },
       "Blowgun": {
         "Size": "Reach",
@@ -1192,7 +1192,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "10/20/30",
         "Load time": "2",
-        "offensive-skills": "Impale,Inject Venom,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Inject Venom, Marksman, Rapid Reload"
       },
       "Chigriki": {
         "Size": "L",
@@ -1201,9 +1201,9 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "3",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "Extra": "Japanese flail weapon. It consists of a solid or hollow wood (sometimes bamboo) or iron staff with an iron weight and chain on the end, sometimes retractable. The chigiriki is a more aggressive variation of the parrying weapon kusarigama. It can be used to strike or entangle the opponent as well as to parry his blows and to capture or incapacitate an opponents weapon. The stick can be as long as the wielder's forearm or longer, while the length of the chain could also be of various lengths. The iron weight could have spikes and its shape could be round or be multi sided.",
+        "Extra": "Japanese flail weapon. It consists of a solid or hollow wood (sometimes bamboo) or iron staff with an iron weight and chain on the end, sometimes retractable. The chigiriki is a more aggressive variation of the parrying weapon kusarigama. It can be used to strike or entangle the opponent as well as to parry his blows and to capture or incapacitate an opponent's weapon. The stick can be as long as the wielder's forearm or longer, while the length of the chain could also be of various lengths. The iron weight could have spikes and its shape could be round or be multi sided.",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Katana 1H": {
         "Size": "M",
@@ -1223,7 +1223,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "20/100/200",
         "Load time": "3",
-        "offensive-skills": "Marksman,Rapid Reload"
+        "offensive-skills": "Marksman, Rapid Reload"
       },
       "Ninja-to 1H": {
         "Size": "M",
@@ -1232,7 +1232,7 @@ function getWeapons(): Weapon[] {
         "AP": "5",
         "HP": "8",
         "Enc": "1",
-        "Extra": "The ninjatn is a short sword, often portrayed as having a straight blade with a square guard. Usually of a length \"less than 60 cm\", the rest of the sword is comparatively \"thick, heavy and straight\".",
+        "Extra": "The ninjato is a short sword, often portrayed as having a straight blade with a square guard. Usually of a length \"less than 60 cm\", the rest of the sword is comparatively \"thick, heavy and straight\".",
         "offensive-skills": "Impale"
       },
       "Ninja-to 2H": {
@@ -1242,7 +1242,7 @@ function getWeapons(): Weapon[] {
         "AP": "5",
         "HP": "8",
         "Enc": "1",
-        "Extra": "The ninjatn is a short sword, often portrayed as having a straight blade with a square guard. Usually of a length \"less than 60 cm\", the rest of the sword is comparatively \"thick, heavy and straight\".",
+        "Extra": "The ninjato is a short sword, often portrayed as having a straight blade with a square guard. Usually of a length \"less than 60 cm\", the rest of the sword is comparatively \"thick, heavy and straight\".",
         "offensive-skills": "Impale"
       },
       "Shinobi-kyu": {
@@ -1255,7 +1255,7 @@ function getWeapons(): Weapon[] {
         "Range": "5/25/50",
         "Load time": "2",
         "Extra": "A shorter version of dai-kyu - the asymmetric bow. Collapsible short bow of Ninja. Cannot be bought",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Taibumi": {
         "Size": "S",
@@ -1266,8 +1266,8 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "5/25/50",
         "Load time": "2",
-        "Extra": "Ninja weapon .Short bow that can be folded to walking stick",
-        "offensive-skills": "Impale,Kill Silently,Marksman,Rapid Reload"
+        "Extra": "Ninja weapon. Short bow that can be folded into a walking stick.",
+        "offensive-skills": "Impale, Kill Silently, Marksman, Rapid Reload"
       },
       "Wakizashi": {
         "Size": "M",
@@ -1296,7 +1296,7 @@ function getWeapons(): Weapon[] {
         "2h": "1d10+1",
         "AP": "3",
         "Enc": "2",
-        "Extra": "Eastern longspear.Yari has a straight blade that could be anywhere from several centimeters to 3 feet or more in length Styles for Egypt Crimson Serpent Acolyte"
+        "Extra": "Eastern longspear. Yari has a straight blade that could be anywhere from several centimeters to 3 feet or more in length"
       },
       "Dao": {
         "Size": "M",
@@ -1307,7 +1307,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<1.5m: -1 grades*",
         "Extra": "Chinese 1 edged sabre",
-        "offensive-skills": "Bleed,Impale"
+        "offensive-skills": "Bleed, Impale"
       },
       "Qian": {
         "Size": "M",
@@ -1317,7 +1317,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade*",
         "Extra": "Chinese double edged sword",
-        "offensive-skills": "Bleed,Impale"
+        "offensive-skills": "Bleed, Impale"
       },
       "Sectional Staff": {
         "Size": "L",
@@ -1327,7 +1327,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
         "Extra": "three sticks linked by cord or chain.",
-        "offensive-skills": "Bash,Impale,Stun Location Street Fighting"
+        "offensive-skills": "Bash, Impale, Stun Location"
       },
       "Dai-kyu": {
         "Size": "H",
@@ -1339,7 +1339,7 @@ function getWeapons(): Weapon[] {
         "Range": "15/125/180",
         "Load time": "2",
         "Extra": "Dai-kyu is asymmetrical bow and can be up to 2.5m long and can be used from saddle. Materials are laminated bamboo and wood with rattan twines",
-        "offensive-skills": "Marksman,Rapid Reload"
+        "offensive-skills": "Marksman, Rapid Reload"
       },
       "Brass Knuckles": {
         "Size": "S",
@@ -1349,7 +1349,7 @@ function getWeapons(): Weapon[] {
         "HP": "4",
         "Enc": "1",
         "defensive-skills": "Take Weapon",
-        "offensive-skills": "Flurry,Grip,Strangle,Stun Location,Take Weapon"
+        "offensive-skills": "Flurry, Grip, Strangle, Stun Location, Take Weapon"
       },
       "Han Kyu": {
         "Size": "L",
@@ -1361,7 +1361,7 @@ function getWeapons(): Weapon[] {
         "Range": "5/25/50",
         "Load time": "2",
         "Extra": "A shorter version of dai-kyu - the asymmetric bow",
-        "offensive-skills": "Marksman,Rapid Reload"
+        "offensive-skills": "Marksman, Rapid Reload"
       },
       "Khopesh": {
         "Size": "M",
@@ -1371,7 +1371,7 @@ function getWeapons(): Weapon[] {
         "HP": "6",
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
-        "Extra": "A strange and fabulous sword, the khopesh has a sickle- like blade with its outside curve bearing the edge of the weapon. The shape of the weapon makes for heavier blows but at the expense of the blade's speed.",
+        "Extra": "A strange and fabulous sword, the khopesh has a sickle-like blade with its outside curve bearing the edge of the weapon. The shape of the weapon makes for heavier blows but at the expense of the blade's speed.",
         "offensive-skills": "Bash"
       },
       "2H Khopesh": {
@@ -1381,7 +1381,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "Enc": "1",
         "Narrow": "<1.5m: -2 grades",
-        "Extra": "A strange and fabulous sword, the khopesh has a sickle- like blade with its outside curve bearing the edge of the weapon. The shape of the weapon makes for heavier blows but at the expense of the blade's speed.",
+        "Extra": "A strange and fabulous sword, the khopesh has a sickle-like blade with its outside curve bearing the edge of the weapon. The shape of the weapon makes for heavier blows but at the expense of the blade's speed.",
         "offensive-skills": "Bash"
       },
       "Ball & chain": {
@@ -1394,7 +1394,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<1.5m: -1 grade",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Bash,Entangle,Stun Location"
+        "offensive-skills": "Bash, Entangle, Stun Location"
       },
       "Barbed Javelin": {
         "Size": "M",
@@ -1406,7 +1406,7 @@ function getWeapons(): Weapon[] {
         "Range": "10/20/50",
         "Load time": "1",
         "Barbed": "If impaled it will cause full rather than half damage on being yanked free.",
-        "offensive-skills": "Impale,Marksman,Pin Weapon(Shield),Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Pin Weapon (Shield), Rapid Reload"
       },
       "Pike/Sarissa": {
         "Size": "L",
@@ -1428,7 +1428,7 @@ function getWeapons(): Weapon[] {
         "Enc": "5",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location God Forgot Talar Defensive School"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Falchion": {
         "Size": "M",
@@ -1461,7 +1461,7 @@ function getWeapons(): Weapon[] {
         "Stealth": "The weapon must be used from ambush.",
         "Concealable": "The weapon can be concealed",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
-        "offensive-skills": "Kill Silently,Remise,Strangle"
+        "offensive-skills": "Kill Silently, Remise, Strangle"
       },
       "Dagger Cane": {
         "Size": "S",
@@ -1472,7 +1472,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Extra": "Stiletto concealed in the hilt of a cane",
         "Concealable": "The weapon can be concealed",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise,Stun Location"
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise, Stun Location"
       },
       "Stiletto": {
         "Size": "S",
@@ -1483,7 +1483,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Extra": "Small dagger for stabbing, not cutting",
         "Concealable": "The weapon can be concealed",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise Hyperborean Cultist"
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise"
       },
       "Sword Cane": {
         "Size": "M",
@@ -1495,7 +1495,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
         "Extra": "Rapier concealed in the hilt of a cane",
         "Concealable": "The weapon can be concealed",
-        "offensive-skills": "Bleed,Impale,Stun Location"
+        "offensive-skills": "Bleed, Impale, Stun Location"
       },
       "Weighted Cane": {
         "Size": "M",
@@ -1507,7 +1507,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
         "Extra": "Reinforced, weighted cane",
         "Concealable": "The weapon can be concealed",
-        "offensive-skills": "Bash,Stun Location Styles for Viking Dane Raider"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Weighted Gloves": {
         "Size": "S",
@@ -1516,9 +1516,9 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "6",
         "Enc": "2",
-        "Extra": "Gloves with hidden weigths",
+        "Extra": "Gloves with hidden weights",
         "Concealable": "The weapon can be concealed",
-        "offensive-skills": "Remise,Stun Location Fioracitta Mylady's Secret"
+        "offensive-skills": "Remise, Stun Location"
       },
       "Comb": {
         "Size": "S",
@@ -1529,7 +1529,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Extra": "Metal hair comb with wicked teeth",
         "Concealable": "The weapon can be concealed",
-        "offensive-skills": "Bleed,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Kill Silently, Remise"
       },
       "Cosh": {
         "Size": "M",
@@ -1541,7 +1541,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<1.5m: -1 grade",
         "Extra": "Weighted, flexible weapon",
         "Concealable": "The weapon can be concealed",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Hatpin": {
         "Size": "S",
@@ -1552,7 +1552,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Extra": "Stiletto disguised as a hatpin or hairpin",
         "Concealable": "The weapon can be concealed",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise"
       },
       "Chain": {
         "Size": "M",
@@ -1574,7 +1574,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise"
       },
       "Celtic Thrown Dagger": {
         "Size": "S",
@@ -1597,7 +1597,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<3m: -2 grades <1.5m: -3 grades",
         "Offensive": "The weapon cannot be used to parry.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle,Stun Location"
+        "offensive-skills": "Entangle, Stun Location"
       },
       "Fonritian Spear-Sword": {
         "Size": "L",
@@ -1606,7 +1606,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "2",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Whip": {
         "Size": "M",
@@ -1619,7 +1619,7 @@ function getWeapons(): Weapon[] {
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
         "Offensive": "The weapon cannot be used to parry.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle,Grip,Stun Location,Take Weapon Street Rat"
+        "offensive-skills": "Entangle, Grip, Stun Location, Take Weapon"
       },
       "Elf Blowgun": {
         "Size": "Reach",
@@ -1630,7 +1630,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "5/10/30",
         "Load time": "2",
-        "offensive-skills": "Inject Venom,Marksman,Rapid Reload"
+        "offensive-skills": "Inject Venom, Marksman, Rapid Reload"
       },
       "Flail": {
         "Size": "M",
@@ -1651,7 +1651,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
         "Extra": "A glaive (or glave) is a polearm, consisting of a single-edged blade on the end of a pole. Typically, the blade is around 45 centimetres (18 in) long, on the end of a pole 2 metres (7 ft) long, and the blade is affixed in a socket-shaft configuration similar to an axe head, rather than having a tang like a sword or naginata. Occasionally, glaive blades were created with a small hook on the reverse side to better catch riders. Such blades are called glaive-guisarmes.",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Staff Sling": {
         "Size": "E",
@@ -1662,7 +1662,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Range": "5/25/30",
         "Load time": "4",
-        "offensive-skills": "Marksman,Rapid Reload,Stun Location Rogue"
+        "offensive-skills": "Marksman, Rapid Reload, Stun Location"
       },
       "Halberd/Poleaxe": {
         "Size": "L",
@@ -1672,7 +1672,7 @@ function getWeapons(): Weapon[] {
         "Enc": "4",
         "Narrow": "<3m: -2 grades* <1.5m: -3 grades*",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Entangle,Impale,Sunder"
+        "offensive-skills": "Entangle, Impale, Sunder"
       },
       "Military Pick": {
         "Size": "M",
@@ -1681,7 +1681,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "Enc": "3",
         "Narrow": "<1.5m: -1 grade",
-        "offensive-skills": "Stun Location,Sunder Constantinople Peasant Levy"
+        "offensive-skills": "Stun Location, Sunder"
       },
       "Pavise": {
         "Size": "H",
@@ -1693,7 +1693,7 @@ function getWeapons(): Weapon[] {
         "Extra": "A pavise is a large shield used for cover that can be stood on the ground with an attached spike or worn on the back. Treat as a Scutum",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 5 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Viking": {
         "Size": "L",
@@ -1704,7 +1704,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Scimitar": {
         "Size": "M",
@@ -1723,7 +1723,7 @@ function getWeapons(): Weapon[] {
         "Enc": "4",
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
         "Extra": "Heavy two-handed scimitar",
-        "offensive-skills": "Bleed,Sunder Vendhyan Mahout"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Battleaxe 2H": {
         "Size": "L",
@@ -1733,7 +1733,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Trident": {
         "Size": "L",
@@ -1744,7 +1744,7 @@ function getWeapons(): Weapon[] {
         "Range": "10/15/30",
         "Load time": "1",
         "Barbed": "If impaled it will cause full rather than half damage on being yanked free.",
-        "offensive-skills": "Impale,Marksman,Rapid Reload Master Archer"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Bolas": {
         "Size": "Reach",
@@ -1755,7 +1755,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "10/25/50",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle,Marksman,Rapid Reload,Stun Location"
+        "offensive-skills": "Entangle, Marksman, Rapid Reload, Stun Location"
       },
       "Net": {
         "Size": "S",
@@ -1765,10 +1765,10 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Range": "20/100/200",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
+        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small. Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle,Remise"
+        "offensive-skills": "Entangle, Remise"
       },
       "Great Club": {
         "Size": "H",
@@ -1777,7 +1777,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "3",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Atlatl": {
         "Size": "+1",
@@ -1789,7 +1789,7 @@ function getWeapons(): Weapon[] {
         "Range": "0/10/20",
         "Load time": "1",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle,Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Entangle, Impale, Marksman, Rapid Reload"
       },
       "Military Flail": {
         "Size": "L",
@@ -1800,7 +1800,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
         "Extra": "Short handle attached to a chain, at the end of which is a metal ball.",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
-        "offensive-skills": "Bash,Stun Location Kirstet Scout"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Cestus": {
         "Size": "S",
@@ -1820,7 +1820,7 @@ function getWeapons(): Weapon[] {
         "Load time": "1",
         "Set": "The weapon can be set to receive a foot or mounted charge",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Morningstar": {
         "Size": "M",
@@ -1830,7 +1830,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "2",
         "Narrow": "<1.5m: -1 grade",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Sabre": {
         "Size": "M",
@@ -1849,7 +1849,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "8",
         "Enc": "0",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise"
       },
       "Militia Shield": {
         "Size": "L",
@@ -1860,7 +1860,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Celtic Longsword": {
         "Size": "M",
@@ -1869,7 +1869,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "Enc": "1",
         "Narrow": "<3m: <1.5m:",
-        "offensive-skills": "Bleed,Impale,Stun Location"
+        "offensive-skills": "Bleed, Impale, Stun Location"
       },
       "Celtic Shield": {
         "Size": "H",
@@ -1880,7 +1880,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Gran Spara": {
         "Size": "L",
@@ -1892,7 +1892,7 @@ function getWeapons(): Weapon[] {
         "Load time": "4",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 2 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Xiphos": {
         "Size": "M",
@@ -1901,8 +1901,8 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "HP": "8",
         "Enc": "1",
-        "Extra": "The xiphos (Ancient Greek: xnfoV [ksípnos]; plural xiphe, Ancient Greek: xnfh [ksípnnn])[1] is a double-edged, one-handed Iron Age straight shortsword used by the ancient Greeks. It was a secondary battlefield weapon for the Greek armies after the dory or javelin. The classic blade was generally about 45–60 cm (18–24 in) long, although the Spartans supposedly preferred to use blades as short as 30 cm (12 in) around the era of the Greco-Persian Wars.",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise Xyston Hippeis"
+        "Extra": "The xiphos (Ancient Greek: ξίφος; plural xiphe, Ancient Greek: ξίφη)[1] is a double-edged, one-handed Iron Age straight shortsword used by the ancient Greeks. It was a secondary battlefield weapon for the Greek armies after the dory or javelin. The classic blade was generally about 45–60 cm (18–24 in) long, although the Spartans supposedly preferred to use blades as short as 30 cm (12 in) around the era of the Greco-Persian Wars.",
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise"
       },
       "Xyston": {
         "Size": "L",
@@ -1914,7 +1914,7 @@ function getWeapons(): Weapon[] {
         "Extra": "Spear or lance. It measured about 3.5–4.25 meters (11.5–13.9 ft) long and was probably held by the cavalryman with both hands. It had a wooden shaft and a spear-point at both ends.",
         "Set": "The weapon can be set to receive a foot or mounted charge",
         "Double Ended": "If broken in combat, the length remaining in the hand can be reversed, and used as a shorter version of the original weapon.",
-        "offensive-skills": "Impale Styles for Post Alexandrian Levant Barbarian Archer"
+        "offensive-skills": "Impale"
       },
       "Akinake": {
         "Size": "M",
@@ -1924,7 +1924,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Extra": "And the so-called sicarii, which were a type of bandit, were at that time reaching their greatest number, making use of small swords, which were like the Persian acinaces in respect to their size, but curved like the Roman sica, which is where these bandits got their name.",
-        "offensive-skills": "Bleed,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Kill Silently, Remise"
       },
       "Horns": {
         "Size": "Reach",
@@ -1947,7 +1947,7 @@ function getWeapons(): Weapon[] {
         "Double Ended": "If broken in combat, the length remaining in the hand can be reversed, and used as a shorter version of the original weapon.",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Bash,Entangle,Stun Location"
+        "offensive-skills": "Bash, Entangle, Stun Location"
       },
       "Kpinga": {
         "Size": "S",
@@ -1959,7 +1959,7 @@ function getWeapons(): Weapon[] {
         "Range": "5/10/20",
         "Load time": "1",
         "Extra": "Triple-bladed throwing knife, shaped so that the target is hit by one or more of the razor sharp edges, even rolling over the edge of a shield to strike the wielder behind it.",
-        "offensive-skills": "Impale,Kill Silently,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Kill Silently, Marksman, Rapid Reload"
       },
       "Kratosi": {
         "Size": "M",
@@ -1992,7 +1992,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
         "Extra": "Swords made from exceptionally tough hardwood, with edges inset with razor-sharp flakes of obsidian. They tend to be more fragile than metal equivalents, but inflict very nasty wounds. Maquahuitl come in single-handed and double-handed versions.",
-        "offensive-skills": "Bleed Grimsand Mercenary"
+        "offensive-skills": "Bleed"
       },
       "Ixcheltu": {
         "Size": "S",
@@ -2005,7 +2005,7 @@ function getWeapons(): Weapon[] {
         "Extra": "A thorn- or shark tooth-embedded rope which is used rather like a whip, but can be applied as a garrotte in a stealth situation. Due to the barbs the rope can inflict serious bleeding.",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Bleed,Entangle,Kill Silently,Remise Civilian Cohort"
+        "offensive-skills": "Bleed, Entangle, Kill Silently, Remise"
       },
       "Mubuchae": {
         "Size": "M",
@@ -2017,7 +2017,7 @@ function getWeapons(): Weapon[] {
         "Extra": "A fan with reinforced spars, so that it is able to parry incoming attacks and even cover a limited number of Hit Locations as if it were a shield. The fan's upper edge when opened is able to inflict cutting attacks",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 2 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Brotherhood of the Silken Death"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Lasso": {
         "Size": "Reach",
@@ -2029,7 +2029,7 @@ function getWeapons(): Weapon[] {
         "Range": "42282",
         "Load time": "1",
         "Narrow": "<3m: -2 grades <1.5m: -3 grades",
-        "offensive-skills": "Entangle,Marksman,Rapid Reload"
+        "offensive-skills": "Entangle, Marksman, Rapid Reload"
       },
       "Taiaha": {
         "Size": "M",
@@ -2040,7 +2040,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
         "Extra": "Dinosaur bone staff with a stabbing point at one end and a flattened blade at the other, used for bashing rather than cutting. The staff is generally decorated with collars or tufts of feathers for decoration.",
         "Double Ended": "If broken in combat, the length remaining in the hand can be reversed, and used as a shorter version of the original weapon.",
-        "offensive-skills": "Bash,Impale,Stun Location Brotherhood of the Chromatic Doom"
+        "offensive-skills": "Bash, Impale, Stun Location"
       },
       "Katar": {
         "Size": "S",
@@ -2049,8 +2049,8 @@ function getWeapons(): Weapon[] {
         "AP": "5",
         "HP": "8",
         "Enc": "1",
-        "Extra": "Punch daggers, with a wide triangular blade mounted on a frame so that the point extends before the knuckles. They are normally made from copper and bear inscriptions as to the brotherhood to which they belongs.",
-        "offensive-skills": "Bleed,Impale,Kill Silently,Remise"
+        "Extra": "Punch daggers, with a wide triangular blade mounted on a frame so that the point extends before the knuckles. They are normally made from copper and bear inscriptions as to the brotherhood to which they belong.",
+        "offensive-skills": "Bleed, Impale, Kill Silently, Remise"
       },
       "Staff of Chastisement": {
         "Size": "L",
@@ -2061,8 +2061,8 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "10/150/300",
         "Load time": "3",
-        "Extra": "Consuming Annihilation spell. Their precise effects and shaping varies from staff to staff, but it costs 1 or more Magic Points to acti-vate the staff depending on what parameters the matrix has (divide 10 shaping points between Magnitude, Range and Targets). For the next few minutes, the staff can be used to launch a 1d10 damage attack on the wielder's turn (ignoring worn armour). Blasts must be aimed with a Combat Style that includes this magical item (which some militant High Folk brotherhoods teach) and the aiming roll is resisted in an opposed roll as per normal to overcome the spell.",
-        "offensive-skills": "Marksman,Rapid Reload,Stun Location Brotherhood of the Fang"
+        "Extra": "A staff bearing a Consuming Annihilation spell matrix. The precise effects and shaping vary from staff to staff, but it costs 1 or more Magic Points to activate the staff depending on what parameters the matrix has (divide 10 shaping points between Magnitude, Range and Targets). For the next few minutes, the staff can be used to launch a 1d10 damage attack on the wielder's turn (ignoring worn armour). Blasts must be aimed with a Combat Style that includes this magical item (which some militant High Folk brotherhoods teach) and the aiming roll is resisted in an opposed roll as per normal to overcome the spell.",
+        "offensive-skills": "Marksman, Rapid Reload, Stun Location"
       },
       "Cuauhololli": {
         "Size": "M",
@@ -2072,9 +2072,9 @@ function getWeapons(): Weapon[] {
         "HP": "6",
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
-        "Extra": "The Cuahololli was a mace made of wood with a ball at the end.",
+        "Extra": "The Cuauhololli was a mace made of wood with a ball at the end.",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Maduvu": {
         "Size": "S",
@@ -2084,7 +2084,7 @@ function getWeapons(): Weapon[] {
         "HP": "4",
         "Enc": "1",
         "Extra": "A wavy-bladed dagger carved from the spiral horn of some monstrous beast. Its purpose is more of an assassination weapon, since the horn blade tends to break off in the wound, preventing healing from occurring until it is surgically removed. In addition the porous horn is an ideal method of injecting poisons into the victim.",
-        "offensive-skills": "Impale,Inject Venom,Kill Silently,Remise"
+        "offensive-skills": "Impale, Inject Venom, Kill Silently, Remise"
       },
       "Tepoztopilli": {
         "Size": "L",
@@ -2093,8 +2093,8 @@ function getWeapons(): Weapon[] {
         "AP": "3",
         "Enc": "2",
         "Narrow": "<3m: -2 grades* <1.5m: -3 grades*",
-        "Extra": "A two handed cross between a spear and a halberd, with an edge formed from obsidian flakes similar to Maquahuitl",
-        "offensive-skills": "Bleed,Impale Brotherhood of the Serpentine Grace"
+        "Extra": "A two-handed cross between a spear and a halberd, with an edge formed from obsidian flakes similar to Maquahuitl",
+        "offensive-skills": "Bleed, Impale"
       },
       "Urumi": {
         "Size": "M",
@@ -2105,7 +2105,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
         "Extra": "The coiling blade, literally a razor-edged sword made of copper thin enough to be coiled about the waist or forearms. Unfortunately its portability and ability to be concealed make the weapon vulnerable to being broken.",
-        "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on. Brotherhood of the Obsidian Claw"
+        "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on."
       },
       "Tamking Shield": {
         "Size": "M",
@@ -2117,7 +2117,7 @@ function getWeapons(): Weapon[] {
         "Extra": "A long, narrow spike-edged shield made of woven rattan, that whilst less protective offers a greater deal of offense, since its edge can be used to slash, being embedded with sharks' teeth.",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Bleed Night's Touch"
+        "offensive-skills": "Bash, Bleed"
       },
       "Trishula": {
         "Size": "L",
@@ -2126,10 +2126,10 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "8",
         "Enc": "2",
-        "Extra": "Stone headed tridents with blades which are capable of penetrating copper or bronze armour. Most are ground in such a way that the edges are serrated with rearwards pointing barbs making them vicious when withdrawn from an impaling wound. They can be used one or two handed.",
+        "Extra": "Stone headed tridents with blades which are capable of penetrating copper or bronze armour. Most are ground in such a way that the edges are serrated with rearwards pointing barbs making them vicious when withdrawn from an impaling wound. They can be used one or two-handed.",
         "Barbed": "If impaled it will cause full rather than half damage on being yanked free.",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Impale Brotherhood of the Relentless Pursuit"
+        "offensive-skills": "Impale"
       },
       "Cakera": {
         "Size": "Reach",
@@ -2141,7 +2141,7 @@ function getWeapons(): Weapon[] {
         "Range": "10/20/30",
         "Load time": "1",
         "Extra": "A type of chakram, appearing as a circular ring of copper intended for throwing, whose outer edge is razor sharp with protruding, oddly curved spikes.",
-        "offensive-skills": "Bleed,Marksman,Rapid Reload"
+        "offensive-skills": "Bleed, Marksman, Rapid Reload"
       },
       "Bagh Nakh": {
         "Size": "S",
@@ -2151,7 +2151,7 @@ function getWeapons(): Weapon[] {
         "HP": "6",
         "Enc": "0",
         "Extra": "Fighting claws which are mounted over the user's own hands.",
-        "offensive-skills": "Bleed,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Kill Silently, Remise"
       },
       "Chimalli": {
         "Size": "L",
@@ -2163,7 +2163,7 @@ function getWeapons(): Weapon[] {
         "Extra": "A large circular shield, formed from a range of different materials and decorated with coloured feathers. The basic version is a frame of fire-hardened wooden rods, covered with woven cloth or dinosaur hide; whilst others can be formed from turtle shells. The High Folk sometimes use copper to sheathe their shields.",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Patu": {
         "Size": "M",
@@ -2172,7 +2172,7 @@ function getWeapons(): Weapon[] {
         "AP": "7",
         "Enc": "1",
         "Extra": "Stone clubs carved into a flat, ovoid shape. These are usually made of smoothed obsidian, but a few priceless examples are carved from Jadestone. Patu faces often depict unusual designs, dependent upon the Brotherhood or Tribe it originated from.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Vajramusti": {
         "Size": "Reach",
@@ -2193,8 +2193,8 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
         "Extra": "A wooden or dinosaur bone club, similar to a Patu except that it has a notch on one side used to capture an opponent's weapon.",
-        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
-        "offensive-skills": "Bash,Stun Location Doomed Cartographer"
+        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small. Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
+        "offensive-skills": "Bash, Stun Location"
       },
       "Machete": {
         "Size": "S",
@@ -2212,8 +2212,8 @@ function getWeapons(): Weapon[] {
         "AP": "0",
         "HP": "1",
         "Enc": "0",
-        "Extra": "Thimble-like finger coverings which possess a hypoder- mic needle that emerges from its tip. The needle is con- nected to a small reservoir of poison, permitting the user to select precisely which venom to utilise on a victim, provided they wear more than one of these items. Learning to use Finger Needles requires tuition in the Eight Jab Doom combat style.",
-        "offensive-skills": "Inject Venom,Kill Silently"
+        "Extra": "Thimble-like finger coverings which possess a hypodermic needle that emerges from its tip. The needle is connected to a small reservoir of poison, permitting the user to select precisely which venom to utilise on a victim, provided they wear more than one of these items. Learning to use Finger Needles requires tuition in the Eight Jab Doom combat style.",
+        "offensive-skills": "Inject Venom, Kill Silently"
       },
       "Thrown Dagger": {
         "Size": "S",
@@ -2225,7 +2225,7 @@ function getWeapons(): Weapon[] {
         "Range": "5/10/20",
         "Load time": "1",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Thrown Net": {
         "Size": "Reach",
@@ -2236,7 +2236,7 @@ function getWeapons(): Weapon[] {
         "Range": "20/100/200",
         "Load time": "1",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "offensive-skills": "Entangle,Marksman,Rapid Reload Mua Infantry"
+        "offensive-skills": "Entangle, Marksman, Rapid Reload"
       },
       "Gada": {
         "Size": "H",
@@ -2246,7 +2246,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Narrow": "<1.5m: -1 grade",
         "Extra": "A type of stone mace whose head is carved into that of a demon, monster or skull depending on the maker.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Parashu": {
         "Size": "M",
@@ -2257,7 +2257,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade",
         "Extra": "Wooden axe embedded with sharks' teeth. Most are shaped with exotic bends in the haft, or weirdly shaped heads.",
-        "offensive-skills": "Bleed Tua Skirmisher"
+        "offensive-skills": "Bleed"
       },
       "Bidentis": {
         "Size": "H",
@@ -2290,7 +2290,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<3m: -2 grades* <1.5m: -3 grades*",
         "Extra": "An oar-spear, quite literally a thrusting spear with a broadened end making it useful for paddling small rafts or canoes. The paddle can substitute as a club, permitting access to the Stun Location effect.",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Bash,Impale,Stun Location"
+        "offensive-skills": "Bash, Impale, Stun Location"
       },
       "Seax": {
         "Size": "M",
@@ -2299,7 +2299,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "HP": "8",
         "Enc": "1",
-        "offensive-skills": "Bleed,Impale"
+        "offensive-skills": "Bleed, Impale"
       },
       "Flanged Mace": {
         "Size": "M",
@@ -2316,9 +2316,9 @@ function getWeapons(): Weapon[] {
         "AP": "0",
         "HP": "0",
         "Enc": "1",
-        "Extra": "1d8+1 to 1d3 locations. In addition any person within 1 metre of the bomb takes 1d6+1 damage to 1d2 adjacent locations. Critical",
-        "defensive-skills": "(*)Disarm(Crit) Critical",
-        "offensive-skills": "(*)Disarm(Crit),(*)Overpenetrate,(*)Weapon Malfunction Bash,Circumvent Cover,Drop Foe,Duck Back,Pin Down,Stun Location"
+        "Extra": "1d8+1 to 1d3 locations. In addition any person within 1 metre of the bomb takes 1d6+1 damage to 1d2 adjacent locations.",
+        "defensive-skills": "(*)Disarm Opponent (Crit)",
+        "offensive-skills": "(*)Disarm Opponent (Crit), (*)Overpenetration, (*)Weapon Malfunction, Bash, Circumvent Cover, Drop Foe, Duck Back, Pin Down, Stun Location"
       },
       "Hook gun": {
         "Size": "Reach",
@@ -2328,9 +2328,9 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Range": "15/50/100",
         "Load time": "4",
-        "Extra": "Note MC rules on Firearms mishaps, Size and distance modifications, Discharging and reloading(pg 73) Critical",
-        "defensive-skills": "(*)Disarm(Crit) Critical",
-        "offensive-skills": "(*)Bleed(Crit),(*)Damage Weapon(Crit),(*)Disarm(Crit),(*)Overpenetrate,(*)Weapon Malfunction Bash,Circumvent Cover,Drop Foe,Duck Back,Impale(Damage only),Pin Down,Stun Location"
+        "Extra": "Note MC rules on firearms mishaps, Size and distance modifications, discharging and reloading (page 73).",
+        "defensive-skills": "(*)Disarm Opponent (Crit)",
+        "offensive-skills": "(*)Bleed (Crit), (*)Damage Weapon (Crit), (*)Disarm Opponent (Crit), (*)Overpenetration, (*)Weapon Malfunction, Bash, Circumvent Cover, Drop Foe, Duck Back, Impale (Damage only), Pin Down, Stun Location"
       },
       "Manglabia": {
         "Size": "M",
@@ -2352,7 +2352,7 @@ function getWeapons(): Weapon[] {
         "Enc": "4",
         "Narrow": "<3m: -2 grades* <1.5m: -3 grades*",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Entangle,Impale,Sunder"
+        "offensive-skills": "Entangle, Impale, Sunder"
       },
       "Zagaie": {
         "Size": "L",
@@ -2360,8 +2360,8 @@ function getWeapons(): Weapon[] {
         "2h": "1d10+1",
         "AP": "4",
         "Enc": "2",
-        "Extra": "A weapon made in the form of a long dart,",
-        "Double Ended": "If broken in combat, the length remaining in the hand can be reversed, and used as a shorter version of the original weapon. Mourtatoi - Guard Infantry"
+        "Extra": "A weapon made in the form of a long dart.",
+        "Double Ended": "If broken in combat, the length remaining in the hand can be reversed, and used as a shorter version of the original weapon."
       },
       "Solenarion": {
         "Size": "L",
@@ -2374,7 +2374,7 @@ function getWeapons(): Weapon[] {
         "Load time": "2",
         "Extra": "A hollow tube held in the place of an arrow on a bow, through which an archer can launch small darts or mues (“mice”). The advantage is that these darts may be used in very close quarters at a rapid rate of fire. Treat as a dart but inflicting 1d6 damage. The solenarion can also fire several darts at a time, acquiring the Scatter Weapon trait",
         "Scatter": "The weapon or round is made of pellets which spread before they strike, reducing any range penalties by one step and inflicting damage to 1d3 adjacent Hit Locations. This comes at a cost however. Firstly the weapon damage roll for each location is halved; secondly any armour, natural or worn, doubles its Armour Point value against the damage.",
-        "offensive-skills": "Impale,Marksman,Rapid Reload Trapezites - Light Cavalry"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Meilichai": {
         "Size": "S",
@@ -2385,7 +2385,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Extra": "Leather fingerless gloves worn by pankratiasts (see page 21). If sewn with bronze beads, increases the damage of unarmed attacks to 1d4.",
         "defensive-skills": "Take Weapon",
-        "offensive-skills": "Flurry,Grip,Kill Silently,Strangle,Take Weapon"
+        "offensive-skills": "Flurry, Grip, Kill Silently, Strangle, Take Weapon"
       },
       "Large Handgonne": {
         "Size": "Reach",
@@ -2394,9 +2394,9 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Range": "10/30/75",
         "Load time": "5",
-        "Extra": "Note MC rules on Firearms mishaps, Size and distance modifications, Discharging and reloading(pg 73) Critical",
-        "defensive-skills": "(*)Disarm(Crit) Critical",
-        "offensive-skills": "(*)Bleed(Crit),(*)Damage Weapon(Crit),(*)Disarm(Crit),(*)Overpenetrate,(*)Weapon Malfunction Bash,Circumvent Cover,Drop Foe,Duck Back,Impale(Damage only),Pin Down,Stun Location"
+        "Extra": "Note MC rules on firearms mishaps, Size and distance modifications, discharging and reloading (page 73).",
+        "defensive-skills": "(*)Disarm Opponent (Crit)",
+        "offensive-skills": "(*)Bleed (Crit), (*)Damage Weapon (Crit), (*)Disarm Opponent (Crit), (*)Overpenetration, (*)Weapon Malfunction, Bash, Circumvent Cover, Drop Foe, Duck Back, Impale (Damage only), Pin Down, Stun Location"
       },
       "Small Handgonne": {
         "Size": "Reach",
@@ -2406,9 +2406,9 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Range": "10/20/50",
         "Load time": "5",
-        "Extra": "Leather fingerless gloves worn by pankratiasts (see page 21). If sewn with bronze beads, increases the damage of unarmed attacks to 1d4. Critical",
-        "defensive-skills": "(*)Disarm(Crit) Critical",
-        "offensive-skills": "(*)Bleed(Crit),(*)Damage Weapon(Crit),(*)Disarm(Crit),(*)Overpenetrate,(*)Weapon Malfunction Bash,Circumvent Cover,Drop Foe,Duck Back,Impale(Damage only),Pin Down,Stun Location Turkish Wrestling"
+        "Extra": "Note MC rules on firearms mishaps, Size and distance modifications, discharging and reloading (page 73).",
+        "defensive-skills": "(*)Disarm Opponent (Crit)",
+        "offensive-skills": "(*)Bleed (Crit), (*)Damage Weapon (Crit), (*)Disarm Opponent (Crit), (*)Overpenetration, (*)Weapon Malfunction, Bash, Circumvent Cover, Drop Foe, Duck Back, Impale (Damage only), Pin Down, Stun Location"
       },
       "Cavalry Bow": {
         "Size": "H",
@@ -2419,7 +2419,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "15/75/150",
         "Load time": "2",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Iron Rimed Rectangular Shield - Late Republic": {
         "Size": "H",
@@ -2430,7 +2430,7 @@ function getWeapons(): Weapon[] {
         "Enc": "4",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 5 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Legionary Officer"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Spatha": {
         "Size": "M",
@@ -2450,7 +2450,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Extra": "Stabbing sword",
-        "offensive-skills": "Impale,Remise"
+        "offensive-skills": "Impale, Remise"
       },
       "Parma": {
         "Size": "M",
@@ -2462,7 +2462,7 @@ function getWeapons(): Weapon[] {
         "Extra": "Small Wooden Round Shield",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Styles for Mythic Rome Pre 4th Century Aequi or Volsci Warrior"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Dagger (Pugio)": {
         "Size": "S",
@@ -2472,7 +2472,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "0",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Impale,Kill Silently,Remise"
+        "offensive-skills": "Impale, Kill Silently, Remise"
       },
       "Bronze Hoplite Shield (Hoplon)": {
         "Size": "H",
@@ -2483,7 +2483,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Dagger (Sica)": {
         "Size": "S",
@@ -2493,7 +2493,7 @@ function getWeapons(): Weapon[] {
         "HP": "6",
         "Enc": "0",
         "Thrown": "The weapon can be used as a ranged weapon as well as a hand-to-hand weapon.",
-        "offensive-skills": "Bleed,Kill Silently,Remise"
+        "offensive-skills": "Bleed, Kill Silently, Remise"
       },
       "Caetra": {
         "Size": "M",
@@ -2505,7 +2505,7 @@ function getWeapons(): Weapon[] {
         "Extra": "Small Round Shield",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Espasa": {
         "Size": "M",
@@ -2539,7 +2539,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "10/20/50",
         "Load time": "1",
-        "offensive-skills": "Impale,Marksman,Pin Weapon(Shield),Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Pin Weapon (Shield), Rapid Reload"
       },
       "Iron Rimed Oval Shield (Scutum) - Mid Republic": {
         "Size": "H",
@@ -2550,7 +2550,7 @@ function getWeapons(): Weapon[] {
         "Enc": "4",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 5 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Velites 3rd Century"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Medium Bronze Shield (Aspis)": {
         "Size": "H",
@@ -2561,7 +2561,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Roman Kopis": {
         "Size": "M",
@@ -2571,7 +2571,7 @@ function getWeapons(): Weapon[] {
         "HP": "7",
         "Enc": "1",
         "Extra": "Hacking sword",
-        "offensive-skills": "Bleed,Remise Gallic Cavalry"
+        "offensive-skills": "Bleed, Remise"
       },
       "Light Javelin": {
         "Size": "M",
@@ -2582,7 +2582,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "10/20/50",
         "Load time": "1",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Thuroes": {
         "Size": "H",
@@ -2591,10 +2591,10 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "10",
         "Enc": "4",
-        "Extra": "A thyreos (Ancient Greek: qurenV) was a large oval shield which was commonly used in Hellenistic armies",
+        "Extra": "A thyreos (Ancient Greek: θυρεός) was a large oval shield which was commonly used in Hellenistic armies",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 5 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Hillman"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Falcata": {
         "Size": "M",
@@ -2604,7 +2604,7 @@ function getWeapons(): Weapon[] {
         "HP": "7",
         "Enc": "1",
         "Extra": "Short sword",
-        "offensive-skills": "Bleed,Remise"
+        "offensive-skills": "Bleed, Remise"
       },
       "Iron Rimed Oval Shield (Scutum) - Early Republic": {
         "Size": "L",
@@ -2615,7 +2615,7 @@ function getWeapons(): Weapon[] {
         "Enc": "4",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 5 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Bronze Phalangite Shield (Aspis)": {
         "Size": "H",
@@ -2626,7 +2626,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Wooden Oval Shield (Aspis)": {
         "Size": "H",
@@ -2638,7 +2638,7 @@ function getWeapons(): Weapon[] {
         "Extra": "Hoplite shield",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Xiphidion": {
         "Size": "M",
@@ -2648,7 +2648,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Extra": "Stabbing sword",
-        "offensive-skills": "Impale,Remise Legionary"
+        "offensive-skills": "Impale, Remise"
       },
       "Akon&Ankyle;": {
         "Size": "M",
@@ -2659,7 +2659,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Load time": "1",
         "Extra": "Range: 10/45/125 Greek Javelin with throwing strap >3 can be held in one hand",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Makhaira": {
         "Size": "M",
@@ -2681,7 +2681,7 @@ function getWeapons(): Weapon[] {
         "Extra": "Hoplite shield",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Dory": {
         "Size": "L",
@@ -2690,7 +2690,7 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "8",
         "Enc": "2",
-        "Extra": "The dory was about 2 to 3 m (6 ft 7 in to 9 ft 10 in) in length and had a handle with a diameter of 5 cm (two inches) made of wood, either cornel or ash weighing 2 to 4 lb (0.91 to 1.81 kg). The flat leaf-shaped spearhead was composed of iron and its weight was counterbalanced by an iron butt-spike.[2][3][4] (cf Sarissa) The rear of the spear was capped with a spike called a sauroter (Greek: saurwtnr), Greek for \"lizard killer\". It functionally served as a counter-weight to give balance. This spike had several uses. It could be used to stand the spear up or used as a secondary weapon if the spearhead was broken off.[5] If the shaft of the dory was broken or if the iron point was lost, the remaining portion could still function.[6] Though its combat range would be reduced, the dory's complete length would have lessened the chance of a single break rendering it ineffective. Additionally, any enemies that had fallen could be dispatched by the warriors marching over them in the back ranks of the phalanx who were holding their spears in a vertical position.[5] (Wikipedia)",
+        "Extra": "The dory was about 2 to 3 m (6 ft 7 in to 9 ft 10 in) in length and had a handle with a diameter of 5 cm (two inches) made of wood, either cornel or ash weighing 2 to 4 lb (0.91 to 1.81 kg). The flat leaf-shaped spearhead was composed of iron and its weight was counterbalanced by an iron butt-spike.[2][3][4] (cf Sarissa) The rear of the spear was capped with a spike called a sauroter (Greek: σαυρωτήρ), Greek for \"lizard killer\". It functionally served as a counter-weight to give balance. This spike had several uses. It could be used to stand the spear up or used as a secondary weapon if the spearhead was broken off.[5] If the shaft of the dory was broken or if the iron point was lost, the remaining portion could still function.[6] Though its combat range would be reduced, the dory's complete length would have lessened the chance of a single break rendering it ineffective. Additionally, any enemies that had fallen could be dispatched by the warriors marching over them in the back ranks of the phalanx who were holding their spears in a vertical position.[5] (Wikipedia)",
         "Set": "The weapon can be set to receive a foot or mounted charge",
         "Double Ended": "If broken in combat, the length remaining in the hand can be reversed, and used as a shorter version of the original weapon.",
         "offensive-skills": "Impale"
@@ -2704,7 +2704,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Small Pelte": {
         "Size": "M",
@@ -2715,7 +2715,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 2 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Bow Simple": {
         "Size": "M",
@@ -2726,7 +2726,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Range": "10/100/200",
         "Load time": "2",
-        "offensive-skills": "Marksman,Rapid Reload"
+        "offensive-skills": "Marksman, Rapid Reload"
       },
       "Celtic Sword": {
         "Size": "M",
@@ -2745,8 +2745,8 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "2",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
-        "Extra": "Rhomphaias were weapons with a straight or slightly curved single-edged bladeattached to a pole, which in most cases was considerably shorter than the blade. A glaive (or glave) is a polearm, consisting of a single-edged blade on the end of a pole. Typically, the blade is around 45 centimetres (18 in) long, on the end of a pole 2 metres (7 ft) long, and the blade is affixed in a socket-shaft configuration similar to an axe head, rather than having a tang like a sword or naginata. Occasionally, glaive blades were created with a small hook on the reverse side to better catch riders. Such blades are called glaive-guisarmes.",
-        "offensive-skills": "Bleed,Sunder"
+        "Extra": "Rhomphaias were weapons with a straight or slightly curved single-edged blade attached to a pole, which in most cases was considerably shorter than the blade. A glaive (or glave) is a polearm, consisting of a single-edged blade on the end of a pole. Typically, the blade is around 45 centimetres (18 in) long, on the end of a pole 2 metres (7 ft) long, and the blade is affixed in a socket-shaft configuration similar to an axe head, rather than having a tang like a sword or naginata. Occasionally, glaive blades were created with a small hook on the reverse side to better catch riders. Such blades are called glaive-guisarmes.",
+        "offensive-skills": "Bleed, Sunder"
       },
       "Doraddi War Shield": {
         "Size": "L",
@@ -2757,7 +2757,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 4 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Praxian Shield": {
         "Size": "M",
@@ -2768,7 +2768,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 3 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Boomerang": {
         "Size": "S",
@@ -2779,7 +2779,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Range": "15/25/50",
         "Load time": "1",
-        "offensive-skills": "Marksman,Rapid Reload,Stun Location"
+        "offensive-skills": "Marksman, Rapid Reload, Stun Location"
       },
       "Flail (Light)": {
         "Size": "M",
@@ -2791,7 +2791,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<1.5m: -1 grade",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Bash,Entangle"
+        "offensive-skills": "Bash, Entangle"
       },
       "Polearm (Poleaxe)": {
         "Size": "L",
@@ -2803,7 +2803,7 @@ function getWeapons(): Weapon[] {
         "Flanged": "The weapon has blunt metal blades or crowns of blunt spikes that are designed to concentrate the impact against armoured opponents. Ignores a specific number of armour points equal to half the maximum damage capability of the weapon, but only for determining the effects of the Stun Location or Sunder Special Effects.",
         "Puncturing": "the weapon has a significant metal spike, usually slightly curved and designed to penetrate stiff armour. Can also apply to ammunition. Ignores a specific number of armour points equal to half the maximum damage capability of the weapon but only against rigid armour.",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Bash,Bleed,Impale,Stun Location,Sunder"
+        "offensive-skills": "Bash, Bleed, Impale, Stun Location, Sunder"
       },
       "Rotella": {
         "Size": "L",
@@ -2813,7 +2813,7 @@ function getWeapons(): Weapon[] {
         "HP": "12",
         "Enc": "2",
         "Extra": "Larger than the civilian buckler, small enough to be quickly wielded in a fast aggressive style. (Wikipedia)",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Cutlass": {
         "Size": "M",
@@ -2823,7 +2823,7 @@ function getWeapons(): Weapon[] {
         "HP": "8",
         "Enc": "1",
         "Narrow": "<1.5m: -1 grade*",
-        "offensive-skills": "Bleed,Impale"
+        "offensive-skills": "Bleed, Impale"
       },
       "Gaff": {
         "Size": "M",
@@ -2845,7 +2845,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<1.5m: -1 grade",
         "Extra": "A shillelagh is a wooden walking stick and club or cudgel, typically made from a stout knotty blackthorn stick with a large knob at the top. (Wikipedia)",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Targe": {
         "Size": "L",
@@ -2857,7 +2857,7 @@ function getWeapons(): Weapon[] {
         "Extra": "a concave shield fitted with enarmes on the inside, one adjustable by a buckle, to be attached to the forearm, and the other fixed as a grip for the left hand. (wikipedia)",
         "Ranged Parry": "The weapon can parry ranged weapons.",
         "Passive Block": "The weapon can passively block 2 Hit Locations, which must be contiguous to one another.",
-        "offensive-skills": "Bash,Stun Location Trained Guard"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Flail (Heavy)": {
         "Size": "M",
@@ -2868,7 +2868,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Narrow": "<1.5m: -1 grade",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
-        "offensive-skills": "Bash,Entangle,Stun Location"
+        "offensive-skills": "Bash, Entangle, Stun Location"
       },
       "Smallsword": {
         "Size": "S",
@@ -2890,7 +2890,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<1.5m: -1 grade",
         "Flanged": "The weapon has blunt metal blades or crowns of blunt spikes that are designed to concentrate the impact against armoured opponents. Ignores a specific number of armour points equal to half the maximum damage capability of the weapon, but only for determining the effects of the Stun Location or Sunder Special Effects.",
         "Puncturing": "the weapon has a significant metal spike, usually slightly curved and designed to penetrate stiff armour. Can also apply to ammunition. Ignores a specific number of armour points equal to half the maximum damage capability of the weapon but only against rigid armour.",
-        "offensive-skills": "Bash,Stun Location Mountain Villager"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Hand Crossbow": {
         "Size": "M",
@@ -2900,7 +2900,7 @@ function getWeapons(): Weapon[] {
         "HP": "5",
         "Enc": "1",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
-        "offensive-skills": "Impale,Marksman,Rapid Reload"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Polearm (Bill)": {
         "Size": "L",
@@ -2911,7 +2911,7 @@ function getWeapons(): Weapon[] {
         "Enc": "3",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
         "Extra": "A bill is a class of agricultural implement used for trimming tree limbs, which was often repurposed for use as an infantry polearm. (Wikipedia)",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Knuckledusters": {
         "Size": "S",
@@ -2928,8 +2928,8 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "HP": "6",
         "Enc": "0",
-        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
-        "offensive-skills": "Impale Swordsmanship - Scottish"
+        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small. Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
+        "offensive-skills": "Impale"
       },
       "Polearm (Halberd)": {
         "Size": "L",
@@ -2941,7 +2941,7 @@ function getWeapons(): Weapon[] {
         "Extra": "The halberd consists of an axe blade topped with a spike mounted on a long shaft. It always has a hook or thorn on the back side of the axe blade for grappling mounted combatants. (Wikipedia)",
         "Puncturing": "the weapon has a significant metal spike, usually slightly curved and designed to penetrate stiff armour. Can also apply to ammunition. Ignores a specific number of armour points equal to half the maximum damage capability of the weapon but only against rigid armour.",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Bleed,Impale,Sunder"
+        "offensive-skills": "Bleed, Impale, Sunder"
       },
       "Polearm (Partisan)": {
         "Size": "L",
@@ -2950,10 +2950,10 @@ function getWeapons(): Weapon[] {
         "AP": "4",
         "Enc": "3",
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
-        "Extra": "t consisted of a spearhead mounted on a long shaft, usually wooden, with protrusions on the sides which aided in parrying sword thrusts. (Wikipedia)",
-        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small.Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
+        "Extra": "It consisted of a spearhead mounted on a long shaft, usually wooden, with protrusions on the sides which aided in parrying sword thrusts. (Wikipedia)",
+        "Entrapping": "If used to parry an attacking weapon, that weapon is considered one size smaller than it actually is. So a Large sword is considered Medium, and a Medium sword is considered Small. Also allows use of the Pin Weapon special effect without needing to roll a Critical.",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Sunder Trained Mercenary - German (Landsknecht)"
+        "offensive-skills": "Sunder"
       },
       "Polearm (Pike)": {
         "Size": "L",
@@ -2975,7 +2975,7 @@ function getWeapons(): Weapon[] {
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
         "Extra": "A glaive is a polearm consisting of a single-edged tapering blade similar in shape to a modern kitchen knife on the end of a pole. The blade was around 18 inches (46 cm) long, on the end of a pole 6 or 7 feet (180 or 210 centimetres) long (Wikipedia)",
         "Set": "The weapon can be set to receive a foot or mounted charge",
-        "offensive-skills": "Bleed,Impale,Sunder"
+        "offensive-skills": "Bleed, Impale, Sunder"
       },
       "Lancet Ranged": {
         "Size": "L",
@@ -2986,7 +2986,7 @@ function getWeapons(): Weapon[] {
         "Enc": "1",
         "Range": "5/10/20",
         "Load time": "1",
-        "Extra": "long and thin sharp spines made entirely of a single sea-tree splinter. They are used two-handed,",
+        "Extra": "long and thin sharp spines made entirely of a single sea-tree splinter. They are used two-handed.",
         "offensive-skills": "Impale"
       },
       "Sea Dart": {
@@ -2999,7 +2999,7 @@ function getWeapons(): Weapon[] {
         "Range": "10/25/50",
         "Load time": "1",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Entangle,Stun Location Styles for Standard Agissene Infantry"
+        "offensive-skills": "Entangle, Stun Location"
       },
       "Claws/Talons": {
         "Size": "Reach",
@@ -3034,7 +3034,7 @@ function getWeapons(): Weapon[] {
         "AP": "0",
         "HP": "0",
         "Enc": "0",
-        "offensive-skills": "Bash,Stun Location"
+        "offensive-skills": "Bash, Stun Location"
       },
       "Incising Teeth": {
         "Size": "Reach",
@@ -3098,7 +3098,7 @@ function getWeapons(): Weapon[] {
         "HP": "0",
         "Enc": "0",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Bash,Entangle"
+        "offensive-skills": "Bash, Entangle"
       },
       "Tearing Beak": {
         "Size": "Reach",
@@ -3134,7 +3134,7 @@ function getWeapons(): Weapon[] {
         "HP": "0",
         "Enc": "0",
         "defensive-skills": "Entangle",
-        "offensive-skills": "Bash,Entangle Noble Warrior"
+        "offensive-skills": "Bash, Entangle"
       },
       "Longsword 2H": {
         "Size": "L",
@@ -3143,7 +3143,7 @@ function getWeapons(): Weapon[] {
         "AP": "6",
         "Enc": "2",
         "Narrow": "<3m: -1 grade* <1.5m: -2 grades*",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Glaive": {
         "Size": "L",
@@ -3153,7 +3153,7 @@ function getWeapons(): Weapon[] {
         "Enc": "2",
         "Narrow": "<3m: -1 grade <1.5m: -2 grades",
         "Extra": "A glaive (or glave) is a polearm, consisting of a single-edged blade on the end of a pole. Typically, the blade is around 45 centimetres (18 in) long, on the end of a pole 2 metres (7 ft) long, and the blade is affixed in a socket-shaft configuration similar to an axe head, rather than having a tang like a sword or naginata. Occasionally, glaive blades were created with a small hook on the reverse side to better catch riders. Such blades are called glaive-guisarmes.",
-        "offensive-skills": "Bleed,Sunder"
+        "offensive-skills": "Bleed, Sunder"
       },
       "Pick": {
         "Size": "M",
@@ -3191,7 +3191,7 @@ function getWeapons(): Weapon[] {
         "AP": "2",
         "HP": "2",
         "Enc": "0",
-        "offensive-skills": "Impale,Marksman,Rapid Reload Traveling Ground Fighter"
+        "offensive-skills": "Impale, Marksman, Rapid Reload"
       },
       "Weighted Sash": {
         "Size": "M",
@@ -3202,7 +3202,7 @@ function getWeapons(): Weapon[] {
         "Enc": "0",
         "Offensive": "The weapon cannot be used to parry.",
         "Flexible": "If the opponent is using a shield to parry, the shield is considered one size smaller than it actually is. So a Huge shield is considered Large, a Large shield is considered Medium, and so on.",
-        "offensive-skills": "Entangle,Stun Location Tozerian Charioteer"
+        "offensive-skills": "Entangle, Stun Location"
       }
   }
   let weaponList : Weapon[] = [];

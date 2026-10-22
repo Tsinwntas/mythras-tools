@@ -22,7 +22,7 @@
   },
   {
     "title": "Initiative",
-    "cat": "Combat Core",
+    "cat": "Combat Resolution",
     "status": "RAW",
     "page": "10 / 90",
     "section": "Initiative Bonus / Initiative / Calculating Initiative",
@@ -46,7 +46,7 @@
   },
   {
     "title": "Parry: damage mitigation",
-    "cat": "Combat Core",
+    "cat": "Defence & Parrying",
     "status": "RAW",
     "page": "94",
     "section": "Damage Reduction",
@@ -67,7 +67,7 @@
   },
   {
     "title": "Ward Location",
-    "cat": "Defence",
+    "cat": "Wards & Shields",
     "status": "RAW + table interpretation",
     "page": "93",
     "section": "Ward Location",
@@ -87,7 +87,7 @@
   },
   {
     "title": "Passive Blocking",
-    "cat": "Defence",
+    "cat": "Wards & Shields",
     "status": "RAW",
     "page": "105",
     "section": "Passive Blocking",
@@ -108,7 +108,7 @@
   },
   {
     "title": "Weapon Reach: when it matters",
-    "cat": "Reach",
+    "cat": "Weapon Reach & Engagement",
     "status": "RAW (optional rule)",
     "page": "106",
     "section": "Weapon Reach — Closing and Opening Range",
@@ -129,7 +129,7 @@
   },
   {
     "title": "Fighting at the longer Reach",
-    "cat": "Reach",
+    "cat": "Weapon Reach & Engagement",
     "status": "RAW",
     "page": "106",
     "section": "Fighting at the Longer Reach",
@@ -150,7 +150,7 @@
   },
   {
     "title": "Fighting at the shorter Reach",
-    "cat": "Reach",
+    "cat": "Weapon Reach & Engagement",
     "status": "RAW",
     "page": "106",
     "section": "Fighting at the Shorter Reach",
@@ -172,7 +172,7 @@
   },
   {
     "title": "Close Range and Change Range",
-    "cat": "Reach",
+    "cat": "Weapon Reach & Engagement",
     "status": "RAW",
     "page": "91 / 107",
     "section": "Change Range / Closing Range",
@@ -193,7 +193,7 @@
   },
   {
     "title": "Attacking weapons and shields directly",
-    "cat": "Equipment",
+    "cat": "Weapons & Objects",
     "status": "RAW + table ruling",
     "page": "81 / 97 / 106",
     "section": "Inanimate Objects / Damage Weapon / Reach",
@@ -216,7 +216,7 @@
   },
   {
     "title": "Using weapons against inanimate objects",
-    "cat": "Equipment",
+    "cat": "Weapons & Objects",
     "status": "RAW",
     "page": "81",
     "section": "Using Weapons Against Inanimate Objects",
@@ -339,7 +339,7 @@
   },
   {
     "title": "Differential Roll: number of Special Effects",
-    "cat": "Special Effects",
+    "cat": "Combat Resolution",
     "status": "RAW",
     "page": "51 / 95",
     "section": "Differential Rolls / Special Effects",
@@ -365,7 +365,7 @@
   },
   {
     "title": "Unable or unwilling to parry",
-    "cat": "Defence",
+    "cat": "Defence & Parrying",
     "status": "RAW",
     "page": "95",
     "section": "Unable or Unwilling to Parry",
@@ -383,7 +383,7 @@
   },
   {
     "title": "Parrying a missed attack",
-    "cat": "Defence",
+    "cat": "Defence & Parrying",
     "status": "RAW",
     "page": "94–95",
     "section": "Parrying a Missed Attack",
@@ -399,7 +399,7 @@
   },
   {
     "title": "Wound thresholds",
-    "cat": "Wounds & Healing",
+    "cat": "Wounds & Injury",
     "status": "RAW",
     "page": "109–110",
     "section": "Damage and Wound Levels",
@@ -421,7 +421,7 @@
   },
   {
     "title": "Minor Wound",
-    "cat": "Wounds & Healing",
+    "cat": "Wounds & Injury",
     "status": "RAW",
     "page": "110",
     "section": "Minor Wound",
@@ -436,7 +436,7 @@
   },
   {
     "title": "Serious Wound",
-    "cat": "Wounds & Healing",
+    "cat": "Wounds & Injury",
     "status": "RAW — full rule text",
     "page": "110",
     "section": "Serious Wound",
@@ -463,7 +463,7 @@
   },
   {
     "title": "Major Wound",
-    "cat": "Wounds & Healing",
+    "cat": "Wounds & Injury",
     "status": "RAW — full rule text",
     "page": "110",
     "section": "Major Wound",
@@ -492,7 +492,7 @@
   },
   {
     "title": "Repeated Endurance checks for wounds",
-    "cat": "Wounds & Healing",
+    "cat": "Wounds & Injury",
     "status": "RAW + interpretation",
     "page": "109–110",
     "section": "Damage and Wound Levels",
@@ -512,7 +512,7 @@
   },
   {
     "title": "Healing Rate",
-    "cat": "Wounds & Healing",
+    "cat": "Healing & Recovery",
     "status": "RAW",
     "page": "9 / 80",
     "section": "Healing Rate / Healing from Injury",
@@ -538,7 +538,7 @@
   },
   {
     "title": "First Aid",
-    "cat": "Wounds & Healing",
+    "cat": "Healing & Recovery",
     "status": "RAW",
     "page": "41",
     "section": "First Aid",
@@ -565,7 +565,7 @@
   },
   {
     "title": "Healing skill and Surgery",
-    "cat": "Wounds & Healing",
+    "cat": "Healing & Recovery",
     "status": "RAW + table guideline",
     "page": "46–47 / 38",
     "section": "Healing / Surgery / Modifying Skills",
@@ -596,7 +596,7 @@
   },
   {
     "title": "Magical Healing",
-    "cat": "Wounds & Healing",
+    "cat": "Healing & Recovery",
     "status": "RAW",
     "tags": [
       "magical healing",
@@ -630,7 +630,7 @@
   },
   {
     "title": "Multiple opponents",
-    "cat": "Positioning",
+    "cat": "Positioning & Tactics",
     "status": "RAW",
     "page": "104",
     "section": "Multiple Opponents",
@@ -650,7 +650,7 @@
   },
   {
     "title": "Attacking from behind",
-    "cat": "Positioning",
+    "cat": "Positioning & Tactics",
     "status": "RAW",
     "page": "102",
     "section": "Close Combat Situational Modifiers",
@@ -669,7 +669,7 @@
   },
   {
     "title": "Surprise",
-    "cat": "Positioning",
+    "cat": "Positioning & Tactics",
     "status": "RAW",
     "page": "105",
     "section": "Surprise",
@@ -691,7 +691,7 @@
   },
   {
     "title": "Outmanoeuvring multiple opponents",
-    "cat": "Positioning",
+    "cat": "Positioning & Tactics",
     "status": "RAW",
     "page": "104",
     "section": "Outmanoeuvring",
@@ -712,7 +712,7 @@
   },
   {
     "title": "Critical-only Special Effects and stacking",
-    "cat": "Special Effects",
+    "cat": "Combat Resolution",
     "status": "RAW",
     "page": "95 / 98",
     "section": "Special Effects / Maximise Damage",
@@ -734,7 +734,7 @@
   },
   {
     "title": "Critical attack against a successful parry",
-    "cat": "Defence",
+    "cat": "Defence & Parrying",
     "status": "RAW",
     "page": "94–95",
     "section": "Damage Reduction / Special Effects",
@@ -755,7 +755,7 @@
   },
   {
     "title": "Opposed Rolls vs Differential Rolls",
-    "cat": "Rolls & Tests",
+    "cat": "Skill Rolls & Limits",
     "status": "RAW",
     "page": "50–51",
     "section": "Opposed Rolls / Differential Rolls",
@@ -775,7 +775,7 @@
   },
   {
     "title": "Evading attacks",
-    "cat": "Defence",
+    "cat": "Defence & Parrying",
     "status": "RAW",
     "page": "92 / 103",
     "section": "Evade / Evading",
@@ -799,7 +799,7 @@
   },
   {
     "title": "Crouching behind a shield",
-    "cat": "Defence",
+    "cat": "Wards & Shields",
     "status": "RAW",
     "page": "102 / 105",
     "section": "Close Combat Situational Modifiers / Passive Blocking",
@@ -821,7 +821,7 @@
   },
   {
     "title": "Regain Footing and fighting prone",
-    "cat": "Positioning",
+    "cat": "Positioning & Tactics",
     "status": "RAW",
     "page": "92 / 102",
     "section": "Regain Footing / Close Combat Situational Modifiers",
@@ -844,7 +844,7 @@
   },
   {
     "title": "Engagement, withdrawing and Change Range",
-    "cat": "Positioning",
+    "cat": "Weapon Reach & Engagement",
     "status": "RAW",
     "page": "101 / 107",
     "section": "Engagement / Closing and Opening Range / Withdrawing",
@@ -868,7 +868,7 @@
   },
   {
     "title": "Delay",
-    "cat": "Combat Core",
+    "cat": "Combat Resolution",
     "status": "RAW",
     "page": "91–92",
     "section": "Delay and Interrupt",
@@ -889,7 +889,7 @@
   },
   {
     "title": "Movement gaits and round distance",
-    "cat": "Movement",
+    "cat": "Movement & Charging",
     "status": "RAW",
     "page": "10 / 69 / 91",
     "section": "Movement Rate / Movement / Move",
@@ -913,7 +913,7 @@
   },
   {
     "title": "Charging",
-    "cat": "Movement",
+    "cat": "Movement & Charging",
     "status": "RAW",
     "page": "102",
     "section": "Charging / Charging into Contact / Charging through Contact",
@@ -939,7 +939,7 @@
   },
   {
     "title": "Concurrent unengaged movement",
-    "cat": "Movement",
+    "cat": "Movement & Charging",
     "status": "Table ruling",
     "page": "90–91 / 69",
     "section": "Cycles and Turns / Movement",
@@ -984,7 +984,7 @@
   },
   {
     "title": "Luck Points",
-    "cat": "Luck & Advancement",
+    "cat": "Luck Points",
     "status": "RAW",
     "page": "10 / 81",
     "section": "Luck Points / Using Luck Points",
@@ -1007,7 +1007,7 @@
   },
   {
     "title": "Reattempting a failed skill roll",
-    "cat": "Rolls & Tests",
+    "cat": "Skill Rolls & Limits",
     "status": "RAW",
     "page": "50",
     "section": "Reattempting Skills",
@@ -1028,7 +1028,7 @@
   },
   {
     "title": "Experience Rolls",
-    "cat": "Luck & Advancement",
+    "cat": "Experience & Training",
     "status": "RAW",
     "page": "71–72",
     "section": "Experience Rolls / Increasing Existing Skills",
@@ -1052,7 +1052,7 @@
   },
   {
     "title": "Experience Modifier",
-    "cat": "Luck & Advancement",
+    "cat": "Experience & Training",
     "status": "RAW",
     "page": "9 / 72",
     "section": "Experience Modifier / How Many?",
@@ -1075,7 +1075,7 @@
   },
   {
     "title": "Learning a new Professional Skill",
-    "cat": "Character Improvement",
+    "cat": "Experience & Training",
     "status": "RAW",
     "page": "73",
     "section": "Learning New Skills",
@@ -1097,7 +1097,7 @@
   },
   {
     "title": "Training an existing skill without Experience Rolls",
-    "cat": "Character Improvement",
+    "cat": "Experience & Training",
     "status": "RAW",
     "page": "73–74",
     "section": "Training / Trainers",
@@ -1120,7 +1120,7 @@
   },
   {
     "title": "Learning new magical abilities",
-    "cat": "Magic",
+    "cat": "Magic & Traditions",
     "status": "RAW — guideline costs",
     "page": "118",
     "section": "Learning New Abilities",
@@ -1147,7 +1147,7 @@
   },
   {
     "title": "Joining a new magical tradition",
-    "cat": "Magic",
+    "cat": "Magic & Traditions",
     "status": "RAW / campaign adjudication",
     "page": "118",
     "section": "Learning New Traditions",
@@ -1166,5 +1166,52 @@
       "The text discusses about six months of dedicated study as a typical route to establishing new tradition competence."
     ],
     "note": "Do not confuse a tradition’s entry requirements with the cost of adding one more spell to an existing tradition."
+  },
+  {
+    "title": "Combat skills capped by another skill",
+    "cat": "Skill Rolls & Limits",
+    "status": "RAW — GM applies in appropriate conditions",
+    "page": "50, 89, 101–107",
+    "section": "Capping Skills / Excellent Footwork / Unusual Combat Conditions",
+    "tags": [
+      "skill caps",
+      "capping",
+      "Acrobatics",
+      "combat style",
+      "slippery ground",
+      "Excellent Footwork"
+    ],
+    "summary": "In some difficult physical conditions, effective combat skill can be capped by a supporting skill, such as Acrobatics when fighting on an unstable surface.",
+    "details": [
+      "Example: Combat Style 80%, Acrobatics 45%; where the GM applies this cap, relevant combat rolls are at most 45%.",
+      "Excellent Footwork ignores the Acrobatics cap specifically for slippery or wobbling surfaces.",
+      "The underlying Combat Style remains unchanged; the limitation lasts only while the circumstances apply.",
+      "The 70% starting-skill cap previously discussed is optional table guidance, not this RAW cap."
+    ],
+    "note": "GM decides when footing actually requires an Acrobatics cap; do not automatically apply it to any slightly wet ground."
+  },
+  {
+    "title": "Pulled Blows",
+    "cat": "Controlled Damage",
+    "status": "RAW",
+    "page": "105",
+    "section": "Pulled Blows",
+    "tags": [
+      "pulled blows",
+      "non-lethal",
+      "damage",
+      "half damage",
+      "capture",
+      "knockout"
+    ],
+    "summary": "Declare a pulled blow before the attack roll to inflict half the normal damage; this does not guarantee non-lethality.",
+    "details": [
+      "Declare the reduced-force attack before the attack roll.",
+      "On a successful hit, inflict half the attack's normal damage.",
+      "No Special Effect is needed.",
+      "Normal wounds and potentially lethal results can still occur.",
+      "Stun Location is a different Special Effect (p. 99); disarming, grappling, or surrender may be better for non-injurious capture."
+    ],
+    "note": "Mythras does not use a separate universal non-lethal hit-point pool."
   }
 ]

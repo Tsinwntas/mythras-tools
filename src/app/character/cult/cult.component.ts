@@ -29,7 +29,8 @@ export class CultComponent {
     miracles: string;
   } {
     return this.theistCults.find(
-      (c) => c.name == this.character.theistCult.name
+      (c) => c.name === this.character.theistCult.name ||
+        (c.name === 'Sun God/Fire God' && this.character.theistCult.name === 'Sun God/Eire God')
     )!;
   }
 
@@ -182,7 +183,8 @@ export class CultComponent {
     standardSkills: string;
   } {
     return this.brotherhoods.find(
-      (c) => c.name == this.character.brotherhood.name
+      (c) => c.name === this.character.brotherhood.name ||
+        (c.name === 'Criminal Fraternity' && this.character.brotherhood.name === 'Criminal Eraternity')
     )!;
   }
 

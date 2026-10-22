@@ -7,6 +7,11 @@
                 <span *ngIf="col=='select'"><button mat-icon-button (click)="select.emit(element.select)" color="danger"><mat-icon>pan_tool_alt</mat-icon></button> </span>
                 <span *ngIf="col=='remove'"><button mat-icon-button (click)="remove.emit(element.remove)"><mat-icon>remove</mat-icon></button> </span>
                 <span *ngIf="!['select','weapons','critOffensive','critDefensive','offensive','defensive','traits','remove'].includes(col)">{{element[col]}}</span> 
+                <details *ngIf="col === 'name' && (element.background || element.campaignSpecific)">
+                    <summary>Style notes</summary>
+                    <p *ngIf="element.background">{{element.background}}</p>
+                    <p *ngIf="element.campaignSpecific">{{element.campaignSpecific}}</p>
+                </details>
                 <span *ngIf="['critOffensive','critDefensive','offensive','defensive'].includes(col)">
                     <span *ngFor="let special of getSpecials(element[col]); let index=index;">
                         <open-modal modal="special-effects" [prop]="special">{{special}}</open-modal>{{index<(getSpecials(element[col]).length-1)?", ":""}}
@@ -70,6 +75,11 @@
                 <span *ngIf="!getWeapons(style.weapons).length">—</span>
             </dd>
         </dl>
+        <details *ngIf="style.background || style.campaignSpecific" class="card-effects">
+            <summary>Style notes</summary>
+            <p *ngIf="style.background">{{style.background}}</p>
+            <p *ngIf="style.campaignSpecific">{{style.campaignSpecific}}</p>
+        </details>
         <details *ngIf="style.offensive || style.defensive || style.critOffensive || style.critDefensive" class="card-effects">
             <summary>Combat effects</summary>
             <dl><ng-container *ngFor="let entry of effectFields">
